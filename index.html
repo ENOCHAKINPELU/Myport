@@ -1,86 +1,890 @@
-<!DOCTYPE html><html lang="en"><head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ifeoluwa Enoch | Tech Leadership Portfolio</title>
-  <link rel="stylesheet" href="style.css">
-  <script defer src="script.js"></script>
-</head><body>
-  <header class="navbar">
-    <div class="container">
-      <h1 class="logo">Ifeoluwa Enoch</h1>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="#about">About</a></li>
-          <li><a href="#services">Services</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>  <section class="hero">
-    <div class="container">
-      <h2>Tech Leadership | AI & IT Project Delivery</h2>
-      <p>I transform ideas into scalable digital products through strategy, innovation, and technical execution.</p>
-    </div>
-  </section>  <section id="about" class="about">
-    <div class="container">
-      <h2>About Me</h2>
-      <p>I'm Ifeoluwa Enoch, a Google-certified Project Manager with proven experience leading distributed teams and delivering AI, SaaS, and software projects. With expertise in Agile delivery and technical implementation, I focus on maximizing value while aligning with business goals.</p>
-      <ul class="highlights">
-        <li>✔ 95% Client Satisfaction</li>
-        <li>✔ 15% Project Cost Savings</li>
-        <li>✔ Experienced in Gen AI, Agile, Python, and SDLC</li>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Akinpelu Enoch | AI & Tech Project Manager</title>
+  <meta name="description" content="Expert AI & Tech Project Manager delivering measurable results across UK & Nigeria. ₦2M+ cost savings, 95% client satisfaction." />
+  <meta name="keywords" content="AI Project Manager, Tech Leadership, Cross-Cultural Teams, Digital Transformation, Agile Delivery" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <style>
+    /* Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+    /* CSS Variables - Maintaining Your Color Theme */
+    :root {
+      --primary-color: #2a2a72;
+      --secondary-color: #009ffd;
+      --accent-color: #7d3cff;
+      --text-color: #2d3436;
+      --bg-color: #f9f9f9;
+      --card-bg: #ffffff;
+      --gradient: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+      --transition-speed: 0.3s;
+      --executive-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+    }
+
+    /* Global Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header */
+    header {
+      background: var(--card-bg);
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 500;
+      transition: color var(--transition-speed);
+    }
+
+    .nav-links a:hover {
+      color: var(--secondary-color);
+    }
+
+    .nav-toggle {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: var(--text-color);
+    }
+
+    /* Hero Section */
+    .hero {
+      background: var(--gradient);
+      color: #fff;
+      padding: 100px 20px;
+      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    }
+
+    .hero-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-image img {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .hero-text h1 {
+      font-size: 3.2rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .hero-tagline {
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+      opacity: 0.9;
+      font-weight: 500;
+    }
+
+    .hero-description {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .metric {
+      text-align: center;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 1.5rem 1rem;
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+    }
+
+    .metric-number {
+      display: block;
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .metric-label {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 1.8rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all var(--transition-speed);
+      font-size: 1rem;
+    }
+
+    .btn.primary {
+      background: var(--accent-color);
+      color: #fff;
+    }
+
+    .btn.primary:hover {
+      background: #6b2cdd;
+      transform: translateY(-2px);
+    }
+
+    .btn.secondary {
+      background: transparent;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      color: #fff;
+    }
+
+    .btn.secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: #fff;
+    }
+
+    /* Section Titles */
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      position: relative;
+      font-weight: 700;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      width: 80px;
+      height: 4px;
+      background: var(--secondary-color);
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+
+    /* What I Do Section */
+    .services {
+      padding: 100px 20px;
+      background: var(--card-bg);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2.5rem;
+      margin-top: 3rem;
+    }
+
+    .service-card {
+      background: var(--bg-color);
+      padding: 2.5rem;
+      border-radius: 20px;
+      box-shadow: var(--executive-shadow);
+      text-align: center;
+      transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+      border: 1px solid #e8e8e8;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    }
+
+    .service-icon {
+      width: 80px;
+      height: 80px;
+      background: var(--gradient);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 2rem;
+      color: #fff;
+    }
+
+    .service-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+
+    .service-card p {
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .service-deliverables {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+
+    .deliverable-tag {
+      background: var(--secondary-color);
+      color: #fff;
+      padding: 0.3rem 0.8rem;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    /* Case Studies Section */
+    .case-studies {
+      padding: 100px 20px;
+      background: var(--bg-color);
+    }
+
+    .case-study-grid {
+      display: grid;
+      gap: 3rem;
+      margin-top: 3rem;
+    }
+
+    .case-study-card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 3rem;
+      box-shadow: var(--executive-shadow);
+      border-left: 6px solid var(--secondary-color);
+      transition: all var(--transition-speed);
+    }
+
+    .case-study-card:hover {
+      transform: translateX(10px);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+    }
+
+    .case-study-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .case-study-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .company {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+
+    .duration, .role {
+      color: #666;
+      font-size: 0.95rem;
+    }
+
+    .case-study-results {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .result-badge {
+      padding: 0.6rem 1.2rem;
+      border-radius: 25px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .result-badge.success {
+      background: #e6fffa;
+      color: #00695c;
+    }
+
+    .result-badge.primary {
+      background: #e3f2fd;
+      color: var(--primary-color);
+    }
+
+    .case-study-card h3 {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+
+    .challenge {
+      background: #fff3e0;
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin: 1.5rem 0;
+      border-left: 4px solid #ff9800;
+    }
+
+    .challenge h4 {
+      color: #e65100;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .solution {
+      background: #e8f5e8;
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin: 1.5rem 0;
+      border-left: 4px solid #4caf50;
+    }
+
+    .solution h4 {
+      color: #2e7d32;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .impact-metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+
+    .impact-item {
+      text-align: center;
+      background: #f8f9fa;
+      padding: 1.5rem;
+      border-radius: 12px;
+    }
+
+    .impact-number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .impact-label {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    /* Certifications Section */
+    .certifications {
+      padding: 100px 20px;
+      background: var(--card-bg);
+    }
+
+    .certifications-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+      margin-top: 3rem;
+    }
+
+    .certification-card {
+      background: var(--bg-color);
+      border-radius: 20px;
+      box-shadow: var(--executive-shadow);
+      padding: 2rem;
+      text-align: center;
+      transition: transform var(--transition-speed);
+    }
+
+    .certification-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .certification-card img {
+      width: 100%;
+      max-height: 120px;
+      object-fit: contain;
+      margin-bottom: 1.5rem;
+    }
+
+    .certification-card h3 {
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .certification-card p {
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn.small {
+      padding: 0.6rem 1.2rem;
+      font-size: 0.9rem;
+    }
+
+    /* Contact Section */
+    .contact {
+      padding: 100px 20px;
+      background: var(--gradient);
+      color: #fff;
+      text-align: center;
+    }
+
+    .contact .section-title {
+      color: #fff;
+    }
+
+    .contact .section-title::after {
+      background: #fff;
+    }
+
+    .contact-intro {
+      font-size: 1.2rem;
+      margin-bottom: 3rem;
+      opacity: 0.9;
+    }
+
+    .contact-methods {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .contact-methods a {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 1.5rem;
+      border-radius: 15px;
+      text-decoration: none;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      font-weight: 500;
+      transition: all var(--transition-speed);
+      backdrop-filter: blur(10px);
+    }
+
+    .contact-methods a:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateY(-5px);
+    }
+
+    .contact-methods i {
+      font-size: 1.2rem;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--primary-color);
+      color: #fff;
+      padding: 2rem 20px;
+      text-align: center;
+    }
+
+    .back-to-top {
+      display: inline-block;
+      margin-bottom: 1rem;
+      text-decoration: none;
+      color: #fff;
+      font-size: 1.5rem;
+      transition: color var(--transition-speed);
+    }
+
+    .back-to-top:hover {
+      color: var(--secondary-color);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: 70px;
+        right: -100%;
+        background: var(--card-bg);
+        width: 70%;
+        height: calc(100vh - 70px);
+        flex-direction: column;
+        padding: 20px;
+        transition: right var(--transition-speed);
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        gap: 1rem;
+      }
+
+      .nav-links.active {
+        right: 0;
+      }
+
+      .nav-toggle {
+        display: block;
+      }
+
+      .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+      }
+
+      .hero-text h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero-metrics {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .services-grid,
+      .certifications-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .case-study-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .impact-metrics {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* Scroll Reveal Animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">ENOCH</div>
+      <div class="nav-toggle"><i class="fas fa-bars"></i></div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">What I Do</a></li>
+        <li><a href="#case-studies">Case Studies</a></li>
+        <li><a href="#certifications">Credentials</a></li>
+        <li><a href="#contact">Let's Talk</a></li>
       </ul>
-    </div>
-  </section>  <section id="services" class="services">
-    <div class="container">
-      <h2>My Services</h2>
-      <div class="service-cards">
-        <div class="card">
-          <h3>AI Project Implementation</h3>
-          <p>Drive AI adoption with strategic planning, stakeholder alignment, and agile execution.</p>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero" id="about">
+      <div class="hero-content">
+        <div class="hero-image">
+          <img src="./images/my pic.jpg" alt="Akinpelu Enoch - AI & Tech Project Manager" />
         </div>
-        <div class="card">
-          <h3>Tech Project Leadership</h3>
-          <p>Lead distributed teams and scale product delivery from ideation to launch.</p>
-        </div>
-        <div class="card">
-          <h3>Startup & MVP Strategy</h3>
-          <p>Support startups with MVP scoping, execution, and go-to-market strategy.</p>
+        <div class="hero-text">
+          <h1>Delivering AI & Tech Projects That Drive Results</h1>
+          <p class="hero-tagline">AI & Tech Project Manager | Cross-Cultural Team Leadership | Digital Transformation</p>
+          <p class="hero-description">
+            Google-certified Project Manager specializing in AI implementation and cross-continental team leadership. I help businesses transform their operations through strategic tech projects, delivering measurable ROI and exceptional client satisfaction across UK and Nigeria markets.
+          </p>
+          
+          <div class="hero-metrics">
+            <div class="metric">
+              <span class="metric-number">95%</span>
+              <span class="metric-label">Client Satisfaction</span>
+            </div>
+            <div class="metric">
+              <span class="metric-number">₦2M+</span>
+              <span class="metric-label">Cost Savings Delivered</span>
+            </div>
+            <div class="metric">
+              <span class="metric-number">50+</span>
+              <span class="metric-label">Professionals Trained</span>
+            </div>
+          </div>
+          
+          <div class="hero-actions">
+            <a href="#contact" class="btn primary">Start Your Project</a>
+            <a href="#case-studies" class="btn secondary">View My Work</a>
+          </div>
         </div>
       </div>
-    </div>
-  </section>  <section id="projects" class="projects">
-    <div class="container">
-      <h2>Featured Projects</h2>
-      <div class="project-list">
-        <div class="project">
-          <h3>Docify HealthTech</h3>
-          <p>Led the delivery of an AI-powered health platform enabling patient ID tracking and multilingual virtual consultations.</p>
-        </div>
-        <div class="project">
-          <h3>Sigma Visceral App</h3>
-          <p>Managed the development of an eLearning app and a mobile racing game, improving product satisfaction by 95%.</p>
-        </div>
-        <div class="project">
-          <h3>Stormcell Tech</h3>
-          <p>Directed 10+ B2B/B2C product deployments with reduced defects and lean cost strategies.</p>
+    </section>
+
+    <!-- What I Do Section -->
+    <section class="services" id="services">
+      <div class="container">
+        <h2 class="section-title">What I Deliver For You</h2>
+        <div class="services-grid">
+          
+          <div class="service-card reveal">
+            <div class="service-icon"><i class="fas fa-brain"></i></div>
+            <h3>AI Project Implementation</h3>
+            <p>End-to-end AI solution delivery from concept to deployment. I manage the technical complexity while ensuring your team is trained and your business objectives are met with measurable ROI.</p>
+            <div class="service-deliverables">
+              <span class="deliverable-tag">AI Strategy</span>
+              <span class="deliverable-tag">Team Training</span>
+              <span class="deliverable-tag">ROI Tracking</span>
+              <span class="deliverable-tag">Deployment</span>
+            </div>
+          </div>
+
+          <div class="service-card reveal">
+            <div class="service-icon"><i class="fas fa-globe-americas"></i></div>
+            <h3>Cross-Cultural Team Leadership</h3>
+            <p>Expert management of distributed teams across different time zones and cultures. I bridge communication gaps and ensure unified project delivery with consistent quality standards.</p>
+            <div class="service-deliverables">
+              <span class="deliverable-tag">Remote Teams</span>
+              <span class="deliverable-tag">Cultural Bridge</span>
+              <span class="deliverable-tag">Quality Control</span>
+              <span class="deliverable-tag">Unified Delivery</span>
+            </div>
+          </div>
+
+          <div class="service-card reveal">
+            <div class="service-icon"><i class="fas fa-rocket"></i></div>
+            <h3>Digital Product Acceleration</h3>
+            <p>Fast-track your SaaS, mobile, or web applications from idea to market. I optimize development processes to reduce time-to-market by 15% while maintaining quality and controlling costs.</p>
+            <div class="service-deliverables">
+              <span class="deliverable-tag">Agile Delivery</span>
+              <span class="deliverable-tag">Cost Optimization</span>
+              <span class="deliverable-tag">Quality Assurance</span>
+              <span class="deliverable-tag">Market Launch</span>
+            </div>
+          </div>
+
+          <div class="service-card reveal">
+            <div class="service-icon"><i class="fas fa-graduation-cap"></i></div>
+            <h3>Technical Team Development</h3>
+            <p>Transform your team's capabilities through structured training and mentorship programs. I've successfully upskilled 50+ professionals, improving organizational tech literacy and job readiness.</p>
+            <div class="service-deliverables">
+              <span class="deliverable-tag">Skills Assessment</span>
+              <span class="deliverable-tag">Training Programs</span>
+              <span class="deliverable-tag">Mentorship</span>
+              <span class="deliverable-tag">Performance Tracking</span>
+            </div>
+          </div>
+
         </div>
       </div>
-    </div>
-  </section>  <section id="contact" class="contact">
-    <div class="container">
-      <h2>Contact Me</h2>
-      <p>Interested in working together or want to know more? Let's connect!</p>
-      <ul>
-        <li>Email: <a href="mailto:ifeoluwaakinpelu05@gmail.com">ifeoluwaakinpelu05@gmail.com</a></li>
-        <li>Phone: +234 701 393 0533</li>
-        <li>LinkedIn: <a href="https://linkedin.com/in/ifeoluwaenochakinpelu" target="_blank">View Profile</a></li>
-      </ul>
-    </div>
-  </section>  <footer class="footer">
-    <div class="container">
-      <p>&copy; <span id="year"></span> Ifeoluwa Enoch. All rights reserved.</p>
-    </div>
-  </footer>
-</body></html>
+    </section>
+
+    <!-- Case Studies Section -->
+    <section class="case-studies" id="case-studies">
+      <div class="container">
+        <h2 class="section-title">Proven Results For My Clients</h2>
+        <div class="case-study-grid">
+
+          <!-- Case Study 1 -->
+          <div class="case-study-card reveal">
+            <div class="case-study-header">
+              <div class="case-study-meta">
+                <span class="company">Kingdom Portal Network (UK)</span>
+                <span class="duration">Nov 2024 - Present</span>
+                <span class="role">Technical Project Manager</span>
+              </div>
+              <div class="case-study-results">
+                <span class="result-badge success">95% Satisfaction</span>
+                <span class="result-badge primary">Cross-Continental</span>
+              </div>
+            </div>
+            <h3>Cross-Continental SaaS Product Delivery</h3>
+            
+            <div class="challenge">
+              <h4><i class="fas fa-exclamation-triangle"></i> The Challenge</h4>
+              <p>Client needed to manage distributed UK-Nigerian development teams for complex SaaS product features while maintaining quality alignment across 6-hour time differences and different work cultures.</p>
+            </div>
+
+            <div class="solution">
+              <h4><i class="fas fa-lightbulb"></i> My Solution</h4>
+              <p>Implemented optimized Agile workflows with alternating daily stand-ups, cultural integration frameworks, and quality gates that prevented scope creep while ensuring unified team delivery.</p>
+            </div>
+
+            <div class="impact-metrics">
+              <div class="impact-item">
+                <span class="impact-number">95%</span>
+                <span class="impact-label">Client Satisfaction</span>
+              </div>
+              <div class="impact-item">
+                <span class="impact-number">0</span>
+                <span class="impact-label">Delivery Delays</span>
+              </div>
+              <div class="impact-item">
+                <span class="impact-number">30%</span>
+                <span class="impact-label">Scope Creep Reduction</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Case Study 2 -->
+          <div class="case-study-card reveal">
+            <div class="case-study-header">
+              <div class="case-study-meta">
+                <span class="company">Stormcell Technology</span>
+                <span class="duration">Contract Project</span>
+                <span class="role">Software Project Manager</span>
+              </div>
+              <div class="case-study-results">
+                <span class="result-badge success">₦2M Saved</span>
+                <span class="result-badge primary">10 Products</span>
+              </div>
+            </div>
+            <h3>B2B/B2C Product Portfolio Acceleration</h3>
+            
+            <div class="challenge">
+              <h4><i class="fas fa-exclamation-triangle"></i> The Challenge</h4>
+              <p>Client had 10 diverse products in development pipeline with tight budgets and aggressive market deadlines. Needed to accelerate delivery while maintaining quality and controlling costs.</p>
+            </div>
+
+            <div class="solution">
+              <h4><i class="fas fa-lightbulb"></i> My Solution</h4>
+              <p>Restructured development pipelines for parallel processing, implemented risk-based testing strategies, and optimized resource allocation across the product portfolio.</p>
+            </div>
+
+            <div class="impact-metrics">
+              <div class="impact-item">
+                <span class="impact-number">15%</span>
+                <span class="impact-label">Faster Time-to-Market</span>
+              </div>
+              <div class="impact-item">
+                <span class="impact-number">40%</span>
+                <span class="impact-label">Defect Reduction</span>
+              </div>
+              <div class="impact-item">
+                <span class="impact-number">₦2M</span>
+                <span class="impact-label">Cost Savings</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Case Study 3 -->
+          <div class="case-study-card reveal">
+            <div class="case-study-header">
+              <div class="case-study-meta">
+                <span class="company">Pan African Institute</span>
+                <span class="duration">Jan 2024 - Oct 2024</span>
+                <span class="role">Technical Officer</span>
+              </div>
+              <div class="case-study-results">
+                <span class="result-badge success">50+ Trained</span>
+                <span class="result-badge primary">99% Uptime</span>
+              </div>
+            </div>
+            <h3>Technical Team Development & Infrastructure Leadership</h3>
+            
+            <div class="challenge">
+              <h4><i class="fas fa-exclamation-triangle"></i> The Challenge</h4>
+              <p>Organization needed to upskill 50+ technical professionals while maintaining critical infrastructure performance and ensuring zero downtime during training periods.</p>
+            </div>
+
+            <div class="solution">
+              <h4><i class="fas fa-lightbulb"></i> My Solution</h4>
+              <p>Developed comprehensive training programs with hands-on experience, implemented infrastructure monitoring protocols, and created mentorship frameworks for sustained learning.</p>
+            </div>
+
+            <div class="impact-metrics">
+              <div class="impact-item">
+                <span class="impact-number">50+</span>
+                <span class="impact-label">Professionals Trained</span>
+              </div>
+              <div class="impact-item">
+                <span class="impact-number">99%</span>
+                <span class="impact-label">Infrastructure Uptime</span>
+              </div>
+              <div class="impact-item">
+                <span class="impact-number">20%</span>
+                <span class="impact-label">Performance Improvement</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section class="certifications" id="certifications">
+      <div class="container">
+        <h2 class="section-title">Professional Credentials</h2>
+        <div class="certifications-grid">
+          
+          <div class="certification-card reveal">
+            <img src="./images/google.jpg" alt="Google Project Management Certification" />
+            <h3>Project Management Certificate</h3>
+            <p>Google</p>
+            <a href="https://www.credly.com/go/s0Z1XMz1viVw5qggHyYcRA" target="_blank" class="btn primary small">Verify Credential</a>
+          </div>
+
+          <div class="certification-card reveal">
+            <img src="./images/m.jpg" alt="McKinsey Forward Program" />
+            <h3>McKinsey Forward Program</h3>
+            <p>McKinsey & Company</p>
+            <a href="https://www.credly.com/go/eBcmv55dHwklCabeV0ibug" target="_blank" class="btn primary
