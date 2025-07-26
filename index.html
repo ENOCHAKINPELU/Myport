@@ -11,7 +11,7 @@
     /* Google Fonts */
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-    /* CSS Variables - Maintaining Your Color Theme */
+    /* CSS Variables - Enhanced for Better Responsiveness */
     :root {
       --primary-color: #2a2a72;
       --secondary-color: #009ffd;
@@ -22,13 +22,22 @@
       --gradient: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
       --transition-speed: 0.3s;
       --executive-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+      --border-radius: 15px;
+      --max-width: 1200px;
+      --section-padding: clamp(60px, 8vw, 100px);
+      --card-padding: clamp(1.5rem, 3vw, 2.5rem);
     }
 
-    /* Global Styles */
+    /* Global Styles - Enhanced Reset */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
     }
 
     body {
@@ -36,134 +45,197 @@
       background-color: var(--bg-color);
       color: var(--text-color);
       line-height: 1.6;
-      scroll-behavior: smooth;
+      overflow-x: hidden;
     }
 
     .container {
-      max-width: 1200px;
+      max-width: var(--max-width);
       margin: 0 auto;
-      padding: 0 20px;
+      padding: 0 clamp(15px, 4vw, 20px);
     }
 
-    /* Header */
+    /* Modern Header with Improved Mobile Navigation */
     header {
       background: var(--card-bg);
-      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
       position: sticky;
       top: 0;
       z-index: 1000;
+      backdrop-filter: blur(10px);
     }
 
     nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 20px;
-      max-width: 1200px;
+      padding: clamp(0.8rem, 2vw, 1.2rem) 0;
+      max-width: var(--max-width);
       margin: 0 auto;
+      padding-left: clamp(15px, 4vw, 20px);
+      padding-right: clamp(15px, 4vw, 20px);
     }
 
     .logo {
-      font-size: 1.8rem;
+      font-size: clamp(1.5rem, 3vw, 1.8rem);
       font-weight: 700;
       background: var(--gradient);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      background-clip: text;
+      user-select: none;
     }
 
     .nav-links {
       list-style: none;
       display: flex;
-      gap: 2rem;
+      gap: clamp(1rem, 3vw, 2rem);
+      align-items: center;
     }
 
     .nav-links a {
       text-decoration: none;
       color: var(--text-color);
       font-weight: 500;
-      transition: color var(--transition-speed);
+      font-size: clamp(0.9rem, 2vw, 1rem);
+      transition: all var(--transition-speed);
+      position: relative;
+      padding: 0.5rem 0;
     }
 
-    .nav-links a:hover {
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 50%;
+      background: var(--secondary-color);
+      transition: all var(--transition-speed);
+      transform: translateX(-50%);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
       color: var(--secondary-color);
     }
 
+    /* Modern Hamburger Menu */
     .nav-toggle {
       display: none;
-      font-size: 1.8rem;
+      flex-direction: column;
       cursor: pointer;
-      color: var(--text-color);
+      padding: 0.5rem;
+      border-radius: 8px;
+      transition: all var(--transition-speed);
+      background: transparent;
+      border: none;
     }
 
-    /* Hero Section */
+    .hamburger-line {
+      width: 25px;
+      height: 3px;
+      background: var(--text-color);
+      margin: 2px 0;
+      transition: all 0.4s ease;
+      border-radius: 2px;
+    }
+
+    .nav-toggle.active .hamburger-line:nth-child(1) {
+      transform: rotate(45deg) translate(6px, 6px);
+      background: var(--secondary-color);
+    }
+
+    .nav-toggle.active .hamburger-line:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-toggle.active .hamburger-line:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+      background: var(--secondary-color);
+    }
+
+    /* Enhanced Hero Section */
     .hero {
       background: var(--gradient);
       color: #fff;
-      padding: 100px 20px;
-      clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-    }
-
-    .hero-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 300px 1fr;
-      gap: 3rem;
+      padding: var(--section-padding) 0;
+      clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+      min-height: 100vh;
+      display: flex;
       align-items: center;
     }
 
+    .hero-content {
+      display: grid;
+      grid-template-columns: minmax(250px, 300px) 1fr;
+      gap: clamp(2rem, 5vw, 4rem);
+      align-items: center;
+      width: 100%;
+    }
+
+    .hero-image {
+      justify-self: center;
+    }
+
     .hero-image img {
-      width: 280px;
-      height: 280px;
+      width: clamp(200px, 25vw, 280px);
+      height: clamp(200px, 25vw, 280px);
       border-radius: 50%;
       object-fit: cover;
       border: 5px solid rgba(255, 255, 255, 0.3);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
     }
 
     .hero-text h1 {
-      font-size: 3.2rem;
+      font-size: clamp(2rem, 5vw, 3.2rem);
       margin-bottom: 1rem;
       font-weight: 700;
+      line-height: 1.2;
     }
 
     .hero-tagline {
-      font-size: 1.3rem;
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
       margin-bottom: 1.5rem;
       opacity: 0.9;
       font-weight: 500;
     }
 
     .hero-description {
-      font-size: 1.1rem;
+      font-size: clamp(0.95rem, 2vw, 1.1rem);
       margin-bottom: 2rem;
       line-height: 1.6;
     }
 
     .hero-metrics {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: clamp(1rem, 3vw, 1.5rem);
       margin: 2rem 0;
     }
 
     .metric {
       text-align: center;
       background: rgba(255, 255, 255, 0.15);
-      padding: 1.5rem 1rem;
-      border-radius: 15px;
+      padding: clamp(1rem, 3vw, 1.5rem);
+      border-radius: var(--border-radius);
       backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .metric-number {
       display: block;
-      font-size: 2.2rem;
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
       font-weight: 700;
       margin-bottom: 0.5rem;
     }
 
     .metric-label {
-      font-size: 0.9rem;
+      font-size: clamp(0.8rem, 2vw, 0.9rem);
       opacity: 0.9;
     }
 
@@ -171,16 +243,19 @@
       display: flex;
       gap: 1rem;
       margin-top: 2rem;
+      flex-wrap: wrap;
     }
 
     .btn {
       display: inline-block;
-      padding: 0.8rem 1.8rem;
+      padding: clamp(0.7rem, 2vw, 0.8rem) clamp(1.5rem, 3vw, 1.8rem);
       border-radius: 50px;
       text-decoration: none;
       font-weight: 600;
       transition: all var(--transition-speed);
-      font-size: 1rem;
+      font-size: clamp(0.9rem, 2vw, 1rem);
+      text-align: center;
+      min-width: 150px;
     }
 
     .btn.primary {
@@ -191,6 +266,7 @@
     .btn.primary:hover {
       background: #6b2cdd;
       transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(125, 60, 255, 0.3);
     }
 
     .btn.secondary {
@@ -202,13 +278,14 @@
     .btn.secondary:hover {
       background: rgba(255, 255, 255, 0.1);
       border-color: #fff;
+      transform: translateY(-2px);
     }
 
     /* Section Titles */
     .section-title {
       text-align: center;
-      font-size: 2.5rem;
-      margin-bottom: 3rem;
+      font-size: clamp(2rem, 4vw, 2.5rem);
+      margin-bottom: clamp(2rem, 5vw, 3rem);
       position: relative;
       font-weight: 700;
     }
@@ -216,7 +293,7 @@
     .section-title::after {
       content: '';
       position: absolute;
-      width: 80px;
+      width: clamp(60px, 8vw, 80px);
       height: 4px;
       background: var(--secondary-color);
       bottom: -15px;
@@ -225,49 +302,50 @@
       border-radius: 2px;
     }
 
-    /* What I Do Section */
+    /* Enhanced Services Section */
     .services {
-      padding: 100px 20px;
+      padding: var(--section-padding) 0;
       background: var(--card-bg);
     }
 
     .services-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 2.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+      gap: clamp(1.5rem, 4vw, 2.5rem);
       margin-top: 3rem;
     }
 
     .service-card {
       background: var(--bg-color);
-      padding: 2.5rem;
+      padding: var(--card-padding);
       border-radius: 20px;
       box-shadow: var(--executive-shadow);
       text-align: center;
-      transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+      transition: all var(--transition-speed);
       border: 1px solid #e8e8e8;
+      height: fit-content;
     }
 
     .service-card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
     }
 
     .service-icon {
-      width: 80px;
-      height: 80px;
+      width: clamp(60px, 8vw, 80px);
+      height: clamp(60px, 8vw, 80px);
       background: var(--gradient);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 0 auto 1.5rem;
-      font-size: 2rem;
+      font-size: clamp(1.5rem, 3vw, 2rem);
       color: #fff;
     }
 
     .service-card h3 {
-      font-size: 1.4rem;
+      font-size: clamp(1.2rem, 2.5vw, 1.4rem);
       margin-bottom: 1rem;
       color: var(--primary-color);
       font-weight: 600;
@@ -276,6 +354,7 @@
     .service-card p {
       margin-bottom: 1.5rem;
       line-height: 1.6;
+      font-size: clamp(0.9rem, 2vw, 1rem);
     }
 
     .service-deliverables {
@@ -291,33 +370,93 @@
       color: #fff;
       padding: 0.3rem 0.8rem;
       border-radius: 15px;
-      font-size: 0.8rem;
+      font-size: clamp(0.75rem, 1.5vw, 0.8rem);
       font-weight: 500;
     }
 
-    /* Case Studies Section */
-    .case-studies {
-      padding: 100px 20px;
+    /* Leadership Gallery Section */
+    .leadership-gallery {
+      padding: var(--section-padding) 0;
       background: var(--bg-color);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+      gap: clamp(1rem, 3vw, 2rem);
+      margin-top: 3rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--executive-shadow);
+      transition: all var(--transition-speed);
+      aspect-ratio: 4/3;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+      color: #fff;
+      padding: clamp(1rem, 3vw, 2rem);
+      transform: translateY(100%);
+      transition: all var(--transition-speed);
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      transform: translateY(0);
+    }
+
+    .gallery-overlay h4 {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .gallery-overlay p {
+      font-size: clamp(0.85rem, 1.8vw, 0.9rem);
+      opacity: 0.9;
+    }
+
+    /* Enhanced Case Studies */
+    .case-studies {
+      padding: var(--section-padding) 0;
+      background: var(--card-bg);
     }
 
     .case-study-grid {
       display: grid;
-      gap: 3rem;
+      gap: clamp(2rem, 4vw, 3rem);
       margin-top: 3rem;
     }
 
     .case-study-card {
-      background: var(--card-bg);
+      background: var(--bg-color);
       border-radius: 20px;
-      padding: 3rem;
+      padding: var(--card-padding);
       box-shadow: var(--executive-shadow);
       border-left: 6px solid var(--secondary-color);
       transition: all var(--transition-speed);
     }
 
     .case-study-card:hover {
-      transform: translateX(10px);
+      transform: translateX(5px);
       box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
     }
 
@@ -337,27 +476,28 @@
     }
 
     .company {
-      font-size: 1.1rem;
+      font-size: clamp(1rem, 2vw, 1.1rem);
       font-weight: 600;
       color: var(--primary-color);
     }
 
     .duration, .role {
       color: #666;
-      font-size: 0.95rem;
+      font-size: clamp(0.85rem, 1.8vw, 0.95rem);
     }
 
     .case-study-results {
       display: flex;
-      gap: 1rem;
+      gap: 0.8rem;
       flex-wrap: wrap;
     }
 
     .result-badge {
       padding: 0.6rem 1.2rem;
       border-radius: 25px;
-      font-size: 0.85rem;
+      font-size: clamp(0.75rem, 1.5vw, 0.85rem);
       font-weight: 600;
+      white-space: nowrap;
     }
 
     .result-badge.success {
@@ -371,17 +511,20 @@
     }
 
     .case-study-card h3 {
-      font-size: 1.6rem;
+      font-size: clamp(1.3rem, 2.5vw, 1.6rem);
       margin-bottom: 1rem;
       color: var(--primary-color);
       font-weight: 600;
     }
 
-    .challenge {
-      background: #fff3e0;
-      padding: 1.5rem;
+    .challenge, .solution {
+      padding: clamp(1rem, 3vw, 1.5rem);
       border-radius: 12px;
       margin: 1.5rem 0;
+    }
+
+    .challenge {
+      background: #fff3e0;
       border-left: 4px solid #ff9800;
     }
 
@@ -389,13 +532,11 @@
       color: #e65100;
       margin-bottom: 0.5rem;
       font-weight: 600;
+      font-size: clamp(1rem, 2vw, 1.1rem);
     }
 
     .solution {
       background: #e8f5e8;
-      padding: 1.5rem;
-      border-radius: 12px;
-      margin: 1.5rem 0;
       border-left: 4px solid #4caf50;
     }
 
@@ -403,24 +544,31 @@
       color: #2e7d32;
       margin-bottom: 0.5rem;
       font-weight: 600;
+      font-size: clamp(1rem, 2vw, 1.1rem);
+    }
+
+    .challenge p, .solution p {
+      font-size: clamp(0.9rem, 2vw, 1rem);
+      line-height: 1.6;
     }
 
     .impact-metrics {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: clamp(1rem, 3vw, 1.5rem);
       margin: 2rem 0;
     }
 
     .impact-item {
       text-align: center;
       background: #f8f9fa;
-      padding: 1.5rem;
+      padding: clamp(1rem, 3vw, 1.5rem);
       border-radius: 12px;
+      border: 1px solid #e9ecef;
     }
 
     .impact-number {
-      font-size: 2rem;
+      font-size: clamp(1.5rem, 3vw, 2rem);
       font-weight: 700;
       color: var(--primary-color);
       display: block;
@@ -428,20 +576,20 @@
     }
 
     .impact-label {
-      font-size: 0.9rem;
+      font-size: clamp(0.8rem, 1.8vw, 0.9rem);
       color: #666;
     }
 
-    /* Certifications Section */
+    /* Enhanced Certifications */
     .certifications {
-      padding: 100px 20px;
+      padding: var(--section-padding) 0;
       background: var(--card-bg);
     }
 
     .certifications-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+      gap: clamp(1.5rem, 4vw, 2.5rem);
       margin-top: 3rem;
     }
 
@@ -449,13 +597,15 @@
       background: var(--bg-color);
       border-radius: 20px;
       box-shadow: var(--executive-shadow);
-      padding: 2rem;
+      padding: var(--card-padding);
       text-align: center;
-      transition: transform var(--transition-speed);
+      transition: all var(--transition-speed);
+      border: 1px solid #e8e8e8;
     }
 
     .certification-card:hover {
       transform: translateY(-5px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
     }
 
     .certification-card img {
@@ -469,21 +619,24 @@
       color: var(--primary-color);
       margin-bottom: 0.5rem;
       font-weight: 600;
+      font-size: clamp(1.1rem, 2vw, 1.2rem);
     }
 
     .certification-card p {
       color: #666;
       margin-bottom: 1.5rem;
+      font-size: clamp(0.9rem, 2vw, 1rem);
     }
 
     .btn.small {
-      padding: 0.6rem 1.2rem;
-      font-size: 0.9rem;
+      padding: clamp(0.5rem, 2vw, 0.6rem) clamp(1rem, 2vw, 1.2rem);
+      font-size: clamp(0.8rem, 1.8vw, 0.9rem);
+      min-width: 120px;
     }
 
-    /* Contact Section */
+    /* Enhanced Contact Section */
     .contact {
-      padding: 100px 20px;
+      padding: var(--section-padding) 0;
       background: var(--gradient);
       color: #fff;
       text-align: center;
@@ -498,21 +651,24 @@
     }
 
     .contact-intro {
-      font-size: 1.2rem;
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
       margin-bottom: 3rem;
       opacity: 0.9;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .contact-methods {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
+      gap: clamp(1rem, 3vw, 2rem);
       margin-top: 3rem;
     }
 
     .contact-methods a {
       background: rgba(255, 255, 255, 0.15);
-      padding: 1.5rem;
+      padding: clamp(1rem, 3vw, 1.5rem);
       border-radius: 15px;
       text-decoration: none;
       color: #fff;
@@ -523,22 +679,25 @@
       font-weight: 500;
       transition: all var(--transition-speed);
       backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: clamp(0.9rem, 2vw, 1rem);
     }
 
     .contact-methods a:hover {
       background: rgba(255, 255, 255, 0.25);
       transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     }
 
     .contact-methods i {
-      font-size: 1.2rem;
+      font-size: clamp(1rem, 2vw, 1.2rem);
     }
 
     /* Footer */
     footer {
       background: var(--primary-color);
       color: #fff;
-      padding: 2rem 20px;
+      padding: clamp(1.5rem, 3vw, 2rem) 0;
       text-align: center;
     }
 
@@ -548,69 +707,120 @@
       text-decoration: none;
       color: #fff;
       font-size: 1.5rem;
-      transition: color var(--transition-speed);
+      transition: all var(--transition-speed);
+      padding: 0.5rem;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
     }
 
     .back-to-top:hover {
       color: var(--secondary-color);
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-3px);
     }
 
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      .nav-links {
-        position: fixed;
-        top: 70px;
-        right: -100%;
-        background: var(--card-bg);
-        width: 70%;
-        height: calc(100vh - 70px);
-        flex-direction: column;
-        padding: 20px;
-        transition: right var(--transition-speed);
-        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-        gap: 1rem;
-      }
+    footer p {
+      font-size: clamp(0.8rem, 2vw, 0.9rem);
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+    }
 
-      .nav-links.active {
-        right: 0;
-      }
-
-      .nav-toggle {
-        display: block;
-      }
-
+    /* Enhanced Mobile Responsiveness */
+    @media (max-width: 1024px) {
       .hero-content {
         grid-template-columns: 1fr;
         text-align: center;
         gap: 2rem;
       }
 
-      .hero-text h1 {
-        font-size: 2.5rem;
+      .hero-image {
+        order: -1;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        background: var(--card-bg);
+        width: 100%;
+        height: 100vh;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: right 0.4s ease;
+        box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+        gap: 2rem;
+        z-index: 999;
       }
 
-      .hero-metrics {
-        grid-template-columns: 1fr;
-        gap: 1rem;
+      .nav-links.active {
+        right: 0;
+      }
+
+      .nav-links a {
+        font-size: 1.2rem;
+        padding: 1rem;
+      }
+
+      .nav-toggle {
+        display: flex;
+        z-index: 1001;
+      }
+
+      .hero {
+        clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+        min-height: auto;
       }
 
       .hero-actions {
-        flex-direction: column;
-        align-items: center;
+        justify-content: center;
       }
 
-      .services-grid,
-      .certifications-grid {
-        grid-template-columns: 1fr;
+      .btn {
+        flex: 1;
+        max-width: 200px;
       }
 
       .case-study-header {
         flex-direction: column;
         align-items: flex-start;
+        gap: 1rem;
       }
 
       .impact-metrics {
         grid-template-columns: repeat(2, 1fr);
+      }
+
+      .contact-methods {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-metrics {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .services-grid,
+      .certifications-grid,
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .impact-metrics {
+        grid-template-columns: 1fr;
+      }
+
+      .case-study-results {
+        justify-content: flex-start;
       }
     }
 
@@ -625,16 +835,53 @@
       opacity: 1;
       transform: translateY(0);
     }
+
+    /* Loading States */
+    .loading {
+      opacity: 0;
+      animation: fadeIn 0.5s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Print Styles */
+    @media print {
+      .nav-toggle,
+      .hero-actions,
+      .contact-methods {
+        display: none;
+      }
+      
+      .hero {
+        clip-path: none;
+        color: var(--text-color);
+        background: #fff;
+      }
+      
+      * {
+        color: var(--text-color) !important;
+        background: #fff !important;
+      }
+    }
   </style>
 </head>
 <body>
   <header>
     <nav>
       <div class="logo">ENOCH</div>
-      <div class="nav-toggle"><i class="fas fa-bars"></i></div>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#services">What I Do</a></li>
+        <li><a href="#leadership">Leadership</a></li>
         <li><a href="#case-studies">Case Studies</a></li>
         <li><a href="#certifications">Credentials</a></li>
         <li><a href="#contact">Let's Talk</a></li>
@@ -645,444 +892,26 @@
   <main>
     <!-- Hero Section -->
     <section class="hero" id="about">
-      <div class="hero-content">
-        <div class="hero-image">
-          <img src="./images/my pic.jpg" alt="Akinpelu Enoch - AI & Tech Project Manager" />
-        </div>
-        <div class="hero-text">
-          <h1>Delivering AI & Tech Projects That Drive Results</h1>
-          <p class="hero-tagline">AI & Tech Project Manager | Cross-Cultural Team Leadership | Digital Transformation</p>
-          <p class="hero-description">
-            Google-certified Project Manager specializing in AI implementation and cross-continental team leadership. I help businesses transform their operations through strategic tech projects, delivering measurable ROI and exceptional client satisfaction across UK and Nigeria markets.
-          </p>
-          
-          <div class="hero-metrics">
-            <div class="metric">
-              <span class="metric-number">95%</span>
-              <span class="metric-label">Client Satisfaction</span>
-            </div>
-            <div class="metric">
-              <span class="metric-number">₦2M+</span>
-              <span class="metric-label">Cost Savings Delivered</span>
-            </div>
-            <div class="metric">
-              <span class="metric-number">50+</span>
-              <span class="metric-label">Professionals Trained</span>
-            </div>
-          </div>
-          
-          <div class="hero-actions">
-            <a href="#contact" class="btn primary">Start Your Project</a>
-            <a href="#case-studies" class="btn secondary">View My Work</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- What I Do Section -->
-    <section class="services" id="services">
       <div class="container">
-        <h2 class="section-title">What I Deliver For You</h2>
-        <div class="services-grid">
-          
-          <div class="service-card reveal">
-            <div class="service-icon"><i class="fas fa-brain"></i></div>
-            <h3>AI Project Implementation</h3>
-            <p>End-to-end AI solution delivery from concept to deployment. I manage the technical complexity while ensuring your team is trained and your business objectives are met with measurable ROI.</p>
-            <div class="service-deliverables">
-              <span class="deliverable-tag">AI Strategy</span>
-              <span class="deliverable-tag">Team Training</span>
-              <span class="deliverable-tag">ROI Tracking</span>
-              <span class="deliverable-tag">Deployment</span>
-            </div>
+        <div class="hero-content">
+          <div class="hero-image">
+            <img src="./images/my pic.jpg" alt="Akinpelu Enoch - AI & Tech Project Manager" />
           </div>
-
-          <div class="service-card reveal">
-            <div class="service-icon"><i class="fas fa-globe-americas"></i></div>
-            <h3>Cross-Cultural Team Leadership</h3>
-            <p>Expert management of distributed teams across different time zones and cultures. I bridge communication gaps and ensure unified project delivery with consistent quality standards.</p>
-            <div class="service-deliverables">
-              <span class="deliverable-tag">Remote Teams</span>
-              <span class="deliverable-tag">Cultural Bridge</span>
-              <span class="deliverable-tag">Quality Control</span>
-              <span class="deliverable-tag">Unified Delivery</span>
-            </div>
-          </div>
-
-          <div class="service-card reveal">
-            <div class="service-icon"><i class="fas fa-rocket"></i></div>
-            <h3>Digital Product Acceleration</h3>
-            <p>Fast-track your SaaS, mobile, or web applications from idea to market. I optimize development processes to reduce time-to-market by 15% while maintaining quality and controlling costs.</p>
-            <div class="service-deliverables">
-              <span class="deliverable-tag">Agile Delivery</span>
-              <span class="deliverable-tag">Cost Optimization</span>
-              <span class="deliverable-tag">Quality Assurance</span>
-              <span class="deliverable-tag">Market Launch</span>
-            </div>
-          </div>
-
-          <div class="service-card reveal">
-            <div class="service-icon"><i class="fas fa-graduation-cap"></i></div>
-            <h3>Technical Team Development</h3>
-            <p>Transform your team's capabilities through structured training and mentorship programs. I've successfully upskilled 50+ professionals, improving organizational tech literacy and job readiness.</p>
-            <div class="service-deliverables">
-              <span class="deliverable-tag">Skills Assessment</span>
-              <span class="deliverable-tag">Training Programs</span>
-              <span class="deliverable-tag">Mentorship</span>
-              <span class="deliverable-tag">Performance Tracking</span>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- Case Studies Section -->
-    <section class="case-studies" id="case-studies">
-      <div class="container">
-        <h2 class="section-title">Proven Results For My Clients</h2>
-        <div class="case-study-grid">
-
-          <!-- Case Study 1 -->
-          <div class="case-study-card reveal">
-            <div class="case-study-header">
-              <div class="case-study-meta">
-                <span class="company">Kingdom Portal Network (UK)</span>
-                <span class="duration">Nov 2024 - Present</span>
-                <span class="role">Technical Project Manager</span>
-              </div>
-              <div class="case-study-results">
-                <span class="result-badge success">95% Satisfaction</span>
-                <span class="result-badge primary">Cross-Continental</span>
-              </div>
-            </div>
-            <h3>Cross-Continental SaaS Product Delivery</h3>
+          <div class="hero-text">
+            <h1>Delivering AI & Tech Projects That Drive Results</h1>
+            <p class="hero-tagline">AI & Tech Project Manager | Cross-Cultural Team Leadership | Digital Transformation</p>
+            <p class="hero-description">
+              Google-certified Project Manager specializing in AI implementation and cross-continental team leadership. I help businesses transform their operations through strategic tech projects, delivering measurable ROI and exceptional client satisfaction across UK and Nigeria markets.
+            </p>
             
-            <div class="challenge">
-              <h4><i class="fas fa-exclamation-triangle"></i> The Challenge</h4>
-              <p>Client needed to manage distributed UK-Nigerian development teams for complex SaaS product features while maintaining quality alignment across 6-hour time differences and different work cultures.</p>
-            </div>
-
-            <div class="solution">
-              <h4><i class="fas fa-lightbulb"></i> My Solution</h4>
-              <p>Implemented optimized Agile workflows with alternating daily stand-ups, cultural integration frameworks, and quality gates that prevented scope creep while ensuring unified team delivery.</p>
-            </div>
-
-            <div class="impact-metrics">
-              <div class="impact-item">
-                <span class="impact-number">95%</span>
-                <span class="impact-label">Client Satisfaction</span>
+            <div class="hero-metrics">
+              <div class="metric">
+                <span class="metric-number">95%</span>
+                <span class="metric-label">Client Satisfaction</span>
               </div>
-              <div class="impact-item">
-                <span class="impact-number">0</span>
-                <span class="impact-label">Delivery Delays</span>
+              <div class="metric">
+                <span class="metric-number">₦2M+</span>
+                <span class="metric-label">Cost Savings Delivered</span>
               </div>
-              <div class="impact-item">
-                <span class="impact-number">30%</span>
-                <span class="impact-label">Scope Creep Reduction</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Case Study 2 -->
-          <div class="case-study-card reveal">
-            <div class="case-study-header">
-              <div class="case-study-meta">
-                <span class="company">Stormcell Technology</span>
-                <span class="duration">Contract Project</span>
-                <span class="role">Software Project Manager</span>
-              </div>
-              <div class="case-study-results">
-                <span class="result-badge success">₦2M Saved</span>
-                <span class="result-badge primary">10 Products</span>
-              </div>
-            </div>
-            <h3>B2B/B2C Product Portfolio Acceleration</h3>
-            
-            <div class="challenge">
-              <h4><i class="fas fa-exclamation-triangle"></i> The Challenge</h4>
-              <p>Client had 10 diverse products in development pipeline with tight budgets and aggressive market deadlines. Needed to accelerate delivery while maintaining quality and controlling costs.</p>
-            </div>
-
-            <div class="solution">
-              <h4><i class="fas fa-lightbulb"></i> My Solution</h4>
-              <p>Restructured development pipelines for parallel processing, implemented risk-based testing strategies, and optimized resource allocation across the product portfolio.</p>
-            </div>
-
-            <div class="impact-metrics">
-              <div class="impact-item">
-                <span class="impact-number">15%</span>
-                <span class="impact-label">Faster Time-to-Market</span>
-              </div>
-              <div class="impact-item">
-                <span class="impact-number">40%</span>
-                <span class="impact-label">Defect Reduction</span>
-              </div>
-              <div class="impact-item">
-                <span class="impact-number">₦2M</span>
-                <span class="impact-label">Cost Savings</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Case Study 3 -->
-          <div class="case-study-card reveal">
-            <div class="case-study-header">
-              <div class="case-study-meta">
-                <span class="company">Pan African Institute</span>
-                <span class="duration">Jan 2024 - Oct 2024</span>
-                <span class="role">Technical Officer</span>
-              </div>
-              <div class="case-study-results">
-                <span class="result-badge success">50+ Trained</span>
-                <span class="result-badge primary">99% Uptime</span>
-              </div>
-            </div>
-            <h3>Technical Team Development & Infrastructure Leadership</h3>
-            
-            <div class="challenge">
-              <h4><i class="fas fa-exclamation-triangle"></i> The Challenge</h4>
-              <p>Organization needed to upskill 50+ technical professionals while maintaining critical infrastructure performance and ensuring zero downtime during training periods.</p>
-            </div>
-
-            <div class="solution">
-              <h4><i class="fas fa-lightbulb"></i> My Solution</h4>
-              <p>Developed comprehensive training programs with hands-on experience, implemented infrastructure monitoring protocols, and created mentorship frameworks for sustained learning.</p>
-            </div>
-
-            <div class="impact-metrics">
-              <div class="impact-item">
-                <span class="impact-number">50+</span>
-                <span class="impact-label">Professionals Trained</span>
-              </div>
-              <div class="impact-item">
-                <span class="impact-number">99%</span>
-                <span class="impact-label">Infrastructure Uptime</span>
-              </div>
-              <div class="impact-item">
-                <span class="impact-number">20%</span>
-                <span class="impact-label">Performance Improvement</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- Certifications Section -->
-    <section class="certifications" id="certifications">
-      <div class="container">
-        <h2 class="section-title">Professional Credentials</h2>
-        <div class="certifications-grid">
-          
-          <div class="certification-card reveal">
-            <img src="./images/google.jpg" alt="Google Project Management Certification" />
-            <h3>Project Management Certificate</h3>
-            <p>Google</p>
-            <a href="https://www.credly.com/go/s0Z1XMz1viVw5qggHyYcRA" target="_blank" class="btn primary small">Verify Credential</a>
-          </div>
-
-          <div class="certification-card reveal">
-            <img src="./images/m.jpg" alt="McKinsey Forward Program" />
-            <h3>McKinsey Forward Program</h3>
-            <p>McKinsey & Company</p>
-            <a href="https://www.credly.com/go/eBcmv55dHwklCabeV0ibug" target="_blank" class="btn primary small">Verify Credential</a>
-          </div>
-
-          <div class="certification-card reveal">
-            <img src="./images/sust.jpg" alt="Sustainability Leadership Certificate" />
-            <h3>Sustainability Leadership</h3>
-            <p>University of Cambridge</p>
-            <a href="https://www.credly.com/go/eBcmv55dHwklCabeV0ibug" target="_blank" class="btn primary small">View Certificate</a>
-          </div>
-
-          <div class="certification-card reveal">
-            <img src="./images/scrum.jpg" alt="Scrum Master Certification" />
-            <h3>Scrum Master Foundation</h3>
-            <p>CertiProf</p>
-            <a href="#" class="btn primary small">View Details</a>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-      <div class="container">
-        <h2 class="section-title">Ready To Transform Your Business?</h2>
-        <p class="contact-intro">
-          Let's discuss how I can help deliver your next AI or tech project with measurable results. 
-          I'm currently available for new projects and would love to understand your specific challenges.
-        </p>
-        
-        <div class="contact-methods">
-          <a href="mailto:akinpeluenoch@gmail.com">
-            <i class="fas fa-envelope"></i>
-            <span>akinpeluenoch@gmail.com</span>
-          </a>
-          <a href="https://linkedin.com/in/akinpelu-enoch" target="_blank">
-            <i class="fab fa-linkedin"></i>
-            <span>LinkedIn Profile</span>
-          </a>
-          <a href="https://wa.me/2348123456789" target="_blank">
-            <i class="fab fa-whatsapp"></i>
-            <span>WhatsApp Chat</span>
-          </a>
-          <a href="tel:+2348123456789">
-            <i class="fas fa-phone"></i>
-            <span>+234 812 345 6789</span>
-          </a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <a href="#about" class="back-to-top">
-        <i class="fas fa-chevron-up"></i>
-      </a>
-      <p>&copy; 2024 Akinpelu Enoch. All rights reserved. | Delivering Excellence in AI & Tech Project Management</p>
-    </div>
-  </footer>
-
-  <script>
-    // Mobile Navigation Toggle
-    const navToggle = document.querySelector('.nav-toggle');
-    const navLinks = document.querySelector('.nav-links');
-
-    navToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-    });
-
-    // Close mobile menu when clicking on a link
-    document.querySelectorAll('.nav-links a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-      });
-    });
-
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
-      });
-    });
-
-    // Scroll reveal animation
-    function revealOnScroll() {
-      const reveals = document.querySelectorAll('.reveal');
-      
-      reveals.forEach(reveal => {
-        const windowHeight = window.innerHeight;
-        const elementTop = reveal.getBoundingClientRect().top;
-        const elementVisible = 150;
-        
-        if (elementTop < windowHeight - elementVisible) {
-          reveal.classList.add('active');
-        }
-      });
-    }
-
-    // Initial check for elements in view
-    revealOnScroll();
-    
-    // Listen for scroll events
-    window.addEventListener('scroll', revealOnScroll);
-
-    // Add active state to navigation based on scroll position
-    window.addEventListener('scroll', () => {
-      let current = '';
-      const sections = document.querySelectorAll('section');
-      
-      sections.forEach(section => {
-        const sectionTop = section.getBoundingClientRect().top;
-        if (sectionTop <= 100) {
-          current = section.getAttribute('id');
-        }
-      });
-
-      document.querySelectorAll('.nav-links a').forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-          link.classList.add('active');
-        }
-      });
-    });
-
-    // Add loading animation
-    window.addEventListener('load', () => {
-      document.body.classList.add('loaded');
-    });
-
-    // Enhanced scroll animations with stagger effect
-    function staggerReveal() {
-      const cards = document.querySelectorAll('.service-card, .case-study-card, .certification-card');
-      cards.forEach((card, index) => {
-        const rect = card.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 100) {
-          setTimeout(() => {
-            card.classList.add('active');
-          }, index * 100);
-        }
-      });
-    }
-
-    window.addEventListener('scroll', staggerReveal);
-    staggerReveal(); // Initial check
-
-    // Dynamic metrics counter animation
-    function animateCounters() {
-      const counters = document.querySelectorAll('.metric-number, .impact-number');
-      
-      counters.forEach(counter => {
-        const target = counter.textContent;
-        const numericTarget = parseFloat(target.replace(/[^\d.]/g, ''));
-        
-        if (isNaN(numericTarget)) return;
-        
-        const rect = counter.getBoundingClientRect();
-        if (rect.top < window.innerHeight && !counter.classList.contains('animated')) {
-          counter.classList.add('animated');
-          
-          let current = 0;
-          const increment = numericTarget / 60;
-          const timer = setInterval(() => {
-            current += increment;
-            if (current >= numericTarget) {
-              current = numericTarget;
-              clearInterval(timer);
-            }
-            
-            // Format the number with appropriate suffix
-            let displayValue;
-            if (target.includes('₦') && current >= 1000000) {
-              displayValue = '₦' + (current / 1000000).toFixed(1) + 'M';
-            } else if (target.includes('%')) {
-              displayValue = Math.floor(current) + '%';
-            } else if (target.includes('/')) {
-              displayValue = current.toFixed(1) + '/5';
-            } else {
-              displayValue = Math.floor(current) + (target.includes('+') ? '+' : '');
-            }
-            
-            counter.textContent = displayValue;
-          }, 16);
-        }
-      });
-    }
-
-    window.addEventListener('scroll', animateCounters);
-    animateCounters(); // Initial check
-  </script>
-</body>
-</html>
+              <div class="metric">
+                <span class="
