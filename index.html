@@ -318,6 +318,72 @@
       font-weight: 500;
     }
 
+    /* Leadership Gallery Section */
+    .leadership-gallery {
+      padding: 100px 20px;
+      background: var(--bg-color);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--executive-shadow);
+      transition: all var(--transition-speed);
+      aspect-ratio: 4/3;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-speed);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+      color: #fff;
+      padding: 2rem;
+      transform: translateY(100%);
+      transition: all var(--transition-speed);
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      transform: translateY(0);
+    }
+
+    .gallery-overlay h4 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .gallery-overlay p {
+      font-size: 0.9rem;
+      opacity: 0.9;
+      line-height: 1.4;
+    }
+
     /* Case Studies Section */
     .case-studies {
       padding: 100px 20px;
@@ -591,7 +657,8 @@
       }
 
       .services-grid,
-      .certifications-grid {
+      .certifications-grid,
+      .gallery-grid {
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       }
     }
@@ -650,7 +717,8 @@
       }
 
       .services-grid,
-      .certifications-grid {
+      .certifications-grid,
+      .gallery-grid {
         grid-template-columns: 1fr;
       }
 
@@ -725,6 +793,7 @@
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#services">What I Do</a></li>
+        <li><a href="#leadership">Leadership</a></li>
         <li><a href="#case-studies">Case Studies</a></li>
         <li><a href="#certifications">Credentials</a></li>
         <li><a href="#contact">Let's Talk</a></li>
@@ -934,3 +1003,305 @@
               <h4><i class="fas fa-exclamation-triangle"></i> The Challenge</h4>
               <p>Organization needed to upskill 50+ technical professionals while maintaining critical infrastructure performance and ensuring zero downtime during training periods.</p>
             </div>
+
+            <div class="solution">
+              <h4><i class="fas fa-lightbulb"></i> My Solution</h4>
+              <p>Developed comprehensive training programs with hands-on experience, implemented infrastructure monitoring protocols, and created mentorship frameworks for sustained learning.</p>
+            </div>
+
+            <div class="impact-metrics">
+              <div class="impact-item">
+                <span class="impact-number">50+</span>
+                <span class="impact-label">Professionals Trained</span>
+              </div>
+              <div class="impact-item">
+                <span class="impact-number">99%</span>
+                <span class="impact-label">Infrastructure Uptime</span>
+              </div>
+              <div class="impact-item">
+                <span class="impact-number">20%</span>
+                <span class="impact-label">Performance Improvement</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Leadership Gallery Section -->
+    <section class="leadership-gallery" id="leadership">
+      <div class="container">
+        <h2 class="section-title">Leadership In Action</h2>
+        <div class="gallery-grid">
+          
+          <div class="gallery-item reveal">
+            <img src="./images/leadership1.jpg" alt="Leading AI Workshop" />
+            <div class="gallery-overlay">
+              <h4>AI Workshop Leadership</h4>
+              <p>Conducting hands-on AI training session for 30+ professionals in Lagos</p>
+            </div>
+          </div>
+
+          <div class="gallery-item reveal">
+            <img src="./images/leadership2.jpg" alt="Cross-Cultural Team Meeting" />
+            <div class="gallery-overlay">
+              <h4>Cross-Continental Team Sync</h4>
+              <p>Managing UK-Nigeria team collaboration for major SaaS deployment</p>
+            </div>
+          </div>
+
+          <div class="gallery-item reveal">
+            <img src="./images/leadership3.jpg" alt="Tech Conference Speaking" />
+            <div class="gallery-overlay">
+              <h4>Tech Conference Speaker</h4>
+              <p>Presenting digital transformation strategies at industry summit</p>
+            </div>
+          </div>
+
+          <div class="gallery-item reveal">
+            <img src="./images/leadership4.jpg" alt="Project Review Meeting" />
+            <div class="gallery-overlay">
+              <h4>Strategic Project Review</h4>
+              <p>Leading quarterly review with stakeholders and development teams</p>
+            </div>
+          </div>
+
+          <div class="gallery-item reveal">
+            <img src="./images/leadership5.jpg" alt="Mentoring Session" />
+            <div class="gallery-overlay">
+              <h4>Technical Mentoring</h4>
+              <p>One-on-one mentorship session with emerging tech professionals</p>
+            </div>
+          </div>
+
+          <div class="gallery-item reveal">
+            <img src="./images/leadership6.jpg" alt="Award Recognition" />
+            <div class="gallery-overlay">
+              <h4>Excellence Recognition</h4>
+              <p>Receiving project management excellence award for outstanding delivery</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section class="certifications" id="certifications">
+      <div class="container">
+        <h2 class="section-title">Professional Credentials</h2>
+        <div class="certifications-grid">
+          
+          <div class="certification-card reveal">
+            <img src="./images/google.jpg" alt="Google Project Management Certification" />
+            <h3>Project Management Certificate</h3>
+            <p>Google</p>
+            <a href="https://www.credly.com/go/s0Z1XMz1viVw5qggHyYcRA" target="_blank" class="btn primary small">Verify Credential</a>
+          </div>
+
+          <div class="certification-card reveal">
+            <img src="./images/m.jpg" alt="McKinsey Forward Program" />
+            <h3>McKinsey Forward Program</h3>
+            <p>McKinsey & Company</p>
+            <a href="https://www.credly.com/go/eBcmv55dHwklCabeV0ibug" target="_blank" class="btn primary small">Verify Credential</a>
+          </div>
+
+          <div class="certification-card reveal">
+            <img src="./images/sust.jpg" alt="Sustainability Leadership Certificate" />
+            <h3>Sustainability Leadership</h3>
+            <p>University of Cambridge</p>
+            <a href="https://www.credly.com/go/eBcmv55dHwklCabeV0ibug" target="_blank" class="btn primary small">View Certificate</a>
+          </div>
+
+          <div class="certification-card reveal">
+            <img src="./images/scrum.jpg" alt="Scrum Master Certification" />
+            <h3>Scrum Master Foundation</h3>
+            <p>CertiProf</p>
+            <a href="#" class="btn primary small">View Details</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+      <div class="container">
+        <h2 class="section-title">Ready To Transform Your Business?</h2>
+        <p class="contact-intro">
+          Let's discuss how I can help deliver your next AI or tech project with measurable results. 
+          I'm currently available for new projects and would love to understand your specific challenges.
+        </p>
+        
+        <div class="contact-methods">
+          <a href="mailto:akinpeluenoch@gmail.com">
+            <i class="fas fa-envelope"></i>
+            <span>akinpeluenoch@gmail.com</span>
+          </a>
+          <a href="https://linkedin.com/in/akinpelu-enoch" target="_blank">
+            <i class="fab fa-linkedin"></i>
+            <span>LinkedIn Profile</span>
+          </a>
+          <a href="https://wa.me/2348123456789" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+            <span>WhatsApp Chat</span>
+          </a>
+          <a href="tel:+2348123456789">
+            <i class="fas fa-phone"></i>
+            <span>+234 812 345 6789</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <a href="#about" class="back-to-top">
+        <i class="fas fa-chevron-up"></i>
+      </a>
+      <p>&copy; 2024 Akinpelu Enoch. All rights reserved. | Delivering Excellence in AI & Tech Project Management</p>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile Navigation Toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    navToggle.addEventListener('click', () => {
+      navToggle.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navToggle.classList.remove('active');
+        navLinks.classList.remove('active');
+      });
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Scroll reveal animation
+    function revealOnScroll() {
+      const reveals = document.querySelectorAll('.reveal');
+      
+      reveals.forEach(reveal => {
+        const windowHeight = window.innerHeight;
+        const elementTop = reveal.getBoundingClientRect().top;
+        const elementVisible = 150;
+        
+        if (elementTop < windowHeight - elementVisible) {
+          reveal.classList.add('active');
+        }
+      });
+    }
+
+    // Initial check for elements in view
+    revealOnScroll();
+    
+    // Listen for scroll events
+    window.addEventListener('scroll', revealOnScroll);
+
+    // Add active state to navigation based on scroll position
+    window.addEventListener('scroll', () => {
+      let current = '';
+      const sections = document.querySelectorAll('section');
+      
+      sections.forEach(section => {
+        const sectionTop = section.getBoundingClientRect().top;
+        if (sectionTop <= 100) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // Add loading animation
+    window.addEventListener('load', () => {
+      document.body.classList.add('loaded');
+    });
+
+    // Enhanced scroll animations with stagger effect
+    function staggerReveal() {
+      const cards = document.querySelectorAll('.service-card, .case-study-card, .certification-card');
+      cards.forEach((card, index) => {
+        const rect = card.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          setTimeout(() => {
+            card.classList.add('active');
+          }, index * 100);
+        }
+      });
+    }
+
+    window.addEventListener('scroll', staggerReveal);
+    staggerReveal(); // Initial check
+
+    // Dynamic metrics counter animation
+    function animateCounters() {
+      const counters = document.querySelectorAll('.metric-number, .impact-number');
+      
+      counters.forEach(counter => {
+        const target = counter.textContent;
+        const numericTarget = parseFloat(target.replace(/[^\d.]/g, ''));
+        
+        if (isNaN(numericTarget)) return;
+        
+        const rect = counter.getBoundingClientRect();
+        if (rect.top < window.innerHeight && !counter.classList.contains('animated')) {
+          counter.classList.add('animated');
+          
+          let current = 0;
+          const increment = numericTarget / 60;
+          const timer = setInterval(() => {
+            current += increment;
+            if (current >= numericTarget) {
+              current = numericTarget;
+              clearInterval(timer);
+            }
+            
+            // Format the number with appropriate suffix
+            let displayValue;
+            if (target.includes('₦') && current >= 1000000) {
+              displayValue = '₦' + (current / 1000000).toFixed(1) + 'M';
+            } else if (target.includes('%')) {
+              displayValue = Math.floor(current) + '%';
+            } else if (target.includes('/')) {
+              displayValue = current.toFixed(1) + '/5';
+            } else {
+              displayValue = Math.floor(current) + (target.includes('+') ? '+' : '');
+            }
+            
+            counter.textContent = displayValue;
+          }, 16);
+        }
+      });
+    }
+
+    window.addEventListener('scroll', animateCounters);
+    animateCounters(); // Initial check
+  </script>
+</body>
+</html>
