@@ -204,6 +204,8 @@
       font-weight: 600;
       transition: all var(--transition-speed);
       font-size: 1rem;
+      cursor: pointer;
+      border: none;
     }
 
     .btn.primary {
@@ -316,6 +318,191 @@
       border-radius: 15px;
       font-size: 0.8rem;
       font-weight: 500;
+    }
+
+    /* Projects Section */
+    .projects {
+      padding: 100px 20px;
+      background: var(--bg-color);
+    }
+
+    .project-carousel-container {
+      overflow: hidden;
+      margin-top: 3rem;
+    }
+
+    .project-carousel {
+      display: flex;
+      gap: 2rem;
+      animation: scroll-projects 30s linear infinite;
+      padding-bottom: 2rem;
+      padding-top: 1rem;
+    }
+
+    .project-card {
+      min-width: 300px;
+      background: var(--card-bg);
+      border-radius: 20px;
+      box-shadow: var(--executive-shadow);
+      padding: 2rem;
+      text-align: center;
+      transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+      flex-shrink: 0;
+      border: 1px solid #e8e8e8;
+    }
+    
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    }
+
+    .project-card .project-logo {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 1rem;
+      object-fit: contain;
+    }
+
+    .project-card h4 {
+      font-size: 1.4rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+
+    @keyframes scroll-projects {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(-100%);
+      }
+    }
+
+    /* Skills Section */
+    .skills-section {
+      padding: 100px 20px;
+      background: var(--card-bg);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .skill-category {
+      background: var(--bg-color);
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: var(--executive-shadow);
+      border: 1px solid #e8e8e8;
+    }
+
+    .skill-category h4 {
+      font-size: 1.5rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      position: relative;
+    }
+
+    .skill-category h4::after {
+      content: '';
+      display: block;
+      width: 50px;
+      height: 3px;
+      background: var(--secondary-color);
+      margin-top: 5px;
+    }
+
+    .skills-list {
+      list-style-type: none;
+      padding-left: 0;
+      font-size: 1rem;
+    }
+
+    .skills-list li {
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .skills-list li::before {
+      content: '✓';
+      color: var(--secondary-color);
+      font-weight: bold;
+    }
+
+    /* Modal Styling */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(5px);
+      padding-top: 60px;
+    }
+
+    .modal-content {
+      background-color: var(--card-bg);
+      margin: 5% auto;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      max-width: 800px;
+      position: relative;
+      animation: modal-fade-in 0.3s ease-out;
+    }
+
+    @keyframes modal-fade-in {
+      from { opacity: 0; transform: translateY(-50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .modal-close {
+      color: #aaa;
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 28px;
+      font-weight: bold;
+      transition: color var(--transition-speed);
+    }
+
+    .modal-close:hover, .modal-close:focus {
+      color: var(--primary-color);
+      text-decoration: none;
+      cursor: pointer;
+    }
+    
+    .modal-content h3 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+    }
+
+    .modal-content p {
+      margin-bottom: 1rem;
+    }
+    
+    .modal-content .project-details {
+      margin-top: 2rem;
+    }
+    
+    .modal-content .project-details h4 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--secondary-color);
+    }
+    
+    .modal-content ul {
+      list-style-type: disc;
+      padding-left: 20px;
     }
 
     /* Leadership Gallery Section */
@@ -738,6 +925,10 @@
       .section-title {
         font-size: 2rem;
       }
+
+      .project-carousel {
+        animation: scroll-projects 15s linear infinite;
+      }
     }
 
     @media (max-width: 480px) {
@@ -792,8 +983,10 @@
       </button>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
-<li><a href="./file/Enoch Akinpelu CV.pdf" download="Enoch_CV.pdf">My CV</a></li>
+        <li><a href="./file/Enoch Akinpelu CV.pdf" download="Enoch_CV.pdf">My CV</a></li>
         <li><a href="#services">What I Do</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
         <li><a href="#leadership">Leadership</a></li>
         <li><a href="#case-studies">Case Studies</a></li>
         <li><a href="#certifications">Credentials</a></li>
@@ -803,18 +996,16 @@
   </header>
 
   <main>
-    <!-- Hero Section -->
     <section class="hero" id="about">
       <div class="hero-content">
         <div class="hero-image">
-          <img src="./images/my pic.jpg" alt="Akinpelu Enoch - AI & Tech Project Manager" />
+          <img src="./images/my pic.jpg" alt="Akinpelu Enoch - AI & Tech Product Manager" />
         </div>
         <div class="hero-text">
           <h1>Hi, I'm Enoch</h1>
           <p class="hero-tagline">AI & Tech Product Manager | Product Leader</p>
           <p class="hero-description">
-I'm a tech product leader with experience managing AI implementation and software projects. I specialize in turning ideas into impactful solutions and leading teams through every stage of execution. Passionate about digital transformation, I help businesses use technology to work smarter, grow faster, and deliver real results.
-If you're building something meaningful with tech and need a steady hand to lead the process, you're in the right place.
+            I'm a tech product leader with experience managing AI implementation and software projects. I specialize in turning ideas into impactful solutions and leading teams through every stage of execution. Passionate about digital transformation, I help businesses use technology to work smarter, grow faster, and deliver real results. If you're building something meaningful with tech and need a steady hand to lead the process, you're in the right place.
           </p>
           
           <div class="hero-metrics">
@@ -827,8 +1018,8 @@ If you're building something meaningful with tech and need a steady hand to lead
               <span class="metric-label">Cost Savings Delivered</span>
             </div>
             <div class="metric">
-              <span class="metric-number">50+</span>
-              <span class="metric-label">Professionals Trained</span>
+              <span class="metric-number">85%</span>
+              <span class="metric-label">Product Adoption Rate</span>
             </div>
           </div>
           
@@ -840,7 +1031,6 @@ If you're building something meaningful with tech and need a steady hand to lead
       </div>
     </section>
 
-    <!-- What I Do Section -->
     <section class="services" id="services">
       <div class="container">
         <h2 class="section-title">What I Deliver For You</h2>
@@ -893,18 +1083,178 @@ If you're building something meaningful with tech and need a steady hand to lead
               <span class="deliverable-tag">Performance Tracking</span>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="skills-section" id="skills">
+      <div class="container">
+        <h2 class="section-title">Skills & Expertise</h2>
+        <div class="skills-grid reveal">
+          <div class="skill-category">
+            <h4>Product Management</h4>
+            <ul class="skills-list">
+              <li>Roadmap Strategy</li>
+              <li>User Research & Interviews</li>
+              <li>Agile & Scrum Methodologies</li>
+              <li>Go-to-Market Strategy</li>
+              <li>Product Lifecycle Management</li>
+            </ul>
+          </div>
+          <div class="skill-category">
+            <h4>Technical Skills</h4>
+            <ul class="skills-list">
+              <li>AI/ML Implementation</li>
+              <li>SaaS & Cloud Computing</li>
+              <li>APIs & Integrations</li>
+              <li>Data Analysis & Metrics</li>
+              <li>Infrastructure Leadership</li>
+            </ul>
+          </div>
+          <div class="skill-category">
+            <h4>Tools & Technologies</h4>
+            <ul class="skills-list">
+              <li>Jira & Confluence</li>
+              <li>Figma & Miro</li>
+              <li>Microsoft Azure & AWS</li>
+              <li>Google Analytics</li>
+              <li>SQL, Python (basic)</li>
+            </ul>
+          </div>
+          <div class="skill-category">
+            <h4>Soft Skills</h4>
+            <ul class="skills-list">
+              <li>Stakeholder Management</li>
+              <li>Cross-Functional Collaboration</li>
+              <li>Executive Communication</li>
+              <li>Mentorship & Training</li>
+              <li>Problem-Solving</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="projects" id="projects">
+      <div class="container">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="project-carousel-container reveal">
+          <div class="project-carousel">
+            <div class="project-card" data-project="project1">
+              <img src="./images/project_logo1.png" alt="Project 1 Logo" class="project-logo" />
+              <h4>Smart Inventory AI</h4>
+              <p>AI-powered inventory management system.</p>
+              <button class="btn primary small view-details-btn">View Details</button>
+            </div>
+            <div class="project-card" data-project="project2">
+              <img src="./images/project_logo2.png" alt="Project 2 Logo" class="project-logo" />
+              <h4>Agri-Connect App</h4>
+              <p>Connecting farmers to markets and resources.</p>
+              <button class="btn primary small view-details-btn">View Details</button>
+            </div>
+            <div class="project-card" data-project="project3">
+              <img src="./images/project_logo3.png" alt="Project 3 Logo" class="project-logo" />
+              <h4>Edu-Tech Platform</h4>
+              <p>E-learning platform with gamified content.</p>
+              <button class="btn primary small view-details-btn">View Details</button>
+            </div>
+            <div class="project-card" data-project="project4">
+              <img src="./images/project_logo4.png" alt="Project 4 Logo" class="project-logo" />
+              <h4>FinTech Analytics</h4>
+              <p>Financial data visualization and insights.</p>
+              <button class="btn primary small view-details-btn">View Details</button>
+            </div>
+            <div class="project-card" data-project="project1">
+              <img src="./images/project_logo1.png" alt="Project 1 Logo" class="project-logo" />
+              <h4>Smart Inventory AI</h4>
+              <p>AI-powered inventory management system.</p>
+              <button class="btn primary small view-details-btn">View Details</button>
+            </div>
+            <div class="project-card" data-project="project2">
+              <img src="./images/project_logo2.png" alt="Project 2 Logo" class="project-logo" />
+              <h4>Agri-Connect App</h4>
+              <p>Connecting farmers to markets and resources.</p>
+              <button class="btn primary small view-details-btn">View Details</button>
+            </div>
+            <div class="project-card" data-project="project3">
+              <img src="./images/project_logo3.png" alt="Project 3 Logo" class="project-logo" />
+              <h4>Edu-Tech Platform</h4>
+              <p>E-learning platform with gamified content.</p>
+              <button class="btn primary small view-details-btn">View Details</button>
+            </div>
+            <div class="project-card" data-project="project4">
+              <img src="./images/project_logo4.png" alt="Project 4 Logo" class="project-logo" />
+              <h4>FinTech Analytics</h4>
+              <p>Financial data visualization and insights.</p>
+              <button class="btn primary small view-details-btn">View Details</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="leadership-gallery" id="leadership">
+      <div class="container">
+        <h2 class="section-title">Leadership In Action</h2>
+        <div class="gallery-grid">
+          
+          <div class="gallery-item reveal">
+            <img src="./images/IMG_20250728_045823.jpg" alt="Leading AI Workshop" />
+            <div class="gallery-overlay">
+              <h4>AI Workshop Leadership</h4>
+              <p>Leading a hands-on AI training session for 30+ professionals to improve organizational tech literacy.</p>
+            </div>
+          </div>
+
+          <div class="gallery-item reveal">
+            <img src="./images/leadership2.jpg" alt="Cross-Cultural Team Meeting" />
+            <div class="gallery-overlay">
+              <h4>Cross-Continental Team Sync</h4>
+              <p>Managing and bridging cultural gaps for a UK-Nigeria team during a major SaaS deployment.</p>
+            </div>
+          </div>
+
+          <div class="gallery-item reveal">
+            <img src="./images/IMG_20250728_045607.jpg" alt="Tech Conference Speaking" />
+            <div class="gallery-overlay">
+              <h4>Tech Conference Speaker</h4>
+              <p>Presenting digital transformation strategies to an audience of students and industry professionals.</p>
+            </div>
+          </div>
+
+          <div class="gallery-item reveal">
+            <img src="./images/leadership4.jpg" alt="Project Review Meeting" />
+            <div class="gallery-overlay">
+              <h4>Strategic Project Review</h4>
+              <p>Leading a quarterly review with engineering, sales, and executive stakeholders to align on product roadmap.</p>
+            </div>
+          </div>
+
+          <div class="gallery-item reveal">
+            <img src="./images/IMG_20250728_050006.jpg" alt="Mentoring Session" />
+            <div class="gallery-overlay">
+              <h4>Technical Mentoring</h4>
+              <p>One-on-one mentorship session with an emerging tech professional to build their career path.</p>
+            </div>
+          </div>
+
+          <div class="gallery-item reveal">
+            <img src="./images/1753675580808.jpg" alt="Award Recognition" />
+            <div class="gallery-overlay">
+              <h4>Excellence Recognition</h4>
+              <p>Receiving a leadership excellence award for outstanding results in product delivery.</p>
+            </div>
+          </div>
 
         </div>
       </div>
     </section>
 
-    <!-- Case Studies Section -->
     <section class="case-studies" id="case-studies">
       <div class="container">
         <h2 class="section-title">Proven Results For My Clients</h2>
         <div class="case-study-grid">
 
-          <!-- Case Study 1 -->
           <div class="case-study-card reveal">
             <div class="case-study-header">
               <div class="case-study-meta">
@@ -921,12 +1271,12 @@ If you're building something meaningful with tech and need a steady hand to lead
             
             <div class="challenge">
               <h4><i class="fas fa-exclamation-triangle"></i> The Challenge</h4>
-              <p>Client needed to manage distributed UK-Nigerian development teams for complex SaaS product features while maintaining quality alignment across 6-hour time differences and different work cultures.</p>
+              <p>The client was struggling with disjointed operations and scaling their SaaS product due to distributed UK-Nigerian development teams. The goal was to maintain quality alignment across different time zones and cultural work styles to meet user demand.</p>
             </div>
 
             <div class="solution">
               <h4><i class="fas fa-lightbulb"></i> My Solution</h4>
-              <p>Implemented optimized Agile workflows with alternating daily stand-ups, cultural integration frameworks, and quality gates that prevented scope creep while ensuring unified team delivery.</p>
+              <p>I implemented optimized Agile workflows using Jira and Confluence, including alternating daily stand-ups and a **cultural integration framework**. I established clear quality gates and conducted **regular stakeholder reviews** to prevent scope creep and ensure unified team delivery.</p>
             </div>
 
             <div class="impact-metrics">
@@ -945,7 +1295,6 @@ If you're building something meaningful with tech and need a steady hand to lead
             </div>
           </div>
 
-          <!-- Case Study 2 -->
           <div class="case-study-card reveal">
             <div class="case-study-header">
               <div class="case-study-meta">
@@ -962,12 +1311,12 @@ If you're building something meaningful with tech and need a steady hand to lead
             
             <div class="challenge">
               <h4><i class="fas fa-exclamation-triangle"></i> The Challenge</h4>
-              <p>Client had 10 diverse products in development pipeline with tight budgets and aggressive market deadlines. Needed to accelerate delivery while maintaining quality and controlling costs.</p>
+              <p>The client had 10 diverse products in their development pipeline with tight budgets and aggressive market deadlines. The primary challenge was to accelerate delivery, maintain quality, and reduce the average time-to-market while managing user feedback and expectations.</p>
             </div>
 
             <div class="solution">
               <h4><i class="fas fa-lightbulb"></i> My Solution</h4>
-              <p>Restructured development pipelines for parallel processing, implemented risk-based testing strategies, and optimized resource allocation across the product portfolio.</p>
+              <p>I restructured development pipelines for parallel processing and implemented a **risk-based testing strategy** to reduce the defect rate. By optimizing resource allocation across the portfolio, I worked closely with marketing and sales teams to align on **go-to-market strategies** for each product.</p>
             </div>
 
             <div class="impact-metrics">
@@ -976,17 +1325,16 @@ If you're building something meaningful with tech and need a steady hand to lead
                 <span class="impact-label">Faster Time-to-Market</span>
               </div>
               <div class="impact-item">
-                <span class="impact-number">40%</span>
-                <span class="impact-label">Defect Reduction</span>
-              </div>
-              <div class="impact-item">
                 <span class="impact-number">₦2M</span>
                 <span class="impact-label">Cost Savings</span>
+              </div>
+              <div class="impact-item">
+                <span class="impact-number">40%</span>
+                <span class="impact-label">Defect Reduction</span>
               </div>
             </div>
           </div>
 
-          <!-- Case Study 3 -->
           <div class="case-study-card reveal">
             <div class="case-study-header">
               <div class="case-study-meta">
@@ -1003,12 +1351,12 @@ If you're building something meaningful with tech and need a steady hand to lead
             
             <div class="challenge">
               <h4><i class="fas fa-exclamation-triangle"></i> The Challenge</h4>
-              <p>Organization needed to upskill 50+ technical professionals while maintaining critical infrastructure performance and ensuring zero downtime during training periods.</p>
+              <p>The organization needed to upskill over 50 technical professionals to improve internal efficiency and project delivery. Simultaneously, they faced the critical challenge of maintaining infrastructure performance with zero downtime during the training periods.</p>
             </div>
 
             <div class="solution">
               <h4><i class="fas fa-lightbulb"></i> My Solution</h4>
-              <p>Developed comprehensive training programs with hands-on experience, implemented infrastructure monitoring protocols, and created mentorship frameworks for sustained learning.</p>
+              <p>I developed comprehensive training programs with hands-on experience and a **mentorship framework** for sustained learning. I implemented proactive infrastructure monitoring protocols and led a **cross-functional initiative** to ensure system stability and 99% uptime.</p>
             </div>
 
             <div class="impact-metrics">
@@ -1026,70 +1374,10 @@ If you're building something meaningful with tech and need a steady hand to lead
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </section>
 
-    <!-- Leadership Gallery Section -->
-    <section class="leadership-gallery" id="leadership">
-      <div class="container">
-        <h2 class="section-title">Leadership In Action</h2>
-        <div class="gallery-grid">
-          
-          <div class="gallery-item reveal">
-            <img src="./images/IMG_20250728_045823.jpg" alt="Leading AI Workshop" />
-            <div class="gallery-overlay">
-              <h4>AI Workshop Leadership</h4>
-              <p>Conducting hands-on AI training session for 30+ professionals in Port Harcourt</p>
-            </div>
-          </div>
-
-          <div class="gallery-item reveal">
-            <img src="./images/leadership2.jpg" alt="Cross-Cultural Team Meeting" />
-            <div class="gallery-overlay">
-              <h4>Cross-Continental Team Sync</h4>
-              <p>Managing UK-Nigeria team collaboration for major SaaS deployment</p>
-            </div>
-          </div>
-
-          <div class="gallery-item reveal">
-            <img src="./images/IMG_20250728_045607.jpg" alt="Tech Conference Speaking" />
-            <div class="gallery-overlay">
-              <h4>Tech Conference Speaker</h4>
-              <p>Presenting digital transformation strategies at student tech summit</p>
-            </div>
-          </div>
-
-          <div class="gallery-item reveal">
-            <img src="./images/leadership4.jpg" alt="Project Review Meeting" />
-            <div class="gallery-overlay">
-              <h4>Strategic Project Review</h4>
-              <p>Leading quarterly review with stakeholders and development teams</p>
-            </div>
-          </div>
-
-          <div class="gallery-item reveal">
-            <img src="./images/IMG_20250728_050006.jpg" alt="Mentoring Session" />
-            <div class="gallery-overlay">
-              <h4>Technical Mentoring</h4>
-              <p>One-on-one mentorship session with emerging tech professionals</p>
-            </div>
-          </div>
-
-          <div class="gallery-item reveal">
-            <img src="./images/1753675580808.jpg" alt="Award Recognition" />
-            <div class="gallery-overlay">
-              <h4>Excellence Recognition</h4>
-              <p>Receiving leadership excellence award for outstanding result</p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- Certifications Section -->
     <section class="certifications" id="certifications">
       <div class="container">
         <h2 class="section-title">Professional Credentials</h2>
@@ -1119,13 +1407,11 @@ If you're building something meaningful with tech and need a steady hand to lead
       </div>
     </section>
 
-    <!-- Contact Section -->
     <section class="contact" id="contact">
       <div class="container">
         <h2 class="section-title">Ready To Transform Your Business?</h2>
         <p class="contact-intro">
-          Let's discuss how I can help deliver your next AI or tech product with measurable results. 
-          I'm currently available for new projects and would love to understand your specific challenges.
+          Let's discuss how I can help deliver your next AI or tech product with measurable results. I'm currently available for new projects and would love to understand your specific challenges.
         </p>
         
         <div class="contact-methods">
@@ -1158,6 +1444,23 @@ If you're building something meaningful with tech and need a steady hand to lead
       <p>&copy; 2025 Akinpelu Enoch. All rights reserved. | Delivering Excellence in AI & Tech Product Management</p>
     </div>
   </footer>
+
+  <div id="project-modal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close">&times;</span>
+      <img id="modal-project-logo" src="" alt="Project Logo" class="project-logo" />
+      <h3 id="modal-project-name"></h3>
+      <p id="modal-project-description"></p>
+      <div class="project-details">
+        <h4>Product Requirements</h4>
+        <ul id="modal-project-requirements"></ul>
+        <h4>Tools & Technologies</h4>
+        <p id="modal-project-tools"></p>
+        <h4>Key Responsibilities</h4>
+        <p id="modal-project-responsibilities"></p>
+      </div>
+    </div>
+  </div>
 
   <script>
     // Mobile Navigation Toggle
@@ -1237,22 +1540,6 @@ If you're building something meaningful with tech and need a steady hand to lead
       document.body.classList.add('loaded');
     });
 
-    // Enhanced scroll animations with stagger effect
-    function staggerReveal() {
-      const cards = document.querySelectorAll('.service-card, .case-study-card, .certification-card');
-      cards.forEach((card, index) => {
-        const rect = card.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 100) {
-          setTimeout(() => {
-            card.classList.add('active');
-          }, index * 100);
-        }
-      });
-    }
-
-    window.addEventListener('scroll', staggerReveal);
-    staggerReveal(); // Initial check
-
     // Dynamic metrics counter animation
     function animateCounters() {
       const counters = document.querySelectorAll('.metric-number, .impact-number');
@@ -1296,6 +1583,102 @@ If you're building something meaningful with tech and need a steady hand to lead
 
     window.addEventListener('scroll', animateCounters);
     animateCounters(); // Initial check
+
+    // Project Modal Functionality
+    const projectModal = document.getElementById('project-modal');
+    const viewDetailsBtns = document.querySelectorAll('.view-details-btn');
+    const modalCloseBtn = document.querySelector('.modal-close');
+    
+    const projectsData = {
+      project1: {
+        name: 'Smart Inventory AI',
+        logo: './images/project_logo1.png',
+        description: 'An AI-powered inventory management system designed to optimize stock levels and predict demand for retail and logistics businesses. It leverages machine learning to reduce waste and improve operational efficiency.',
+        requirements: [
+          'Developed a predictive analytics model to forecast demand.',
+          'Integrated computer vision for real-time stock-level tracking.',
+          'Built a user-friendly dashboard for inventory visualization.',
+          'Ensured seamless integration with existing ERP systems.',
+        ],
+        tools: 'Python, TensorFlow, React, AWS, Jira, Figma',
+        responsibilities: 'Led a team of 5 engineers and 2 data scientists. Defined the product roadmap, managed the development sprint cycles, and conducted user feedback sessions to iterate on the solution.',
+      },
+      project2: {
+        name: 'Agri-Connect App',
+        logo: './images/project_logo2.png',
+        description: 'A mobile application that connects small-scale farmers with buyers, suppliers, and agricultural resources. The platform uses location-based services to facilitate fair market access and knowledge sharing.',
+        requirements: [
+          'Implemented a secure payment gateway for transactions.',
+          'Designed a messaging feature for direct communication between users.',
+          'Created a resource library with best practices for farming.',
+          'Ensured a simple and accessible user interface for all literacy levels.',
+        ],
+        tools: 'Flutter, Firebase, Node.js, PostgreSQL, Trello',
+        responsibilities: 'Managed the entire product lifecycle from ideation to market launch. Coordinated with design and development teams, conducted user interviews in rural communities, and oversaw beta testing.',
+      },
+      project3: {
+        name: 'Edu-Tech Platform',
+        logo: './images/project_logo3.png',
+        description: 'An e-learning platform featuring gamified content and personalized learning paths. It aims to increase student engagement and improve educational outcomes for high school students.',
+        requirements: [
+          'Developed a points and badges system for gamification.',
+          'Built a recommendation engine for personalized content.',
+          'Created a robust backend to handle high user traffic.',
+          'Conducted A/B testing on different UI/UX designs to optimize engagement.',
+        ],
+        tools: 'Next.js, Django, AWS, A/B Testing, Figma',
+        responsibilities: 'Owned the product roadmap and feature backlog. Collaborated with educational content creators and developers. Analyzed user data to identify areas for improvement and new feature development.',
+      },
+      project4: {
+        name: 'FinTech Analytics',
+        logo: './images/project_logo4.png',
+        description: 'A financial analytics tool that provides real-time data visualization and actionable insights for small to medium-sized businesses, helping them make informed financial decisions.',
+        requirements: [
+          'Integrated with multiple banking APIs for data aggregation.',
+          'Designed interactive dashboards for cash flow and budget tracking.',
+          'Ensured compliance with data privacy regulations.',
+          'Created a reporting feature for easy export and sharing of financial data.',
+        ],
+        tools: 'React, Redux, Node.js, Express, MongoDB, Power BI',
+        responsibilities: 'Served as the bridge between technical and business teams. Gathered requirements from stakeholders, prioritized features based on business value, and ensured a secure and reliable product.',
+      }
+    };
+
+    viewDetailsBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const projectId = btn.closest('.project-card').dataset.project;
+        const project = projectsData[projectId];
+        
+        if (project) {
+          document.getElementById('modal-project-logo').src = project.logo;
+          document.getElementById('modal-project-name').textContent = project.name;
+          document.getElementById('modal-project-description').textContent = project.description;
+          
+          const requirementsList = document.getElementById('modal-project-requirements');
+          requirementsList.innerHTML = '';
+          project.requirements.forEach(req => {
+            const li = document.createElement('li');
+            li.textContent = req;
+            requirementsList.appendChild(li);
+          });
+          
+          document.getElementById('modal-project-tools').textContent = project.tools;
+          document.getElementById('modal-project-responsibilities').textContent = project.responsibilities;
+          
+          projectModal.style.display = 'block';
+        }
+      });
+    });
+
+    modalCloseBtn.addEventListener('click', () => {
+      projectModal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (event) => {
+      if (event.target === projectModal) {
+        projectModal.style.display = 'none';
+      }
+    });
   </script>
 </body>
 </html>
