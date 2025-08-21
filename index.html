@@ -1540,4 +1540,204 @@
             } else if (target.includes('%')) {
               displayValue = Math.floor(current) + '%';
             } else if (target.includes('/')) {
-              displayValue = current.toFixed(1) + '/5
+              displayValue = current.toFixed(1) + '/5';
+            } else {
+              displayValue = Math.floor(current) + (target.includes('+') ? '+' : '');
+            }
+            
+            counter.textContent = displayValue;
+          }, 16);
+        }
+      });
+    }
+
+    window.addEventListener('scroll', animateCounters);
+    animateCounters(); // Initial check
+
+    // Project Modal Functionality
+    const projectModal = document.getElementById('project-modal');
+    const viewDetailsBtns = document.querySelectorAll('.view-details-btn');
+    const modalCloseBtn = document.querySelector('.modal-close');
+    
+    const projectsData = {
+      project1: {
+        name: 'Smart Inventory AI',
+        logo: './images/project_logo1.png',
+        description: 'An AI-powered inventory management system designed to optimize stock levels and predict demand for retail and logistics businesses. It leverages machine learning to reduce waste and improve operational efficiency.',
+        requirements: [
+          'Developed a predictive analytics model to forecast demand.',
+          'Integrated computer vision for real-time stock-level tracking.',
+          'Built a user-friendly dashboard for inventory visualization.',
+          'Ensured seamless integration with existing ERP systems.',
+        ],
+        tools: 'Python, TensorFlow, React, AWS, Jira, Figma',
+        responsibilities: 'Led a team of 5 engineers and 2 data scientists. Defined the product roadmap, managed the development sprint cycles, and conducted user feedback sessions to iterate on the solution.',
+      },
+      project2: {
+        name: 'Agri-Connect App',
+        logo: './images/project_logo2.png',
+        description: 'A mobile application that connects small-scale farmers with buyers, suppliers, and agricultural resources. The platform uses location-based services to facilitate fair market access and knowledge sharing.',
+        requirements: [
+          'Implemented a secure payment gateway for transactions.',
+          'Designed a messaging feature for direct communication between users.',
+          'Created a resource library with best practices for farming.',
+          'Ensured a simple and accessible user interface for all literacy levels.',
+        ],
+        tools: 'Flutter, Firebase, Node.js, PostgreSQL, Trello',
+        responsibilities: 'Managed the entire product lifecycle from ideation to market launch. Coordinated with design and development teams, conducted user interviews in rural communities, and oversaw beta testing.',
+      },
+      project3: {
+        name: 'Edu-Tech Platform',
+        logo: './images/project_logo3.png',
+        description: 'An e-learning platform featuring gamified content and personalized learning paths. It aims to increase student engagement and improve educational outcomes for high school students.',
+        requirements: [
+          'Developed a points and badges system for gamification.',
+          'Built a recommendation engine for personalized content.',
+          'Created a robust backend to handle high user traffic.',
+          'Conducted A/B testing on different UI/UX designs to optimize engagement.',
+        ],
+        tools: 'Next.js, Django, AWS, A/B Testing, Figma',
+        responsibilities: 'Owned the product roadmap and feature backlog. Collaborated with educational content creators and developers. Analyzed user data to identify areas for improvement and new feature development.',
+      },
+      project4: {
+        name: 'FinTech Analytics',
+        logo: './images/project_logo4.png',
+        description: 'A financial analytics tool that provides real-time data visualization and actionable insights for small to medium-sized businesses, helping them make informed financial decisions.',
+        requirements: [
+          'Integrated with multiple banking APIs for data aggregation.',
+          'Designed interactive dashboards for cash flow and budget tracking.',
+          'Ensured compliance with data privacy regulations.',
+          'Created a reporting feature for easy export and sharing of financial data.',
+        ],
+        tools: 'React, Redux, Node.js, Express, MongoDB, Power BI',
+        responsibilities: 'Served as the bridge between technical and business teams. Gathered requirements from stakeholders, prioritized features based on business value, and ensured a secure and reliable product.',
+      }
+    };
+
+    viewDetailsBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const projectId = btn.closest('.project-card').dataset.project;
+        const project = projectsData[projectId];
+        
+        if (project) {
+          document.getElementById('modal-project-logo').src = project.logo;
+          document.getElementById('modal-project-name').textContent = project.name;
+          document.getElementById('modal-project-description').textContent = project.description;
+          
+          const requirementsList = document.getElementById('modal-project-requirements');
+          requirementsList.innerHTML = '';
+          project.requirements.forEach(req => {
+            const li = document.createElement('li');
+            li.textContent = req;
+            requirementsList.appendChild(li);
+          });
+          
+          document.getElementById('modal-project-tools').textContent = project.tools;
+          document.getElementById('modal-project-responsibilities').textContent = project.responsibilities;
+          
+          projectModal.style.display = 'block';
+        }
+      });
+    });
+
+    modalCloseBtn.addEventListener('click', () => {
+      projectModal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (event) => {
+      if (event.target === projectModal) {
+        projectModal.style.display = 'none';
+      }
+    });
+
+    // JavaScript for swiping/dragging carousel
+    const carouselContainer = document.querySelector('.project-carousel-container');
+    const carousel = document.querySelector('.project-carousel');
+
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+    let velocity = 0;
+    let momentumID;
+
+    // Mouse events for desktop
+    carouselContainer.addEventListener('mousedown', (e) => {
+      isDown = true;
+      carouselContainer.classList.add('active');
+      startX = e.pageX - carouselContainer.offsetLeft;
+      scrollLeft = carouselContainer.scrollLeft;
+      cancelMomentumTracking();
+    });
+
+    carouselContainer.addEventListener('mouseleave', () => {
+      if (isDown) {
+        isDown = false;
+        carouselContainer.classList.remove('active');
+        beginMomentumTracking();
+      }
+    });
+
+    carouselContainer.addEventListener('mouseup', () => {
+      if (isDown) {
+        isDown = false;
+        carouselContainer.classList.remove('active');
+        beginMomentumTracking();
+      }
+    });
+
+    carouselContainer.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - carouselContainer.offsetLeft;
+      const walk = (x - startX);
+      const newScrollLeft = scrollLeft - walk;
+      
+      velocity = (newScrollLeft - carouselContainer.scrollLeft) * 0.5; // Calculate velocity
+      carouselContainer.scrollLeft = newScrollLeft;
+    });
+
+    // Touch events for mobile
+    carouselContainer.addEventListener('touchstart', (e) => {
+      isDown = true;
+      startX = e.touches[0].pageX - carouselContainer.offsetLeft;
+      scrollLeft = carouselContainer.scrollLeft;
+      cancelMomentumTracking();
+    });
+
+    carouselContainer.addEventListener('touchend', () => {
+      if (isDown) {
+        isDown = false;
+        beginMomentumTracking();
+      }
+    });
+
+    carouselContainer.addEventListener('touchmove', (e) => {
+      if (!isDown) return;
+      const x = e.touches[0].pageX - carouselContainer.offsetLeft;
+      const walk = (x - startX);
+      const newScrollLeft = scrollLeft - walk;
+      
+      velocity = (newScrollLeft - carouselContainer.scrollLeft) * 0.5;
+      carouselContainer.scrollLeft = newScrollLeft;
+    });
+
+    // Momentum Scrolling Logic
+    function beginMomentumTracking() {
+      cancelMomentumTracking();
+      momentumID = requestAnimationFrame(momentumLoop);
+    }
+
+    function cancelMomentumTracking() {
+      cancelAnimationFrame(momentumID);
+    }
+
+    function momentumLoop() {
+      carouselContainer.scrollLeft += velocity;
+      velocity *= 0.95; // Decay rate
+      if (Math.abs(velocity) > 0.5) {
+        momentumID = requestAnimationFrame(momentumLoop);
+      }
+    }
+  </script>
+</body>
+</html>
