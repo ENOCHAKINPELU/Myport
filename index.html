@@ -320,64 +320,6 @@
       font-weight: 500;
     }
 
-    /* Projects Section */
-    .projects {
-      padding: 100px 20px;
-      background: var(--bg-color);
-    }
-
-    .project-carousel-container {
-      overflow: hidden;
-      margin-top: 3rem;
-    }
-
-    .project-carousel {
-      display: flex;
-      gap: 2rem;
-      animation: scroll-projects 30s linear infinite;
-      padding-bottom: 2rem;
-      padding-top: 1rem;
-    }
-
-    .project-card {
-      min-width: 300px;
-      background: var(--card-bg);
-      border-radius: 20px;
-      box-shadow: var(--executive-shadow);
-      padding: 2rem;
-      text-align: center;
-      transition: transform var(--transition-speed), box-shadow var(--transition-speed);
-      flex-shrink: 0;
-      border: 1px solid #e8e8e8;
-    }
-    
-    .project-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-    }
-
-    .project-card .project-logo {
-      width: 100px;
-      height: 100px;
-      margin: 0 auto 1rem;
-      object-fit: contain;
-    }
-
-    .project-card h4 {
-      font-size: 1.4rem;
-      color: var(--primary-color);
-      margin-bottom: 1rem;
-    }
-
-    @keyframes scroll-projects {
-      from {
-        transform: translateX(0);
-      }
-      to {
-        transform: translateX(-100%);
-      }
-    }
-
     /* Skills Section */
     .skills-section {
       padding: 100px 20px;
@@ -431,6 +373,66 @@
       content: '✓';
       color: var(--secondary-color);
       font-weight: bold;
+    }
+
+    /* Projects Section */
+    .projects {
+      padding: 100px 20px;
+      background: var(--bg-color);
+    }
+
+    .project-carousel-container {
+      overflow-x: scroll;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .project-carousel-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .project-carousel {
+      display: flex;
+      gap: 2rem;
+      padding-bottom: 2rem;
+      padding-top: 1rem;
+    }
+
+    .project-card {
+      min-width: 320px;
+      background: var(--card-bg);
+      border-radius: 20px;
+      box-shadow: var(--executive-shadow);
+      padding: 2rem;
+      text-align: center;
+      transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+      flex-shrink: 0;
+      border: 1px solid #e8e8e8;
+      scroll-snap-align: center;
+      cursor: grab;
+    }
+
+    .project-card:active {
+      cursor: grabbing;
+    }
+    
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    }
+
+    .project-card .project-logo {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 1rem;
+      object-fit: contain;
+    }
+
+    .project-card h4 {
+      font-size: 1.4rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
     }
 
     /* Modal Styling */
@@ -601,9 +603,9 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      margin-bottom: 2rem;
       flex-wrap: wrap;
       gap: 1rem;
+      margin-bottom: 2rem;
     }
 
     .case-study-meta {
@@ -925,10 +927,6 @@
       .section-title {
         font-size: 2rem;
       }
-
-      .project-carousel {
-        animation: scroll-projects 15s linear infinite;
-      }
     }
 
     @media (max-width: 480px) {
@@ -1140,30 +1138,6 @@
         <h2 class="section-title">Featured Projects</h2>
         <div class="project-carousel-container reveal">
           <div class="project-carousel">
-            <div class="project-card" data-project="project1">
-              <img src="./images/project_logo1.png" alt="Project 1 Logo" class="project-logo" />
-              <h4>Smart Inventory AI</h4>
-              <p>AI-powered inventory management system.</p>
-              <button class="btn primary small view-details-btn">View Details</button>
-            </div>
-            <div class="project-card" data-project="project2">
-              <img src="./images/project_logo2.png" alt="Project 2 Logo" class="project-logo" />
-              <h4>Agri-Connect App</h4>
-              <p>Connecting farmers to markets and resources.</p>
-              <button class="btn primary small view-details-btn">View Details</button>
-            </div>
-            <div class="project-card" data-project="project3">
-              <img src="./images/project_logo3.png" alt="Project 3 Logo" class="project-logo" />
-              <h4>Edu-Tech Platform</h4>
-              <p>E-learning platform with gamified content.</p>
-              <button class="btn primary small view-details-btn">View Details</button>
-            </div>
-            <div class="project-card" data-project="project4">
-              <img src="./images/project_logo4.png" alt="Project 4 Logo" class="project-logo" />
-              <h4>FinTech Analytics</h4>
-              <p>Financial data visualization and insights.</p>
-              <button class="btn primary small view-details-btn">View Details</button>
-            </div>
             <div class="project-card" data-project="project1">
               <img src="./images/project_logo1.png" alt="Project 1 Logo" class="project-logo" />
               <h4>Smart Inventory AI</h4>
@@ -1535,11 +1509,6 @@
       });
     });
 
-    // Add loading animation
-    window.addEventListener('load', () => {
-      document.body.classList.add('loaded');
-    });
-
     // Dynamic metrics counter animation
     function animateCounters() {
       const counters = document.querySelectorAll('.metric-number, .impact-number');
@@ -1679,6 +1648,57 @@
         projectModal.style.display = 'none';
       }
     });
+
+    // JavaScript for swiping/dragging carousel
+    const carousel = document.querySelector('.project-carousel-container');
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    carousel.addEventListener('mousedown', (e) => {
+      isDown = true;
+      carousel.classList.add('active');
+      startX = e.pageX - carousel.offsetLeft;
+      scrollLeft = carousel.scrollLeft;
+    });
+
+    carousel.addEventListener('mouseleave', () => {
+      isDown = false;
+      carousel.classList.remove('active');
+    });
+
+    carousel.addEventListener('mouseup', () => {
+      isDown = false;
+      carousel.classList.remove('active');
+    });
+
+    carousel.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - carousel.offsetLeft;
+      const walk = (x - startX) * 2; // Increased sensitivity
+      carousel.scrollLeft = scrollLeft - walk;
+    });
+
+    // Touch events for mobile
+    carousel.addEventListener('touchstart', (e) => {
+      isDown = true;
+      startX = e.touches[0].pageX - carousel.offsetLeft;
+      scrollLeft = carousel.scrollLeft;
+    });
+
+    carousel.addEventListener('touchend', () => {
+      isDown = false;
+    });
+
+    carousel.addEventListener('touchmove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.touches[0].pageX - carousel.offsetLeft;
+      const walk = (x - startX) * 2;
+      carousel.scrollLeft = scrollLeft - walk;
+    });
+
   </script>
 </body>
 </html>
