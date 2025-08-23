@@ -1148,28 +1148,76 @@
       <div class="container">
         <h2 class="section-title">Featured Projects</h2>
         <div class="projects-grid reveal">
-          <div class="project-card" data-project="project1">
-            <img src="./images/project_logo1.png" alt="Project 1 Logo" class="project-logo" />
-            <h4>Smart Inventory AI</h4>
-            <p>AI-powered inventory management system.</p>
-            <button class="btn primary small view-details-btn">View Details</button>
-          </div>
-          <div class="project-card" data-project="project2">
+          
+          <!-- Project 1: Agri-Connect -->
+          <div class="project-card" data-project="agriConnect">
             <img src="./images/agri.png" alt="Agri Connect Logo" class="project-logo" />
             <h4>Agri Connect</h4>
             <p>Connecting farmers to markets and resources.</p>
             <button class="btn primary small view-details-btn">View Details</button>
           </div>
-          <div class="project-card" data-project="project3">
-            <img src="./images/project_logo3.png" alt="Project 3 Logo" class="project-logo" />
-            <h4>Edu-Tech Platform</h4>
-            <p>E-learning platform with gamified content.</p>
+
+          <!-- Project 2: Prayer Portal -->
+          <div class="project-card" data-project="prayerPortal">
+            <img src="https://placehold.co/100x100/A0AEC0/000000?text=🙏" alt="Prayer Portal Logo" class="project-logo" />
+            <h4>Prayer Portal</h4>
+            <p>A mobile app for a global community of believers.</p>
             <button class="btn primary small view-details-btn">View Details</button>
           </div>
-          <div class="project-card" data-project="project4">
-            <img src="./images/project_logo4.png" alt="Project 4 Logo" class="project-logo" />
-            <h4>FinTech Analytics</h4>
-            <p>Financial data visualization and insights.</p>
+
+          <!-- Project 3: Docify -->
+          <div class="project-card" data-project="docify">
+            <img src="https://placehold.co/100x100/F0F0F0/000000?text=🩺" alt="Docify Logo" class="project-logo" />
+            <h4>Docify</h4>
+            <p>AI-powered translation for seamless healthcare communication.</p>
+            <button class="btn primary small view-details-btn">View Details</button>
+          </div>
+
+          <!-- Project 4: Nexutor -->
+          <div class="project-card" data-project="nexutor">
+            <img src="https://placehold.co/100x100/E3F2FD/000000?text=🎓" alt="Nexutor Logo" class="project-logo" />
+            <h4>Nexutor</h4>
+            <p>An edutech AI startup for personalized learning.</p>
+            <button class="btn primary small view-details-btn">View Details</button>
+          </div>
+
+          <!-- Project 5: Studhab -->
+          <div class="project-card" data-project="studhab">
+            <img src="https://placehold.co/100x100/E8EAF6/000000?text=💻" alt="Studhab Logo" class="project-logo" />
+            <h4>Studhab</h4>
+            <p>Coding education with financial incentives for students.</p>
+            <button class="btn primary small view-details-btn">View Details</button>
+          </div>
+          
+          <!-- Project 6: OSUSU -->
+          <div class="project-card" data-project="osusu">
+            <img src="https://placehold.co/100x100/F8BBD0/000000?text=💸" alt="OSUSU Logo" class="project-logo" />
+            <h4>OSUSU</h4>
+            <p>A communal savings platform for friends and family.</p>
+            <button class="btn primary small view-details-btn">View Details</button>
+          </div>
+
+          <!-- Project 7: SwiftRoute Logistics -->
+          <div class="project-card" data-project="swiftRoute">
+            <img src="https://placehold.co/100x100/F9A825/000000?text=📦" alt="SwiftRoute Logistics Logo" class="project-logo" />
+            <h4>SwiftRoute Logistics</h4>
+            <p>AI-powered logistics for route and fleet optimization.</p>
+            <button class="btn primary small view-details-btn">View Details</button>
+          </div>
+
+          <!-- Project 8: VeriSense Retail -->
+          <div class="project-card" data-project="veriSense">
+            <img src="https://placehold.co/100x100/90CAF9/000000?text=🛒" alt="VeriSense Retail Logo" class="project-logo" />
+            <h4>VeriSense Retail</h4>
+            <p>Smart retail solution using computer vision for inventory.</p>
+            <button class="btn primary small view-details-btn">View Details</button>
+          </div>
+
+          <!-- Project 9: ZenithAI -->
+          <div class="project-card" data-project="zenithAI">
+            <img src="https://placehold.co/100x100/80DEEA/000000?text=🤖" alt="ZenithAI Logo" class="project-logo" />
+            <h4>ZenithAI</h4>
+            <p>An AI-driven platform for automated customer service.</p>
             <button class="btn primary small view-details-btn">View Details</button>
           </div>
         </div>
@@ -1568,20 +1616,9 @@
     const modalCloseBtn = document.querySelector('.modal-close');
     
     const projectsData = {
-      project1: {
-        name: 'Smart Inventory AI',
-        description: 'An AI-powered inventory management system designed to optimize stock levels and predict demand for retail and logistics businesses. It leverages machine learning to reduce waste and improve operational efficiency.',
-        requirements: [
-          'Developed a predictive analytics model to forecast demand.',
-          'Integrated computer vision for real-time stock-level tracking.',
-          'Built a user-friendly dashboard for inventory visualization.',
-          'Ensured seamless integration with existing ERP systems.',
-        ],
-        tools: 'Python, TensorFlow, React, AWS, Jira, Figma',
-        responsibilities: 'Led a team of 5 engineers and 2 data scientists. Defined the product roadmap, managed the development sprint cycles, and conducted user feedback sessions to iterate on the solution.',
-      },
-      project2: {
+      agriConnect: {
         name: 'Agri-Connect App',
+        logo: './images/agri.png',
         description: 'A mobile application that connects small-scale farmers with buyers, suppliers, and agricultural resources. The platform uses location-based services to facilitate fair market access and knowledge sharing.',
         requirements: [
           'Implemented a secure payment gateway for transactions.',
@@ -1592,31 +1629,109 @@
         tools: 'Flutter, Firebase, Node.js, PostgreSQL, Jira',
         responsibilities: 'Managed the entire product lifecycle from ideation to market launch. Coordinated with design and development teams, conducted user interviews in rural communities, and oversaw beta testing.',
       },
-      project3: {
-        name: 'Edu-Tech Platform',
-        logo: './images/project_logo3.png',
-        description: 'An e-learning platform featuring gamified content and personalized learning paths. It aims to increase student engagement and improve educational outcomes for high school students.',
+      prayerPortal: {
+        name: 'Prayer Portal',
+        logo: 'https://placehold.co/100x100/A0AEC0/000000?text=🙏',
+        description: 'A mobile application creating a global community of believers. The app serves as a digital space for people to share prayer requests, offer support, and connect with others in faith, fostering a sense of communal prayer and spiritual connection.',
         requirements: [
-          'Developed a points and badges system for gamification.',
-          'Built a recommendation engine for personalized content.',
-          'Created a robust backend to handle high user traffic.',
-          'Conducted A/B testing on different UI/UX designs to optimize engagement.',
+          'Developed a push notification system for prayer alerts.',
+          'Implemented a secure user authentication system.',
+          'Designed a social feed for sharing prayer requests.',
+          'Ensured a user-friendly and inclusive user interface.'
         ],
-        tools: 'Next.js, Django, AWS, A/B Testing, Figma',
+        tools: 'React Native, Firebase, Node.js, AWS, Figma',
+        responsibilities: 'Led the product design for the mobile user experience, conducted user interviews to identify key features, and managed the development team using Scrum methodologies.',
+      },
+      docify: {
+        name: 'Docify',
+        logo: 'https://placehold.co/100x100/F0F0F0/000000?text=🩺',
+        description: 'A healthcare AI startup that provides end-to-end language translation between patients and doctors. It uses AI to break down language barriers, allowing patients to meet with a doctor from anywhere in the world.',
+        requirements: [
+          'Developed a custom NLP model for medical terminology translation.',
+          'Built a real-time audio and text translation system.',
+          'Ensured compliance with healthcare privacy regulations (e.g., HIPAA).',
+          'Managed the pilot program with early adopter hospitals and clinics.'
+        ],
+        tools: 'Python, TensorFlow, React, Azure, HIPAA Compliance Tools',
+        responsibilities: 'Defined the product strategy for global expansion, managed the AI development lifecycle, and oversaw pilot programs in partner hospitals to gather user feedback.',
+      },
+      nexutor: {
+        name: 'Nexutor',
+        logo: 'https://placehold.co/100x100/E3F2FD/000000?text=🎓',
+        description: 'An edutech AI startup that helps students learn at their own pace. The system uses AI to understand each student\'s learning capability and adjusts the content accordingly, helping them grasp complex concepts faster and more effectively.',
+        requirements: [
+          'Built an adaptive learning algorithm to personalize content delivery.',
+          'Developed a micro-learning system with interactive quizzes and assessments.',
+          'Created a robust backend to handle high user traffic.',
+          'Conducted A/B testing on different UI/UX designs to optimize engagement.'
+        ],
+        tools: 'Python, Scikit-learn, React, Google Cloud, Figma',
         responsibilities: 'Owned the product roadmap and feature backlog. Collaborated with educational content creators and developers. Analyzed user data to identify areas for improvement and new feature development.',
       },
-      project4: {
-        name: 'FinTech Analytics',
-        logo: './images/project_logo4.png',
-        description: 'A financial analytics tool that provides real-time data visualization and actionable insights for small to medium-sized businesses, helping them make informed financial decisions.',
+      studhab: {
+        name: 'Studhab',
+        logo: 'https://placehold.co/100x100/E8EAF6/000000?text=💻',
+        description: 'A project that helps students in Canada and Nigeria learn to code with incentives, allowing them to earn money while they learn. The system rewards users for their progress, making the process of mastering coding skills both fun and financially rewarding.',
         requirements: [
-          'Integrated with multiple banking APIs for data aggregation.',
-          'Designed interactive dashboards for cash flow and budget tracking.',
-          'Ensured compliance with data privacy regulations.',
-          'Created a reporting feature for easy export and sharing of financial data.',
+          'Created a curriculum progression with milestone-based incentives.',
+          'Integrated a secure payment system to handle student earnings.',
+          'Developed a peer-to-peer code review feature.',
+          'Managed user accounts and progress tracking.'
         ],
-        tools: 'React, Redux, Node.js, Express, MongoDB, Power BI',
-        responsibilities: 'Served as the bridge between technical and business teams. Gathered requirements from stakeholders, prioritized features based on business value, and ensured a secure and reliable product.',
+        tools: 'Next.js, Django, Stripe API, Docker, Jira',
+        responsibilities: 'Defined the incentive-based learning model, managed stakeholder relations with educational partners in both Canada and Nigeria, and oversaw the platform\'s beta launch.',
+      },
+      osusu: {
+        name: 'OSUSU',
+        logo: 'https://placehold.co/100x100/F8BBD0/000000?text=💸',
+        description: 'A communal savings platform for friends and family in China, Nigeria, and the Nigerian diaspora. It provides a secure and user-friendly way for groups to save money together towards common goals.',
+        requirements: [
+          'Implemented a secure group savings feature with shared goals.',
+          'Developed automated contribution reminders and notifications.',
+          'Ensured compliance with international financial regulations.',
+          'Created a transparent dashboard for group members to track progress.'
+        ],
+        tools: 'Flutter, Firebase, Express.js, Stripe, various financial APIs',
+        responsibilities: 'Led the product strategy for a multi-country launch, conducted extensive user research on traditional savings methods, and managed the technical implementation of the group savings logic.',
+      },
+      swiftRoute: {
+        name: 'SwiftRoute Logistics',
+        logo: 'https://placehold.co/100x100/F9A825/000000?text=📦',
+        description: 'An AI-powered logistics platform that optimizes delivery routes, manages fleets, and provides real-time tracking. The system uses machine learning algorithms to predict traffic and delivery times, ensuring a highly efficient and transparent supply chain for businesses of all sizes.',
+        requirements: [
+          'Developed a route optimization algorithm using Google Maps API.',
+          'Built a real-time tracking dashboard for clients.',
+          'Created an automated fleet management and vehicle assignment system.',
+          'Integrated with third-party logistics and shipping providers.'
+        ],
+        tools: 'Python, Google Maps API, React, Node.js, MongoDB',
+        responsibilities: 'Led the product\'s feature roadmap from concept to market, managed the integration with third-party logistics partners, and optimized the platform\'s performance based on delivery metrics.',
+      },
+      veriSense: {
+        name: 'VeriSense Retail',
+        logo: 'https://placehold.co/100x100/90CAF9/000000?text=🛒',
+        description: 'A smart retail solution that utilizes computer vision to analyze store layouts, track customer behavior, and manage inventory automatically. The system provides retailers with invaluable insights to optimize their operations and create a more personalized shopping experience for customers.',
+        requirements: [
+          'Built a computer vision model for object detection and shopper tracking.',
+          'Developed a dashboard for analyzing customer behavior and heatmaps.',
+          'Created an automated re-stocking alert system based on real-time stock levels.',
+          'Ensured the system could operate on standard security cameras with no special hardware.'
+        ],
+        tools: 'Python, TensorFlow, OpenCV, Vue.js, AWS, Figma',
+        responsibilities: 'Defined the product vision for a modern retail environment, managed the data collection and annotation process for the AI model, and presented key insights to C-level executives.',
+      },
+      zenithAI: {
+        name: 'ZenithAI',
+        logo: 'https://placehold.co/100x100/80DEEA/000000?text=🤖',
+        description: 'An AI-driven customer service platform that provides instant, personalized support 24/7. Using advanced natural language processing, ZenithAI\'s chatbots and virtual assistants can resolve customer queries, handle complex requests, and improve overall customer satisfaction.',
+        requirements: [
+          'Developed an NLP-based chatbot with intent recognition and conversational memory.',
+          'Integrated the platform with major CRM systems (e.g., Salesforce).',
+          'Created a knowledge base management system for the AI to learn from.',
+          'Implemented a hand-off feature for complex queries to a human agent.'
+        ],
+        tools: 'Python, NLTK, Dialogflow, React, Salesforce API',
+        responsibilities: 'Led the development of the chatbot\'s conversational flow, conducted user satisfaction surveys to improve the AI\'s responses, and scaled the platform for enterprise clients.',
       }
     };
 
@@ -1745,3 +1860,4 @@
   </script>
 </body>
 </html>
+
