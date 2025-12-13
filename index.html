@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Enoch Akinpelu Portfolio</title>
-  <meta name="description" content="Expert AI & Tech Product Manager delivering measurable results across UK & Nigeria. ₦2M+ cost savings, 95% client satisfaction." />
-  <meta name="keywords" content="AI Product Manager, Tech Leadership, Digital Transformation, Agile Delivery" />
+  <title>Enoch Akinpelu Portfolio | Digital Transformation Strategist</title>
+  <meta name="description" content="Visionary Digital Transformation Leader. I bridge C-suite strategy with technology execution to drive new business models, inspire innovation, and deliver enterprise-wide digital growth." />
+  <meta name="keywords" content="Digital Transformation, Tech Innovation Leader, Strategic Alignment, AI Strategy, Organizational Change, Portfolio Management" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <style>
     /* Google Fonts */
@@ -328,9 +328,18 @@
 
     .skills-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      /* OPTIMIZED: Define grid areas to put Strategic Leadership first */
+      grid-template-areas: 
+        "leadership technical product tools";
+      grid-template-columns: repeat(4, 1fr);
       gap: 2rem;
     }
+    /* Set custom order for the skill categories */
+    .skill-category:nth-child(1) { grid-area: product; } /* AI/Product Management (original 1) */
+    .skill-category:nth-child(2) { grid-area: technical; } /* Technical Skills (original 2) */
+    .skill-category:nth-child(3) { grid-area: tools; } /* Tools & Technologies (original 3) */
+    .skill-category:nth-child(4) { grid-area: leadership; } /* Soft Skills -> Leadership (original 4, now displayed first) */
+
 
     .skill-category {
       background: var(--bg-color);
@@ -443,6 +452,12 @@
 
       .project-card:active {
         cursor: grabbing;
+      }
+      
+      /* Reset skills grid order for smaller screens to stack naturally */
+      .skills-grid {
+        grid-template-areas: none;
+        grid-template-columns: 1fr;
       }
     }
 
@@ -993,11 +1008,11 @@
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="./file/Enoch Akinpelu CV.pdf" download="Enoch_CV.pdf">My CV</a></li>
-        <li><a href="#services">What I Do</a></li>
+        <li><a href="#services">Strategic Value</a></li>
         <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
+        <li><a href="#projects">Innovation Portfolio</a></li>
         <li><a href="#leadership">Leadership</a></li>
-        <li><a href="#case-studies">Case Studies</a></li>
+        <li><a href="#case-studies">Transformation Cases</a></li>
         <li><a href="#certifications">Credentials</a></li>
         <li><a href="#contact">Let's Talk</a></li>
       </ul>
@@ -1008,33 +1023,33 @@
     <section class="hero" id="about">
       <div class="hero-content">
         <div class="hero-image">
-          <img src="./images/my pic.jpg" alt="Akinpelu Enoch - Tech Innovator & Product Lead" />
+          <img src="./images/my pic.jpg" alt="Akinpelu Enoch - Tech Innovation & Transformation Leader" />
         </div>
         <div class="hero-text">
           <h1>Hi, I'm Enoch</h1>
-          <p class="hero-tagline">Tech Innovator & Product Lead</p>
+          <p class="hero-tagline">Digital Transformation Strategist | Bridging Vision & Measurable Business Growth</p>
           <p class="hero-description">
-            I'm a tech enthusiast with experience managing AI implementation and software projects. I specialize in turning ideas into impactful solutions and leading teams through every stage of execution. Passionate about digital transformation, I help businesses use technology to work smarter, grow faster, and deliver real results. If you're building something meaningful with tech and need a steady hand to lead the process, you're in the right place.
+            I am a **catalyst for organizational change**, specializing in translating C-suite vision into **high-impact technology roadmaps**. With a proven track record in strategic AI implementation and complex project portfolio management, I focus on driving **digital growth** and **future-proofing** businesses. My strength lies in uniting cross-functional teams to execute transformation programs that deliver tangible business value and competitive advantage.
           </p>
           
           <div class="hero-metrics">
             <div class="metric">
               <span class="metric-number">95%</span>
-              <span class="metric-label">Client Satisfaction</span>
+              <span class="metric-label">Client/Stakeholder Satisfaction</span>
             </div>
             <div class="metric">
               <span class="metric-number">₦2M+</span>
-              <span class="metric-label">Cost Savings Delivered</span>
+              <span class="metric-label">Cost Savings Delivered (ROI)</span>
             </div>
             <div class="metric">
               <span class="metric-number">85%</span>
-              <span class="metric-label">Product Adoption Rate</span>
+              <span class="metric-label">Strategic Product Adoption Rate</span>
             </div>
           </div>
           
           <div class="hero-actions">
-            <a href="#contact" class="btn primary">Start Your Project</a>
-            <a href="#case-studies" class="btn secondary">View My Work</a>
+            <a href="#contact" class="btn primary">Schedule a Strategy Call</a>
+            <a href="#case-studies" class="btn secondary">View Transformation Cases</a>
           </div>
         </div>
       </div>
@@ -1042,54 +1057,54 @@
 
     <section class="services" id="services">
       <div class="container">
-        <h2 class="section-title">What I Deliver For You</h2>
+        <h2 class="section-title">Strategic Value I Deliver</h2>
         <div class="services-grid">
           
           <div class="service-card reveal">
             <div class="service-icon"><i class="fas fa-brain"></i></div>
-            <h3>AI Product Implementation</h3>
-            <p>End-to-end AI solution delivery from concept to deployment. I manage the technical complexity while ensuring your team is trained and your business objectives are met with measurable ROI.</p>
+            <h3>Enterprise AI Strategy & Vision</h3>
+            <p>Define and execute an organizational AI vision. I bridge technical feasibility with strategic ROI, ensuring AI implementations don't just work, but fundamentally enhance business models and competitive position.</p>
             <div class="service-deliverables">
-              <span class="deliverable-tag">AI Strategy</span>
-              <span class="deliverable-tag">Team Training</span>
-              <span class="deliverable-tag">ROI Tracking</span>
-              <span class="deliverable-tag">Deployment</span>
+              <span class="deliverable-tag">Business Model Innovation</span>
+              <span class="deliverable-tag">Executive Roadmap</span>
+              <span class="deliverable-tag">Measurable ROI</span>
+              <span class="deliverable-tag">Technology Scouting</span>
             </div>
           </div>
 
           <div class="service-card reveal">
             <div class="service-icon"><i class="fas fa-globe-americas"></i></div>
-            <h3>Team Leadership</h3>
-            <p>Expert management of distributed teams across different time zones and cultures. I bridge communication gaps and ensure unified project delivery with consistent quality standards.</p>
+            <h3>Cross-Functional Transformation Leadership</h3>
+            <p>Unifying and directing global, cross-functional teams (Tech, Sales, Finance) toward a singular transformation objective. I eliminate silos and drive alignment at the executive level for unified execution.</p>
             <div class="service-deliverables">
-              <span class="deliverable-tag">Remote Teams</span>
-              <span class="deliverable-tag">Cultural Bridge</span>
-              <span class="deliverable-tag">Quality Control</span>
-              <span class="deliverable-tag">Unified Delivery</span>
+              <span class="deliverable-tag">Stakeholder Alignment</span>
+              <span class="deliverable-tag">Silo Elimination</span>
+              <span class="deliverable-tag">Vision Casting</span>
+              <span class="deliverable-tag">Global Program Oversight</span>
             </div>
           </div>
 
           <div class="service-card reveal">
             <div class="service-icon"><i class="fas fa-rocket"></i></div>
-            <h3>Digital Product Acceleration</h3>
-            <p>Fast-track your SaaS, mobile, or web applications from idea to market. I optimize development processes to reduce time-to-market by 15% while maintaining quality and controlling costs.</p>
+            <h3>Digital Roadmapping & Portfolio Management</h3>
+            <p>Strategic oversight of the digital portfolio. I prioritize high-value initiatives, secure executive buy-in for resources, and manage the program timeline to ensure strategic goals are met efficiently.</p>
             <div class="service-deliverables">
-              <span class="deliverable-tag">Agile Delivery</span>
-              <span class="deliverable-tag">Cost Optimization</span>
-              <span class="deliverable-tag">Quality Assurance</span>
-              <span class="deliverable-tag">Market Launch</span>
+              <span class="deliverable-tag">Portfolio Prioritization</span>
+              <span class="deliverable-tag">Resource Allocation</span>
+              <span class="deliverable-tag">Program Governance</span>
+              <span class="deliverable-tag">Risk Mitigation</span>
             </div>
           </div>
 
           <div class="service-card reveal">
             <div class="service-icon"><i class="fas fa-graduation-cap"></i></div>
-            <h3>Technical Team Development</h3>
-            <p>Transform your team's capabilities through structured training and mentorship programs. I've successfully upskilled 50+ professionals, improving organizational tech literacy and job readiness.</p>
+            <h3>Organizational Change & Capability Building</h3>
+            <p>Preparing the organization for the future. I lead culture change, establish new digital operating models, and build robust internal capability through targeted training and leadership mentorship.</p>
             <div class="service-deliverables">
-              <span class="deliverable-tag">Skills Assessment</span>
-              <span class="deliverable-tag">Training Programs</span>
-              <span class="deliverable-tag">Mentorship</span>
-              <span class="deliverable-tag">Performance Tracking</span>
+              <span class="deliverable-tag">Change Management</span>
+              <span class="deliverable-tag">Digital Operating Models</span>
+              <span class="deliverable-tag">Leadership Mentorship</span>
+              <span class="deliverable-tag">Talent Upskilling</span>
             </div>
           </div>
         </div>
@@ -1100,47 +1115,51 @@
       <div class="container">
         <h2 class="section-title">Skills & Expertise</h2>
         <div class="skills-grid reveal">
+          
           <div class="skill-category">
-            <h4>Product Management</h4>
+            <h4>Strategic Leadership & Transformation</h4>
             <ul class="skills-list">
-              <li>Product Roadmap Strategy</li>
-              <li>User Research & Interviews</li>
-              <li>Agile & Scrum Methodologies</li>
-              <li>Go-to-Market Strategy</li>
-              <li>Product Lifecycle Management</li>
-<li>Design Thinking</li>
-<li>User Acceptance Testing</li>
-
+              <li>**Enterprise Digital Strategy**</li>
+              <li>**Organizational Change Management**</li>
+              <li>**Executive Stakeholder Alignment**</li>
+              <li>Product Portfolio Prioritization</li>
+              <li>Risk & Governance Leadership</li>
+              <li>Design Thinking</li>
+              <li>Problem Solving</li>
             </ul>
           </div>
+          
           <div class="skill-category">
-            <h4>Technical Skills</h4>
+            <h4>Technical Domain Expertise</h4>
             <ul class="skills-list">
-              <li>AI/ML Implementation</li>
-              <li>SaaS & Cloud Computing</li>
-              <li>APIs & Integrations</li>
-              <li>Data Analysis & Metrics</li>
-              <li>Infrastructure Leadership</li>
+              <li>AI/ML Implementation & Architecture</li>
+              <li>SaaS & Cloud Computing (Azure, AWS)</li>
+              <li>APIs, Integrations & Data Pipelines</li>
+              <li>Data Analysis & Metrics (KPI definition)</li>
+              <li>Infrastructure Scalability</li>
             </ul>
           </div>
+          
           <div class="skill-category">
             <h4>Tools & Technologies</h4>
             <ul class="skills-list">
-              <li>Jira & Confluence</li>
-              <li>Figma & Miro</li>
+              <li>Jira & Confluence (Program Management)</li>
+              <li>Figma & Miro (Visualizing Strategy)</li>
               <li>Microsoft Azure & AWS</li>
-              <li>Google Analytics</li>
-              <li>Python</li>
+              <li>Google Analytics / Mixpanel</li>
+              <li>Python (for Data Science use cases)</li>
             </ul>
           </div>
+          
           <div class="skill-category">
-            <h4>Soft Skills</h4>
+            <h4>Product Management & Execution</h4>
             <ul class="skills-list">
-              <li>Stakeholder Management</li>
-              <li>Cross-Functional Collaboration</li>
-              <li>Executive Communication</li>
-              <li>Mentorship & Training</li>
-              <li>Problem Solving</li>
+              <li>Product Roadmap Strategy</li>
+              <li>Agile & Scrum Methodologies</li>
+              <li>Go-to-Market Strategy</li>
+              <li>Product Lifecycle Management</li>
+              <li>User Research & Interviews</li>
+              <li>User Acceptance Testing</li>
             </ul>
           </div>
         </div>
@@ -1149,10 +1168,9 @@
 
     <section class="projects" id="projects">
       <div class="container">
-        <h2 class="section-title">Featured Projects</h2>
+        <h2 class="section-title">Featured Innovation Portfolio</h2>
         <div class="projects-grid reveal">
           
-          <!-- Project 1: Agri-Connect -->
           <div class="project-card" data-project="agriConnect">
             <img src="./images/agri.png" alt="Agri Connect Logo" class="project-logo" />
             <h4>Agri Connect</h4>
@@ -1160,7 +1178,6 @@
             <button class="btn primary small view-details-btn">View Details</button>
           </div>
 
-          <!-- Project 2: Prayer Portal -->
           <div class="project-card" data-project="prayerPortal">
             <img src="./images/kingdom-portal.png" alt="Prayer Portal Logo" class="project-logo" />
             <h4>Prayer Portal</h4>
@@ -1168,7 +1185,6 @@
             <button class="btn primary small view-details-btn">View Details</button>
           </div>
 
-          <!-- Project 3: Docify -->
           <div class="project-card" data-project="docify">
             <img src="./images/Docify.png" alt="Docify Logo" class="project-logo" />
             <h4>Docify</h4>
@@ -1176,7 +1192,6 @@
             <button class="btn primary small view-details-btn">View Details</button>
           </div>
 
-          <!-- Project 4: Nexutor -->
           <div class="project-card" data-project="nexutor">
             <img src="./images/nexutor.png" alt="Nexutor Logo" class="project-logo" />
             <h4>Nexutor</h4>
@@ -1184,7 +1199,6 @@
             <button class="btn primary small view-details-btn">View Details</button>
           </div>
 
-          <!-- Project 5: Studhab -->
           <div class="project-card" data-project="studhab">
             <img src="./images/studhab.png" alt="Studhab Logo" class="project-logo" />
             <h4>Studhab</h4>
@@ -1192,7 +1206,6 @@
             <button class="btn primary small view-details-btn">View Details</button>
           </div>
           
-          <!-- Project 6: OSUSU -->
           <div class="project-card" data-project="osusu">
             <img src="./images/osusu.png" alt="OSUSU Logo" class="project-logo" />
             <h4>OSUSU</h4>
@@ -1200,7 +1213,6 @@
             <button class="btn primary small view-details-btn">View Details</button>
           </div>
 
-          <!-- Project 7: SwiftRoute Logistics -->
           <div class="project-card" data-project="swiftRoute">
             <img src="./images/swiftroute.png" alt="SwiftRoute Logistics Logo" class="project-logo" />
             <h4>SwiftRoute Logistics</h4>
@@ -1208,7 +1220,6 @@
             <button class="btn primary small view-details-btn">View Details</button>
           </div>
 
-          <!-- Project 8: VeriSense Retail -->
           <div class="project-card" data-project="veriSense">
             <img src="./images/verisense.png" alt="VeriSense Retail Logo" class="project-logo" />
             <h4>VeriSense Retail</h4>
@@ -1216,7 +1227,6 @@
             <button class="btn primary small view-details-btn">View Details</button>
           </div>
 
-          <!-- Project 9: ZenithAI -->
           <div class="project-card" data-project="zenithAI">
             <img src="./images/zenith.png" alt="ZenithAI Logo" class="project-logo" />
             <h4>ZenithAI</h4>
@@ -1229,22 +1239,22 @@
 
     <section class="leadership-gallery" id="leadership">
       <div class="container">
-        <h2 class="section-title">Leadership In Action</h2>
+        <h2 class="section-title">Transformation & Executive Influence</h2>
         <div class="gallery-grid">
           
           <div class="gallery-item reveal">
             <img src="./images/IMG_20250728_045823.jpg" alt="Leading AI Workshop" />
             <div class="gallery-overlay">
-              <h4>AI Workshop Leadership</h4>
-              <p>Leading a hands-on AI training session for 30+ professionals to improve organizational tech literacy.</p>
+              <h4>Driving AI Capability</h4>
+              <p>Leading a hands-on AI training session for 30+ professionals to improve organizational tech literacy and future readiness.</p>
             </div>
           </div>
 
           <div class="gallery-item reveal">
             <img src="./images/leadership2.jpg" alt="Cross-Cultural Team Meeting" />
             <div class="gallery-overlay">
-              <h4>Cross-Continental Team Sync</h4>
-              <p>Managing and bridging cultural gaps for a UK-Nigeria team during a major SaaS deployment.</p>
+              <h4>Cross-Continental Alignment</h4>
+              <p>Bridging cultural and technical gaps between UK and Nigeria teams to secure unified SaaS transformation delivery.</p>
             </div>
           </div>
 
@@ -1259,8 +1269,8 @@
           <div class="gallery-item reveal">
             <img src="./images/leadership4.jpg" alt="Project Review Meeting" />
             <div class="gallery-overlay">
-              <h4>Strategic Project Review</h4>
-              <p>Leading a quarterly review with engineering, sales, and executive stakeholders to align on product roadmap.</p>
+              <h4>C-Suite Vision Alignment</h4>
+              <p>Leading the quarterly review to align Engineering, Sales, and Executive stakeholders on the Digital Transformation roadmap and strategic priorities.</p>
             </div>
           </div>
 
@@ -1275,8 +1285,8 @@
           <div class="gallery-item reveal">
             <img src="./images/1753675580808.jpg" alt="Award Recognition" />
             <div class="gallery-overlay">
-              <h4>Excellence Recognition</h4>
-              <p>Receiving a leadership excellence award for outstanding results in product delivery.</p>
+              <h4>Recognized Impact</h4>
+              <p>Receiving an Excellence Award for driving measurable results and leadership in large-scale Digital Transformation program delivery.</p>
             </div>
           </div>
 
@@ -1286,7 +1296,7 @@
 
     <section class="case-studies" id="case-studies">
       <div class="container">
-        <h2 class="section-title">Proven Results For My Clients</h2>
+        <h2 class="section-title">Proven Transformation Cases</h2>
         <div class="case-study-grid">
 
           <div class="case-study-card reveal">
@@ -1294,23 +1304,23 @@
               <div class="case-study-meta">
                 <span class="company">Kingdom Portal Network (UK)</span>
                 <span class="duration">Nov 2024 - Present</span>
-                <span class="role">Technical Project Manager</span>
+                <span class="role">Lead Transformation Manager (Matrixed Role)</span>
               </div>
               <div class="case-study-results">
                 <span class="result-badge success">95% Satisfaction</span>
                 <span class="result-badge primary">Cross-Continental</span>
               </div>
             </div>
-            <h3>Cross-Continental SaaS Product Delivery</h3>
+            <h3>Establishing a Unified Digital Operating Model</h3>
             
             <div class="challenge">
               <h4><i class="fas fa-exclamation-triangle"></i> The Challenge</h4>
-              <p>The client was struggling with disjointed operations and scaling their SaaS product due to distributed UK-Nigerian development teams. The goal was to maintain quality alignment across different time zones and cultural work styles to meet user demand.</p>
+              <p>The client was struggling with disjointed operations and scaling their SaaS product due to distributed UK-Nigerian development teams. The goal was to maintain quality alignment across different time zones and cultural work styles to meet aggressive scaling targets.</p>
             </div>
 
             <div class="solution">
               <h4><i class="fas fa-lightbulb"></i> My Solution</h4>
-              <p>I implemented optimized Agile workflows using Jira and Confluence, including alternating daily stand-ups and a cultural integration framework. I established clear quality gates and conducted regular stakeholder reviews to prevent scope creep and ensure unified team delivery.</p>
+              <p>I **designed a unified digital operating model** that included optimized Agile workflows and a cultural integration framework. I secured buy-in from UK and Nigeria leadership to establish clear quality gates and a single source of truth for all program reporting, ensuring unified team delivery.</p>
             </div>
 
             <div class="impact-metrics">
@@ -1320,7 +1330,7 @@
               </div>
               <div class="impact-item">
                 <span class="impact-number">0</span>
-                <span class="impact-label">Delivery Delays</span>
+                <span class="impact-label">Critical Delivery Delays</span>
               </div>
               <div class="impact-item">
                 <span class="impact-number">30%</span>
@@ -1334,23 +1344,23 @@
               <div class="case-study-meta">
                 <span class="company">Stormcell Technology</span>
                 <span class="duration">Contract Project</span>
-                <span class="role">Software Project Manager</span>
+                <span class="role">Digital Portfolio Strategist</span>
               </div>
               <div class="case-study-results">
                 <span class="result-badge success">₦2M Saved</span>
                 <span class="result-badge primary">10 Products</span>
               </div>
             </div>
-            <h3>B2B/B2C Product Portfolio Acceleration</h3>
+            <h3>Strategic Portfolio Optimization for Digital Growth</h3>
             
             <div class="challenge">
               <h4><i class="fas fa-exclamation-triangle"></i> The Challenge</h4>
-              <p>The client had 10 diverse products in their development pipeline with tight budgets and aggressive market deadlines. The primary challenge was to accelerate delivery, maintain quality, and reduce the average time-to-market while managing user feedback and expectations.</p>
+              <p>The client had 10 diverse products in their development pipeline with tight budgets and aggressive market deadlines. The primary challenge was resource scarcity and the lack of a clear ROI-based prioritization model to maximize market impact.</p>
             </div>
 
             <div class="solution">
               <h4><i class="fas fa-lightbulb"></i> My Solution</h4>
-              <p>I restructured development pipelines for parallel processing and implemented a risk-based testing strategy to reduce the defect rate. By optimizing resource allocation across the portfolio, I worked closely with marketing and sales teams to align on go-to-market strategies for each product.</p>
+              <p>I **led the strategic prioritization** of the 10-product portfolio based on market opportunity and projected ROI. By restructuring execution pipelines for **parallel value stream delivery**, we maximized throughput, reduced average time-to-market, and secured a competitive edge for all new launches.</p>
             </div>
 
             <div class="impact-metrics">
@@ -1360,11 +1370,11 @@
               </div>
               <div class="impact-item">
                 <span class="impact-number">₦2M</span>
-                <span class="impact-label">Cost Savings</span>
+                <span class="impact-label">Cost Savings (Efficiency ROI)</span>
               </div>
               <div class="impact-item">
                 <span class="impact-number">40%</span>
-                <span class="impact-label">Defect Reduction</span>
+                <span class="impact-label">Defect Reduction Rate</span>
               </div>
             </div>
           </div>
@@ -1374,23 +1384,23 @@
               <div class="case-study-meta">
                 <span class="company">Pan African Institute</span>
                 <span class="duration">Jan 2024 - Oct 2024</span>
-                <span class="role">Technical Officer</span>
+                <span class="role">Head of Digital Readiness</span>
               </div>
               <div class="case-study-results">
                 <span class="result-badge success">50+ Trained</span>
                 <span class="result-badge primary">99% Uptime</span>
               </div>
             </div>
-            <h3>Technical Team Development & Infrastructure Leadership</h3>
+            <h3>Digital Readiness: Infrastructure & Capability Transformation</h3>
             
             <div class="challenge">
               <h4><i class="fas fa-exclamation-triangle"></i> The Challenge</h4>
-              <p>The organization needed to upskill over 50 technical professionals to improve internal efficiency and project delivery. Simultaneously, they faced the critical challenge of maintaining infrastructure performance with zero downtime during the training periods.</p>
+              <p>The organization needed to mitigate future technical debt and scale its digital capacity. The core challenge was simultaneously achieving **massive organizational upskilling** (50+ professionals) while maintaining **zero tolerance for critical system downtime**.</p>
             </div>
 
             <div class="solution">
               <h4><i class="fas fa-lightbulb"></i> My Solution</h4>
-              <p>I developed comprehensive training programs with hands-on experience and a mentorship framework for sustained learning. I implemented proactive infrastructure monitoring protocols and led a cross-functional initiative to ensure system stability and 99% uptime.</p>
+              <p>I developed a **comprehensive Change Framework** with a mentorship structure for sustained learning. I implemented proactive infrastructure monitoring protocols and led a cross-functional initiative to ensure system stability, successfully achieving 99% uptime during a period of high internal change.</p>
             </div>
 
             <div class="impact-metrics">
@@ -1626,7 +1636,7 @@
           'Implemented a secure payment gateway for transactions.',
           'Designed a messaging feature for direct communication between users.',
           'Created a resource library with best practices for farming.',
-          'Ensured a simple and accessible user interface for all literacy levels.',
+          'Ensured a simple and accessible user interface for all literacy levels, driving high adoption.',
         ],
         tools: 'Flutter, Firebase, Node.js, PostgreSQL, Jira',
         responsibilities: 'Managed the entire product lifecycle from ideation to market launch. Coordinated with design and development teams, conducted user interviews in rural communities, and oversaw beta testing.',
@@ -1857,4 +1867,3 @@
   </script>
 </body>
 </html>
-
