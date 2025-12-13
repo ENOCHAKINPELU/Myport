@@ -335,10 +335,12 @@
       gap: 2rem;
     }
     /* Set custom order for the skill categories */
-    .skill-category:nth-child(1) { grid-area: product; } /* AI/Product Management (original 1) */
-    .skill-category:nth-child(2) { grid-area: technical; } /* Technical Skills (original 2) */
-    .skill-category:nth-child(3) { grid-area: tools; } /* Tools & Technologies (original 3) */
-    .skill-category:nth-child(4) { grid-area: leadership; } /* Soft Skills -> Leadership (original 4, now displayed first) */
+    /* The order in HTML is: Leadership, Technical, Product, Tools. */
+    /* We use the CSS grid area assignment to maintain this logical order for desktop. */
+    .skill-category:nth-child(1) { grid-area: leadership; } 
+    .skill-category:nth-child(2) { grid-area: technical; } 
+    .skill-category:nth-child(3) { grid-area: product; } 
+    .skill-category:nth-child(4) { grid-area: tools; } 
 
 
     .skill-category {
@@ -454,7 +456,7 @@
         cursor: grabbing;
       }
       
-      /* Reset skills grid order for smaller screens to stack naturally */
+      /* Reset skills grid order for smaller screens to stack naturally (Leadership first) */
       .skills-grid {
         grid-template-areas: none;
         grid-template-columns: 1fr;
@@ -898,11 +900,6 @@
         right: 0;
       }
 
-      .nav-links a {
-        font-size: 1.2rem;
-        padding: 1rem;
-      }
-
       .nav-toggle {
         display: flex;
         z-index: 1001;
@@ -1115,53 +1112,58 @@
       <div class="container">
         <h2 class="section-title">Skills & Expertise</h2>
         <div class="skills-grid reveal">
-          
-          <div class="skill-category">
-            <h4>Strategic Leadership & Transformation</h4>
-            <ul class="skills-list">
-              <li>**Enterprise Digital Strategy**</li>
-              <li>**Organizational Change Management**</li>
-              <li>**Executive Stakeholder Alignment**</li>
-              <li>Product Portfolio Prioritization</li>
-              <li>Risk & Governance Leadership</li>
-              <li>Design Thinking</li>
-              <li>Problem Solving</li>
-            </ul>
-          </div>
-          
-          <div class="skill-category">
-            <h4>Technical Domain Expertise</h4>
-            <ul class="skills-list">
-              <li>AI/ML Implementation & Architecture</li>
-              <li>SaaS & Cloud Computing (Azure, AWS)</li>
-              <li>APIs, Integrations & Data Pipelines</li>
-              <li>Data Analysis & Metrics (KPI definition)</li>
-              <li>Infrastructure Scalability</li>
-            </ul>
-          </div>
-          
-          <div class="skill-category">
-            <h4>Tools & Technologies</h4>
-            <ul class="skills-list">
-              <li>Jira & Confluence (Program Management)</li>
-              <li>Figma & Miro (Visualizing Strategy)</li>
-              <li>Microsoft Azure & AWS</li>
-              <li>Google Analytics / Mixpanel</li>
-              <li>Python (for Data Science use cases)</li>
-            </ul>
-          </div>
-          
-          <div class="skill-category">
-            <h4>Product Management & Execution</h4>
-            <ul class="skills-list">
-              <li>Product Roadmap Strategy</li>
-              <li>Agile & Scrum Methodologies</li>
-              <li>Go-to-Market Strategy</li>
-              <li>Product Lifecycle Management</li>
-              <li>User Research & Interviews</li>
-              <li>User Acceptance Testing</li>
-            </ul>
-          </div>
+            
+            <div class="skill-category">
+                <h4>Strategic Leadership & Transformation</h4>
+                <ul class="skills-list">
+                    <li>Enterprise Digital Strategy</li>
+                    <li>Organizational Change Management</li>
+                    <li>Executive Stakeholder Alignment</li>
+                    <li>Product Portfolio Prioritization</li>
+                    <li>Risk & Governance Leadership</li>
+                    <li>Design Thinking & Innovation</li>
+                    <li>Cross-Functional Team Direction</li>
+                </ul>
+            </div>
+            
+            <div class="skill-category">
+                <h4>Technical Domain Expertise</h4>
+                <ul class="skills-list">
+                    <li>AI/ML Implementation & Architecture</li>
+                    <li>SaaS & Cloud Computing (Azure, AWS)</li>
+                    <li>APIs, Integrations & Data Pipelines</li>
+                    <li>Data Analysis & Business Metrics (KPIs)</li>
+                    <li>Infrastructure Scalability Planning</li>
+                    <li>Security & Compliance (e.g., GDPR, HIPAA)</li>
+                    <li>System Architecture Review</li>
+                </ul>
+            </div>
+            
+            <div class="skill-category">
+                <h4>Product Management & Execution</h4>
+                <ul class="skills-list">
+                    <li>Product Roadmap Strategy (3-5 Year Outlook)</li>
+                    <li>Agile & Scrum Program Management</li>
+                    <li>Go-to-Market (GTM) Strategy</li>
+                    <li>Product Lifecycle Management (PLM)</li>
+                    <li>Voice of Customer (VoC) Analysis</li>
+                    <li>User Acceptance Testing (UAT)</li>
+                    <li>Budgeting & Financial Forecasting</li>
+                </ul>
+            </div>
+            
+            <div class="skill-category">
+                <h4>Tools & Technologies</h4>
+                <ul class="skills-list">
+                    <li>Jira & Confluence (Program Management)</li>
+                    <li>Figma & Miro (Visualizing Strategy)</li>
+                    <li>Microsoft Azure & AWS Services</li>
+                    <li>Google Analytics / Mixpanel</li>
+                    <li>Python (for Data Science use cases)</li>
+                    <li>SQL (Database Querying)</li>
+                    <li>Power BI / Tableau (Reporting)</li>
+                </ul>
+            </div>
         </div>
       </div>
     </section>
@@ -1320,7 +1322,7 @@
 
             <div class="solution">
               <h4><i class="fas fa-lightbulb"></i> My Solution</h4>
-              <p>I **designed a unified digital operating model** that included optimized Agile workflows and a cultural integration framework. I secured buy-in from UK and Nigeria leadership to establish clear quality gates and a single source of truth for all program reporting, ensuring unified team delivery.</p>
+              <p>I designed a unified digital operating model that included optimized Agile workflows and a cultural integration framework. I secured buy-in from UK and Nigeria leadership to establish clear quality gates and a single source of truth for all program reporting, ensuring unified team delivery.</p>
             </div>
 
             <div class="impact-metrics">
@@ -1360,7 +1362,7 @@
 
             <div class="solution">
               <h4><i class="fas fa-lightbulb"></i> My Solution</h4>
-              <p>I **led the strategic prioritization** of the 10-product portfolio based on market opportunity and projected ROI. By restructuring execution pipelines for **parallel value stream delivery**, we maximized throughput, reduced average time-to-market, and secured a competitive edge for all new launches.</p>
+              <p>I led the strategic prioritization of the 10-product portfolio based on market opportunity and projected ROI. By restructuring execution pipelines for parallel value stream delivery, we maximized throughput, reduced average time-to-market, and secured a competitive edge for all new launches.</p>
             </div>
 
             <div class="impact-metrics">
@@ -1395,12 +1397,12 @@
             
             <div class="challenge">
               <h4><i class="fas fa-exclamation-triangle"></i> The Challenge</h4>
-              <p>The organization needed to mitigate future technical debt and scale its digital capacity. The core challenge was simultaneously achieving **massive organizational upskilling** (50+ professionals) while maintaining **zero tolerance for critical system downtime**.</p>
+              <p>The organization needed to mitigate future technical debt and scale its digital capacity. The core challenge was simultaneously achieving massive organizational upskilling (50+ professionals) while maintaining zero tolerance for critical system downtime.</p>
             </div>
 
             <div class="solution">
               <h4><i class="fas fa-lightbulb"></i> My Solution</h4>
-              <p>I developed a **comprehensive Change Framework** with a mentorship structure for sustained learning. I implemented proactive infrastructure monitoring protocols and led a cross-functional initiative to ensure system stability, successfully achieving 99% uptime during a period of high internal change.</p>
+              <p>I developed a comprehensive Change Framework with a mentorship structure for sustained learning. I implemented proactive infrastructure monitoring protocols and led a cross-functional initiative to ensure system stability, successfully achieving 99% uptime during a period of high internal change.</p>
             </div>
 
             <div class="impact-metrics">
