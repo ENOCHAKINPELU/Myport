@@ -321,56 +321,54 @@
     }
 
     /* Skills Section */
+    /* Skills Section (refactored to flex layout to avoid overlap on small screens) */
     .skills-section {
-      padding: 100px 20px;
+      padding: 80px 20px;
       background: var(--card-bg);
     }
 
     .skills-grid {
-      display: grid;
-      /* OPTIMIZED: Define grid areas to put Strategic Leadership first */
-      grid-template-areas: 
-        "leadership technical product tools";
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      align-items: stretch;
+      margin-top: 1rem;
     }
-    /* Set custom order for the skill categories */
-    /* The order in HTML is: Leadership, Technical, Product, Tools. */
-    /* We use the CSS grid area assignment to maintain this logical order for desktop. */
-    .skill-category:nth-child(1) { grid-area: leadership; } 
-    .skill-category:nth-child(2) { grid-area: technical; } 
-    .skill-category:nth-child(3) { grid-area: product; } 
-    .skill-category:nth-child(4) { grid-area: tools; } 
 
-
-    .skill-category {
+    .skill-card {
       background: var(--bg-color);
-      padding: 2rem;
-      border-radius: 20px;
+      padding: 1.6rem;
+      border-radius: 12px;
       box-shadow: var(--executive-shadow);
       border: 1px solid #e8e8e8;
+      flex: 1 1 calc(25% - 1.5rem);
+      min-width: 220px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
     }
 
-    .skill-category h4 {
-      font-size: 1.5rem;
+    .skill-card h4 {
+      font-size: 1.25rem;
       color: var(--primary-color);
-      margin-bottom: 1rem;
-      position: relative;
+      margin-bottom: 0.75rem;
     }
 
-    .skill-category h4::after {
+    .skill-card h4::after {
       content: '';
       display: block;
-      width: 50px;
+      width: 40px;
       height: 3px;
       background: var(--secondary-color);
-      margin-top: 5px;
+      margin-top: 6px;
     }
 
     .skills-list {
-      list-style-type: none;
+      list-style: none;
       padding-left: 0;
-      font-size: 1rem;
+      margin-top: 0.75rem;
+      font-size: 0.98rem;
     }
 
     .skills-list li {
@@ -383,9 +381,44 @@
     .skills-list li::before {
       content: '✓';
       color: var(--secondary-color);
-      font-weight: bold;
+      font-weight: 700;
+      margin-right: 6px;
     }
 
+    /* Responsive adjustments for Skills Section */
+    @media (max-width: 900px) {
+      .skills-grid {
+        grid-template-areas:
+          "leadership technical"
+          "product tools";
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .skills-grid {
+        grid-template-areas:
+          "leadership"
+          "technical"
+          "product"
+          "tools";
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .skills-section {
+        padding: 60px 12px;
+      }
+
+      .skill-category {
+        padding: 1.2rem;
+      }
+
+      .skills-list {
+        font-size: 0.95rem;
+      }
+    }
     /* Projects Section */
     .projects {
       padding: 100px 20px;
@@ -439,6 +472,8 @@
         scrollbar-width: none;
         scroll-behavior: smooth;
         gap: 1.5rem; /* Adjusted gap for mobile */
+        box-sizing: border-box;
+        padding-bottom: 8px;
       }
 
       .projects-grid::-webkit-scrollbar {
@@ -446,10 +481,14 @@
       }
 
       .project-card {
+        box-sizing: border-box;
+        flex: 0 0 85%;
         min-width: 85%;
         max-width: 85%;
         scroll-snap-align: center;
         cursor: grab;
+        margin-right: 0.75rem;
+        overflow: hidden;
       }
 
       .project-card:active {
@@ -460,6 +499,19 @@
       .skills-grid {
         grid-template-areas: none;
         grid-template-columns: 1fr;
+        grid-auto-rows: auto;
+        gap: 1rem;
+      }
+
+      /* Ensure service and skill cards take full width and don't overlap */
+      .service-card,
+      .skill-category,
+      .certification-card,
+      .case-study-card {
+        width: 100%;
+        box-sizing: border-box;
+        min-width: 0;
+        margin: 0 0 1rem 0;
       }
     }
 
@@ -1110,61 +1162,54 @@
 
     <section class="skills-section" id="skills">
       <div class="container">
-        <h2 class="section-title">Skills & Expertise</h2>
-        <div class="skills-grid reveal">
-            
-            <div class="skill-category">
-                <h4>Strategic Leadership & Transformation</h4>
-                <ul class="skills-list">
-                    <li>Enterprise Digital Strategy</li>
-                    <li>Organizational Change Management</li>
-                    <li>Executive Stakeholder Alignment</li>
-                    <li>Product Portfolio Prioritization</li>
-                    <li>Risk & Governance Leadership</li>
-                    <li>Design Thinking & Innovation</li>
-                    <li>Cross-Functional Team Direction</li>
-                </ul>
-            </div>
-            
-            <div class="skill-category">
-                <h4>Technical Domain Expertise</h4>
-                <ul class="skills-list">
-                    <li>AI/ML Implementation & Architecture</li>
-                    <li>SaaS & Cloud Computing (Azure, AWS)</li>
-                    <li>APIs, Integrations & Data Pipelines</li>
-                    <li>Data Analysis & Business Metrics (KPIs)</li>
-                    <li>Infrastructure Scalability Planning</li>
-                    <li>Security & Compliance (e.g., GDPR, HIPAA)</li>
-                    <li>System Architecture Review</li>
-                </ul>
-            </div>
-            
-            <div class="skill-category">
-                <h4>Product Management & Execution</h4>
-                <ul class="skills-list">
-                    <li>Product Roadmap Strategy (3-5 Year Outlook)</li>
-                    <li>Agile & Scrum Program Management</li>
-                    <li>Go-to-Market (GTM) Strategy</li>
-                    <li>Product Lifecycle Management (PLM)</li>
-                    <li>Voice of Customer (VoC) Analysis</li>
-                    <li>User Acceptance Testing (UAT)</li>
-                    <li>Budgeting & Financial Forecasting</li>
-                </ul>
-            </div>
-            
-            <div class="skill-category">
-                <h4>Tools & Technologies</h4>
-                <ul class="skills-list">
-                    <li>Jira & Confluence (Program Management)</li>
-                    <li>Figma & Miro (Visualizing Strategy)</li>
-                    <li>Microsoft Azure & AWS Services</li>
-                    <li>Google Analytics / Mixpanel</li>
-                    <li>Python (for Data Science use cases)</li>
-                    <li>SQL (Database Querying)</li>
-                    <li>Power BI / Tableau (Reporting)</li>
-                </ul>
-            </div>
+      <h2 class="section-title">Skills & Expertise</h2>
+      <div class="skills-grid reveal">
+
+        <div class="skill-card">
+          <h4>Strategic Leadership & Transformation</h4>
+          <ul class="skills-list">
+            <li>Enterprise Digital Strategy</li>
+            <li>Organizational Change Management</li>
+            <li>Executive Stakeholder Alignment</li>
+            <li>Product Portfolio Prioritization</li>
+            <li>Risk & Governance Leadership</li>
+          </ul>
         </div>
+
+        <div class="skill-card">
+          <h4>Technical Domain Expertise</h4>
+          <ul class="skills-list">
+            <li>AI/ML Implementation & Architecture</li>
+            <li>SaaS & Cloud Computing (Azure, AWS)</li>
+            <li>APIs, Integrations & Data Pipelines</li>
+            <li>Data Analysis & Business Metrics (KPIs)</li>
+            <li>Security & Compliance</li>
+          </ul>
+        </div>
+
+        <div class="skill-card">
+          <h4>Product Management & Execution</h4>
+          <ul class="skills-list">
+            <li>Product Roadmap Strategy</li>
+            <li>Agile & Scrum Program Management</li>
+            <li>Go-to-Market (GTM) Strategy</li>
+            <li>Voice of Customer (VoC) Analysis</li>
+            <li>User Acceptance Testing (UAT)</li>
+          </ul>
+        </div>
+
+        <div class="skill-card">
+          <h4>Tools & Technologies</h4>
+          <ul class="skills-list">
+            <li>Jira & Confluence</li>
+            <li>Figma & Miro</li>
+            <li>Microsoft Azure & AWS</li>
+            <li>Python & SQL</li>
+            <li>Power BI / Tableau</li>
+          </ul>
+        </div>
+
+      </div>
       </div>
     </section>
 
@@ -1252,13 +1297,6 @@
             </div>
           </div>
 
-          <div class="gallery-item reveal">
-            <img src="./images/leadership2.jpg" alt="Cross-Cultural Team Meeting" />
-            <div class="gallery-overlay">
-              <h4>Cross-Continental Alignment</h4>
-              <p>Bridging cultural and technical gaps between UK and Nigeria teams to secure unified SaaS transformation delivery.</p>
-            </div>
-          </div>
 
           <div class="gallery-item reveal">
             <img src="./images/IMG_20250728_045607.jpg" alt="Tech Conference Speaking" />
@@ -1268,13 +1306,7 @@
             </div>
           </div>
 
-          <div class="gallery-item reveal">
-            <img src="./images/leadership4.jpg" alt="Project Review Meeting" />
-            <div class="gallery-overlay">
-              <h4>C-Suite Vision Alignment</h4>
-              <p>Leading the quarterly review to align Engineering, Sales, and Executive stakeholders on the Digital Transformation roadmap and strategic priorities.</p>
-            </div>
-          </div>
+          <!-- Removed: Cross-Continental Alignment and Project Review Meeting gallery items per request -->
 
           <div class="gallery-item reveal">
             <img src="./images/IMG_20250728_050006.jpg" alt="Mentoring Session" />
@@ -1306,7 +1338,7 @@
               <div class="case-study-meta">
                 <span class="company">Kingdom Portal Network (UK)</span>
                 <span class="duration">Nov 2024 - Present</span>
-                <span class="role">Lead Transformation Manager (Matrixed Role)</span>
+                <span class="role">Technical Project Manager</span>
               </div>
               <div class="case-study-results">
                 <span class="result-badge success">95% Satisfaction</span>
@@ -1323,6 +1355,17 @@
             <div class="solution">
               <h4><i class="fas fa-lightbulb"></i> My Solution</h4>
               <p>I designed a unified digital operating model that included optimized Agile workflows and a cultural integration framework. I secured buy-in from UK and Nigeria leadership to establish clear quality gates and a single source of truth for all program reporting, ensuring unified team delivery.</p>
+            </div>
+
+            <div class="solution">
+              <h4><i class="fas fa-tasks"></i> Project Management Responsibilities</h4>
+              <ul>
+                <li>Translate executive digital strategy into a prioritized delivery roadmap, aligning work to measurable transformation outcomes.</li>
+                <li>Establish program governance, sprint cadences, and cross-functional RACI to keep technical and business stakeholders aligned.</li>
+                <li>Own the technical backlog and coordinate with engineering leads to ensure architecture and integrations support strategic goals.</li>
+                <li>Define KPIs and reporting to quantify transformation progress and inform executive decision-making.</li>
+                <li>Lead deployment planning, risk mitigation, and change management to minimize operational disruption during rollouts.</li>
+              </ul>
             </div>
 
             <div class="impact-metrics">
@@ -1346,7 +1389,7 @@
               <div class="case-study-meta">
                 <span class="company">Stormcell Technology</span>
                 <span class="duration">Contract Project</span>
-                <span class="role">Digital Portfolio Strategist</span>
+                <span class="role">Software Product Manager</span>
               </div>
               <div class="case-study-results">
                 <span class="result-badge success">₦2M Saved</span>
@@ -1386,7 +1429,7 @@
               <div class="case-study-meta">
                 <span class="company">Pan African Institute</span>
                 <span class="duration">Jan 2024 - Oct 2024</span>
-                <span class="role">Head of Digital Readiness</span>
+                <span class="role">Technical Officer</span>
               </div>
               <div class="case-study-results">
                 <span class="result-badge success">50+ Trained</span>
@@ -1487,7 +1530,7 @@
       <a href="#about" class="back-to-top">
         <i class="fas fa-chevron-up"></i>
       </a>
-      <p>&copy; 2025 Akinpelu Enoch. All rights reserved. | Delivering Excellence in AI & Tech Product Management</p>
+      <p>&copy; <span id="current-year"></span> Akinpelu Enoch. All rights reserved. | Delivering Excellence in Digital Transformation</p>
     </div>
   </footer>
 
@@ -1866,6 +1909,13 @@
         }
       }
     }
+
+    // Auto-update copyright year
+    (function setCopyrightYear(){
+      const y = new Date().getFullYear();
+      const el = document.getElementById('current-year');
+      if (el) el.textContent = y;
+    })();
   </script>
 </body>
 </html>
