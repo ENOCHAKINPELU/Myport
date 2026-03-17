@@ -451,10 +451,23 @@
     }
 
     .project-card .project-logo {
-      width: 100px;
-      height: 100px;
+      width: 90px;
+      height: 90px;
+      max-width: 100%;
+      max-height: 100%;
       margin: 0 auto 1rem;
       object-fit: contain;
+      display: block;
+    }
+
+    .modal-content .project-logo {
+      width: 120px;
+      height: 120px;
+      max-width: 100%;
+      max-height: 100%;
+      margin: 0 auto 1.25rem;
+      object-fit: contain;
+      display: block;
     }
 
     .project-card h4 {
@@ -833,6 +846,24 @@
     .certification-card p {
       color: #666;
       margin-bottom: 1.5rem;
+    }
+
+    .cert-status {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      background: #fff3e0;
+      color: #e65100;
+      font-weight: 600;
+      font-size: 0.85rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .cert-note {
+      font-size: 0.95rem;
+      color: #4a4a4a;
+      line-height: 1.5;
+      margin-bottom: 0;
     }
 
     .btn.small {
@@ -1228,6 +1259,13 @@
       <div class="container">
         <h2 class="section-title">Featured Innovation Portfolio</h2>
         <div class="projects-grid reveal">
+
+          <div class="project-card" data-project="nylc">
+            <img src="./images/league cup.png" alt="NYLC League Cup Logo" class="project-logo" />
+            <h4>N Youth League Cup (NYLC)</h4>
+            <p>Youth football league app for fans, live scores, predictions, and highlights.</p>
+            <button class="btn primary small view-details-btn">View Details</button>
+          </div>
           
           <div class="project-card" data-project="agriConnect">
             <img src="./images/agri.png" alt="Agri Connect Logo" class="project-logo" />
@@ -1507,26 +1545,34 @@
       <div class="container">
         <h2 class="section-title">Professional Credentials</h2>
         <div class="certifications-grid">
+
+          <div class="certification-card reveal">
+            <img src="https://images.credly.com/images/80c95f74-dcf0-43fc-a437-053a598feb05/blob" alt="CAPM Certification Badge" />
+            <h3>Certified Associate in Project Management (CAPM)</h3>
+            <span class="cert-status">In Progress</span>
+            <p>Project Management Institute</p>
+            <p class="cert-note">I have paid for the certification and I am currently preparing for the exam. I plan to sit the exam in August 2026 and pass.</p>
+          </div>
           
           <div class="certification-card reveal">
             <img src="./images/google.jpg" alt="Google Project Management Certification" />
             <h3>Project Management Certificate</h3>
             <p>Google</p>
-            <a href="https://www.credly.com/go/s0Z1XMz1viVw5qggHyYcRA" target="_blank" class="btn primary small">Verify Credential</a>
+            <a href="https://www.credly.com/go/s0Z1XMz1viVw5qggHyYcRA" target="_blank" class="btn primary small">Verify Credentials</a>
           </div>
 
           <div class="certification-card reveal">
             <img src="./images/m.jpg" alt="McKinsey Forward Program" />
             <h3>McKinsey Forward Program</h3>
             <p>McKinsey & Company</p>
-            <a href="https://www.credly.com/go/eBcmv55dHwklCabeV0ibug" target="_blank" class="btn primary small">Verify Credential</a>
+            <a href="https://www.credly.com/go/eBcmv55dHwklCabeV0ibug" target="_blank" class="btn primary small">Verify Credentials</a>
           </div>
 
           <div class="certification-card reveal">
             <img src="./images/blob.png" alt="CPMAI" />
             <h3>Introduction to CPMAI</h3>
             <p>Project Management Institute</p>
-            <a href="https://www.credly.com/badges/64b36fd7-27e0-4b16-97ca-6db297a08ee9/" target="_blank" class="btn primary small">View Certificate</a>
+            <a href="https://www.credly.com/badges/64b36fd7-27e0-4b16-97ca-6db297a08ee9/" target="_blank" class="btn primary small">Verify Credentials</a>
           </div>
         </div>
       </div>
@@ -1722,6 +1768,19 @@
         tools: 'Flutter, Firebase, Node.js, PostgreSQL, Jira',
         responsibilities: 'Managed the entire product lifecycle from ideation to market launch. Coordinated with design and development teams, conducted user interviews in rural communities, and oversaw beta testing.',
       },
+      nylc: {
+        name: 'N Youth League Cup (NYLC)',
+        logo: './images/league cup.png',
+        description: 'The NYLC League Cup is a premier youth football competition in Nigeria designed to nurture young talent. The 2025/2026 U11 edition culminates in a Super 8 National Championship, with strong performances from clubs like Sunshine Stars F.C. (U19) and GRASSRUNNERS FOOTBALL CLUB. The tournament aims to transform the lives of passionate Nigerian youth through sport and development beyond the field.',
+        requirements: [
+          'Built a fan-facing experience to view player profiles and team information.',
+          'Integrated live score updates for matches across the competition.',
+          'Enabled match prediction features to drive fan engagement.',
+          'Supported highlight viewing to recap key match moments.'
+        ],
+        tools: 'Mobile app delivery, API integration, product management',
+        responsibilities: 'Managed the development of the NYLC mobile app so fans can view player information, follow live scores, predict matches, and watch highlights.',
+      },
       prayerPortal: {
         name: 'Prayer Portal',
         description: 'A mobile application creating a global community of believers. The app serves as a digital space for people to share prayer requests, offer support, and connect with others in faith, fostering a sense of communal prayer and spiritual connection.',
@@ -1825,11 +1884,15 @@
 
     viewDetailsBtns.forEach(btn => {
       btn.addEventListener('click', () => {
-        const projectId = btn.closest('.project-card').dataset.project;
+        const projectCard = btn.closest('.project-card');
+        const projectId = projectCard.dataset.project;
         const project = projectsData[projectId];
         
         if (project) {
-          document.getElementById('modal-project-logo').src = project.logo;
+          const modalLogo = document.getElementById('modal-project-logo');
+          const fallbackLogo = projectCard.querySelector('img')?.getAttribute('src');
+          modalLogo.src = project.logo || fallbackLogo || '';
+          modalLogo.alt = `${project.name} Logo`;
           document.getElementById('modal-project-name').textContent = project.name;
           document.getElementById('modal-project-description').textContent = project.description;
           
