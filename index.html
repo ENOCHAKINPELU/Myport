@@ -230,6 +230,16 @@
       border-color: #fff;
     }
 
+    .btn.neutral {
+      background: #eef1f5;
+      color: var(--text-color);
+    }
+
+    .btn.neutral:hover {
+      background: #e0e5ec;
+      transform: translateY(-2px);
+    }
+
     /* Section Titles */
     .section-title {
       text-align: center;
@@ -599,6 +609,13 @@
     .modal-content ul {
       list-style-type: disc;
       padding-left: 20px;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      margin-top: 1.5rem;
     }
 
     /* Leadership Gallery Section */
@@ -1088,7 +1105,7 @@
       </button>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
-        <li><a href="./file/AKINPELU IFEOLUWA ENOCH CV.pdf" download="update cv.pdf">My CV</a></li>
+        <li><a href="./file/Akinpelu_Enoch_CV.PDF" download="Akinpelu Ifeoluwa Enoch CV.pdf" data-cv-download>My CV</a></li>
         <li><a href="#services">Strategic Value</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#projects">Innovation Portfolio</a></li>
@@ -1616,6 +1633,18 @@
     </div>
   </footer>
 
+  <div id="cv-modal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close cv-modal-close">&times;</span>
+      <h3>Download Enoch's CV</h3>
+      <p>You're about to download Akinpelu Ifeoluwa Enoch's CV.</p>
+      <div class="modal-actions">
+        <button id="cv-cancel-download" class="btn neutral" type="button">Cancel</button>
+        <button id="cv-confirm-download" class="btn primary" type="button">Download</button>
+      </div>
+    </div>
+  </div>
+
   <div id="project-modal" class="modal">
     <div class="modal-content">
       <span class="modal-close">&times;</span>
@@ -1753,7 +1782,15 @@
     // Project Modal Functionality
     const projectModal = document.getElementById('project-modal');
     const viewDetailsBtns = document.querySelectorAll('.view-details-btn');
-    const modalCloseBtn = document.querySelector('.modal-close');
+    const modalCloseBtn = document.querySelector('#project-modal .modal-close');
+
+    const cvModal = document.getElementById('cv-modal');
+    const cvOpenLink = document.querySelector('[data-cv-download]');
+    const cvConfirmBtn = document.getElementById('cv-confirm-download');
+    const cvCancelBtn = document.getElementById('cv-cancel-download');
+    const cvCloseBtn = document.querySelector('#cv-modal .modal-close');
+    let cvDownloadHref = '';
+    let cvDownloadFilename = '';
     
     const projectsData = {
       agriConnect: {
@@ -1912,13 +1949,55 @@
       });
     });
 
-    modalCloseBtn.addEventListener('click', () => {
-      projectModal.style.display = 'none';
-    });
+    if (modalCloseBtn) {
+      modalCloseBtn.addEventListener('click', () => {
+        projectModal.style.display = 'none';
+      });
+    }
+
+    if (cvOpenLink && cvModal) {
+      cvOpenLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        cvDownloadHref = cvOpenLink.getAttribute('href');
+        cvDownloadFilename = cvOpenLink.getAttribute('download') || 'Akinpelu Ifeoluwa Enoch CV.pdf';
+        cvModal.style.display = 'block';
+      });
+    }
+
+    function closeCvModal() {
+      if (cvModal) cvModal.style.display = 'none';
+    }
+
+    if (cvCancelBtn) {
+      cvCancelBtn.addEventListener('click', closeCvModal);
+    }
+
+    if (cvCloseBtn) {
+      cvCloseBtn.addEventListener('click', closeCvModal);
+    }
+
+    if (cvConfirmBtn) {
+      cvConfirmBtn.addEventListener('click', () => {
+        if (!cvDownloadHref) {
+          closeCvModal();
+          return;
+        }
+        const tempLink = document.createElement('a');
+        tempLink.href = cvDownloadHref;
+        tempLink.download = cvDownloadFilename;
+        document.body.appendChild(tempLink);
+        tempLink.click();
+        tempLink.remove();
+        closeCvModal();
+      });
+    }
 
     window.addEventListener('click', (event) => {
       if (event.target === projectModal) {
         projectModal.style.display = 'none';
+      }
+      if (cvModal && event.target === cvModal) {
+        closeCvModal();
       }
     });
 
