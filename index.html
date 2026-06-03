@@ -101,20 +101,52 @@
 
     .hero-metrics {
       display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem; margin: 2rem 0;
+      gap: 1rem; margin: 2.25rem 0; align-items: stretch;
     }
 
     .metric {
-      text-align: center; background: rgba(255, 255, 255, 0.15);
-      padding: 1.5rem 1rem; border-radius: 15px; backdrop-filter: blur(10px);
-      min-width: 0;
+      position: relative; overflow: hidden;
+      background: rgba(255, 255, 255, 0.12);
+      padding: 1.5rem 1rem 1.35rem;
+      border-radius: 16px;
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      min-width: 0; width: 100%;
+      display: flex; flex-direction: column; align-items: center; text-align: center;
+      gap: 0.6rem;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      box-shadow: 0 6px 22px rgba(0, 0, 0, 0.14);
+      transition: transform var(--transition-speed), box-shadow var(--transition-speed), background var(--transition-speed);
     }
 
-    .metric-number {
-      display: block; font-size: 2.2rem; font-weight: 700;
-      margin-bottom: 0.5rem; line-height: 1.1; word-break: keep-all;
+    .metric::before {
+      content: ''; position: absolute; left: 0; right: 0; top: 0;
+      height: 4px; background: #fff; opacity: 0.9;
     }
-    .metric-label { font-size: 0.9rem; opacity: 0.9; }
+
+    .metric:hover {
+      transform: translateY(-6px);
+      background: rgba(255, 255, 255, 0.18);
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.22);
+    }
+
+    .metric-icon {
+      flex: 0 0 auto; width: 46px; height: 46px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(255, 255, 255, 0.95); font-size: 1.15rem;
+      color: var(--primary-color);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
+    }
+
+    .metric-body { display: flex; flex-direction: column; gap: 0.25rem; min-width: 0; }
+
+    .metric-number {
+      display: block; font-size: 2.1rem; font-weight: 700;
+      line-height: 1; letter-spacing: -0.5px; word-break: keep-all;
+    }
+    .metric-label {
+      font-size: 0.78rem; opacity: 0.9; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.3;
+    }
 
     .hero-actions { display: flex; gap: 1rem; margin-top: 2rem; }
 
@@ -191,17 +223,21 @@
 
     .skills-section { padding: 80px 20px; background: var(--card-bg); }
 
+    /* Skills as equal-size block grid: 3 across, wrapping neatly */
     .skills-grid {
-      display: flex; flex-wrap: wrap; gap: 1.5rem;
-      align-items: stretch; margin-top: 1rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 1rem;
+      align-items: stretch;
     }
 
     .skill-card {
       background: var(--bg-color); padding: 1.6rem; border-radius: 12px;
       box-shadow: var(--executive-shadow); border: 1px solid #e8e8e8;
-      flex: 1 1 calc(25% - 1.5rem); min-width: 220px;
       box-sizing: border-box; display: flex;
       flex-direction: column; justify-content: flex-start;
+      height: 100%;
     }
 
     .skill-card h4 { font-size: 1.25rem; color: var(--primary-color); margin-bottom: 0.75rem; }
@@ -280,7 +316,6 @@
         scroll-snap-align: center; cursor: grab; margin-right: 0.75rem; overflow: hidden;
       }
       .project-card:active { cursor: grabbing; }
-      .skills-grid { grid-template-columns: 1fr; grid-auto-rows: auto; gap: 1rem; }
       .service-card, .skill-card, .certification-card, .case-study-card {
         width: 100%; box-sizing: border-box; min-width: 0; margin: 0 0 1rem 0;
       }
@@ -443,9 +478,7 @@
       .hero-content { grid-template-columns: 1fr; text-align: center; gap: 2rem; }
       .hero-text h1 { font-size: 2.8rem; }
       .hero-text { max-width: 720px; margin: 0 auto; }
-      .hero-metrics { gap: 1rem; }
-      .metric { padding: 1.25rem 0.75rem; }
-      .metric-number { font-size: 1.9rem; }
+      .hero-metrics { gap: 0.85rem; }
       .hero-actions { justify-content: center; }
       .services-grid, .certifications-grid, .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
     }
@@ -462,10 +495,11 @@
       .hero { clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%); padding: 80px 20px; }
       .hero-text h1 { font-size: 2.5rem; }
       .hero-tagline { font-size: 1.1rem; }
-      .hero-metrics { grid-template-columns: repeat(3, 1fr); gap: 0.6rem; }
-      .metric { padding: 1rem 0.4rem; }
-      .metric-number { font-size: 1.5rem; }
-      .metric-label { font-size: 0.72rem; }
+      .hero-metrics { gap: 0.6rem; }
+      .metric { padding: 1.1rem 0.6rem 1rem; gap: 0.5rem; }
+      .metric-icon { width: 40px; height: 40px; font-size: 1rem; }
+      .metric-number { font-size: 1.6rem; }
+      .metric-label { font-size: 0.68rem; letter-spacing: 0.3px; }
       .hero-actions { flex-direction: column; align-items: center; }
       .services-grid, .certifications-grid, .gallery-grid { grid-template-columns: 1fr; }
       .case-study-header { flex-direction: column; align-items: flex-start; }
@@ -479,10 +513,12 @@
       nav { padding: 1rem 15px; }
       .hero-text h1 { font-size: 2rem; }
       .hero-image img { width: 200px; height: 200px; }
-      .hero-metrics { gap: 0.45rem; }
-      .metric { padding: 0.85rem 0.3rem; }
-      .metric-number { font-size: 1.3rem; }
-      .metric-label { font-size: 0.68rem; line-height: 1.25; }
+      .hero-metrics { grid-template-columns: 1fr; gap: 0.7rem; }
+      .metric { flex-direction: row; justify-content: flex-start; text-align: left; gap: 1rem; padding: 1rem 1.25rem; }
+      .metric::before { left: 0; right: auto; top: 0; bottom: 0; width: 4px; height: auto; }
+      .metric-icon { width: 42px; height: 42px; font-size: 1rem; }
+      .metric-number { font-size: 1.55rem; }
+      .metric-label { font-size: 0.74rem; line-height: 1.3; }
       .impact-metrics { grid-template-columns: 1fr; }
       .case-study-card, .service-card { padding: 2rem; }
       .flagship-badge { top: 10px; right: 10px; font-size: 0.62rem; padding: 0.2rem 0.55rem; }
@@ -530,16 +566,25 @@
 
           <div class="hero-metrics">
             <div class="metric">
-              <span class="metric-number">40%</span>
-              <span class="metric-label">Fewer Post-Release Defects</span>
+              <div class="metric-icon"><i class="fas fa-shield-halved"></i></div>
+              <div class="metric-body">
+                <span class="metric-number">40%</span>
+                <span class="metric-label">Fewer Post-Release Defects</span>
+              </div>
             </div>
             <div class="metric">
-              <span class="metric-number">15%</span>
-              <span class="metric-label">Faster Time-to-Market</span>
+              <div class="metric-icon"><i class="fas fa-gauge-high"></i></div>
+              <div class="metric-body">
+                <span class="metric-number">15%</span>
+                <span class="metric-label">Faster Time-to-Market</span>
+              </div>
             </div>
             <div class="metric">
-              <span class="metric-number">₦5M+</span>
-              <span class="metric-label">Operational Cost Savings</span>
+              <div class="metric-icon"><i class="fas fa-naira-sign"></i></div>
+              <div class="metric-body">
+                <span class="metric-number">₦15M+</span>
+                <span class="metric-label">Operational Cost Savings</span>
+              </div>
             </div>
           </div>
 
