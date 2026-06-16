@@ -14,10 +14,13 @@
   <meta property="og:title" content="Akinpelu Enoch Portfolio | Technical Project Manager" />
   <meta property="og:description" content="Technical Project Manager and Digital Transformation Analyst specializing in software delivery and digital transformation for enterprise and growth-stage organizations." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://enochakinpelu.github.io/Myport/index.html" />  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <meta property="og:url" content="https://enochakinpelu.github.io/Myport/index.html" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <style>
+    /* Google Fonts */
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
+    /* CSS Variables */
     :root {
       --primary-color: #2a2a72;
       --secondary-color: #009ffd;
@@ -30,7 +33,12 @@
       --executive-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    /* Global Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     body {
       font-family: 'Poppins', sans-serif;
@@ -40,72 +48,130 @@
       scroll-behavior: smooth;
     }
 
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
 
+    /* Header */
     header {
       background: var(--card-bg);
       box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
-      position: sticky; top: 0; z-index: 1000;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
     nav {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 1rem 20px; max-width: 1200px; margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 20px;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
     .logo {
-      font-size: 1.8rem; font-weight: 700;
+      font-size: 1.8rem;
+      font-weight: 700;
       background: var(--gradient);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
-    .nav-links { list-style: none; display: flex; gap: 2rem; }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
 
     .nav-links a {
-      text-decoration: none; color: var(--text-color);
-      font-weight: 500; transition: color var(--transition-speed);
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: 500;
+      transition: color var(--transition-speed);
     }
 
-    .nav-links a:hover { color: var(--secondary-color); }
+    .nav-links a:hover {
+      color: var(--secondary-color);
+    }
 
     .nav-toggle {
-      display: none; flex-direction: column; cursor: pointer;
-      padding: 0.5rem; background: none; border: none;
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      padding: 0.5rem;
+      background: none;
+      border: none;
     }
 
     .hamburger-line {
-      width: 25px; height: 3px; background: var(--text-color);
-      margin: 3px 0; transition: all 0.3s ease; border-radius: 2px;
+      width: 25px;
+      height: 3px;
+      background: var(--text-color);
+      margin: 3px 0;
+      transition: all 0.3s ease;
+      border-radius: 2px;
     }
 
-    .nav-toggle.active .hamburger-line:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-    .nav-toggle.active .hamburger-line:nth-child(2) { opacity: 0; }
-    .nav-toggle.active .hamburger-line:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); }
+    .nav-toggle.active .hamburger-line:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
 
+    .nav-toggle.active .hamburger-line:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-toggle.active .hamburger-line:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -6px);
+    }
+
+    /* Hero Section */
     .hero {
-      background: var(--gradient); color: #fff; padding: 100px 20px;
+      background: var(--gradient);
+      color: #fff;
+      padding: 100px 20px;
       clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
     }
 
     .hero-content {
-      max-width: 1200px; margin: 0 auto; display: grid;
-      grid-template-columns: 300px 1fr; gap: 3rem; align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 3rem;
+      align-items: center;
     }
 
     .hero-image img {
-      width: 280px; height: 280px; border-radius: 50%;
-      object-fit: cover; object-position: center 15%;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center 15%;
       border: 5px solid rgba(255, 255, 255, 0.3);
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     }
 
-    .hero-text h1 { font-size: 3.2rem; margin-bottom: 1rem; font-weight: 700; }
-
-    .hero-tagline {
-      font-size: 1.3rem; margin-bottom: 1.5rem; opacity: 0.9; font-weight: 500;
+    .hero-text h1 {
+      font-size: 3.2rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
     }
 
-    .hero-description { font-size: 1.1rem; margin-bottom: 2rem; line-height: 1.6; }
+    .hero-tagline {
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+      opacity: 0.9;
+      font-weight: 500;
+    }
+
+    .hero-description {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
 
     .hero-metrics {
       display: grid; grid-template-columns: repeat(3, 1fr);
@@ -156,111 +222,216 @@
       text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.3;
     }
 
-    .hero-actions { display: flex; gap: 1rem; margin-top: 2rem; }
-
-    .btn {
-      display: inline-block; padding: 0.8rem 1.8rem; border-radius: 50px;
-      text-decoration: none; font-weight: 600;
-      transition: all var(--transition-speed); font-size: 1rem;
-      cursor: pointer; border: none;
+    .metric-label {
+      font-size: 0.9rem;
+      opacity: 0.9;
     }
 
-    .btn.primary { background: var(--accent-color); color: #fff; }
-    .btn.primary:hover { background: #6b2cdd; transform: translateY(-2px); }
-    .btn.secondary { background: transparent; border: 2px solid rgba(255, 255, 255, 0.3); color: #fff; }
-    .btn.secondary:hover { background: rgba(255, 255, 255, 0.1); border-color: #fff; }
-    .btn.neutral { background: #eef1f5; color: var(--text-color); }
-    .btn.neutral:hover { background: #e0e5ec; transform: translateY(-2px); }
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
 
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 1.8rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all var(--transition-speed);
+      font-size: 1rem;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn.primary {
+      background: var(--accent-color);
+      color: #fff;
+    }
+
+    .btn.primary:hover {
+      background: #6b2cdd;
+      transform: translateY(-2px);
+    }
+
+    .btn.secondary {
+      background: transparent;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      color: #fff;
+    }
+
+    .btn.secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: #fff;
+    }
+
+    .btn.neutral {
+      background: #eef1f5;
+      color: var(--text-color);
+    }
+
+    .btn.neutral:hover {
+      background: #e0e5ec;
+      transform: translateY(-2px);
+    }
+
+    /* Section Titles */
     .section-title {
-      text-align: center; font-size: 2.5rem; margin-bottom: 3rem;
-      position: relative; font-weight: 700;
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      position: relative;
+      font-weight: 700;
     }
 
     .section-title::after {
-      content: ''; position: absolute; width: 80px; height: 4px;
-      background: var(--secondary-color); bottom: -15px; left: 50%;
-      transform: translateX(-50%); border-radius: 2px;
+      content: '';
+      position: absolute;
+      width: 80px;
+      height: 4px;
+      background: var(--secondary-color);
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 2px;
     }
 
-    .section-subtitle {
-      text-align: center; max-width: 720px; margin: -1.5rem auto 0;
-      color: #555; font-size: 1.05rem;
+    /* What I Do Section */
+    .services {
+      padding: 100px 20px;
+      background: var(--card-bg);
     }
-
-    .services { padding: 100px 20px; background: var(--card-bg); }
 
     .services-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 2.5rem; margin-top: 3rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2.5rem;
+      margin-top: 3rem;
     }
 
     .service-card {
-      background: var(--bg-color); padding: 2.5rem; border-radius: 20px;
-      box-shadow: var(--executive-shadow); text-align: center;
+      background: var(--bg-color);
+      padding: 2.5rem;
+      border-radius: 20px;
+      box-shadow: var(--executive-shadow);
+      text-align: center;
       transition: transform var(--transition-speed), box-shadow var(--transition-speed);
       border: 1px solid #e8e8e8;
     }
 
-    .service-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15); }
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    }
 
     .service-icon {
-      width: 80px; height: 80px; background: var(--gradient);
-      border-radius: 50%; display: flex; align-items: center;
-      justify-content: center; margin: 0 auto 1.5rem;
-      font-size: 2rem; color: #fff;
+      width: 80px;
+      height: 80px;
+      background: var(--gradient);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 2rem;
+      color: #fff;
     }
 
     .service-card h3 {
-      font-size: 1.4rem; margin-bottom: 1rem;
-      color: var(--primary-color); font-weight: 600;
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+      font-weight: 600;
     }
 
-    .service-card p { margin-bottom: 1.5rem; line-height: 1.6; }
+    .service-card p {
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
 
     .service-deliverables {
-      display: flex; flex-wrap: wrap; gap: 0.5rem;
-      justify-content: center; margin-top: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-top: 1.5rem;
     }
 
     .deliverable-tag {
-      background: var(--secondary-color); color: #fff;
-      padding: 0.3rem 0.8rem; border-radius: 15px;
-      font-size: 0.8rem; font-weight: 500;
+      background: var(--secondary-color);
+      color: #fff;
+      padding: 0.3rem 0.8rem;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      font-weight: 500;
     }
 
-    .skills-section { padding: 80px 20px; background: var(--card-bg); }
+    /* Skills Section */
+    /* Skills Section (refactored to flex layout to avoid overlap on small screens) */
+    .skills-section {
+      padding: 80px 20px;
+      background: var(--card-bg);
+    }
 
-    /* Skills as equal-size block grid: 3 across, wrapping neatly */
     .skills-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
-      margin-top: 1rem;
       align-items: stretch;
+      margin-top: 1rem;
     }
 
     .skill-card {
-      background: var(--bg-color); padding: 1.6rem; border-radius: 12px;
-      box-shadow: var(--executive-shadow); border: 1px solid #e8e8e8;
-      box-sizing: border-box; display: flex;
-      flex-direction: column; justify-content: flex-start;
+      background: var(--bg-color);
+      padding: 1.6rem;
+      border-radius: 12px;
+      box-shadow: var(--executive-shadow);
+      border: 1px solid #e8e8e8;
       height: 100%;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
     }
 
-    .skill-card h4 { font-size: 1.25rem; color: var(--primary-color); margin-bottom: 0.75rem; }
+    .skill-card h4 {
+      font-size: 1.25rem;
+      color: var(--primary-color);
+      margin-bottom: 0.75rem;
+    }
 
     .skill-card h4::after {
-      content: ''; display: block; width: 40px; height: 3px;
-      background: var(--secondary-color); margin-top: 6px;
+      content: '';
+      display: block;
+      width: 40px;
+      height: 3px;
+      background: var(--secondary-color);
+      margin-top: 6px;
     }
 
-    .skills-list { list-style: none; padding-left: 0; margin-top: 0.75rem; font-size: 0.98rem; }
+    .skills-list {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 0.75rem;
+      font-size: 0.98rem;
+    }
 
-    .skills-list li { margin-bottom: 0.5rem; display: flex; align-items: center; gap: 10px; }
+    .skills-list li {
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
-    .skills-list li::before { content: '✓'; color: var(--secondary-color); font-weight: 700; margin-right: 6px; }
+    .skills-list li::before {
+      content: '✓';
+      color: var(--secondary-color);
+      font-weight: 700;
+      margin-right: 6px;
+    }
 
+    /* Responsive adjustments for Skills Section */
     @media (max-width: 900px) {
       .skills-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
     }
@@ -270,43 +441,54 @@
       .skills-section { padding: 60px 12px; }
       .skills-list { font-size: 0.95rem; }
     }
-
-    .projects { padding: 100px 20px; background: var(--bg-color); }
+    /* Projects Section */
+    .projects {
+      padding: 100px 20px;
+      background: var(--bg-color);
+    }
 
     .projects-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem; margin-top: 3rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
     }
 
     .project-card {
-      background: var(--card-bg); border-radius: 20px;
-      box-shadow: var(--executive-shadow); padding: 2rem;
+      background: var(--card-bg);
+      border-radius: 20px;
+      box-shadow: var(--executive-shadow);
+      padding: 2rem;
       text-align: center;
       transition: transform var(--transition-speed), box-shadow var(--transition-speed);
-      flex-shrink: 0; border: 1px solid #e8e8e8; cursor: pointer;
-      position: relative;
+      flex-shrink: 0;
+      border: 1px solid #e8e8e8;
+      cursor: pointer;
     }
 
-    .project-card.flagship { border: 2px solid var(--accent-color); }
-
-    .flagship-badge {
-      position: absolute; top: 14px; right: 14px;
-      background: var(--accent-color); color: #fff;
-      font-size: 0.7rem; font-weight: 600;
-      padding: 0.25rem 0.7rem; border-radius: 999px;
-      letter-spacing: 0.3px;
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
     }
-
-    .project-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15); }
 
     .project-card .project-logo {
-      width: 90px; height: 90px; max-width: 100%; max-height: 100%;
-      margin: 0 auto 1rem; object-fit: contain; display: block;
+      width: 90px;
+      height: 90px;
+      max-width: 100%;
+      max-height: 100%;
+      margin: 0 auto 1rem;
+      object-fit: contain;
+      display: block;
     }
 
     .modal-content .project-logo {
-      width: 120px; height: 120px; max-width: 100%; max-height: 100%;
-      margin: 0 auto 1.25rem; object-fit: contain; display: block;
+      width: 120px;
+      height: 120px;
+      max-width: 100%;
+      max-height: 100%;
+      margin: 0 auto 1.25rem;
+      object-fit: contain;
+      display: block;
     }
 
     .project-card h4 {
@@ -339,34 +521,83 @@
       font-weight: 600;
     }
 
-    /* Mobile-first carousel for smaller screens */    @media (max-width: 768px) {
+    /* Mobile-first carousel for smaller screens */
+    @media (max-width: 768px) {
       .projects-grid {
-        display: flex; overflow-x: scroll; scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch; scrollbar-width: none;
-        scroll-behavior: smooth; gap: 1.5rem; box-sizing: border-box;
+        display: flex;
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        scroll-behavior: smooth;
+        gap: 1.5rem; /* Adjusted gap for mobile */
+        box-sizing: border-box;
         padding-bottom: 8px;
       }
-      .projects-grid::-webkit-scrollbar { display: none; }
-      .project-card {
-        box-sizing: border-box; flex: 0 0 85%; min-width: 85%; max-width: 85%;
-        scroll-snap-align: center; cursor: grab; margin-right: 0.75rem; overflow: hidden;
+
+      .projects-grid::-webkit-scrollbar {
+        display: none;
       }
-      .project-card:active { cursor: grabbing; }
-      .service-card, .skill-card, .certification-card, .case-study-card {
-        width: 100%; box-sizing: border-box; min-width: 0; margin: 0 0 1rem 0;
+
+      .project-card {
+        box-sizing: border-box;
+        flex: 0 0 85%;
+        min-width: 85%;
+        max-width: 85%;
+        scroll-snap-align: center;
+        cursor: grab;
+        margin-right: 0.75rem;
+        overflow: hidden;
+      }
+
+      .project-card:active {
+        cursor: grabbing;
+      }
+      
+      /* Reset skills grid order for smaller screens to stack naturally (Leadership first) */
+      .skills-grid {
+        grid-template-areas: none;
+        grid-template-columns: 1fr;
+        grid-auto-rows: auto;
+        gap: 1rem;
+      }
+
+      /* Ensure service and skill cards take full width and don't overlap */
+      .service-card,
+      .skill-category,
+      .certification-card,
+      .case-study-card {
+        width: 100%;
+        box-sizing: border-box;
+        min-width: 0;
+        margin: 0 0 1rem 0;
       }
     }
 
+    /* Modal Styling */
     .modal {
-      display: none; position: fixed; z-index: 10000; left: 0; top: 0;
-      width: 100%; height: 100%; overflow: auto;
-      background-color: rgba(0, 0, 0, 0.6); backdrop-filter: blur(5px); padding-top: 60px;
+      display: none;
+      position: fixed;
+      z-index: 10000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(5px);
+      padding-top: 60px;
     }
 
     .modal-content {
-      background-color: var(--card-bg); margin: 5% auto; padding: 40px;
-      border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-      max-width: 800px; position: relative; animation: modal-fade-in 0.3s ease-out;
+      background-color: var(--card-bg);
+      margin: 5% auto;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      max-width: 800px;
+      position: relative;
+      animation: modal-fade-in 0.3s ease-out;
     }
 
     @keyframes modal-fade-in {
@@ -375,137 +606,375 @@
     }
 
     .modal-close {
-      color: #aaa; position: absolute; top: 20px; right: 30px;
-      font-size: 28px; font-weight: bold; transition: color var(--transition-speed);
+      color: #aaa;
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 28px;
+      font-weight: bold;
+      transition: color var(--transition-speed);
     }
 
-    .modal-close:hover, .modal-close:focus { color: var(--primary-color); text-decoration: none; cursor: pointer; }
+    .modal-close:hover, .modal-close:focus {
+      color: var(--primary-color);
+      text-decoration: none;
+      cursor: pointer;
+    }
+    
+    .modal-content h3 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+    }
 
-    .modal-content h3 { font-size: 2rem; margin-bottom: 1rem; color: var(--primary-color); }
-    .modal-content p { margin-bottom: 1rem; }
-    .modal-content .project-details { margin-top: 2rem; }
-    .modal-content .project-details h4 { font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--secondary-color); }
-    .modal-content ul { list-style-type: disc; padding-left: 20px; }
+    .modal-content p {
+      margin-bottom: 1rem;
+    }
+    
+    .modal-content .project-details {
+      margin-top: 2rem;
+    }
+    
+    .modal-content .project-details h4 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--secondary-color);
+    }
+    
+    .modal-content ul {
+      list-style-type: disc;
+      padding-left: 20px;
+    }
 
-    .modal-actions { display: flex; gap: 0.75rem; justify-content: center; margin-top: 1.5rem; }
+    .modal-actions {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
 
-    .leadership-gallery { padding: 100px 20px; background: var(--bg-color); }
+    /* Leadership Gallery Section */
+    .leadership-gallery {
+      padding: 100px 20px;
+      background: var(--bg-color);
+    }
 
     .gallery-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem; margin-top: 3rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
     }
 
     .gallery-item {
-      position: relative; border-radius: 20px; overflow: hidden;
-      box-shadow: var(--executive-shadow); transition: all var(--transition-speed);
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--executive-shadow);
+      transition: all var(--transition-speed);
       aspect-ratio: 4/3;
     }
 
-    .gallery-item:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2); }
-    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--transition-speed); }
-    .gallery-item:hover img { transform: scale(1.05); }
+    .gallery-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-speed);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
 
     .gallery-overlay {
-      position: absolute; bottom: 0; left: 0; right: 0;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
       background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-      color: #fff; padding: 2rem; transform: translateY(100%);
+      color: #fff;
+      padding: 2rem;
+      transform: translateY(100%);
       transition: all var(--transition-speed);
     }
 
-    .gallery-item:hover .gallery-overlay { transform: translateY(0); }
-    .gallery-overlay h4 { font-size: 1.2rem; margin-bottom: 0.5rem; font-weight: 600; }
-    .gallery-overlay p { font-size: 0.9rem; opacity: 0.9; line-height: 1.4; }
+    .gallery-item:hover .gallery-overlay {
+      transform: translateY(0);
+    }
 
-    .case-studies { padding: 100px 20px; background: var(--bg-color); }
-    .case-study-grid { display: grid; gap: 3rem; margin-top: 3rem; }
+    .gallery-overlay h4 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .gallery-overlay p {
+      font-size: 0.9rem;
+      opacity: 0.9;
+      line-height: 1.4;
+    }
+
+    /* Case Studies Section */
+    .case-studies {
+      padding: 100px 20px;
+      background: var(--bg-color);
+    }
+
+    .case-study-grid {
+      display: grid;
+      gap: 3rem;
+      margin-top: 3rem;
+    }
 
     .case-study-card {
-      background: var(--card-bg); border-radius: 20px; padding: 3rem;
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 3rem;
       box-shadow: var(--executive-shadow);
       border-left: 6px solid var(--secondary-color);
       transition: all var(--transition-speed);
     }
 
-    .case-study-card:hover { transform: translateX(10px); box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15); }
+    .case-study-card:hover {
+      transform: translateX(10px);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+    }
 
     .case-study-header {
-      display: flex; justify-content: space-between; align-items: flex-start;
-      flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
     }
 
-    .case-study-meta { display: flex; flex-direction: column; gap: 0.5rem; }
-    .company { font-size: 1.1rem; font-weight: 600; color: var(--primary-color); }
-    .duration, .role { color: #666; font-size: 0.95rem; }
-    .case-study-results { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .case-study-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
 
-    .result-badge { padding: 0.6rem 1.2rem; border-radius: 25px; font-size: 0.85rem; font-weight: 600; }
-    .result-badge.success { background: #e6fffa; color: #00695c; }
-    .result-badge.primary { background: #e3f2fd; color: var(--primary-color); }
+    .company {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--primary-color);
+    }
 
-    .case-study-card h3 { font-size: 1.6rem; margin-bottom: 1rem; color: var(--primary-color); font-weight: 600; }
+    .duration, .role {
+      color: #666;
+      font-size: 0.95rem;
+    }
 
-    .solution { background: #e8f5e8; padding: 1.5rem; border-radius: 12px; margin: 1.5rem 0; border-left: 4px solid #4caf50; }
-    .solution h4 { color: #2e7d32; margin-bottom: 0.5rem; font-weight: 600; }
+    .case-study-results {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .result-badge {
+      padding: 0.6rem 1.2rem;
+      border-radius: 25px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .result-badge.success {
+      background: #e6fffa;
+      color: #00695c;
+    }
+
+    .result-badge.primary {
+      background: #e3f2fd;
+      color: var(--primary-color);
+    }
+
+    .case-study-card h3 {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+
+    .challenge {
+      background: #fff3e0;
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin: 1.5rem 0;
+      border-left: 4px solid #ff9800;
+    }
+
+    .challenge h4 {
+      color: #e65100;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .solution {
+      background: #e8f5e8;
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin: 1.5rem 0;
+      border-left: 4px solid #4caf50;
+    }
+
+    .solution h4 {
+      color: #2e7d32;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
 
     .impact-metrics {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 1.5rem; margin: 2rem 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
     }
 
-    .impact-item { text-align: center; background: #f8f9fa; padding: 1.5rem; border-radius: 12px; }
-    .impact-number { font-size: 2rem; font-weight: 700; color: var(--primary-color); display: block; margin-bottom: 0.5rem; }
-    .impact-label { font-size: 0.9rem; color: #666; }
+    .impact-item {
+      text-align: center;
+      background: #f8f9fa;
+      padding: 1.5rem;
+      border-radius: 12px;
+    }
 
-    .certifications { padding: 100px 20px; background: var(--card-bg); }
+    .impact-number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .impact-label {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    /* Certifications Section */
+    .certifications {
+      padding: 100px 20px;
+      background: var(--card-bg);
+    }
 
     .certifications-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2.5rem; margin-top: 3rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem;
+      margin-top: 3rem;
     }
 
     .certification-card {
-      background: var(--bg-color); border-radius: 20px;
-      box-shadow: var(--executive-shadow); padding: 2rem;
-      text-align: center; transition: transform var(--transition-speed);
+      background: var(--bg-color);
+      border-radius: 20px;
+      box-shadow: var(--executive-shadow);
+      padding: 2rem;
+      text-align: center;
+      transition: transform var(--transition-speed);
     }
 
-    .certification-card:hover { transform: translateY(-5px); }
-    .certification-card img { width: 100%; max-height: 120px; object-fit: contain; margin-bottom: 1.5rem; }
-    .certification-card h3 { color: var(--primary-color); margin-bottom: 0.5rem; font-weight: 600; }
-    .certification-card p { color: #666; margin-bottom: 1.5rem; }
+    .certification-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .certification-card img {
+      width: 100%;
+      max-height: 120px;
+      object-fit: contain;
+      margin-bottom: 1.5rem;
+    }
+
+    .certification-card h3 {
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .certification-card p {
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
 
     .cert-status {
-      display: inline-block; padding: 0.25rem 0.75rem; border-radius: 999px;
-      background: #fff3e0; color: #e65100; font-weight: 600;
-      font-size: 0.85rem; margin-bottom: 0.75rem;
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      background: #fff3e0;
+      color: #e65100;
+      font-weight: 600;
+      font-size: 0.85rem;
+      margin-bottom: 0.75rem;
     }
 
-    .cert-note { font-size: 0.95rem; color: #4a4a4a; line-height: 1.5; margin-bottom: 0; }
+    .cert-note {
+      font-size: 0.95rem;
+      color: #4a4a4a;
+      line-height: 1.5;
+      margin-bottom: 0;
+    }
 
-    .btn.small { padding: 0.6rem 1.2rem; font-size: 0.9rem; }
+    .btn.small {
+      padding: 0.6rem 1.2rem;
+      font-size: 0.9rem;
+    }
 
-    .contact { padding: 100px 20px; background: var(--gradient); color: #fff; text-align: center; }
-    .contact .section-title { color: #fff; }
-    .contact .section-title::after { background: #fff; }
-    .contact-intro { font-size: 1.2rem; margin-bottom: 3rem; opacity: 0.9; }
+    /* Contact Section */
+    .contact {
+      padding: 100px 20px;
+      background: var(--gradient);
+      color: #fff;
+      text-align: center;
+    }
+
+    .contact .section-title {
+      color: #fff;
+    }
+
+    .contact .section-title::after {
+      background: #fff;
+    }
+
+    .contact-intro {
+      font-size: 1.2rem;
+      margin-bottom: 3rem;
+      opacity: 0.9;
+    }
 
     .contact-methods {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem; margin-top: 3rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
     }
 
     .contact-methods a {
-      background: rgba(255, 255, 255, 0.15); padding: 1.5rem; border-radius: 15px;
-      text-decoration: none; color: #fff; display: flex; align-items: center;
-      justify-content: center; gap: 0.8rem; font-weight: 500;
-      transition: all var(--transition-speed); backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.15);
+      padding: 1.5rem;
+      border-radius: 15px;
+      text-decoration: none;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      font-weight: 500;
+      transition: all var(--transition-speed);
+      backdrop-filter: blur(10px);
     }
 
-    .contact-methods a:hover { background: rgba(255, 255, 255, 0.25); transform: translateY(-5px); }
-    .contact-methods i { font-size: 1.2rem; }
+    .contact-methods a:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateY(-5px);
+    }
 
-    footer { background: var(--primary-color); color: #fff; padding: 2rem 20px; text-align: center; }
+    .contact-methods i {
+      font-size: 1.2rem;
+    }
 
     .contact-form-card {
       background: rgba(255, 255, 255, 0.12);
@@ -646,58 +1115,158 @@
       padding: 2rem 20px;
       text-align: center;
     }
+
+    .back-to-top {
+      display: inline-block;
+      margin-bottom: 1rem;
+      text-decoration: none;
+      color: #fff;
+      font-size: 1.5rem;
+      transition: color var(--transition-speed);
+    }
+
+    .back-to-top:hover {
+      color: var(--secondary-color);
+    }
+
+    /* Responsive Design */
     @media (max-width: 1024px) {
-      .hero-content { grid-template-columns: 1fr; text-align: center; gap: 2rem; }
-      .hero-text h1 { font-size: 2.8rem; }
-      .hero-text { max-width: 720px; margin: 0 auto; }
-      .hero-metrics { gap: 0.85rem; }
-      .hero-actions { justify-content: center; }
-      .services-grid, .certifications-grid, .gallery-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+      .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+      }
+
+      .hero-text h1 {
+        font-size: 2.8rem;
+      }
+
+      .services-grid,
+      .certifications-grid,
+      .gallery-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      }
     }
 
     @media (max-width: 768px) {
       .nav-links {
-        position: fixed; top: 0; right: -100%; background: var(--card-bg);
-        width: 100%; height: 100vh; flex-direction: column; justify-content: center;
-        align-items: center; transition: right 0.3s ease;
-        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1); gap: 2rem;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        background: var(--card-bg);
+        width: 100%;
+        height: 100vh;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: right 0.3s ease;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        gap: 2rem;
       }
-      .nav-links.active { right: 0; }
-      .nav-toggle { display: flex; z-index: 1001; }
-      .hero { clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%); padding: 80px 20px; }
-      .hero-text h1 { font-size: 2.5rem; }
-      .hero-tagline { font-size: 1.1rem; }
+
+      .nav-links.active {
+        right: 0;
+      }
+
+      .nav-toggle {
+        display: flex;
+        z-index: 1001;
+      }
+
+      .hero {
+        clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+        padding: 80px 20px;
+      }
+
+      .hero-text h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero-tagline {
+        font-size: 1.1rem;
+      }
+
       .hero-metrics { gap: 0.6rem; }
       .metric { padding: 1.1rem 0.6rem 1rem; gap: 0.5rem; }
       .metric-icon { width: 40px; height: 40px; font-size: 1rem; }
       .metric-number { font-size: 1.6rem; }
       .metric-label { font-size: 0.68rem; letter-spacing: 0.3px; }
-      .hero-actions { flex-direction: column; align-items: center; }
-      .services-grid, .certifications-grid, .gallery-grid { grid-template-columns: 1fr; }
-      .case-study-header { flex-direction: column; align-items: flex-start; }
-      .impact-metrics { grid-template-columns: repeat(2, 1fr); }
-      .contact-methods { grid-template-columns: 1fr; }
-      .section-title { font-size: 2rem; }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .services-grid,
+      .certifications-grid,
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .case-study-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .impact-metrics {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .contact-methods {
+        grid-template-columns: 1fr;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
     }
 
     @media (max-width: 480px) {
-      .container { padding: 0 15px; }
-      nav { padding: 1rem 15px; }
-      .hero-text h1 { font-size: 2rem; }
-      .hero-image img { width: 200px; height: 200px; }
+      .container {
+        padding: 0 15px;
+      }
+
+      nav {
+        padding: 1rem 15px;
+      }
+
+      .hero-text h1 {
+        font-size: 2rem;
+      }
+
+      .hero-image img {
+        width: 200px;
+        height: 200px;
+      }
+
       .hero-metrics { grid-template-columns: 1fr; gap: 0.7rem; }
       .metric { flex-direction: row; justify-content: flex-start; text-align: left; gap: 1rem; padding: 1rem 1.25rem; }
       .metric::before { left: 0; right: auto; top: 0; bottom: 0; width: 4px; height: auto; }
       .metric-icon { width: 42px; height: 42px; font-size: 1rem; }
       .metric-number { font-size: 1.55rem; }
       .metric-label { font-size: 0.74rem; line-height: 1.3; }
-      .impact-metrics { grid-template-columns: 1fr; }
-      .case-study-card, .service-card { padding: 2rem; }
-      .flagship-badge { top: 10px; right: 10px; font-size: 0.62rem; padding: 0.2rem 0.55rem; }
+
+      .impact-metrics {
+        grid-template-columns: 1fr;
+      }
+
+      .case-study-card,
+      .service-card {
+        padding: 2rem;
+      }
     }
 
-    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
-    .reveal.active { opacity: 1; transform: translateY(0); }
+    /* Scroll Reveal Animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
   </style>
 </head>
 <body>
@@ -728,15 +1297,15 @@
     <section class="hero" id="about">
       <div class="hero-content">
         <div class="hero-image">
-          <img src="./images/my pic.jpg" alt="Akinpelu Enoch - Technical Project Manager" />
+          <img src="./images/my pic.jpg" alt="Akinpelu Enoch - Technical Project Manager and Digital Transformation Analyst" />
         </div>
         <div class="hero-text">
           <h1>Hi, I'm Enoch</h1>
           <p class="hero-tagline">Technical Project Manager | I use technology to optimize operations and grow the bottom line.</p>
           <p class="hero-description">
-            I help corporate teams run operations effectively. By applying the right technology to the way work actually gets done automating manual processes, tightening delivery cycles, and removing operational waste. I turn efficiency gains into measurable financial impact: lower cost-to-serve, faster time-to-revenue, and resources freed to reinvest in growth. I pair a Computer Science foundation (B.Sc., Second Class Upper) with an ongoing M.Sc. in Artificial Intelligence, so I can translate business goals into technical execution and keep both non technical and technical teams aligned. Across few organizations, I've delivered NGN 15M+ in cost savings, cut delivery time by 15%, and reduced defects by 40% efficiency that flows straight to the bottom line.
+            Technical Project Manager and Digital Transformation Analyst specializing in software delivery and digital transformation for enterprise and growth-stage organizations. Proven track record delivering end-to-end software projects, translating complex business needs into scalable digital solutions, and driving measurable efficiency gains. Combines a strong foundation in Computer Science (B.Sc., Second Class Upper) with an ongoing M.Sc. in Artificial Intelligence to bring technical depth and strategic business alignment, with experience leading cross-functional teams, managing stakeholders, and building digital process frameworks adopted across multiple organizations.
           </p>
-
+          
           <div class="hero-metrics">
             <div class="metric">
               <div class="metric-icon"><i class="fas fa-shield-halved"></i></div>
@@ -760,10 +1329,10 @@
               </div>
             </div>
           </div>
-
+          
           <div class="hero-actions">
-            <a href="#case-studies" class="btn primary">View My Work</a>
-            <a href="#contact" class="btn secondary">Let's Talk</a>
+            <a href="#contact" class="btn primary">Schedule a Strategy Call</a>
+            <a href="#case-studies" class="btn secondary">View Experience</a>
           </div>
         </div>
       </div>
@@ -773,52 +1342,52 @@
       <div class="container">
         <h2 class="section-title">What I Do</h2>
         <div class="services-grid">
-
+          
           <div class="service-card reveal">
-            <div class="service-icon"><i class="fas fa-gauge-high"></i></div>
-            <h3>Operations Optimization</h3>
-            <p>I find where time, effort, and money leak out of day-to-day operations, then apply the right technology and process changes to close the gap — converting efficiency gains into lower operating cost and stronger margins.</p>
+            <div class="service-icon"><i class="fas fa-brain"></i></div>
+            <h3>Enterprise AI Strategy & Vision</h3>
+            <p>Define and execute an organizational AI vision. I bridge technical feasibility with strategic ROI, ensuring AI implementations don't just work, but fundamentally enhance business models and competitive position.</p>
             <div class="service-deliverables">
-              <span class="deliverable-tag">Cost Reduction</span>
-              <span class="deliverable-tag">Process Efficiency</span>
-              <span class="deliverable-tag">Waste Elimination</span>
-              <span class="deliverable-tag">Margin Impact</span>
+              <span class="deliverable-tag">Business Model Innovation</span>
+              <span class="deliverable-tag">Executive Roadmap</span>
+              <span class="deliverable-tag">Measurable ROI</span>
+              <span class="deliverable-tag">Technology Scouting</span>
             </div>
           </div>
 
           <div class="service-card reveal">
-            <div class="service-icon"><i class="fas fa-robot"></i></div>
-            <h3>Automation & Workflow Redesign</h3>
-            <p>I map how work actually flows, automate the manual and repetitive steps, and rebuild processes around tools teams will keep using — freeing skilled hours to be reinvested in revenue-generating work.</p>
+            <div class="service-icon"><i class="fas fa-globe-americas"></i></div>
+            <h3>Cross-Functional Transformation Leadership</h3>
+            <p>Unifying and directing global, cross-functional teams (Tech, Sales, Finance) toward a singular transformation objective. I eliminate silos and drive alignment at the executive level for unified execution.</p>
             <div class="service-deliverables">
-              <span class="deliverable-tag">Process Mapping</span>
-              <span class="deliverable-tag">Workflow Automation</span>
-              <span class="deliverable-tag">Tooling & Adoption</span>
-              <span class="deliverable-tag">Capacity Gains</span>
+              <span class="deliverable-tag">Stakeholder Alignment</span>
+              <span class="deliverable-tag">Silo Elimination</span>
+              <span class="deliverable-tag">Vision Casting</span>
+              <span class="deliverable-tag">Global Program Oversight</span>
             </div>
           </div>
 
           <div class="service-card reveal">
             <div class="service-icon"><i class="fas fa-rocket"></i></div>
-            <h3>Faster, Cleaner Delivery</h3>
-            <p>I run software products end-to-end — sprint planning, QA, and release management — accelerating time-to-market and cutting rework, so the business captures revenue sooner and spends less fixing defects.</p>
+            <h3>Digital Roadmapping & Portfolio Management</h3>
+            <p>Strategic oversight of the digital portfolio. I prioritize high-value initiatives, secure executive buy-in for resources, and manage the program timeline to ensure strategic goals are met efficiently.</p>
             <div class="service-deliverables">
-              <span class="deliverable-tag">Faster Time-to-Revenue</span>
-              <span class="deliverable-tag">Agile Delivery</span>
-              <span class="deliverable-tag">Quality & QA</span>
-              <span class="deliverable-tag">Rework Reduction</span>
+              <span class="deliverable-tag">Portfolio Prioritization</span>
+              <span class="deliverable-tag">Resource Allocation</span>
+              <span class="deliverable-tag">Program Governance</span>
+              <span class="deliverable-tag">Risk Mitigation</span>
             </div>
           </div>
 
           <div class="service-card reveal">
-            <div class="service-icon"><i class="fas fa-chart-line"></i></div>
-            <h3>Data-Driven Decisions & Enablement</h3>
-            <p>I turn operational data into KPI dashboards leaders can act on, and build the internal capability — through training and clear documentation — to sustain the gains long after the project ends.</p>
+            <div class="service-icon"><i class="fas fa-graduation-cap"></i></div>
+            <h3>Organizational Change & Capability Building</h3>
+            <p>Preparing the organization for the future. I lead culture change, establish new digital operating models, and build robust internal capability through targeted training and leadership mentorship.</p>
             <div class="service-deliverables">
-              <span class="deliverable-tag">KPI Dashboards</span>
-              <span class="deliverable-tag">Performance Reporting</span>
-              <span class="deliverable-tag">Team Enablement</span>
-              <span class="deliverable-tag">Sustained ROI</span>
+              <span class="deliverable-tag">Change Management</span>
+              <span class="deliverable-tag">Digital Operating Models</span>
+              <span class="deliverable-tag">Leadership Mentorship</span>
+              <span class="deliverable-tag">Talent Upskilling</span>
             </div>
           </div>
         </div>
@@ -827,19 +1396,8 @@
 
     <section class="skills-section" id="skills">
       <div class="container">
-      <h2 class="section-title">Skills &amp; Expertise</h2>
+      <h2 class="section-title">Skills & Expertise</h2>
       <div class="skills-grid reveal">
-
-        <div class="skill-card">
-          <h4>Project &amp; Product Delivery</h4>
-          <ul class="skills-list">
-            <li>Agile delivery</li>
-            <li>Sprint planning</li>
-            <li>Backlog management</li>
-            <li>Cross-functional team leadership</li>
-            <li>Stakeholder management</li>
-          </ul>
-        </div>
 
         <div class="skill-card">
           <h4>Digital Transformation</h4>
@@ -849,6 +1407,17 @@
             <li>Technology adoption</li>
             <li>Automation</li>
             <li>Digital maturity assessment</li>
+          </ul>
+        </div>
+
+        <div class="skill-card">
+          <h4>Project & Product Delivery</h4>
+          <ul class="skills-list">
+            <li>Agile delivery</li>
+            <li>Sprint planning</li>
+            <li>Backlog management</li>
+            <li>Cross-functional team leadership</li>
+            <li>Stakeholder management</li>
           </ul>
         </div>
 
@@ -863,7 +1432,7 @@
         </div>
 
         <div class="skill-card">
-          <h4>Data &amp; Reporting</h4>
+          <h4>Data & Reporting</h4>
           <ul class="skills-list">
             <li>Excel</li>
             <li>Power BI</li>
@@ -874,7 +1443,7 @@
         </div>
 
         <div class="skill-card">
-          <h4>Technology &amp; Tools</h4>
+          <h4>Technology & Tools</h4>
           <ul class="skills-list">
             <li>Python</li>
             <li>Flask</li>
@@ -914,7 +1483,8 @@
               <span class="outcome-tag">3 States Reached</span>
               <span class="outcome-tag">30% Income Uplift</span>
             </div>
-            <button class="btn primary small view-details-btn">View Details</button>          </div>
+            <button class="btn primary small view-details-btn">View Details</button>
+          </div>
 
           <div class="project-card" data-project="prayerPortal">
             <img src="./images/kingdom-portal.png" alt="Prayer Portal Logo" class="project-logo" />
@@ -928,29 +1498,122 @@
             <button class="btn primary small view-details-btn">View Details</button>
           </div>
 
-        <h2 class="section-title">Leadership</h2>        <div class="gallery-grid">
+          <div class="project-card" data-project="docify">
+            <img src="./images/Docify.png" alt="Docify Logo" class="project-logo" />
+            <h4>Docify</h4>
+            <p>AI translation for seamless healthcare communication.</p>
+            <div class="project-outcomes">
+              <span class="outcome-tag">12 Languages</span>
+              <span class="outcome-tag">40% Faster Diagnosis</span>
+              <span class="outcome-tag">NLP-Powered</span>
+            </div>
+            <button class="btn primary small view-details-btn">View Details</button>
+          </div>
 
+          <div class="project-card" data-project="nexutor">
+            <img src="./images/nexutor.png" alt="Nexutor Logo" class="project-logo" />
+            <h4>Nexutor</h4>
+            <p>An edutech AI startup for personalized learning.</p>
+            <div class="project-outcomes">
+              <span class="outcome-tag">800+ Learners</span>
+              <span class="outcome-tag">AI Curriculum Engine</span>
+              <span class="outcome-tag">35% Completion Uplift</span>
+            </div>
+            <button class="btn primary small view-details-btn">View Details</button>
+          </div>
+
+          <div class="project-card" data-project="studhab">
+            <img src="./images/studhab.png" alt="Studhab Logo" class="project-logo" />
+            <h4>Studhab</h4>
+            <p>Coding education with financial incentives for students.</p>
+            <div class="project-outcomes">
+              <span class="outcome-tag">300+ Students</span>
+              <span class="outcome-tag">Incentive-Based Learning</span>
+              <span class="outcome-tag">78% Retention Rate</span>
+            </div>
+            <button class="btn primary small view-details-btn">View Details</button>
+          </div>
+          
+          <div class="project-card" data-project="osusu">
+            <img src="./images/osusu.png" alt="OSUSU Logo" class="project-logo" />
+            <h4>OSUSU</h4>
+            <p>A communal savings platform for friends and family.</p>
+            <div class="project-outcomes">
+              <span class="outcome-tag">₦50M+ Saved</span>
+              <span class="outcome-tag">400+ Groups</span>
+              <span class="outcome-tag">Zero Defaults Recorded</span>
+            </div>
+            <button class="btn primary small view-details-btn">View Details</button>
+          </div>
+
+          <div class="project-card" data-project="swiftRoute">
+            <img src="./images/swiftroute.png" alt="SwiftRoute Logistics Logo" class="project-logo" />
+            <h4>SwiftRoute Logistics</h4>
+            <p>AI-powered logistics for route and fleet optimization.</p>
+            <div class="project-outcomes">
+              <span class="outcome-tag">22% Fuel Savings</span>
+              <span class="outcome-tag">50+ Fleet Vehicles</span>
+              <span class="outcome-tag">Real-time Tracking</span>
+            </div>
+            <button class="btn primary small view-details-btn">View Details</button>
+          </div>
+
+          <div class="project-card" data-project="veriSense">
+            <img src="./images/verisense.png" alt="VeriSense Retail Logo" class="project-logo" />
+            <h4>VeriSense Retail</h4>
+            <p>Smart retail solution using computer vision for inventory.</p>
+            <div class="project-outcomes">
+              <span class="outcome-tag">15 Store Locations</span>
+              <span class="outcome-tag">35% Shrinkage Reduced</span>
+              <span class="outcome-tag">Computer Vision AI</span>
+            </div>
+            <button class="btn primary small view-details-btn">View Details</button>
+          </div>
+
+          <div class="project-card" data-project="zenithAI">
+            <img src="./images/zenith.png" alt="ZenithAI Logo" class="project-logo" />
+            <h4>ZenithAI</h4>
+            <p>An AI platform for automated customer service.</p>
+            <div class="project-outcomes">
+              <span class="outcome-tag">80% Query Resolution</span>
+              <span class="outcome-tag">24/7 Availability</span>
+              <span class="outcome-tag">CRM Integrated</span>
+            </div>
+            <button class="btn primary small view-details-btn">View Details</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="leadership-gallery" id="leadership">
+      <div class="container">
+        <h2 class="section-title">Leadership</h2>
+        <div class="gallery-grid">
+          
           <div class="gallery-item reveal">
             <img src="./images/IMG_20250728_045823.jpg" alt="Leading AI Workshop" />
             <div class="gallery-overlay">
               <h4>Driving AI Capability</h4>
-              <p>Led a hands-on AI training session for 30+ professionals, lifting organizational tech literacy and future readiness.</p>
+              <p>Leading a hands-on AI training session for 30+ professionals to improve organizational tech literacy and future readiness.</p>
             </div>
           </div>
+
 
           <div class="gallery-item reveal">
             <img src="./images/IMG_20250728_045607.jpg" alt="Tech Conference Speaking" />
             <div class="gallery-overlay">
               <h4>Tech Conference Speaker</h4>
-              <p>Spoke on technological advancement at a faculty tech workshop, sharing delivery and career insights with emerging talent.</p>
+              <p>Speaking on technological advancement in my faculty tech workshop when i was on campus.</p>
             </div>
           </div>
+
+          <!-- Removed: Cross-Continental Alignment and Project Review Meeting gallery items per request -->
 
           <div class="gallery-item reveal">
             <img src="./images/IMG_20250728_050006.jpg" alt="Mentoring Session" />
             <div class="gallery-overlay">
               <h4>Technical Mentoring</h4>
-              <p>One-on-one mentorship with an emerging tech professional, helping shape a clear career path.</p>
+              <p>One-on-one mentorship session with an emerging tech professional to build their career path.</p>
             </div>
           </div>
 
@@ -958,7 +1621,7 @@
             <img src="./images/1753675580808.jpg" alt="Award Recognition" />
             <div class="gallery-overlay">
               <h4>Recognized Impact</h4>
-              <p>Earned an Excellence Award for measurable results and leadership as President of my computing students' association.</p>
+              <p>Receiving an Excellence Award for driving measurable results and leadership as the President of my computing student association.</p>
             </div>
           </div>
 
@@ -970,36 +1633,6 @@
       <div class="container">
         <h2 class="section-title">Professional Experience</h2>
         <div class="case-study-grid">
-
-          <div class="case-study-card reveal">
-            <div class="case-study-header">
-              <div class="case-study-meta">
-                <span class="company">Stormcell Technology</span>
-                <span class="duration">Oct 2024 - Jan 2026</span>
-                <span class="role">Software Project Manager</span>
-              </div>
-              <div class="case-study-results">
-                <span class="result-badge success">10 Products</span>
-                <span class="result-badge primary">40% Fewer Defects</span>
-              </div>
-            </div>
-            <h3>B2B and B2C Product Delivery &amp; Quality Acceleration</h3>
-
-            <div class="solution">
-              <h4><i class="fas fa-tasks"></i> Key Achievements</h4>
-              <ul>
-                <li>Directed end-to-end delivery of 10 B2B and B2C software products, achieving 15% faster time-to-market through improved sprint planning and release processes.</li>
-                <li>Reduced post-release defects by 40% by implementing structured QA practices including test planning, regression cycles, and acceptance criteria definition.</li>
-                <li>Delivered NGN 5M+ in cost savings across multiple software engagements through lean resource allocation, scope control, and streamlined vendor management.</li>
-              </ul>
-            </div>
-
-            <div class="impact-metrics">
-              <div class="impact-item"><span class="impact-number">10</span><span class="impact-label">Products Delivered</span></div>
-              <div class="impact-item"><span class="impact-number">15%</span><span class="impact-label">Faster Time-to-Market</span></div>
-              <div class="impact-item"><span class="impact-number">40%</span><span class="impact-label">Defect Reduction</span></div>
-            </div>
-          </div>
 
           <div class="case-study-card reveal">
             <div class="case-study-header">
@@ -1019,15 +1652,63 @@
               <h4><i class="fas fa-tasks"></i> Key Achievements</h4>
               <ul>
                 <li>Led delivery of 5 digital platforms for a global faith-based network, coordinating distributed volunteer teams from requirements through deployment.</li>
-                <li>Translated organizational goals into structured technical solutions, improving adoption and engagement for platforms serving 2000+ users annually.</li>
-                <li>Delivered on a volunteer-only model with no commercial budget, managing timelines, releases, and international stakeholder communications to a consistent cadence.</li>
+                <li>Translated ministry goals into structured technical solutions, improving adoption and engagement for platforms serving 2000+ users annually with zero commercial funding.</li>
+                <li>Managed project timelines, release planning, and stakeholder communications across international teams, maintaining consistent delivery cadence.</li>
               </ul>
             </div>
 
             <div class="impact-metrics">
-              <div class="impact-item"><span class="impact-number">5</span><span class="impact-label">Platforms Delivered</span></div>
-              <div class="impact-item"><span class="impact-number">2000+</span><span class="impact-label">Annual Users</span></div>
-              <div class="impact-item"><span class="impact-number">100%</span><span class="impact-label">Volunteer-Run Delivery</span></div>
+              <div class="impact-item">
+                <span class="impact-number">5</span>
+                <span class="impact-label">Platforms Delivered</span>
+              </div>
+              <div class="impact-item">
+                <span class="impact-number">2000+</span>
+                <span class="impact-label">Annual Users</span>
+              </div>
+              <div class="impact-item">
+                <span class="impact-number">0</span>
+                <span class="impact-label">Commercial Funding</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="case-study-card reveal">
+            <div class="case-study-header">
+              <div class="case-study-meta">
+                <span class="company">Stormcell Technology</span>
+                <span class="duration">Oct 2024 - Jan 2026</span>
+                <span class="role">Software Project Manager</span>
+              </div>
+              <div class="case-study-results">
+                <span class="result-badge success">10 Products</span>
+                <span class="result-badge primary">15% Faster TTM</span>
+              </div>
+            </div>
+            <h3>B2B and B2C Product Delivery & Quality Acceleration</h3>
+
+            <div class="solution">
+              <h4><i class="fas fa-tasks"></i> Key Achievements</h4>
+              <ul>
+                <li>Directed end-to-end delivery of 10 B2B and B2C software products, achieving 15% faster time-to-market through improved sprint planning and release processes.</li>
+                <li>Reduced post-release defects by 40% by implementing structured QA practices including test planning, regression cycles, and acceptance criteria definition.</li>
+                <li>Delivered NGN 5M+ in cost savings across multiple software engagements through lean resource allocation, scope control, and streamlined vendor management.</li>
+              </ul>
+            </div>
+
+            <div class="impact-metrics">
+              <div class="impact-item">
+                <span class="impact-number">10</span>
+                <span class="impact-label">Products Delivered</span>
+              </div>
+              <div class="impact-item">
+                <span class="impact-number">15%</span>
+                <span class="impact-label">Faster Time-to-Market</span>
+              </div>
+              <div class="impact-item">
+                <span class="impact-number">40%</span>
+                <span class="impact-label">Defect Reduction</span>
+              </div>
             </div>
           </div>
 
@@ -1043,7 +1724,7 @@
                 <span class="result-badge primary">90% Satisfaction</span>
               </div>
             </div>
-            <h3>Full-Cycle Delivery for Gaming &amp; eLearning Products</h3>
+            <h3>Full-Cycle Delivery for Gaming & eLearning Products</h3>
 
             <div class="solution">
               <h4><i class="fas fa-tasks"></i> Key Achievements</h4>
@@ -1055,9 +1736,18 @@
             </div>
 
             <div class="impact-metrics">
-              <div class="impact-item"><span class="impact-number">2</span><span class="impact-label">Products Delivered</span></div>
-              <div class="impact-item"><span class="impact-number">90%</span><span class="impact-label">Client Satisfaction</span></div>
-              <div class="impact-item"><span class="impact-number">3</span><span class="impact-label">Teams Adopted Framework</span></div>
+              <div class="impact-item">
+                <span class="impact-number">2</span>
+                <span class="impact-label">Products Delivered</span>
+              </div>
+              <div class="impact-item">
+                <span class="impact-number">90%</span>
+                <span class="impact-label">Client Satisfaction</span>
+              </div>
+              <div class="impact-item">
+                <span class="impact-number">3</span>
+                <span class="impact-label">Teams Adopted Framework</span>
+              </div>
             </div>
           </div>
 
@@ -1069,11 +1759,11 @@
                 <span class="role">Technical Officer</span>
               </div>
               <div class="case-study-results">
-                <span class="result-badge success">99.5% Uptime</span>
+                <span class="result-badge success">99% Uptime</span>
                 <span class="result-badge primary">150 Learners</span>
               </div>
             </div>
-            <h3>Infrastructure Reliability &amp; Digital Literacy Enablement</h3>
+            <h3>Infrastructure Reliability & Digital Literacy Enablement</h3>
 
             <div class="solution">
               <h4><i class="fas fa-tasks"></i> Key Achievements</h4>
@@ -1085,9 +1775,18 @@
             </div>
 
             <div class="impact-metrics">
-              <div class="impact-item"><span class="impact-number">99.5%</span><span class="impact-label">Infrastructure Uptime</span></div>
-              <div class="impact-item"><span class="impact-number">35%</span><span class="impact-label">Downtime Reduction</span></div>
-              <div class="impact-item"><span class="impact-number">150</span><span class="impact-label">Learners Trained</span></div>
+              <div class="impact-item">
+                <span class="impact-number">99%</span>
+                <span class="impact-label">Infrastructure Uptime</span>
+              </div>
+              <div class="impact-item">
+                <span class="impact-number">35%</span>
+                <span class="impact-label">Downtime Reduction</span>
+              </div>
+              <div class="impact-item">
+                <span class="impact-number">150</span>
+                <span class="impact-label">Learners Trained</span>
+              </div>
             </div>
           </div>
         </div>
@@ -1096,9 +1795,17 @@
 
     <section class="certifications" id="certifications">
       <div class="container">
-        <h2 class="section-title">Credentials</h2>
+        <h2 class="section-title">Professional Credentials</h2>
         <div class="certifications-grid">
 
+          <div class="certification-card reveal">
+            <img src="https://images.credly.com/images/80c95f74-dcf0-43fc-a437-053a598feb05/blob" alt="CAPM Certification Badge" />
+            <h3>Certified Associate in Project Management (CAPM)</h3>
+            <span class="cert-status">In Progress</span>
+            <p>Project Management Institute</p>
+            <p class="cert-note">I have paid for the certification and I am currently preparing for the exam. I plan to sit the exam in August 2026 and pass.</p>
+          </div>
+          
           <div class="certification-card reveal">
             <img src="./images/google.jpg" alt="Google Project Management Certification" />
             <h3>Project Management Certificate</h3>
@@ -1109,7 +1816,7 @@
           <div class="certification-card reveal">
             <img src="./images/m.jpg" alt="McKinsey Forward Program" />
             <h3>McKinsey Forward Program</h3>
-            <p>McKinsey &amp; Company</p>
+            <p>McKinsey & Company</p>
             <a href="https://www.credly.com/go/eBcmv55dHwklCabeV0ibug" target="_blank" class="btn primary small">Verify Credentials</a>
           </div>
 
@@ -1118,14 +1825,6 @@
             <h3>Introduction to CPMAI</h3>
             <p>Project Management Institute</p>
             <a href="https://www.credly.com/badges/64b36fd7-27e0-4b16-97ca-6db297a08ee9/" target="_blank" class="btn primary small">Verify Credentials</a>
-          </div>
-
-          <div class="certification-card reveal">
-            <img src="https://images.credly.com/images/80c95f74-dcf0-43fc-a437-053a598feb05/blob" alt="CAPM Certification Badge" />
-            <h3>Certified Associate in Project Management (CAPM)</h3>
-            <span class="cert-status">Exam Scheduled — Aug 2026</span>
-            <p>Project Management Institute</p>
-            <p class="cert-note">Registered and actively preparing; sitting the certification exam in August 2026.</p>
           </div>
         </div>
       </div>
@@ -1181,10 +1880,513 @@
 
     <section class="contact" id="contact">
       <div class="container">
-        <h2 class="section-title">Let's Make Your Operations Pay Off</h2>
+        <h2 class="section-title">Ready To Transform Your Business?</h2>
         <p class="contact-intro">
-          If your team is losing time and money to manual processes or slow delivery, let's talk. I'll help you find the efficiency gains — and turn them into measurable financial impact. I'm available for new projects and would love to understand your specific challenges.
+          Let's discuss how I can help deliver your next AI or tech product with measurable results. I'm currently available for new projects and would love to understand your specific challenges.
         </p>
+
+        <div class="contact-form-card">
+          <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+            <div class="form-row">
+              <input type="text" name="name" placeholder="Your Name" required />
+              <input type="email" name="email" placeholder="Your Email" required />
+            </div>
+            <input type="text" name="subject" placeholder="Subject (e.g. Project Inquiry)" required />
+            <textarea name="message" placeholder="Tell me about your project or challenge..." required></textarea>
+            <button type="submit" class="btn primary" style="width:100%; border-radius: 10px;">Send Message</button>
+            <div id="contact-form-status"></div>
+          </form>
+        </div>
+
+        <div class="contact-methods">
+          <a href="mailto:ifeoluwaakinpelu05@gmail.com">
+            <i class="fas fa-envelope"></i>
+            <span>ifeoluwaakinpelu05@gmail.com</span>
+          </a>
+          <a href="https://www.linkedin.com/in/ifeoluwaenochakinpelu" target="_blank">
+            <i class="fab fa-linkedin"></i>
+            <span>LinkedIn Profile</span>
+          </a>
+          <a href="https://github.com/ENOCHAKINPELU" target="_blank">
+            <i class="fab fa-github"></i>
+            <span>GitHub Profile</span>
+          </a>
+          <a href="https://wa.me/2348152534448" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+            <span>WhatsApp Chat</span>
+          </a>
+          <a href="tel:+2348152534448">
+            <i class="fas fa-phone"></i>
+            <span>+234 815 253 4448</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <a href="#about" class="back-to-top">
+        <i class="fas fa-chevron-up"></i>
+      </a>
+      <p>&copy; <span id="current-year"></span> Akinpelu Enoch. All rights reserved. | Delivering Excellence in Digital Transformation</p>
+    </div>
+  </footer>
+
+  <div id="cv-modal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close cv-modal-close">&times;</span>
+      <h3>Download Enoch's CV</h3>
+      <p>You're about to download Akinpelu Ifeoluwa Enoch's CV.</p>
+      <div class="modal-actions">
+        <button id="cv-cancel-download" class="btn neutral" type="button">Cancel</button>
+        <button id="cv-confirm-download" class="btn primary" type="button">Download</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="project-modal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close">&times;</span>
+      <img id="modal-project-logo" src="" alt="Project Logo" class="project-logo" />
+      <h3 id="modal-project-name"></h3>
+      <p id="modal-project-description"></p>
+      <div class="project-details">
+        <h4>Product Requirements</h4>
+        <ul id="modal-project-requirements"></ul>
+        <h4>Tools & Technologies</h4>
+        <p id="modal-project-tools"></p>
+        <h4>Key Responsibilities</h4>
+        <p id="modal-project-responsibilities"></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Mobile Navigation Toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    navToggle.addEventListener('click', () => {
+      navToggle.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navToggle.classList.remove('active');
+        navLinks.classList.remove('active');
+      });
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Scroll reveal animation
+    function revealOnScroll() {
+      const reveals = document.querySelectorAll('.reveal');
+      
+      reveals.forEach(reveal => {
+        const windowHeight = window.innerHeight;
+        const elementTop = reveal.getBoundingClientRect().top;
+        const elementVisible = 150;
+        
+        if (elementTop < windowHeight - elementVisible) {
+          reveal.classList.add('active');
+        }
+      });
+    }
+
+    // Initial check for elements in view
+    revealOnScroll();
+    
+    // Listen for scroll events
+    window.addEventListener('scroll', revealOnScroll);
+
+    // Add active state to navigation based on scroll position
+    window.addEventListener('scroll', () => {
+      let current = '';
+      const sections = document.querySelectorAll('section');
+      
+      sections.forEach(section => {
+        const sectionTop = section.getBoundingClientRect().top;
+        if (sectionTop <= 100) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // Dynamic metrics counter animation
+    function animateCounters() {
+      const counters = document.querySelectorAll('.metric-number, .impact-number');
+      
+      counters.forEach(counter => {
+        const target = counter.textContent;
+        const numericTarget = parseFloat(target.replace(/[^\d.]/g, ''));
+        
+        if (isNaN(numericTarget)) return;
+        
+        const rect = counter.getBoundingClientRect();
+        if (rect.top < window.innerHeight && !counter.classList.contains('animated')) {
+          counter.classList.add('animated');
+          
+          let current = 0;
+          const increment = numericTarget / 60;
+          const timer = setInterval(() => {
+            current += increment;
+            if (current >= numericTarget) {
+              current = numericTarget;
+              clearInterval(timer);
+            }
+            
+            // Format the number with appropriate suffix
+            let displayValue;
+            if (target.includes('₦') && current >= 1000000) {
+              displayValue = '₦' + (current / 1000000).toFixed(1) + 'M';
+            } else if (target.includes('%')) {
+              displayValue = Math.floor(current) + '%';
+            } else if (target.includes('/')) {
+              displayValue = current.toFixed(1) + '/5';
+            } else {
+              displayValue = Math.floor(current) + (target.includes('+') ? '+' : '');
+            }
+            
+            counter.textContent = displayValue;
+          }, 16);
+        }
+      });
+    }
+
+    window.addEventListener('scroll', animateCounters);
+    animateCounters(); // Initial check
+
+    // Project Modal Functionality
+    const projectModal = document.getElementById('project-modal');
+    const viewDetailsBtns = document.querySelectorAll('.view-details-btn');
+    const modalCloseBtn = document.querySelector('#project-modal .modal-close');
+
+    const cvModal = document.getElementById('cv-modal');
+    const cvOpenLink = document.querySelector('[data-cv-download]');
+    const cvConfirmBtn = document.getElementById('cv-confirm-download');
+    const cvCancelBtn = document.getElementById('cv-cancel-download');
+    const cvCloseBtn = document.querySelector('#cv-modal .modal-close');
+    let cvDownloadHref = '';
+    let cvDownloadFilename = '';
+    
+    const projectsData = {
+      agriConnect: {
+        name: 'Agri-Connect App',
+        description: 'A mobile application that connects small-scale farmers with buyers, suppliers, and agricultural resources. The platform uses location-based services to facilitate fair market access and knowledge sharing.',
+        requirements: [
+          'Implemented a secure payment gateway for transactions.',
+          'Designed a messaging feature for direct communication between users.',
+          'Created a resource library with best practices for farming.',
+          'Ensured a simple and accessible user interface for all literacy levels, driving high adoption.',
+        ],
+        tools: 'Flutter, Firebase, Node.js, PostgreSQL, Jira',
+        responsibilities: 'Managed the entire product lifecycle from ideation to market launch. Coordinated with design and development teams, conducted user interviews in rural communities, and oversaw beta testing.',
+      },
+      nylc: {
+        name: 'N Youth League Cup (NYLC)',
+        logo: './images/league cup.png',
+        description: 'The NYLC League Cup is a premier youth football competition in Nigeria designed to nurture young talent. The 2025/2026 U11 edition culminates in a Super 8 National Championship, with strong performances from clubs like Sunshine Stars F.C. (U19) and GRASSRUNNERS FOOTBALL CLUB. The tournament aims to transform the lives of passionate Nigerian youth through sport and development beyond the field.',
+        requirements: [
+          'Built a fan-facing experience to view player profiles and team information.',
+          'Integrated live score updates for matches across the competition.',
+          'Enabled match prediction features to drive fan engagement.',
+          'Supported highlight viewing to recap key match moments.'
+        ],
+        tools: 'Mobile app delivery, API integration, product management',
+        responsibilities: 'Managed the development of the NYLC mobile app so fans can view player information, follow live scores, predict matches, and watch highlights.',
+      },
+      prayerPortal: {
+        name: 'Prayer Portal',
+        description: 'A mobile application creating a global community of believers. The app serves as a digital space for people to share prayer requests, offer support, and connect with others in faith, fostering a sense of communal prayer and spiritual connection.',
+        requirements: [
+          'Developed a push notification system for prayer alerts.',
+          'Implemented a secure user authentication system.',
+          'Designed a social feed for sharing prayer requests.',
+          'Ensured a user-friendly and inclusive user interface.'
+        ],
+        tools: 'React Native, Firebase, Node.js, AWS, Figma',
+        responsibilities: 'Led the product design for the mobile user experience, conducted user interviews to identify key features, and managed the development team using Scrum methodologies.',
+      },
+      docify: {
+        name: 'Docify',
+        description: 'A healthcare AI startup that provides end-to-end language translation between patients and doctors. It uses AI to break down language barriers, allowing patients to meet with a doctor from anywhere in the world.',
+        requirements: [
+          'Developed a custom NLP model for medical terminology translation.',
+          'Built a real-time audio and text translation system.',
+          'Ensured compliance with healthcare privacy regulations (e.g., HIPAA).',
+          'Managed the pilot program with early adopter hospitals and clinics.'
+        ],
+        tools: 'Python, TensorFlow, React, Azure, HIPAA Compliance Tools',
+        responsibilities: 'Defined the product strategy for global expansion, managed the AI development lifecycle, and oversaw pilot programs in partner hospitals to gather user feedback.',
+      },
+      nexutor: {
+        name: 'Nexutor',
+        description: 'An edutech AI startup that helps students learn at their own pace. The system uses AI to understand each student\'s learning capability and adjusts the content accordingly, helping them grasp complex concepts faster and more effectively.',
+        requirements: [
+          'Built an adaptive learning algorithm to personalize content delivery.',
+          'Developed a micro-learning system with interactive quizzes and assessments.',
+          'Created a robust backend to handle high user traffic.',
+          'Conducted A/B testing on different UI/UX designs to optimize engagement.'
+        ],
+        tools: 'Python, Scikit-learn, React, Google Cloud, Figma',
+        responsibilities: 'Owned the product roadmap and feature backlog. Collaborated with educational content creators and developers. Analyzed user data to identify areas for improvement and new feature development.',
+      },
+      studhab: {
+        name: 'Studhab',
+        description: 'A project that helps students in Canada and Nigeria learn to code with incentives, allowing them to earn money while they learn. The system rewards users for their progress, making the process of mastering coding skills both fun and financially rewarding.',
+        requirements: [
+          'Created a curriculum progression with milestone-based incentives.',
+          'Integrated a secure payment system to handle student earnings.',
+          'Developed a peer-to-peer code review feature.',
+          'Managed user accounts and progress tracking.'
+        ],
+        tools: 'Next.js, Django, Stripe API, Docker, Jira',
+        responsibilities: 'Defined the incentive-based learning model, managed stakeholder relations with educational partners in both Canada and Nigeria, and oversaw the platform\'s beta launch.',
+      },
+      osusu: {
+        name: 'OSUSU',
+        description: 'A communal savings platform for friends and family in China, Nigeria, and the Nigerian diaspora. It provides a secure and user-friendly way for groups to save money together towards common goals.',
+        requirements: [
+          'Implemented a secure group savings feature with shared goals.',
+          'Developed automated contribution reminders and notifications.',
+          'Ensured compliance with international financial regulations.',
+          'Created a transparent dashboard for group members to track progress.'
+        ],
+        tools: 'Flutter, Firebase, Express.js, Stripe, various financial APIs',
+        responsibilities: 'Led the product strategy for a multi-country launch, conducted extensive user research on traditional savings methods, and managed the technical implementation of the group savings logic.',
+      },
+      swiftRoute: {
+        name: 'SwiftRoute Logistics',
+        logo: 'https://placehold.co/100x100/F9A825/000000?text=📦',
+        description: 'An AI-powered logistics platform that optimizes delivery routes, manages fleets, and provides real-time tracking. The system uses machine learning algorithms to predict traffic and delivery times, ensuring a highly efficient and transparent supply chain for businesses of all sizes.',
+        requirements: [
+          'Developed a route optimization algorithm using Google Maps API.',
+          'Built a real-time tracking dashboard for clients.',
+          'Created an automated fleet management and vehicle assignment system.',
+          'Integrated with third-party logistics and shipping providers.'
+        ],
+        tools: 'Python, Google Maps API, React, Node.js, MongoDB',
+        responsibilities: 'Led the product\'s feature roadmap from concept to market, managed the integration with third-party logistics partners, and optimized the platform\'s performance based on delivery metrics.',
+      },
+      veriSense: {
+        name: 'VeriSense Retail',
+        logo: 'https://placehold.co/100x100/90CAF9/000000?text=🛒',
+        description: 'A smart retail solution that utilizes computer vision to analyze store layouts, track customer behavior, and manage inventory automatically. The system provides retailers with invaluable insights to optimize their operations and create a more personalized shopping experience for customers.',
+        requirements: [
+          'Built a computer vision model for object detection and shopper tracking.',
+          'Developed a dashboard for analyzing customer behavior and heatmaps.',
+          'Created an automated re-stocking alert system based on real-time stock levels.',
+          'Ensured the system could operate on standard security cameras with no special hardware.'
+        ],
+        tools: 'Python, TensorFlow, OpenCV, Vue.js, AWS, Figma',
+        responsibilities: 'Defined the product vision for a modern retail environment, managed the data collection and annotation process for the AI model, and presented key insights to C-level executives.',
+      },
+      zenithAI: {
+        name: 'ZenithAI',
+        logo: 'https://placehold.co/100x100/80DEEA/000000?text=🤖',
+        description: 'An AI-driven customer service platform that provides instant, personalized support 24/7. Using advanced natural language processing, ZenithAI\'s chatbots and virtual assistants can resolve customer queries, handle complex requests, and improve overall customer satisfaction.',
+        requirements: [
+          'Developed an NLP-based chatbot with intent recognition and conversational memory.',
+          'Integrated the platform with major CRM systems (e.g., Salesforce).',
+          'Created a knowledge base management system for the AI to learn from.',
+          'Implemented a hand-off feature for complex queries to a human agent.'
+        ],
+        tools: 'Python, NLTK, Dialogflow, React, Salesforce API',
+        responsibilities: 'Led the development of the chatbot\'s conversational flow, conducted user satisfaction surveys to improve the AI\'s responses, and scaled the platform for enterprise clients.',
+      }
+    };
+
+    viewDetailsBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const projectCard = btn.closest('.project-card');
+        const projectId = projectCard.dataset.project;
+        const project = projectsData[projectId];
+        
+        if (project) {
+          const modalLogo = document.getElementById('modal-project-logo');
+          const fallbackLogo = projectCard.querySelector('img')?.getAttribute('src');
+          modalLogo.src = project.logo || fallbackLogo || '';
+          modalLogo.alt = `${project.name} Logo`;
+          document.getElementById('modal-project-name').textContent = project.name;
+          document.getElementById('modal-project-description').textContent = project.description;
+          
+          const requirementsList = document.getElementById('modal-project-requirements');
+          requirementsList.innerHTML = '';
+          project.requirements.forEach(req => {
+            const li = document.createElement('li');
+            li.textContent = req;
+            requirementsList.appendChild(li);
+          });
+          
+          document.getElementById('modal-project-tools').textContent = project.tools;
+          document.getElementById('modal-project-responsibilities').textContent = project.responsibilities;
+          
+          projectModal.style.display = 'block';
+        }
+      });
+    });
+
+    if (modalCloseBtn) {
+      modalCloseBtn.addEventListener('click', () => {
+        projectModal.style.display = 'none';
+      });
+    }
+
+    if (cvOpenLink && cvModal) {
+      cvOpenLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        cvDownloadHref = cvOpenLink.getAttribute('href');
+        cvDownloadFilename = cvOpenLink.getAttribute('download') || 'Akinpelu Ifeoluwa Enoch CV.pdf';
+        cvModal.style.display = 'block';
+      });
+    }
+
+    function closeCvModal() {
+      if (cvModal) cvModal.style.display = 'none';
+    }
+
+    if (cvCancelBtn) {
+      cvCancelBtn.addEventListener('click', closeCvModal);
+    }
+
+    if (cvCloseBtn) {
+      cvCloseBtn.addEventListener('click', closeCvModal);
+    }
+
+    if (cvConfirmBtn) {
+      cvConfirmBtn.addEventListener('click', () => {
+        if (!cvDownloadHref) {
+          closeCvModal();
+          return;
+        }
+        const tempLink = document.createElement('a');
+        tempLink.href = cvDownloadHref;
+        tempLink.download = cvDownloadFilename;
+        document.body.appendChild(tempLink);
+        tempLink.click();
+        tempLink.remove();
+        closeCvModal();
+      });
+    }
+
+    window.addEventListener('click', (event) => {
+      if (event.target === projectModal) {
+        projectModal.style.display = 'none';
+      }
+      if (cvModal && event.target === cvModal) {
+        closeCvModal();
+      }
+    });
+
+    // Responsive Carousel Logic
+    const projectsGrid = document.querySelector('.projects-grid');
+    const isMobile = window.innerWidth <= 768;
+
+    if (isMobile) {
+      // Enable dragging/swiping for mobile devices
+      let isDown = false;
+      let startX;
+      let scrollLeft;
+      let velocity = 0;
+      let momentumID;
+
+      projectsGrid.addEventListener('mousedown', (e) => {
+        isDown = true;
+        projectsGrid.classList.add('active');
+        startX = e.pageX - projectsGrid.offsetLeft;
+        scrollLeft = projectsGrid.scrollLeft;
+        cancelMomentumTracking();
+      });
+
+      projectsGrid.addEventListener('mouseleave', () => {
+        if (isDown) {
+          isDown = false;
+          projectsGrid.classList.remove('active');
+          beginMomentumTracking();
+        }
+      });
+
+      projectsGrid.addEventListener('mouseup', () => {
+        if (isDown) {
+          isDown = false;
+          projectsGrid.classList.remove('active');
+          beginMomentumTracking();
+        }
+      });
+
+      projectsGrid.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - projectsGrid.offsetLeft;
+        const walk = (x - startX);
+        const newScrollLeft = scrollLeft - walk;
+        velocity = (newScrollLeft - projectsGrid.scrollLeft) * 0.5;
+        projectsGrid.scrollLeft = newScrollLeft;
+      });
+
+      projectsGrid.addEventListener('touchstart', (e) => {
+        isDown = true;
+        startX = e.touches[0].pageX - projectsGrid.offsetLeft;
+        scrollLeft = projectsGrid.scrollLeft;
+        cancelMomentumTracking();
+      });
+
+      projectsGrid.addEventListener('touchend', () => {
+        if (isDown) {
+          isDown = false;
+          beginMomentumTracking();
+        }
+      });
+
+      projectsGrid.addEventListener('touchmove', (e) => {
+        if (!isDown) return;
+        const x = e.touches[0].pageX - projectsGrid.offsetLeft;
+        const walk = (x - startX);
+        const newScrollLeft = scrollLeft - walk;
+        velocity = (newScrollLeft - projectsGrid.scrollLeft) * 0.5;
+        projectsGrid.scrollLeft = newScrollLeft;
+      });
+
+      function beginMomentumTracking() {
+        cancelMomentumTracking();
+        momentumID = requestAnimationFrame(momentumLoop);
+      }
+
+      function cancelMomentumTracking() {
+        cancelAnimationFrame(momentumID);
+      }
+
+      function momentumLoop() {
+        projectsGrid.scrollLeft += velocity;
+        velocity *= 0.95;
+        if (Math.abs(velocity) > 0.5) {
+          momentumID = requestAnimationFrame(momentumLoop);
+        }
+      }
+    }
 
     // Contact form AJAX submission (Formspree)
     const contactForm = document.getElementById('contact-form');
@@ -1210,7 +2412,8 @@
       });
     }
 
-    // Auto-update copyright year    (function setCopyrightYear(){
+    // Auto-update copyright year
+    (function setCopyrightYear(){
       const y = new Date().getFullYear();
       const el = document.getElementById('current-year');
       if (el) el.textContent = y;
