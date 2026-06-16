@@ -35,7 +35,10 @@ function render(options: {
   url: string;
 }): string {
   const title = escapeHtml(options.title);
-  const description = escapeHtml(options.description);
+  // Collapse newlines/tabs to a single space and trim to 160 chars so the
+  // value never contains literal line breaks that would break the attribute.
+  const rawDesc = options.description.replace(/[\r\n\t]+/g, " ").trim().slice(0, 160);
+  const description = escapeHtml(rawDesc);
   const url = escapeHtml(options.url);
   const imageTag = options.image
     ? `<meta property="og:image" content="${escapeHtml(options.image)}" />\n    <meta name="twitter:image" content="${escapeHtml(options.image)}" />`
