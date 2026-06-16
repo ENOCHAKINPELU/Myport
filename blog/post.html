@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title id="page-title">Article | Akinpelu Enoch</title>
+  <meta id="meta-description" name="description" content="Articles by Akinpelu Enoch on technical project management and digital transformation." />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3SQRVDGXB8"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-3SQRVDGXB8');</script>
+  <link rel="canonical" id="canonical-link" href="https://enochakinpelu.github.io/Myport/blog/post.html" />
+  <meta id="og-title" property="og:title" content="Blog | Akinpelu Enoch" />
+  <meta id="og-description" property="og:description" content="Articles by Akinpelu Enoch on technical project management and digital transformation." />
+  <meta id="og-image" property="og:image" content="" />
+  <meta id="og-url" property="og:url" content="https://enochakinpelu.github.io/Myport/blog/post.html" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link rel="stylesheet" href="../css/blog.css" />
+  <style>
+    /* Post meta bar */
+    .post-meta-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.2rem;
+      margin-bottom: 2rem;
+      color: #777;
+      font-size: 0.9rem;
+    }
+    .post-meta-bar .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .post-meta-bar .meta-item i {
+      color: var(--secondary-color);
+    }
+
+    /* Share bar */
+    .share-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin: 2.5rem 0;
+      padding: 1.25rem 1.5rem;
+      background: var(--bg-color);
+      border-radius: 12px;
+      border: 1px solid #e8e8e8;
+    }
+    .share-bar span {
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: #fff;
+      transition: opacity 0.2s;
+    }
+    .share-btn:hover { opacity: 0.85; }
+    .share-btn.linkedin { background: #0077B5; }
+    .share-btn.twitter  { background: #1DA1F2; }
+    .share-btn.whatsapp { background: #25D366; }
+    .share-btn.copy     { background: var(--accent-color); cursor: pointer; border: none; }
+
+    /* Author bio */
+    .author-bio {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      padding: 1.5rem;
+      background: var(--bg-color);
+      border-radius: 16px;
+      border: 1px solid #e8e8e8;
+      margin: 2.5rem 0;
+    }
+    .author-bio img {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+    .author-bio h4 { color: var(--primary-color); margin-bottom: 0.3rem; }
+    .author-bio p  { font-size: 0.92rem; color: #555; margin: 0; }
+    .author-bio .author-links { margin-top: 0.6rem; display: flex; gap: 0.75rem; }
+    .author-bio .author-links a { color: var(--secondary-color); font-size: 0.88rem; font-weight: 600; text-decoration: none; }
+
+    /* Comments */
+    .comments-section { margin-top: 3rem; }
+    .comments-section h2 { font-size: 1.6rem; color: var(--primary-color); margin-bottom: 1.5rem; }
+
+    .comment-form { background: var(--bg-color); border-radius: 12px; padding: 1.5rem; border: 1px solid #e8e8e8; margin-bottom: 2rem; }
+    .comment-form h3 { font-size: 1.1rem; color: var(--primary-color); margin-bottom: 1rem; }
+    .comment-form input,
+    .comment-form textarea {
+      width: 100%;
+      padding: 0.7rem 1rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      margin-bottom: 0.85rem;
+      outline: none;
+    }
+    .comment-form textarea { min-height: 100px; resize: vertical; }
+    .comment-form input:focus,
+    .comment-form textarea:focus { border-color: var(--secondary-color); }
+    #comment-status { margin-top: 0.5rem; font-weight: 600; font-size: 0.9rem; }
+    #comment-status.success { color: #1e7e34; }
+    #comment-status.error   { color: #c0392b; }
+
+    .comment-list { display: flex; flex-direction: column; gap: 1.25rem; }
+    .comment-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      border: 1px solid #e8e8e8;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .comment-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+    .comment-author { font-weight: 700; color: var(--primary-color); }
+    .comment-date   { font-size: 0.8rem; color: #999; }
+    .comment-body   { color: var(--text-color); line-height: 1.6; }
+    .no-comments    { text-align: center; color: #999; padding: 2rem 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="../index.html" class="logo">ENOCH</a>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="../index.html#about">Home</a></li>
+        <li><a href="../index.html#projects">Innovation Portfolio</a></li>
+        <li><a href="./index.html">Blog</a></li>
+        <li><a href="../index.html#contact">Let's Talk</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <article class="post-article" id="post-article">
+      <p>Loading article...</p>
+    </article>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; <span id="current-year"></span> Akinpelu Enoch. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="../js/supabase-config.js"></script>
+  <script>
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks  = document.querySelector('.nav-links');
+    navToggle.addEventListener('click', () => {
+      navToggle.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+
+    function formatDate(dateString) {
+      if (!dateString) return '';
+      return new Date(dateString).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    }
+
+    function readingTime(html) {
+      const text = html.replace(/<[^>]+>/g, ' ');
+      const words = text.trim().split(/\s+/).length;
+      return Math.max(1, Math.round(words / 200));
+    }
+
+    function formatViews(n) {
+      if (n >= 1000) return (n / 1000).toFixed(1) + 'k';
+      return n;
+    }
+
+    const slug = new URLSearchParams(window.location.search).get('slug');
+
+    async function loadPost() {
+      const article = document.getElementById('post-article');
+
+      if (!slug) {
+        article.innerHTML = notFound();
+        return;
+      }
+
+      const { data: post, error } = await supabaseClient
+        .from('posts')
+        .select('*')
+        .eq('slug', slug)
+        .eq('status', 'published')
+        .single();
+
+      if (error || !post) {
+        article.innerHTML = notFound();
+        return;
+      }
+
+      // Update meta tags
+      const pageUrl = `https://enochakinpelu.github.io/Myport/blog/post.html?slug=${encodeURIComponent(post.slug)}`;
+      document.getElementById('page-title').textContent        = `${post.title} | Akinpelu Enoch`;
+      document.getElementById('meta-description').content      = post.excerpt || '';
+      document.getElementById('canonical-link').href           = pageUrl;
+      document.getElementById('og-title').content              = post.title;
+      document.getElementById('og-description').content        = post.excerpt || '';
+      document.getElementById('og-url').content                = pageUrl;
+      if (post.cover_image_url) document.getElementById('og-image').content = post.cover_image_url;
+
+      // GA4 virtual page view with post title
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'page_view', { page_title: post.title, page_location: pageUrl });
+      }
+
+      const mins      = readingTime(post.content || '');
+      const shareUrl  = `${SUPABASE_URL}/functions/v1/post-preview?slug=${encodeURIComponent(post.slug)}`;
+      const encodedUrl   = encodeURIComponent(shareUrl);
+      const encodedTitle = encodeURIComponent(post.title);
+
+      article.innerHTML = `
+        ${post.cover_image_url ? `<img class="post-cover" src="${post.cover_image_url}" alt="${post.title}" />` : ''}
+
+        <h1>${post.title}</h1>
+
+        <div class="post-meta-bar">
+          <span class="meta-item"><i class="fas fa-calendar-alt"></i> ${formatDate(post.published_at)}</span>
+          <span class="meta-item"><i class="fas fa-clock"></i> ${mins} min read</span>
+          <span class="meta-item" id="view-count-badge"><i class="fas fa-eye"></i> ${formatViews(post.views || 0)} views</span>
+          <span class="meta-item" id="comment-count-badge"><i class="fas fa-comments"></i> <span id="comment-count">…</span> comments</span>
+        </div>
+
+        <div class="post-content">${post.content || ''}</div>
+
+        <!-- Share bar -->
+        <div class="share-bar">
+          <span>Share this article:</span>
+          <a class="share-btn linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}" target="_blank" rel="noopener">
+            <i class="fab fa-linkedin"></i> LinkedIn
+          </a>
+          <a class="share-btn twitter" href="https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}" target="_blank" rel="noopener">
+            <i class="fab fa-twitter"></i> Twitter/X
+          </a>
+          <a class="share-btn whatsapp" href="https://wa.me/?text=${encodedTitle}%20${encodedUrl}" target="_blank" rel="noopener">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+          </a>
+          <button class="share-btn copy" id="copy-link-btn"><i class="fas fa-link"></i> Copy Link</button>
+        </div>
+
+        <!-- Author bio -->
+        <div class="author-bio">
+          <img src="../images/my pic.jpg" alt="Akinpelu Enoch" />
+          <div>
+            <h4>Akinpelu Enoch</h4>
+            <p>Technical Project Manager &amp; Digital Transformation Analyst. Specialising in software delivery, AI product management, and enterprise digital transformation. Currently pursuing an M.Sc. in Artificial Intelligence.</p>
+            <div class="author-links">
+              <a href="https://www.linkedin.com/in/ifeoluwaenochakinpelu" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+              <a href="https://github.com/ENOCHAKINPELU" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+              <a href="../index.html#contact"><i class="fas fa-envelope"></i> Contact</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Comments -->
+        <section class="comments-section" id="comments-section">
+          <h2><i class="fas fa-comments"></i> Comments</h2>
+
+          <div class="comment-form">
+            <h3>Leave a Comment</h3>
+            <form id="comment-form">
+              <input type="text" id="comment-name" placeholder="Your Name" required maxlength="80" />
+              <textarea id="comment-body" placeholder="Share your thoughts..." required maxlength="2000"></textarea>
+              <button type="submit" class="btn primary">Post Comment</button>
+              <div id="comment-status"></div>
+            </form>
+          </div>
+
+          <div id="comment-list" class="comment-list"></div>
+        </section>
+
+        <a class="post-back-link" href="./index.html">&larr; Back to Blog</a>
+      `;
+
+      // Copy link
+      document.getElementById('copy-link-btn').addEventListener('click', () => {
+        navigator.clipboard.writeText(shareUrl).then(() => {
+          const btn = document.getElementById('copy-link-btn');
+          btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+          setTimeout(() => { btn.innerHTML = '<i class="fas fa-link"></i> Copy Link'; }, 1800);
+        });
+      });
+
+      // Increment view count (fire-and-forget)
+      supabaseClient.rpc('increment_post_views', { post_slug: slug });
+
+      // Load comments and count
+      loadComments();
+
+      // Comment form
+      document.getElementById('comment-form').addEventListener('submit', submitComment);
+    }
+
+    async function loadComments() {
+      const { data: comments } = await supabaseClient
+        .from('comments')
+        .select('author_name, content, created_at')
+        .eq('post_slug', slug)
+        .order('created_at', { ascending: true });
+
+      const count = comments ? comments.length : 0;
+      const countEl = document.getElementById('comment-count');
+      if (countEl) countEl.textContent = count;
+
+      const list = document.getElementById('comment-list');
+      if (!list) return;
+
+      if (!comments || count === 0) {
+        list.innerHTML = '<p class="no-comments">No comments yet. Be the first to share your thoughts!</p>';
+        return;
+      }
+
+      list.innerHTML = comments.map(c => `
+        <div class="comment-card">
+          <div class="comment-header">
+            <span class="comment-author">${escapeHtml(c.author_name)}</span>
+            <span class="comment-date">${formatDate(c.created_at)}</span>
+          </div>
+          <p class="comment-body">${escapeHtml(c.content)}</p>
+        </div>
+      `).join('');
+    }
+
+    async function submitComment(e) {
+      e.preventDefault();
+      const statusEl  = document.getElementById('comment-status');
+      const nameInput = document.getElementById('comment-name');
+      const bodyInput = document.getElementById('comment-body');
+
+      statusEl.className = '';
+      statusEl.textContent = 'Posting...';
+
+      const { error } = await supabaseClient.from('comments').insert({
+        post_slug:   slug,
+        author_name: nameInput.value.trim(),
+        content:     bodyInput.value.trim(),
+      });
+
+      if (error) {
+        statusEl.className = 'error';
+        statusEl.textContent = 'Failed to post comment. Please try again.';
+        return;
+      }
+
+      statusEl.className = 'success';
+      statusEl.textContent = 'Comment posted!';
+      e.target.reset();
+      setTimeout(() => { statusEl.textContent = ''; }, 2500);
+      loadComments();
+    }
+
+    function escapeHtml(str) {
+      return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function notFound() {
+      return '<h1>Article not found</h1><p>This article does not exist or is no longer available.</p><a class="post-back-link" href="./index.html">&larr; Back to Blog</a>';
+    }
+
+    loadPost();
+  </script>
+</body>
+</html>

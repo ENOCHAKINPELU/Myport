@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Analytics | Blog Admin</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link rel="stylesheet" href="../css/blog.css" />
+  <style>
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .stat-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 1.75rem;
+      box-shadow: var(--executive-shadow);
+      border: 1px solid #e8e8e8;
+      text-align: center;
+    }
+
+    .stat-card i {
+      font-size: 2rem;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.75rem;
+    }
+
+    .stat-value {
+      display: block;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      color: #777;
+      margin-top: 0.25rem;
+    }
+
+    /* Posts table */
+    .posts-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+
+    .posts-table th {
+      text-align: left;
+      padding: 0.85rem 1rem;
+      background: var(--bg-color);
+      color: var(--primary-color);
+      font-weight: 700;
+      border-bottom: 2px solid #e8e8e8;
+    }
+
+    .posts-table td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid #f0f0f0;
+      vertical-align: middle;
+    }
+
+    .posts-table tr:hover td { background: #fafbff; }
+
+    .posts-table .view-bar-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .view-bar {
+      height: 8px;
+      border-radius: 4px;
+      background: var(--gradient);
+      min-width: 4px;
+    }
+
+    .table-overflow { overflow-x: auto; }
+
+    /* GA4 links */
+    .ga4-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .ga4-link-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: var(--card-bg);
+      border: 1px solid #e8e8e8;
+      border-radius: 14px;
+      padding: 1.25rem 1.5rem;
+      text-decoration: none;
+      color: var(--text-color);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .ga4-link-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--executive-shadow);
+    }
+
+    .ga4-link-card i {
+      font-size: 1.6rem;
+      color: var(--secondary-color);
+      flex-shrink: 0;
+    }
+
+    .ga4-link-card strong { display: block; color: var(--primary-color); margin-bottom: 0.2rem; }
+    .ga4-link-card small  { color: #777; }
+
+    .section-gap { margin-top: 2.5rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="../index.html" class="logo">ENOCH</a>
+      <ul class="nav-links">
+        <li><a href="./index.html">View Blog</a></li>
+        <li><a href="./admin.html">Manage Posts</a></li>
+        <li><a href="#" id="logout-link">Log Out</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <h1>Analytics</h1>
+      <p>Blog performance, post views, comments, and site traffic in one place.</p>
+    </section>
+
+    <section id="dashboard" class="admin-section" style="display:none;">
+
+      <!-- Summary stats -->
+      <div class="stat-grid" id="stat-grid"></div>
+
+      <!-- GA4 shortcuts -->
+      <div class="admin-card section-gap">
+        <h2 class="section-title" style="font-size:1.5rem;">Google Analytics — Live Reports</h2>
+        <p style="text-align:center;margin-bottom:1.5rem;color:#777;">Opens your GA4 property dashboard directly (you'll be logged in to Google Analytics).</p>
+        <div class="ga4-links">
+          <a class="ga4-link-card" href="https://analytics.google.com/analytics/web/#/p510306696/reports/intelligenthome" target="_blank">
+            <i class="fas fa-chart-line"></i>
+            <div><strong>Overview</strong><small>Sessions, users, page views</small></div>
+          </a>
+          <a class="ga4-link-card" href="https://analytics.google.com/analytics/web/#/p510306696/reports/explorer?params=_u..pageSize%3D25%26_u..dataFilters%3D%5B%5D%26_u..sortKey%3Dga:sessions%26_u..sortDir%3DDESCENDING&r=all-pages-and-screens" target="_blank">
+            <i class="fas fa-file-alt"></i>
+            <div><strong>Top Pages</strong><small>Which pages get the most visits</small></div>
+          </a>
+          <a class="ga4-link-card" href="https://analytics.google.com/analytics/web/#/p510306696/reports/explorer?r=traffic-acquisition" target="_blank">
+            <i class="fas fa-globe"></i>
+            <div><strong>Traffic Sources</strong><small>Where visitors come from</small></div>
+          </a>
+          <a class="ga4-link-card" href="https://analytics.google.com/analytics/web/#/p510306696/reports/explorer?r=user-demographics-overview" target="_blank">
+            <i class="fas fa-users"></i>
+            <div><strong>Audience</strong><small>Countries, devices, demographics</small></div>
+          </a>
+          <a class="ga4-link-card" href="https://analytics.google.com/analytics/web/#/p510306696/realtime/overview" target="_blank">
+            <i class="fas fa-broadcast-tower"></i>
+            <div><strong>Real-time</strong><small>Who's on your site right now</small></div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Posts performance table -->
+      <div class="admin-card section-gap">
+        <h2 class="section-title" style="font-size:1.5rem;">Post Performance</h2>
+        <div class="table-overflow">
+          <table class="posts-table">
+            <thead>
+              <tr>
+                <th>Article</th>
+                <th>Status</th>
+                <th>Views</th>
+                <th>Comments</th>
+                <th>Published</th>
+              </tr>
+            </thead>
+            <tbody id="posts-table-body">
+              <tr><td colspan="5" style="text-align:center;color:#999;">Loading…</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Recent comments -->
+      <div class="admin-card section-gap">
+        <h2 class="section-title" style="font-size:1.5rem;">Recent Comments</h2>
+        <ul id="recent-comments-list" class="admin-post-list"></ul>
+        <p id="no-comments-msg" style="display:none;text-align:center;color:#999;">No comments yet.</p>
+      </div>
+
+    </section>
+
+    <!-- Login wall -->
+    <section id="login-section" class="admin-section">
+      <div class="admin-card" style="max-width:420px;margin:0 auto;">
+        <h2 class="section-title" style="font-size:1.5rem;">Log In</h2>
+        <form id="login-form">
+          <div class="form-group">
+            <label for="login-email">Email</label>
+            <input type="email" id="login-email" required autocomplete="username" />
+          </div>
+          <div class="form-group">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" required autocomplete="current-password" />
+          </div>
+          <button type="submit" class="btn primary" style="width:100%;">Log In</button>
+          <div id="login-error" style="color:#c0392b;margin-top:0.75rem;font-weight:600;"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; <span id="current-year"></span> Akinpelu Enoch. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="../js/supabase-config.js"></script>
+  <script>
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    function formatDate(d) {
+      if (!d) return '—';
+      return new Date(d).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+    }
+
+    function fmt(n) {
+      if (n >= 1000) return (n / 1000).toFixed(1) + 'k';
+      return n;
+    }
+
+    // Auth
+    const loginSection  = document.getElementById('login-section');
+    const dashboard     = document.getElementById('dashboard');
+    const logoutLink    = document.getElementById('logout-link');
+    const loginForm     = document.getElementById('login-form');
+    const loginError    = document.getElementById('login-error');
+
+    async function checkSession() {
+      const { data } = await supabaseClient.auth.getSession();
+      if (data.session) { showDashboard(); } else { showLogin(); }
+    }
+
+    function showLogin() {
+      loginSection.style.display = 'block';
+      dashboard.style.display    = 'none';
+      logoutLink.style.display   = 'none';
+    }
+
+    function showDashboard() {
+      loginSection.style.display = 'none';
+      dashboard.style.display    = 'block';
+      logoutLink.style.display   = 'inline';
+      loadAnalytics();
+    }
+
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      loginError.textContent = '';
+      const { error } = await supabaseClient.auth.signInWithPassword({
+        email: document.getElementById('login-email').value,
+        password: document.getElementById('login-password').value,
+      });
+      if (error) { loginError.textContent = error.message; return; }
+      showDashboard();
+    });
+
+    logoutLink.addEventListener('click', async (e) => {
+      e.preventDefault();
+      await supabaseClient.auth.signOut();
+      showLogin();
+    });
+
+    // Analytics data
+    async function loadAnalytics() {
+      const [postsRes, commentsRes] = await Promise.all([
+        supabaseClient.from('posts').select('id, slug, title, status, views, published_at').order('views', { ascending: false }),
+        supabaseClient.from('comments').select('id, post_slug, author_name, content, created_at').order('created_at', { ascending: false }).limit(20),
+      ]);
+
+      const posts    = postsRes.data    || [];
+      const comments = commentsRes.data || [];
+
+      // Per-post comment counts
+      const commentCounts = {};
+      comments.forEach(c => { commentCounts[c.post_slug] = (commentCounts[c.post_slug] || 0) + 1; });
+
+      const published   = posts.filter(p => p.status === 'published');
+      const totalViews  = published.reduce((s, p) => s + (p.views || 0), 0);
+      const totalComments = comments.length;
+
+      // Summary stats
+      document.getElementById('stat-grid').innerHTML = `
+        <div class="stat-card">
+          <i class="fas fa-file-alt"></i>
+          <span class="stat-value">${published.length}</span>
+          <div class="stat-label">Published Articles</div>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-eye"></i>
+          <span class="stat-value">${fmt(totalViews)}</span>
+          <div class="stat-label">Total Blog Views</div>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-comments"></i>
+          <span class="stat-value">${totalComments}</span>
+          <div class="stat-label">Total Comments</div>
+        </div>
+        <div class="stat-card">
+          <i class="fas fa-pencil-alt"></i>
+          <span class="stat-value">${posts.filter(p => p.status === 'draft').length}</span>
+          <div class="stat-label">Drafts</div>
+        </div>
+      `;
+
+      // Posts table
+      const maxViews = Math.max(1, ...posts.map(p => p.views || 0));
+      const tableBody = document.getElementById('posts-table-body');
+      if (posts.length === 0) {
+        tableBody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:#999;">No posts yet.</td></tr>';
+      } else {
+        tableBody.innerHTML = posts.map(p => {
+          const barWidth = Math.round(((p.views || 0) / maxViews) * 120);
+          return `
+            <tr>
+              <td><strong>${p.title}</strong></td>
+              <td><span class="status-badge ${p.status}">${p.status}</span></td>
+              <td>
+                <div class="view-bar-wrap">
+                  <div class="view-bar" style="width:${barWidth}px"></div>
+                  <span>${fmt(p.views || 0)}</span>
+                </div>
+              </td>
+              <td>${commentCounts[p.slug] || 0}</td>
+              <td>${formatDate(p.published_at)}</td>
+            </tr>`;
+        }).join('');
+      }
+
+      // Recent comments with delete
+      const commentList = document.getElementById('recent-comments-list');
+      const noMsg       = document.getElementById('no-comments-msg');
+      if (comments.length === 0) {
+        commentList.innerHTML = '';
+        noMsg.style.display = 'block';
+      } else {
+        noMsg.style.display = 'none';
+        commentList.innerHTML = comments.map(c => `
+          <li class="admin-post-row">
+            <div class="admin-post-info">
+              <h4>${escapeHtml(c.author_name)} <small style="font-weight:400;color:#999;">on post: ${c.post_slug}</small></h4>
+              <p style="margin:0.25rem 0 0;color:#555;">${escapeHtml(c.content.slice(0, 120))}${c.content.length > 120 ? '…' : ''}</p>
+              <small style="color:#aaa;">${formatDate(c.created_at)}</small>
+            </div>
+            <div class="admin-row-actions">
+              <button class="btn danger" type="button" data-delete-comment="${c.id}">Delete</button>
+            </div>
+          </li>
+        `).join('');
+
+        commentList.querySelectorAll('[data-delete-comment]').forEach(btn => {
+          btn.addEventListener('click', () => deleteComment(btn.dataset.deleteComment));
+        });
+      }
+    }
+
+    async function deleteComment(id) {
+      if (!confirm('Delete this comment?')) return;
+      const { error } = await supabaseClient.from('comments').delete().eq('id', id);
+      if (error) { alert('Failed to delete: ' + error.message); return; }
+      loadAnalytics();
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    checkSession();
+  </script>
+</body>
+</html>

@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Blog Admin | Akinpelu Enoch</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" />
+  <link rel="stylesheet" href="../css/blog.css" />
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="../index.html" class="logo">ENOCH</a>
+      <ul class="nav-links">
+        <li><a href="./index.html">View Blog</a></li>
+        <li><a href="./analytics.html">Analytics</a></li>
+        <li><a href="#" id="logout-link" style="display: none;">Log Out</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <h1>Blog Admin</h1>
+      <p>Create, edit, and publish articles for your portfolio blog.</p>
+    </section>
+
+    <!-- Login -->
+    <section id="login-section" class="admin-section">
+      <div class="admin-card">
+        <h2 class="section-title" style="font-size: 1.6rem;">Log In</h2>
+        <form id="login-form">
+          <div class="form-group">
+            <label for="login-email">Email</label>
+            <input type="email" id="login-email" required autocomplete="username" />
+          </div>
+          <div class="form-group">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" required autocomplete="current-password" />
+          </div>
+          <div class="admin-actions">
+            <button type="submit" class="btn primary">Log In</button>
+          </div>
+          <div id="login-error" style="color: #c0392b; margin-top: 1rem; font-weight: 600;"></div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Dashboard (shown once logged in) -->
+    <section id="dashboard-section" class="admin-section" style="display: none;">
+
+      <div class="admin-card">
+        <h2 class="section-title" style="font-size: 1.6rem;" id="form-title">New Article</h2>
+        <form id="post-form">
+          <div class="form-group">
+            <label for="post-title">Title</label>
+            <input type="text" id="post-title" required />
+          </div>
+          <div class="form-group">
+            <label for="post-slug">Slug (used in the URL)</label>
+            <input type="text" id="post-slug" required />
+          </div>
+          <div class="form-group">
+            <label for="post-excerpt">Excerpt (short summary shown on the blog list and social shares)</label>
+            <textarea id="post-excerpt" style="min-height: 80px;"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="post-cover-file">Cover Image</label>
+            <input type="file" id="post-cover-file" accept="image/*" />
+            <input type="hidden" id="post-cover-url" />
+            <img id="cover-preview" style="max-width: 200px; margin-top: 0.75rem; border-radius: 8px; display: none;" />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="post-status">Status</label>
+              <select id="post-status">
+                <option value="draft">Draft</option>
+                <option value="published">Published</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="post-content-editor">Content</label>
+            <div id="post-content-editor"></div>
+          </div>
+          <div class="admin-actions">
+            <button type="submit" class="btn primary">Save Article</button>
+            <button type="button" id="cancel-edit-btn" class="btn secondary" style="display: none;">Cancel Edit</button>
+          </div>
+          <div id="admin-status-message"></div>
+        </form>
+      </div>
+
+      <div class="admin-card">
+        <h2 class="section-title" style="font-size: 1.6rem;">Your Articles</h2>
+        <ul id="admin-post-list" class="admin-post-list"></ul>
+        <p id="admin-empty-state" style="display: none; opacity: 0.7;">No articles yet. Create your first one above.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; <span id="current-year"></span> Akinpelu Enoch. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+  <script src="../js/supabase-config.js"></script>
+  <script>
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    const loginSection = document.getElementById('login-section');
+    const dashboardSection = document.getElementById('dashboard-section');
+    const logoutLink = document.getElementById('logout-link');
+    const loginForm = document.getElementById('login-form');
+    const loginError = document.getElementById('login-error');
+
+    const postForm = document.getElementById('post-form');
+    const formTitle = document.getElementById('form-title');
+    const titleInput = document.getElementById('post-title');
+    const slugInput = document.getElementById('post-slug');
+    const excerptInput = document.getElementById('post-excerpt');
+    const coverFileInput = document.getElementById('post-cover-file');
+    const coverUrlInput = document.getElementById('post-cover-url');
+    const coverPreview = document.getElementById('cover-preview');
+    const statusSelect = document.getElementById('post-status');
+    const cancelEditBtn = document.getElementById('cancel-edit-btn');
+    const statusMessage = document.getElementById('admin-status-message');
+    const postListEl = document.getElementById('admin-post-list');
+    const emptyState = document.getElementById('admin-empty-state');
+
+    let editingPostId = null;
+    let editingPostPublishedAt = null;
+    let slugManuallyEdited = false;
+
+    const quill = new Quill('#post-content-editor', {
+      theme: 'snow',
+      placeholder: 'Write your article...',
+      modules: {
+        toolbar: {
+          container: [
+            [{ header: [2, 3, false] }],
+            ['bold', 'italic', 'underline', 'strike'],
+            [{ list: 'ordered' }, { list: 'bullet' }],
+            ['blockquote', 'code-block', 'link', 'image'],
+            ['clean']
+          ],
+          handlers: {
+            image: insertEditorImage
+          }
+        }
+      }
+    });
+
+    function insertEditorImage() {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = 'image/*';
+      input.onchange = async () => {
+        const file = input.files[0];
+        if (!file) return;
+
+        const range = quill.getSelection(true);
+        try {
+          const url = await uploadImageToStorage(file);
+          quill.insertEmbed(range.index, 'image', url, 'user');
+          quill.setSelection(range.index + 1);
+        } catch (err) {
+          showStatus(err.message, true);
+        }
+      };
+      input.click();
+    }
+
+    function slugify(text) {
+      return text
+        .toString()
+        .trim()
+        .toLowerCase()
+        .replace(/[^\w\s-]/g, '')
+        .replace(/[\s_-]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+    }
+
+    titleInput.addEventListener('input', () => {
+      if (!slugManuallyEdited) {
+        slugInput.value = slugify(titleInput.value);
+      }
+    });
+
+    slugInput.addEventListener('input', () => {
+      slugManuallyEdited = true;
+    });
+
+    coverFileInput.addEventListener('change', () => {
+      const file = coverFileInput.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        coverPreview.src = e.target.result;
+        coverPreview.style.display = 'block';
+      };
+      reader.readAsDataURL(file);
+    });
+
+    function showStatus(message, isError) {
+      statusMessage.textContent = message;
+      statusMessage.className = isError ? 'error' : 'success';
+    }
+
+    function resetForm() {
+      editingPostId = null;
+      editingPostPublishedAt = null;
+      slugManuallyEdited = false;
+      postForm.reset();
+      coverUrlInput.value = '';
+      coverPreview.style.display = 'none';
+      quill.setText('');
+      formTitle.textContent = 'New Article';
+      cancelEditBtn.style.display = 'none';
+    }
+
+    cancelEditBtn.addEventListener('click', resetForm);
+
+    // --- Auth ---
+    async function checkSession() {
+      const { data } = await supabaseClient.auth.getSession();
+      if (data.session) {
+        showDashboard();
+      } else {
+        showLogin();
+      }
+    }
+
+    function showLogin() {
+      loginSection.style.display = 'block';
+      dashboardSection.style.display = 'none';
+      logoutLink.style.display = 'none';
+    }
+
+    function showDashboard() {
+      loginSection.style.display = 'none';
+      dashboardSection.style.display = 'block';
+      logoutLink.style.display = 'inline';
+      loadPosts();
+    }
+
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      loginError.textContent = '';
+      const email = document.getElementById('login-email').value;
+      const password = document.getElementById('login-password').value;
+
+      const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
+      if (error) {
+        loginError.textContent = error.message;
+        return;
+      }
+      showDashboard();
+    });
+
+    logoutLink.addEventListener('click', async (e) => {
+      e.preventDefault();
+      await supabaseClient.auth.signOut();
+      resetForm();
+      showLogin();
+    });
+
+    // --- Posts ---
+    async function loadPosts() {
+      const { data: posts, error } = await supabaseClient
+        .from('posts')
+        .select('id, slug, title, status, updated_at')
+        .order('updated_at', { ascending: false });
+
+      if (error) {
+        postListEl.innerHTML = '';
+        emptyState.style.display = 'block';
+        emptyState.textContent = 'Failed to load articles: ' + error.message;
+        return;
+      }
+
+      if (!posts || posts.length === 0) {
+        postListEl.innerHTML = '';
+        emptyState.style.display = 'block';
+        emptyState.textContent = 'No articles yet. Create your first one above.';
+        return;
+      }
+
+      emptyState.style.display = 'none';
+      postListEl.innerHTML = posts.map(post => `
+        <li class="admin-post-row">
+          <div class="admin-post-info">
+            <h4>${post.title} <span class="status-badge ${post.status}">${post.status}</span></h4>
+            <small>/${post.slug}</small>
+          </div>
+          <div class="admin-row-actions">
+            ${post.status === 'published' ? `<button class="btn secondary" type="button" data-share="${post.slug}">Copy Share Link</button>` : ''}
+            <button class="btn secondary" type="button" data-edit="${post.id}">Edit</button>
+            <button class="btn danger" type="button" data-delete="${post.id}">Delete</button>
+          </div>
+        </li>
+      `).join('');
+
+      postListEl.querySelectorAll('[data-edit]').forEach(btn => {
+        btn.addEventListener('click', () => editPost(btn.dataset.edit));
+      });
+      postListEl.querySelectorAll('[data-delete]').forEach(btn => {
+        btn.addEventListener('click', () => deletePost(btn.dataset.delete));
+      });
+      postListEl.querySelectorAll('[data-share]').forEach(btn => {
+        btn.addEventListener('click', () => copyShareLink(btn.dataset.share, btn));
+      });
+    }
+
+    function copyShareLink(slug, btn) {
+      const shareUrl = `${SUPABASE_URL}/functions/v1/post-preview?slug=${encodeURIComponent(slug)}`;
+      navigator.clipboard.writeText(shareUrl).then(() => {
+        const original = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = original; }, 1500);
+      }).catch(() => {
+        showStatus(`Share link: ${shareUrl}`, false);
+      });
+    }
+
+    async function editPost(id) {
+      const { data: post, error } = await supabaseClient
+        .from('posts')
+        .select('*')
+        .eq('id', id)
+        .single();
+
+      if (error || !post) {
+        showStatus('Failed to load article for editing.', true);
+        return;
+      }
+
+      editingPostId = post.id;
+      editingPostPublishedAt = post.published_at;
+      slugManuallyEdited = true;
+      titleInput.value = post.title;
+      slugInput.value = post.slug;
+      excerptInput.value = post.excerpt || '';
+      coverUrlInput.value = post.cover_image_url || '';
+      if (post.cover_image_url) {
+        coverPreview.src = post.cover_image_url;
+        coverPreview.style.display = 'block';
+      } else {
+        coverPreview.style.display = 'none';
+      }
+      statusSelect.value = post.status;
+      quill.root.innerHTML = post.content || '';
+      formTitle.textContent = 'Edit Article';
+      cancelEditBtn.style.display = 'inline-block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    async function deletePost(id) {
+      if (!confirm('Delete this article? This cannot be undone.')) return;
+
+      const { error } = await supabaseClient.from('posts').delete().eq('id', id);
+      if (error) {
+        showStatus('Failed to delete article: ' + error.message, true);
+        return;
+      }
+      if (editingPostId === id) resetForm();
+      showStatus('Article deleted.', false);
+      loadPosts();
+    }
+
+    async function uploadImageToStorage(file) {
+      const ext = file.name.split('.').pop();
+      const path = `${Date.now()}-${slugify(file.name.replace(/\.[^/.]+$/, ''))}.${ext}`;
+
+      const { error: uploadError } = await supabaseClient
+        .storage
+        .from('blog-images')
+        .upload(path, file);
+
+      if (uploadError) {
+        throw new Error('Image upload failed: ' + uploadError.message);
+      }
+
+      const { data } = supabaseClient.storage.from('blog-images').getPublicUrl(path);
+      return data.publicUrl;
+    }
+
+    postForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      if (!quill.getText().trim()) {
+        showStatus('Content cannot be empty.', true);
+        return;
+      }
+
+      showStatus('Saving...', false);
+
+      try {
+        let coverImageUrl = coverUrlInput.value || null;
+        const file = coverFileInput.files[0];
+        if (file) {
+          coverImageUrl = await uploadImageToStorage(file);
+        }
+
+        const status = statusSelect.value;
+        const payload = {
+          title: titleInput.value.trim(),
+          slug: slugify(slugInput.value),
+          excerpt: excerptInput.value.trim(),
+          content: quill.root.innerHTML,
+          cover_image_url: coverImageUrl,
+          status,
+        };
+
+        if (status === 'published') {
+          payload.published_at = editingPostPublishedAt || new Date().toISOString();
+        }
+
+        let error;
+        if (editingPostId) {
+          ({ error } = await supabaseClient.from('posts').update(payload).eq('id', editingPostId));
+        } else {
+          ({ error } = await supabaseClient.from('posts').insert(payload));
+        }
+
+        if (error) {
+          showStatus('Save failed: ' + error.message, true);
+          return;
+        }
+
+        showStatus('Article saved successfully.', false);
+        resetForm();
+        loadPosts();
+      } catch (err) {
+        showStatus(err.message, true);
+      }
+    });
+
+    checkSession();
+  </script>
+</body>
+</html>
