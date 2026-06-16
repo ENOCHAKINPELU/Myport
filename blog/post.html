@@ -245,7 +245,7 @@
           <span class="meta-item" id="comment-count-badge"><i class="fas fa-comments"></i> <span id="comment-count">…</span> comments</span>
         </div>
 
-        <div class="post-content">${post.content || ''}</div>
+        <div class="post-content" id="post-content-body"></div>
 
         <!-- Share bar -->
         <div class="share-bar">
@@ -295,6 +295,9 @@
 
         <a class="post-back-link" href="./index.html">&larr; Back to Blog</a>
       `;
+
+      // Render Quill HTML content safely (avoids template-literal escaping issues)
+      document.getElementById('post-content-body').innerHTML = post.content || '';
 
       // Copy link
       document.getElementById('copy-link-btn').addEventListener('click', () => {

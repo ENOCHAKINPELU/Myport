@@ -57,6 +57,7 @@ function render(options: {
     <meta name="twitter:description" content="${description}" />
     ${imageTag}
     <meta http-equiv="refresh" content="0; url=${url}" />
+    <script>window.location.replace("${url}");</script>
   </head>
   <body>
     <p>Redirecting to <a href="${url}">${title}</a>&hellip;</p>
