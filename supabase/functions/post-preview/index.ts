@@ -10,9 +10,10 @@
 //   https://<project-ref>.supabase.co/functions/v1/post-preview?slug=my-post
 //
 // Deploy with: supabase functions deploy post-preview --no-verify-jwt
+// Set SITE_URL in function env to your Vercel site URL so redirects point to the live site.
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
-const SITE_URL = "https://enochakinpelu.github.io/Myport";
+const SITE_URL = "https://enochakinpeluportfolio.vercel.app";
 
 const supabase = createClient(
   Deno.env.get("SUPABASE_URL")!,
