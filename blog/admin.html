@@ -319,7 +319,7 @@
     }
 
     function copyShareLink(slug, btn) {
-      const shareUrl = `https://enochakinpeluportfolio.vercel.app/blog/post.html?slug=${encodeURIComponent(slug)}`;
+      const shareUrl = `https://enochakinpeluportfolio.vercel.app/api/post-preview?slug=${encodeURIComponent(slug)}`;
       navigator.clipboard.writeText(shareUrl).then(() => {
         const original = btn.textContent;
         btn.textContent = 'Copied!';

@@ -229,7 +229,7 @@
       }
 
       const mins      = readingTime(post.content || '');
-      const shareUrl  = pageUrl
+      const shareUrl  = `https://enochakinpeluportfolio.vercel.app/api/post-preview?slug=${encodeURIComponent(post.slug)}`;
       const encodedUrl   = encodeURIComponent(shareUrl);
       const encodedTitle = encodeURIComponent(post.title);
 
