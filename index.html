@@ -3,21 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Enoch Akinpelu | Global Digital Transformation & Software Delivery Leader</title>
-  <meta name="description" content="Global digital transformation leader helping enterprise and scale-up teams deliver software faster, reduce operational risk, and unlock measurable business value." />
-  <meta name="keywords" content="Digital Transformation, Enterprise Software Delivery, AI Product Management, Technical Program Leadership, Cross-Border Delivery, Agile Transformation" />
+  <title>Akinpelu Enoch Portfolio | Technical Project Manager</title>
+  <meta name="description" content="Technical Project Manager and Digital Transformation Analyst specializing in software delivery and digital transformation for enterprise and growth-stage organizations." />
+  <meta name="keywords" content="Technical Project Manager, Digital Transformation Analyst, Software Delivery, Agile Delivery, Business Analysis, Project Management" />
   <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
   <!-- Google Analytics GA4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-3SQRVDGXB8"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-3SQRVDGXB8');</script>
-  <link rel="canonical" href="https://enochakinpeluportfolio.vercel.app/" />
-  <meta property="og:title" content="Enoch Akinpelu | Global Digital Transformation & Software Delivery Leader" />
-  <meta property="og:description" content="Global digital transformation leader helping enterprise and scale-up teams deliver software faster, reduce operational risk, and unlock measurable business value." />
+  <link rel="canonical" href="https://enochakinpelu.github.io/Myport/index.html" />
+  <meta property="og:title" content="Akinpelu Enoch Portfolio | Technical Project Manager" />
+  <meta property="og:description" content="Technical Project Manager and Digital Transformation Analyst specializing in software delivery and digital transformation for enterprise and growth-stage organizations." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://enochakinpeluportfolio.vercel.app/" />
-  <meta property="og:image" content="https://enochakinpeluportfolio.vercel.app/images/my%20pic.jpg" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:image" content="https://enochakinpeluportfolio.vercel.app/images/my%20pic.jpg" />
+  <meta property="og:url" content="https://enochakinpelu.github.io/Myport/index.html" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   <style>
     /* Google Fonts */
@@ -436,13 +433,37 @@
 
     /* Responsive adjustments for Skills Section */
     @media (max-width: 900px) {
-      .skills-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+      .skills-grid {
+        grid-template-areas:
+          "leadership technical"
+          "product tools";
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
     }
 
     @media (max-width: 600px) {
-      .skills-grid { grid-template-columns: 1fr; gap: 1rem; }
-      .skills-section { padding: 60px 12px; }
-      .skills-list { font-size: 0.95rem; }
+      .skills-grid {
+        grid-template-areas:
+          "leadership"
+          "technical"
+          "product"
+          "tools";
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .skills-section {
+        padding: 60px 12px;
+      }
+
+      .skill-category {
+        padding: 1.2rem;
+      }
+
+      .skills-list {
+        font-size: 0.95rem;
+      }
     }
     /* Projects Section */
     .projects {
@@ -1303,10 +1324,10 @@
           <img src="./images/my pic.jpg" alt="Akinpelu Enoch - Technical Project Manager and Digital Transformation Analyst" />
         </div>
         <div class="hero-text">
-          <h1>I help global enterprises and scale-ups deliver strategic software and digital transformation with measurable ROI.</h1>
-          <p class="hero-tagline">Digital Transformation leader for enterprise-grade software delivery, AI product strategy, and cross-border program execution.</p>
+          <h1>Hi, I'm Enoch</h1>
+          <p class="hero-tagline">Technical Project Manager | I use technology to optimize operations and grow the bottom line.</p>
           <p class="hero-description">
-            I lead end-to-end digital transformation programs that align strategy, technology and operations for faster market delivery, reduced risk, and higher business value. My experience spans enterprise, fintech and growth-stage organizations, combining Computer Science, AI product insight and stakeholder leadership to turn complex change into repeatable outcomes.
+            Technical Project Manager and Digital Transformation Analyst specializing in software delivery and digital transformation for enterprise and growth-stage organizations. Proven track record delivering end-to-end software projects, translating complex business needs into scalable digital solutions, and driving measurable efficiency gains. Combines a strong foundation in Computer Science (B.Sc., Second Class Upper) with an ongoing M.Sc. in Artificial Intelligence to bring technical depth and strategic business alignment, with experience leading cross-functional teams, managing stakeholders, and building digital process frameworks adopted across multiple organizations.
           </p>
           
           <div class="hero-metrics">
@@ -1889,7 +1910,7 @@
         </p>
 
         <div class="contact-form-card">
-          <form id="contact-form" action="https://formspree.io/f/xzdqwokv" method="POST">
+          <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
             <div class="form-row">
               <input type="text" name="name" placeholder="Your Name" required />
               <input type="email" name="email" placeholder="Your Email" required />
