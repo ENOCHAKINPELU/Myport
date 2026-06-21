@@ -44,6 +44,21 @@ function renderHtml({ title, description, image, url }) {
 </html>`;
 }
 
+function sendPreview(res, html, location) {
+  if (typeof res.writeHead === 'function') {
+    res.writeHead(302, {
+      Location: location,
+      'Content-Type': 'text/html; charset=utf-8',
+    });
+    res.end(html);
+  } else {
+    res.status(302);
+    res.setHeader('Location', location);
+    res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    res.send(html);
+  }
+}
+
 module.exports = async (req, res) => {
   if (!SUPABASE_ANON_KEY) {
     res.status(500).send('Missing Supabase anon key');
@@ -55,12 +70,11 @@ module.exports = async (req, res) => {
   const requestUrl = `${SITE_URL}${url.pathname}${url.search}`;
 
   if (!slug) {
-    res.setHeader('Content-Type', 'text/html; charset=utf-8');
-    res.send(renderHtml({
+    sendPreview(res, renderHtml({
       title: 'Blog | Akinpelu Enoch',
       description: 'Articles on technical project management, digital transformation, and software delivery.',
       url: requestUrl,
-    }));
+    }), requestUrl);
     return;
   }
 
@@ -82,20 +96,19 @@ module.exports = async (req, res) => {
   const post = Array.isArray(data) ? data[0] : null;
 
   if (!post) {
-    res.status(404).setHeader('Content-Type', 'text/html; charset=utf-8');
-    res.send(renderHtml({
+    sendPreview(res, renderHtml({
       title: 'Article not found | Akinpelu Enoch',
       description: 'This article does not exist or is no longer available.',
       url: `${SITE_URL}/blog/index.html`,
-    }));
+    }), `${SITE_URL}/blog/index.html`);
     return;
   }
 
-  res.setHeader('Content-Type', 'text/html; charset=utf-8');
-  res.send(renderHtml({
+  const pageUrl = `${SITE_URL}/blog/post.html?slug=${encodeURIComponent(post.slug)}`;
+  sendPreview(res, renderHtml({
     title: `${post.title} | Akinpelu Enoch`,
     description: post.excerpt || '',
     image: post.cover_image_url || undefined,
     url: requestUrl,
-  }));
+  }), pageUrl);
 };

@@ -321,8 +321,8 @@
         }
       });
 
-      // Increment view count (fire-and-forget)
-      supabaseClient.rpc('increment_post_views', { post_slug: slug });
+      // Increment view count and update badge
+      incrementPostViews(slug, post.views || 0);
 
       // Load comments and count
       loadComments();
@@ -387,6 +387,19 @@
       e.target.reset();
       setTimeout(() => { statusEl.textContent = ''; }, 2500);
       loadComments();
+    }
+
+    async function incrementPostViews(postSlug, currentViews) {
+      const { error } = await supabaseClient.rpc('increment_post_views', { post_slug: postSlug });
+      if (error) {
+        console.error('Unable to increment post views:', error.message || error);
+        return;
+      }
+
+      const badge = document.getElementById('view-count-badge');
+      if (badge) {
+        badge.textContent = `${formatViews((currentViews || 0) + 1)} views`;
+      }
     }
 
     function escapeHtml(str) {
