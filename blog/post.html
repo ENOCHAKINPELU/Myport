@@ -214,7 +214,8 @@
       }
 
       // Update meta tags
-      const pageUrl = `https://enochakinpeluportfolio.vercel.app/blog/post.html?slug=${encodeURIComponent(post.slug)}`;
+      const origin = window.location.origin;
+      const pageUrl = `${origin}/blog/post.html?slug=${encodeURIComponent(post.slug)}`;
       document.getElementById('page-title').textContent        = `${post.title} | Akinpelu Enoch`;
       document.getElementById('meta-description').content      = post.excerpt || '';
       document.getElementById('canonical-link').href           = pageUrl;
@@ -229,7 +230,7 @@
       }
 
       const mins      = readingTime(post.content || '');
-      const shareUrl  = `https://enochakinpeluportfolio.vercel.app/api/post-preview?slug=${encodeURIComponent(post.slug)}`;
+      const shareUrl  = `${origin}/api/post-preview?slug=${encodeURIComponent(post.slug)}`;
       const encodedUrl   = encodeURIComponent(shareUrl);
       const encodedTitle = encodeURIComponent(post.title);
 

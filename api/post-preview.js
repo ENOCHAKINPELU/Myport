@@ -1,4 +1,4 @@
-const SITE_URL = process.env.SITE_URL || 'https://enochakinpeluportfolio.vercel.app';
+﻿const SITE_URL = process.env.SITE_URL || 'https://enochakinpeluportfolio.vercel.app';
 const SUPABASE_URL = process.env.SUPABASE_URL || 'https://cgvtndympbpkslwyvrqo.supabase.co';
 const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY || '';
 
@@ -12,11 +12,11 @@ function escapeHtml(value) {
     .replace(/'/g, '&#39;');
 }
 
-function renderHtml({ title, description, image, url, redirectUrl }) {
+function renderHtml({ title, description, image, pageUrl, requestUrl }) {
   const safeTitle = escapeHtml(title);
   const safeDescription = escapeHtml(description).slice(0, 160);
-  const safeUrl = escapeHtml(url);
-  const safeRedirectUrl = escapeHtml(redirectUrl || url);
+  const safePageUrl = escapeHtml(pageUrl);
+  const safeRequestUrl = escapeHtml(requestUrl);
   const imageTag = image
     ? `<meta property="og:image" content="${escapeHtml(image)}" />\n    <meta name="twitter:image" content="${escapeHtml(image)}" />`
     : '';
@@ -27,37 +27,22 @@ function renderHtml({ title, description, image, url, redirectUrl }) {
     <meta charset="UTF-8" />
     <title>${safeTitle}</title>
     <meta name="description" content="${safeDescription}" />
-    <link rel="canonical" href="${safeUrl}" />
+    <link rel="canonical" href="${safeRequestUrl}" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content="${safeTitle}" />
     <meta property="og:description" content="${safeDescription}" />
-    <meta property="og:url" content="${safeUrl}" />
+    <meta property="og:url" content="${safeRequestUrl}" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${safeTitle}" />
     <meta name="twitter:description" content="${safeDescription}" />
     ${imageTag}
-    <meta http-equiv="refresh" content="0;url=${safeRedirectUrl}" />
-    <script>window.location.replace("${safeRedirectUrl}");</script>
+    <meta http-equiv="refresh" content="0;url=${safePageUrl}" />
+    <script>window.location.replace("${safePageUrl}");</script>
   </head>
   <body>
-    <p>Redirecting to <a href="${safeRedirectUrl}">${safeTitle}</a>…</p>
+    <p>Redirecting to <a href="${safePageUrl}">${safeTitle}</a>…</p>
   </body>
 </html>`;
-}
-
-function sendPreview(res, html, location) {
-  if (typeof res.writeHead === 'function') {
-    res.writeHead(302, {
-      Location: location,
-      'Content-Type': 'text/html; charset=utf-8',
-    });
-    res.end(html);
-  } else {
-    res.status(302);
-    res.setHeader('Location', location);
-    res.setHeader('Content-Type', 'text/html; charset=utf-8');
-    res.send(html);
-  }
 }
 
 module.exports = async (req, res) => {
@@ -66,16 +51,20 @@ module.exports = async (req, res) => {
     return;
   }
 
-  const url = new URL(req.url, `https://${req.headers.host}`);
+  const requestHost = req.headers.host ? `https://${req.headers.host}` : SITE_URL;
+  const origin = process.env.SITE_URL || requestHost;
+  const url = new URL(req.url, origin);
   const slug = url.searchParams.get('slug');
-  const requestUrl = `${SITE_URL}${url.pathname}${url.search}`;
+  const requestUrl = `${origin}${url.pathname}${url.search}`;
 
   if (!slug) {
-    sendPreview(res, renderHtml({
+    res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    res.send(renderHtml({
       title: 'Blog | Akinpelu Enoch',
       description: 'Articles on technical project management, digital transformation, and software delivery.',
-      url: requestUrl,
-    }), requestUrl);
+      requestUrl,
+      pageUrl: requestUrl,
+    }));
     return;
   }
 
@@ -97,20 +86,23 @@ module.exports = async (req, res) => {
   const post = Array.isArray(data) ? data[0] : null;
 
   if (!post) {
-    sendPreview(res, renderHtml({
+    res.status(404).setHeader('Content-Type', 'text/html; charset=utf-8');
+    res.send(renderHtml({
       title: 'Article not found | Akinpelu Enoch',
       description: 'This article does not exist or is no longer available.',
-      url: `${SITE_URL}/blog/index.html`,
-    }), `${SITE_URL}/blog/index.html`);
+      requestUrl: `${SITE_URL}/blog/index.html`,
+      pageUrl: `${SITE_URL}/blog/index.html`,
+    }));
     return;
   }
 
   const pageUrl = `${SITE_URL}/blog/post.html?slug=${encodeURIComponent(post.slug)}`;
-  sendPreview(res, renderHtml({
+  res.setHeader('Content-Type', 'text/html; charset=utf-8');
+  res.send(renderHtml({
     title: `${post.title} | Akinpelu Enoch`,
     description: post.excerpt || '',
     image: post.cover_image_url || undefined,
-    url: requestUrl,
-    redirectUrl: pageUrl,
-  }), pageUrl);
+    requestUrl,
+    pageUrl,
+  }));
 };
