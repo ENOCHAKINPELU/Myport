@@ -52,13 +52,14 @@ module.exports = async (req, res) => {
 
   const url = new URL(req.url, `https://${req.headers.host}`);
   const slug = url.searchParams.get('slug');
+  const requestUrl = `${SITE_URL}${url.pathname}${url.search}`;
 
   if (!slug) {
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
     res.send(renderHtml({
       title: 'Blog | Akinpelu Enoch',
       description: 'Articles on technical project management, digital transformation, and software delivery.',
-      url: `${SITE_URL}/blog/index.html`,
+      url: requestUrl,
     }));
     return;
   }
@@ -95,6 +96,6 @@ module.exports = async (req, res) => {
     title: `${post.title} | Akinpelu Enoch`,
     description: post.excerpt || '',
     image: post.cover_image_url || undefined,
-    url: `${SITE_URL}/blog/post.html?slug=${encodeURIComponent(post.slug)}`,
+    url: requestUrl,
   }));
 };
