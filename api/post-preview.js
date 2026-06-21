@@ -12,10 +12,11 @@ function escapeHtml(value) {
     .replace(/'/g, '&#39;');
 }
 
-function renderHtml({ title, description, image, url }) {
+function renderHtml({ title, description, image, url, redirectUrl }) {
   const safeTitle = escapeHtml(title);
   const safeDescription = escapeHtml(description).slice(0, 160);
   const safeUrl = escapeHtml(url);
+  const safeRedirectUrl = escapeHtml(redirectUrl || url);
   const imageTag = image
     ? `<meta property="og:image" content="${escapeHtml(image)}" />\n    <meta name="twitter:image" content="${escapeHtml(image)}" />`
     : '';
@@ -35,11 +36,11 @@ function renderHtml({ title, description, image, url }) {
     <meta name="twitter:title" content="${safeTitle}" />
     <meta name="twitter:description" content="${safeDescription}" />
     ${imageTag}
-    <meta http-equiv="refresh" content="0;url=${safeUrl}" />
-    <script>window.location.replace("${safeUrl}");</script>
+    <meta http-equiv="refresh" content="0;url=${safeRedirectUrl}" />
+    <script>window.location.replace("${safeRedirectUrl}");</script>
   </head>
   <body>
-    <p>Redirecting to <a href="${safeUrl}">${safeTitle}</a>…</p>
+    <p>Redirecting to <a href="${safeRedirectUrl}">${safeTitle}</a>…</p>
   </body>
 </html>`;
 }
@@ -110,5 +111,6 @@ module.exports = async (req, res) => {
     description: post.excerpt || '',
     image: post.cover_image_url || undefined,
     url: requestUrl,
+    redirectUrl: pageUrl,
   }), pageUrl);
 };
