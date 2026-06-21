@@ -4,6 +4,7 @@ const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY || '';
 
 function escapeHtml(value) {
   return String(value || '')
+    .replace(/[\r\n\t]+/g, ' ')
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
