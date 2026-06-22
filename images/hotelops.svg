@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Blue rounded square background -->
+  <rect width="64" height="64" rx="14" fill="#1d4ed8"/>
+
+  <!-- Flag pole -->
+  <rect x="30.5" y="9" width="3" height="9" fill="white" rx="0.5"/>
+  <!-- Flag -->
+  <polygon points="33.5,9 42,12.5 33.5,16" fill="#fbbf24"/>
+
+  <!-- Roof -->
+  <polygon points="10,33 32,15 54,33" fill="white"/>
+
+  <!-- Building body -->
+  <rect x="16" y="32" width="32" height="22" rx="1.5" fill="white"/>
+
+  <!-- Left window -->
+  <rect x="19" y="35" width="9" height="8" rx="1.5" fill="#bfdbfe"/>
+
+  <!-- Right window -->
+  <rect x="36" y="35" width="9" height="8" rx="1.5" fill="#bfdbfe"/>
+
+  <!-- Door -->
+  <rect x="26.5" y="40" width="11" height="14" rx="1.5" fill="#fbbf24"/>
+
+  <!-- Door knob -->
+  <circle cx="36" cy="47" r="1.2" fill="#92400e"/>
+</svg>
