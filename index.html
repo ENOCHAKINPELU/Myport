@@ -466,11 +466,47 @@
       background: var(--bg-color);
     }
 
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
+    /* Carousel wrapper clips the scrolling track */
+    .carousel-wrapper {
+      overflow: hidden;
       margin-top: 3rem;
+      position: relative;
+    }
+
+    /* Fade edges so cards appear to scroll in/out smoothly */
+    .carousel-wrapper::before,
+    .carousel-wrapper::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 80px;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .carousel-wrapper::before {
+      left: 0;
+      background: linear-gradient(to right, var(--bg-color), transparent);
+    }
+    .carousel-wrapper::after {
+      right: 0;
+      background: linear-gradient(to left, var(--bg-color), transparent);
+    }
+
+    .projects-grid {
+      display: flex;
+      gap: 2rem;
+      width: max-content;
+      animation: carousel-scroll 50s linear infinite;
+    }
+
+    .carousel-wrapper:hover .projects-grid {
+      animation-play-state: paused;
+    }
+
+    @keyframes carousel-scroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
 
     .project-card {
@@ -483,6 +519,7 @@
       flex-shrink: 0;
       border: 1px solid #e8e8e8;
       cursor: pointer;
+      width: 280px;
     }
 
     .project-card:hover {
@@ -540,37 +577,9 @@
       font-weight: 600;
     }
 
-    /* Mobile-first carousel for smaller screens */
     @media (max-width: 768px) {
-      .projects-grid {
-        display: flex;
-        overflow-x: scroll;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        scroll-behavior: smooth;
-        gap: 1.5rem; /* Adjusted gap for mobile */
-        box-sizing: border-box;
-        padding-bottom: 8px;
-      }
-
-      .projects-grid::-webkit-scrollbar {
-        display: none;
-      }
-
       .project-card {
-        box-sizing: border-box;
-        flex: 0 0 85%;
-        min-width: 85%;
-        max-width: 85%;
-        scroll-snap-align: center;
-        cursor: grab;
-        margin-right: 0.75rem;
-        overflow: hidden;
-      }
-
-      .project-card:active {
-        cursor: grabbing;
+        width: 240px;
       }
       
       /* Reset skills grid order for smaller screens to stack naturally (Leadership first) */
@@ -1479,7 +1488,8 @@
     <section class="projects" id="projects">
       <div class="container">
         <h2 class="section-title">Portfolio</h2>
-        <div class="projects-grid reveal">
+        <div class="carousel-wrapper reveal">
+        <div class="projects-grid">
 
           <div class="project-card" data-project="nylc">
             <img src="./images/league cup.png" alt="NYLC League Cup Logo" class="project-logo" />
@@ -1612,6 +1622,7 @@
             </div>
             <button class="btn primary small view-details-btn">View Details</button>
           </div>
+        </div>
         </div>
       </div>
     </section>
@@ -2110,9 +2121,20 @@
     window.addEventListener('scroll', animateCounters);
     animateCounters(); // Initial check
 
+    // Infinite carousel: clone all cards so the loop is seamless
+    (function initCarousel() {
+      const grid = document.querySelector('.projects-grid');
+      if (!grid) return;
+      const origCards = [...grid.children];
+      origCards.forEach(card => {
+        const clone = card.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        grid.appendChild(clone);
+      });
+    })();
+
     // Project Modal Functionality
     const projectModal = document.getElementById('project-modal');
-    const viewDetailsBtns = document.querySelectorAll('.view-details-btn');
     const modalCloseBtn = document.querySelector('#project-modal .modal-close');
 
     const cvModal = document.getElementById('cv-modal');
@@ -2263,34 +2285,34 @@
       }
     };
 
-    viewDetailsBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const projectCard = btn.closest('.project-card');
-        const projectId = projectCard.dataset.project;
-        const project = projectsData[projectId];
-        
-        if (project) {
-          const modalLogo = document.getElementById('modal-project-logo');
-          const fallbackLogo = projectCard.querySelector('img')?.getAttribute('src');
-          modalLogo.src = project.logo || fallbackLogo || '';
-          modalLogo.alt = `${project.name} Logo`;
-          document.getElementById('modal-project-name').textContent = project.name;
-          document.getElementById('modal-project-description').textContent = project.description;
-          
-          const requirementsList = document.getElementById('modal-project-requirements');
-          requirementsList.innerHTML = '';
-          project.requirements.forEach(req => {
-            const li = document.createElement('li');
-            li.textContent = req;
-            requirementsList.appendChild(li);
-          });
-          
-          document.getElementById('modal-project-tools').textContent = project.tools;
-          document.getElementById('modal-project-responsibilities').textContent = project.responsibilities;
-          
-          projectModal.style.display = 'block';
-        }
-      });
+    document.querySelector('.projects-grid').addEventListener('click', (e) => {
+      const btn = e.target.closest('.view-details-btn');
+      if (!btn) return;
+      const projectCard = btn.closest('.project-card');
+      const projectId = projectCard.dataset.project;
+      const project = projectsData[projectId];
+
+      if (project) {
+        const modalLogo = document.getElementById('modal-project-logo');
+        const fallbackLogo = projectCard.querySelector('img')?.getAttribute('src');
+        modalLogo.src = project.logo || fallbackLogo || '';
+        modalLogo.alt = `${project.name} Logo`;
+        document.getElementById('modal-project-name').textContent = project.name;
+        document.getElementById('modal-project-description').textContent = project.description;
+
+        const requirementsList = document.getElementById('modal-project-requirements');
+        requirementsList.innerHTML = '';
+        project.requirements.forEach(req => {
+          const li = document.createElement('li');
+          li.textContent = req;
+          requirementsList.appendChild(li);
+        });
+
+        document.getElementById('modal-project-tools').textContent = project.tools;
+        document.getElementById('modal-project-responsibilities').textContent = project.responsibilities;
+
+        projectModal.style.display = 'block';
+      }
     });
 
     if (modalCloseBtn) {
@@ -2345,92 +2367,6 @@
       }
     });
 
-    // Responsive Carousel Logic
-    const projectsGrid = document.querySelector('.projects-grid');
-    const isMobile = window.innerWidth <= 768;
-
-    if (isMobile) {
-      // Enable dragging/swiping for mobile devices
-      let isDown = false;
-      let startX;
-      let scrollLeft;
-      let velocity = 0;
-      let momentumID;
-
-      projectsGrid.addEventListener('mousedown', (e) => {
-        isDown = true;
-        projectsGrid.classList.add('active');
-        startX = e.pageX - projectsGrid.offsetLeft;
-        scrollLeft = projectsGrid.scrollLeft;
-        cancelMomentumTracking();
-      });
-
-      projectsGrid.addEventListener('mouseleave', () => {
-        if (isDown) {
-          isDown = false;
-          projectsGrid.classList.remove('active');
-          beginMomentumTracking();
-        }
-      });
-
-      projectsGrid.addEventListener('mouseup', () => {
-        if (isDown) {
-          isDown = false;
-          projectsGrid.classList.remove('active');
-          beginMomentumTracking();
-        }
-      });
-
-      projectsGrid.addEventListener('mousemove', (e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - projectsGrid.offsetLeft;
-        const walk = (x - startX);
-        const newScrollLeft = scrollLeft - walk;
-        velocity = (newScrollLeft - projectsGrid.scrollLeft) * 0.5;
-        projectsGrid.scrollLeft = newScrollLeft;
-      });
-
-      projectsGrid.addEventListener('touchstart', (e) => {
-        isDown = true;
-        startX = e.touches[0].pageX - projectsGrid.offsetLeft;
-        scrollLeft = projectsGrid.scrollLeft;
-        cancelMomentumTracking();
-      });
-
-      projectsGrid.addEventListener('touchend', () => {
-        if (isDown) {
-          isDown = false;
-          beginMomentumTracking();
-        }
-      });
-
-      projectsGrid.addEventListener('touchmove', (e) => {
-        if (!isDown) return;
-        const x = e.touches[0].pageX - projectsGrid.offsetLeft;
-        const walk = (x - startX);
-        const newScrollLeft = scrollLeft - walk;
-        velocity = (newScrollLeft - projectsGrid.scrollLeft) * 0.5;
-        projectsGrid.scrollLeft = newScrollLeft;
-      });
-
-      function beginMomentumTracking() {
-        cancelMomentumTracking();
-        momentumID = requestAnimationFrame(momentumLoop);
-      }
-
-      function cancelMomentumTracking() {
-        cancelAnimationFrame(momentumID);
-      }
-
-      function momentumLoop() {
-        projectsGrid.scrollLeft += velocity;
-        velocity *= 0.95;
-        if (Math.abs(velocity) > 0.5) {
-          momentumID = requestAnimationFrame(momentumLoop);
-        }
-      }
-    }
 
     // Contact form AJAX submission (Formspree)
     const contactForm = document.getElementById('contact-form');
