@@ -3,19 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Akinpelu Enoch Portfolio | Technical Project Manager</title>
-  <meta name="description" content="Technical Project Manager and Digital Transformation Analyst specializing in software delivery and digital transformation for enterprise and growth-stage organizations." />
-  <meta name="keywords" content="Technical Project Manager, Digital Transformation Analyst, Software Delivery, Agile Delivery, Business Analysis, Project Management" />
+  <title>Akinpelu Enoch | Digital Innovation & Technology Strategy Specialist</title>
+  <meta name="description" content="Akinpelu Enoch helps organizations understand how they work and implements practical digital solutions that improve efficiency, visibility, reporting, and decision-making." />
+  <meta name="keywords" content="Digital Innovation Strategy, Technology Strategy Specialist, Business Process Analysis, Workflow Automation, Digital Transformation, Operational Dashboards" />
   <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
   <!-- Google Analytics GA4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-3SQRVDGXB8"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-3SQRVDGXB8');</script>
   <link rel="canonical" href="https://enochakinpeluportfolio.vercel.app/" />
-  <meta property="og:title" content="Akinpelu Enoch Portfolio | Technical Project Manager" />
-  <meta property="og:description" content="Technical Project Manager and Digital Transformation Analyst specializing in software delivery and digital transformation for enterprise and growth-stage organizations." />
+  <meta property="og:title" content="Akinpelu Enoch | Digital Innovation & Technology Strategy Specialist" />
+  <meta property="og:description" content="Helping organizations understand how they work and implement practical digital solutions that improve efficiency, visibility, reporting, and decision-making." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://enochakinpeluportfolio.vercel.app/" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link rel="stylesheet" href="./css/design-tokens.css" />
   <style>
     /* Google Fonts */
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
@@ -77,6 +78,7 @@
       font-weight: 700;
       background: var(--gradient);
       -webkit-background-clip: text;
+      background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
@@ -95,6 +97,19 @@
 
     .nav-links a:hover {
       color: var(--secondary-color);
+    }
+
+    .nav-links a.nav-cta {
+      background: var(--accent-color);
+      color: #fff;
+      padding: 0.5rem 1.25rem;
+      border-radius: 50px;
+      font-weight: 600;
+    }
+
+    .nav-links a.nav-cta:hover {
+      background: #6b2cdd;
+      color: #fff;
     }
 
     .nav-toggle {
@@ -131,22 +146,69 @@
     .hero {
       background: var(--gradient);
       color: #fff;
-      padding: 100px 20px;
+      padding: 120px 20px 100px;
       clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+      overflow: hidden;
     }
 
     .hero-content {
       max-width: 1200px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 300px 1fr;
-      gap: 3rem;
+      grid-template-columns: 320px 1fr;
+      gap: 4rem;
       align-items: center;
     }
 
-    .hero-image img {
+    /* Visual: professional photo framed by an abstract network graphic —
+       represents connected processes/workflows rather than code. */
+    .hero-visual {
+      position: relative;
       width: 280px;
       height: 280px;
+      margin: 0 auto;
+    }
+
+    .hero-graphic {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 380px;
+      height: 380px;
+      transform: translate(-50%, -50%);
+      opacity: 0.55;
+      animation: hero-graphic-spin 90s linear infinite;
+      pointer-events: none;
+    }
+
+    .hero-graphic .node { fill: #fff; }
+    .hero-graphic .link {
+      stroke: rgba(255, 255, 255, 0.55);
+      stroke-width: 1.5;
+      fill: none;
+    }
+
+    @keyframes hero-graphic-spin {
+      from { transform: translate(-50%, -50%) rotate(0deg); }
+      to   { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-graphic { animation: none; }
+    }
+
+    .hero-photo-frame {
+      position: relative;
+      z-index: 1;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+    }
+
+    .hero-photo-frame img {
+      display: block;
+      width: 100%;
+      height: 100%;
       border-radius: 50%;
       object-fit: cover;
       object-position: center 15%;
@@ -154,16 +216,28 @@
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     }
 
-    .hero-text h1 {
-      font-size: 3.2rem;
+    /* Text content */
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      opacity: 0.85;
       margin-bottom: 1rem;
-      font-weight: 700;
     }
 
-    .hero-tagline {
-      font-size: 1.3rem;
+    .hero-text h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .hero-role {
+      font-size: 1.2rem;
       margin-bottom: 1.5rem;
-      opacity: 0.9;
+      opacity: 0.92;
       font-weight: 500;
     }
 
@@ -171,62 +245,57 @@
       font-size: 1.1rem;
       margin-bottom: 2rem;
       line-height: 1.6;
+      max-width: 640px;
+      opacity: 0.95;
     }
 
-    .hero-metrics {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 1rem; margin: 2.25rem 0; align-items: stretch;
+    .hero-trust-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
     }
 
-    .metric {
-      position: relative; overflow: hidden;
+    .trust-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
       background: rgba(255, 255, 255, 0.12);
-      padding: 1.5rem 1rem 1.35rem;
-      border-radius: 16px;
-      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-      min-width: 0; width: 100%;
-      display: flex; flex-direction: column; align-items: center; text-align: center;
-      gap: 0.6rem;
       border: 1px solid rgba(255, 255, 255, 0.22);
-      box-shadow: 0 6px 22px rgba(0, 0, 0, 0.14);
-      transition: transform var(--transition-speed), box-shadow var(--transition-speed), background var(--transition-speed);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 500;
     }
 
-    .metric::before {
-      content: ''; position: absolute; left: 0; right: 0; top: 0;
-      height: 4px; background: #fff; opacity: 0.9;
-    }
-
-    .metric:hover {
-      transform: translateY(-6px);
-      background: rgba(255, 255, 255, 0.18);
-      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.22);
-    }
-
-    .metric-icon {
-      flex: 0 0 auto; width: 46px; height: 46px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      background: rgba(255, 255, 255, 0.95); font-size: 1.15rem;
-      color: var(--primary-color);
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
-    }
-
-    .metric-body { display: flex; flex-direction: column; gap: 0.25rem; min-width: 0; }
-
-    .metric-number {
-      display: block; font-size: 2.1rem; font-weight: 700;
-      line-height: 1; letter-spacing: -0.5px; word-break: keep-all;
-    }
-    .metric-label {
-      font-size: 0.78rem; opacity: 0.9; font-weight: 600;
-      text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.3;
-    }
+    .trust-pill i { opacity: 0.85; font-size: 0.85rem; }
 
     .hero-actions {
       display: flex;
       gap: 1rem;
-      margin-top: 2rem;
+      margin-bottom: 1.25rem;
     }
+
+    .hero-cv-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #fff;
+      opacity: 0.85;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: opacity var(--transition-speed);
+    }
+
+    .hero-cv-link:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
+
+    .reveal-delay-1 { transition-delay: 0.12s; }
+    .reveal-delay-2 { transition-delay: 0.28s; }
 
     .btn {
       display: inline-block;
@@ -460,82 +529,51 @@
         font-size: 0.95rem;
       }
     }
-    /* Projects Section */
-    .projects {
-      padding: 100px 20px;
-      background: var(--bg-color);
+    /* Selected work */
+    .projects { padding: 100px 20px; background: var(--bg-color); }
+    .work-heading { display: flex; justify-content: space-between; align-items: end; gap: 2rem; margin-bottom: 3rem; }
+    .work-heading h2 { font-size: clamp(2.4rem, 5vw, 4rem); line-height: 1.1; letter-spacing: -0.05em; color: var(--primary-color); margin: 0; }
+    .work-heading h2 span { color: var(--secondary-color); }
+    .work-heading > p { max-width: 430px; color: var(--color-text-secondary); line-height: 1.8; margin: 0; }
+    .projects .work-eyebrow { color: var(--primary-color); text-transform: uppercase; letter-spacing: .13em; font-size: .72rem; font-weight: 600; margin: 0 0 1rem; }
+    .projects-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem; }
+    .projects .work-card { min-width: 0; width: auto; padding: 0; background: var(--card-bg); border: 1px solid var(--color-border); border-radius: 18px; overflow: hidden; text-align: left; display: flex; flex-direction: column; transition: box-shadow .2s, border-color .2s; }
+    .projects .work-card:hover { border-color: var(--secondary-color); box-shadow: 0 16px 36px rgba(42, 42, 114, .10); }
+    .projects .work-featured { grid-column: 1 / -1; display: grid; grid-template-columns: 1.1fr 1fr; }
+    .work-visual { min-height: 240px; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; padding: 2rem; background: rgba(42, 42, 114, .06); border-bottom: 1px solid rgba(42, 42, 114, .08); }
+    .work-visual-label { position: absolute; top: 1.1rem; left: 1.5rem; font-size: .65rem; text-transform: uppercase; letter-spacing: .15em; color: var(--primary-color); }
+    .work-visual-title { color: var(--primary-color); font-size: .9rem; letter-spacing: .02em; font-weight: 600; }
+    .projects .project-logo { width: 88px; height: 88px; object-fit: contain; border-radius: 16px; background: var(--card-bg); padding: 10px; box-shadow: 0 10px 24px rgba(42, 42, 114, .10); }
+    .work-hotel { padding: 0; background: rgba(0, 159, 253, .06); }
+    .work-product-image { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .work-sport { background: linear-gradient(135deg, rgba(42, 42, 114, .08), rgba(0, 159, 253, .12)); } .work-agri { background: linear-gradient(135deg, rgba(0, 159, 253, .10), rgba(42, 42, 114, .06)); }
+    .work-community { background: linear-gradient(135deg, rgba(125, 60, 255, .10), rgba(42, 42, 114, .06)); } .work-health { background: linear-gradient(135deg, rgba(0, 159, 253, .12), rgba(125, 60, 255, .06)); }
+    .work-education { background: linear-gradient(135deg, rgba(42, 42, 114, .06), rgba(125, 60, 255, .10)); } .work-finance { background: linear-gradient(135deg, rgba(42, 42, 114, .10), rgba(0, 159, 253, .08)); }
+    .work-content { padding: 2rem; display: flex; flex-direction: column; flex: 1; }
+    .work-featured .work-content { padding: clamp(2rem, 4vw, 3.5rem); justify-content: center; }
+    .work-content h3 { color: var(--primary-color); font-size: 1.55rem; letter-spacing: -.035em; line-height: 1.2; margin: 0 0 .75rem; }
+    .work-featured h3 { font-size: 2.35rem; }
+    .projects .work-headline { color: var(--text-color); font-weight: 500; line-height: 1.6; margin: 0 0 .75rem; }
+    .projects .work-description { color: var(--color-text-secondary); font-size: .9rem; line-height: 1.8; margin: 0 0 1.5rem; }
+    .projects .work-role { font-size: .8rem; color: var(--text-color); margin: auto 0 1rem; }
+    .work-role > span { display: block; font-size: .65rem; text-transform: uppercase; letter-spacing: .12em; color: var(--color-text-secondary); margin-bottom: .35rem; }
+    .work-capabilities { list-style: none; display: flex; flex-wrap: wrap; gap: .5rem; padding: 0; margin: 0 0 1.7rem; }
+    .work-capabilities li { background: linear-gradient(135deg, rgba(42, 42, 114, .05), rgba(0, 159, 253, .08)); border: 1px solid rgba(0, 159, 253, .25); border-radius: 5px; padding: .3rem .6rem; font-size: .68rem; color: var(--primary-color); }
+    .work-link { display: flex; justify-content: space-between; align-items: center; width: 100%; background: none; border: 0; border-top: 1px solid var(--color-border); padding: 1.1rem 0 0; color: var(--primary-color); font: inherit; font-size: .85rem; font-weight: 600; cursor: pointer; text-align: left; }
+    .work-link span { font-size: 1.35rem; transition: transform .2s; }
+    .work-link:hover { color: var(--accent-color); }
+    .work-link:hover span { transform: translate(3px, -3px); }
+    .work-link:focus-visible { outline: 3px solid var(--secondary-color); outline-offset: 5px; border-radius: 3px; }
+    @media (max-width: 768px) {
+      .projects { padding: 64px 20px; }
+      .work-heading { flex-direction: column; align-items: start; gap: 1.25rem; }
+      .projects-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+      .projects .work-featured { display: flex; }
+      .work-content, .work-featured .work-content { padding: 1.5rem; }
+      .work-visual { min-height: 210px; }
+      .work-featured h3 { font-size: 1.8rem; }
     }
-
-    /* Carousel wrapper clips the scrolling track */
-    .carousel-wrapper {
-      overflow: hidden;
-      margin-top: 3rem;
-      position: relative;
-    }
-
-    /* Fade edges so cards appear to scroll in/out smoothly */
-    .carousel-wrapper::before,
-    .carousel-wrapper::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 80px;
-      z-index: 2;
-      pointer-events: none;
-    }
-    .carousel-wrapper::before {
-      left: 0;
-      background: linear-gradient(to right, var(--bg-color), transparent);
-    }
-    .carousel-wrapper::after {
-      right: 0;
-      background: linear-gradient(to left, var(--bg-color), transparent);
-    }
-
-    .projects-grid {
-      display: flex;
-      gap: 2rem;
-      width: max-content;
-      animation: carousel-scroll 50s linear infinite;
-    }
-
-    .carousel-wrapper:hover .projects-grid {
-      animation-play-state: paused;
-    }
-
-    @keyframes carousel-scroll {
-      0%   { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    .project-card {
-      background: var(--card-bg);
-      border-radius: 20px;
-      box-shadow: var(--executive-shadow);
-      padding: 2rem;
-      text-align: center;
-      transition: transform var(--transition-speed), box-shadow var(--transition-speed);
-      flex-shrink: 0;
-      border: 1px solid #e8e8e8;
-      cursor: pointer;
-      width: 280px;
-    }
-
-    .project-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-    }
-
-    .project-card .project-logo {
-      width: 90px;
-      height: 90px;
-      max-width: 100%;
-      max-height: 100%;
-      margin: 0 auto 1rem;
-      object-fit: contain;
-      display: block;
-    }
+    @media (prefers-reduced-motion: reduce) { .projects .work-card, .work-link span { transition: none; } }
 
     .modal-content .project-logo {
       width: 120px;
@@ -745,6 +783,168 @@
       font-size: 0.9rem;
       opacity: 0.9;
       line-height: 1.4;
+    }
+
+    /* Featured Solutions Section */
+    .featured-solutions {
+      padding: 100px 20px;
+      background: var(--card-bg);
+    }
+
+    .section-intro {
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+      color: #555;
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    .section-intro-note {
+      max-width: 640px;
+      margin: 0.75rem auto 0;
+      text-align: center;
+      color: #888;
+      font-size: 0.9rem;
+      font-style: italic;
+    }
+
+    .solutions-showcase-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .solution-card {
+      background: var(--bg-color);
+      border: 1px solid #e8e8e8;
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: var(--executive-shadow);
+      transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+    }
+
+    .solution-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    }
+
+    .solution-industry-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, rgba(42,42,114,0.08), rgba(0,159,253,0.12));
+      border: 1px solid rgba(0,159,253,0.25);
+      color: var(--primary-color);
+      padding: 0.3rem 0.9rem;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .solution-card h3 {
+      font-size: 1.3rem;
+      color: var(--primary-color);
+      margin-bottom: 0.75rem;
+      font-weight: 600;
+    }
+
+    .solution-card p {
+      font-size: 0.95rem;
+      color: #555;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    /* Solution case-study modal */
+    .solution-modal-visual {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: var(--bg-color);
+      border: 1px dashed #cfd4da;
+      border-radius: 14px;
+      padding: 2.5rem 1.5rem;
+      margin: 1.25rem 0 2rem;
+      color: #8a919b;
+    }
+
+    .solution-modal-visual i {
+      font-size: 2.2rem;
+      color: var(--secondary-color);
+      opacity: 0.7;
+    }
+
+    .solution-modal-visual span {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .solution-modal-section {
+      margin-bottom: 1.5rem;
+    }
+
+    .solution-modal-section h4 {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--secondary-color);
+      margin-bottom: 0.5rem;
+    }
+
+    .solution-modal-section p {
+      font-size: 0.98rem;
+      color: var(--text-color);
+    }
+
+    .solution-modal-section ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .solution-modal-section ul li {
+      background: rgba(0, 159, 253, 0.08);
+      border: 1px solid rgba(0, 159, 253, 0.2);
+      color: var(--primary-color);
+      padding: 0.35rem 0.85rem;
+      border-radius: 15px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .solution-modal-takeaway {
+      background: #f8f9fa;
+      border-left: 4px solid var(--accent-color);
+      padding: 1.25rem 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 0;
+    }
+
+    .solutions-value-panel {
+      padding: 100px 20px;
+      background: var(--bg-color);
+    }
+
+    .solutions-value-panel .value-outcomes-grid {
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 768px) {
+      .featured-solutions,
+      .solutions-value-panel {
+        padding: 60px 20px;
+      }
     }
 
     /* Case Studies Section */
@@ -1136,6 +1336,169 @@
       color: #777;
     }
 
+    /* Innovation Insights Section */
+    .innovation-insights {
+      padding: 100px 20px;
+      background: var(--card-bg);
+    }
+
+    .insights-categories {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.6rem;
+      margin: 2rem 0 3rem;
+    }
+
+    .insights-category-chip {
+      background: var(--bg-color);
+      border: 1px solid #e0e0e0;
+      color: #555;
+      padding: 0.5rem 1.1rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition-speed);
+    }
+
+    .insights-category-chip:hover {
+      border-color: var(--secondary-color);
+      color: var(--primary-color);
+    }
+
+    .insights-category-chip.is-active {
+      background: var(--primary-color);
+      border-color: var(--primary-color);
+      color: #fff;
+    }
+
+    .insights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .insight-card {
+      background: var(--bg-color);
+      border: 1px solid #e8e8e8;
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: var(--executive-shadow);
+      transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .insight-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    }
+
+    .insight-category-badge {
+      display: inline-block;
+      align-self: flex-start;
+      background: linear-gradient(135deg, rgba(42,42,114,0.08), rgba(0,159,253,0.12));
+      border: 1px solid rgba(0,159,253,0.25);
+      color: var(--primary-color);
+      padding: 0.3rem 0.9rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .insight-card h3 {
+      font-size: 1.2rem;
+      color: var(--primary-color);
+      margin-bottom: 0.75rem;
+      font-weight: 600;
+      line-height: 1.35;
+    }
+
+    .insight-card p {
+      font-size: 0.95rem;
+      color: #555;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .insight-card-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 1rem;
+      border-top: 1px solid #e8e8e8;
+      font-size: 0.82rem;
+    }
+
+    .insight-read-time {
+      color: #888;
+    }
+
+    .insight-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: #b8860b;
+      font-weight: 600;
+    }
+
+    .services .foundation-grid {
+      margin-top: 3rem;
+    }
+
+    /* Stay Connected Section */
+    .stay-connected {
+      padding: 100px 20px;
+      background: var(--gradient);
+      color: #fff;
+      text-align: center;
+    }
+
+    .stay-connected .section-title {
+      color: #fff;
+    }
+
+    .stay-connected .section-title::after {
+      background: #fff;
+    }
+
+    .stay-connected .section-intro {
+      color: #fff;
+      opacity: 0.9;
+    }
+
+    .stay-connected-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .newsletter-placeholder {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px dashed rgba(255, 255, 255, 0.4);
+      border-radius: 50px;
+      padding: 0.8rem 1.8rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #fff;
+      opacity: 0.85;
+    }
+
+    @media (max-width: 768px) {
+      .innovation-insights,
+      .stay-connected {
+        padding: 60px 20px;
+      }
+    }
+
     /* Footer */
     footer {
       background: var(--primary-color);
@@ -1162,11 +1525,22 @@
       .hero-content {
         grid-template-columns: 1fr;
         text-align: center;
-        gap: 2rem;
+        gap: 2.5rem;
       }
 
       .hero-text h1 {
         font-size: 2.8rem;
+      }
+
+      .hero-description {
+        max-width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-trust-row,
+      .hero-actions {
+        justify-content: center;
       }
 
       .services-grid,
@@ -1206,19 +1580,33 @@
         padding: 80px 20px;
       }
 
+      .hero-visual,
+      .hero-photo-frame {
+        width: 220px;
+        height: 220px;
+      }
+
+      .hero-graphic {
+        width: 300px;
+        height: 300px;
+      }
+
       .hero-text h1 {
-        font-size: 2.5rem;
+        font-size: 2.3rem;
       }
 
-      .hero-tagline {
-        font-size: 1.1rem;
+      .hero-role {
+        font-size: 1.05rem;
       }
 
-      .hero-metrics { gap: 0.6rem; }
-      .metric { padding: 1.1rem 0.6rem 1rem; gap: 0.5rem; }
-      .metric-icon { width: 40px; height: 40px; font-size: 1rem; }
-      .metric-number { font-size: 1.6rem; }
-      .metric-label { font-size: 0.68rem; letter-spacing: 0.3px; }
+      .hero-trust-row {
+        gap: 0.5rem;
+      }
+
+      .trust-pill {
+        font-size: 0.8rem;
+        padding: 0.45rem 0.85rem;
+      }
 
       .hero-actions {
         flex-direction: column;
@@ -1262,17 +1650,21 @@
         font-size: 2rem;
       }
 
-      .hero-image img {
-        width: 200px;
-        height: 200px;
+      .hero-visual,
+      .hero-photo-frame {
+        width: 180px;
+        height: 180px;
       }
 
-      .hero-metrics { grid-template-columns: 1fr; gap: 0.7rem; }
-      .metric { flex-direction: row; justify-content: flex-start; text-align: left; gap: 1rem; padding: 1rem 1.25rem; }
-      .metric::before { left: 0; right: auto; top: 0; bottom: 0; width: 4px; height: auto; }
-      .metric-icon { width: 42px; height: 42px; font-size: 1rem; }
-      .metric-number { font-size: 1.55rem; }
-      .metric-label { font-size: 0.74rem; line-height: 1.3; }
+      .hero-graphic {
+        width: 250px;
+        height: 250px;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+        text-align: center;
+      }
 
       .impact-metrics {
         grid-template-columns: 1fr;
@@ -1296,127 +1688,123 @@
       transform: translateY(0);
     }
   </style>
+  <link rel="stylesheet" href="./css/home.css" />
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
   <header>
-    <nav>
-      <div class="logo">ENOCH</div>
-      <button class="nav-toggle" aria-label="Toggle navigation">
+    <nav aria-label="Main navigation">
+      <a href="./index.html" class="logo">ENOCH</a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="main-navigation">
         <span class="hamburger-line"></span>
         <span class="hamburger-line"></span>
         <span class="hamburger-line"></span>
       </button>
-      <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="./file/Akinpelu_Enoch_CV.PDF" download="Akinpelu Ifeoluwa Enoch CV.pdf" data-cv-download>My CV</a></li>
-        <li><a href="#services">What I Do</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Portfolio</a></li>
-        <li><a href="#leadership">Leadership</a></li>
-        <li><a href="#case-studies">Experience</a></li>
-        <li><a href="#certifications">Credentials</a></li>
-        <li><a href="./blog/index.html">Blog</a></li>
-        <li><a href="#contact">Let's Talk</a></li>
+      <ul class="nav-links" id="main-navigation">
+        <li><a href="#home" aria-current="page">Home</a></li>
+        <li><a href="./about.html">About</a></li>
+        <li><a href="./solutions.html">Solutions</a></li>
+        <li><a href="#projects">Selected Work</a></li><li><a href="#case-studies">Experience</a></li>
+        <li><a href="./blog/index.html">Insights</a></li>
+        <li><a href="#contact" class="nav-cta">Contact</a></li>
       </ul>
     </nav>
   </header>
 
-  <main>
-    <section class="hero" id="about">
+  <main id="main-content">
+    <section class="hero" id="home">
       <div class="hero-content">
-        <div class="hero-image">
-          <img src="./images/my pic.jpg" alt="Akinpelu Enoch - Technical Project Manager and Digital Transformation Analyst" />
+        <div class="hero-visual reveal">
+          <svg class="hero-graphic" viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+            <path class="link" d="M100 20 L165 60 L165 140 L100 180 L35 140 L35 60 Z" />
+            <path class="link" d="M100 20 L100 100 L165 60" />
+            <path class="link" d="M100 100 L165 140" />
+            <path class="link" d="M100 100 L35 140" />
+            <path class="link" d="M100 100 L35 60" />
+            <circle class="node" cx="100" cy="20" r="5" />
+            <circle class="node" cx="165" cy="60" r="5" />
+            <circle class="node" cx="165" cy="140" r="5" />
+            <circle class="node" cx="100" cy="180" r="5" />
+            <circle class="node" cx="35" cy="140" r="5" />
+            <circle class="node" cx="35" cy="60" r="5" />
+            <circle class="node" cx="100" cy="100" r="6" />
+          </svg>
+          <div class="hero-photo-frame">
+            <img src="./images/my pic.jpg" alt="Akinpelu Enoch, Digital Innovation & Technology Strategy Specialist" width="3000" height="4496" fetchpriority="high" />
+          </div>
+          <div class="portrait-caption"><strong>Enoch Akinpelu</strong><span>Business thinking. Practical technology.</span></div>
         </div>
-        <div class="hero-text">
-          <h1>Hi, I'm Enoch</h1>
-          <p class="hero-tagline">Technical Project Manager | I use technology to optimize operations and grow the bottom line.</p>
-          <p class="hero-description">
-            Technical Project Manager and Digital Transformation Analyst specializing in software delivery and digital transformation for enterprise and growth-stage organizations. Proven track record delivering end-to-end software projects, translating complex business needs into scalable digital solutions, and driving measurable efficiency gains. Combines a strong foundation in Computer Science (B.Sc., Second Class Upper) with an ongoing M.Sc. in Artificial Intelligence to bring technical depth and strategic business alignment, with experience leading cross-functional teams, managing stakeholders, and building digital process frameworks adopted across multiple organizations.
-          </p>
-          
-          <div class="hero-metrics">
-            <div class="metric">
-              <div class="metric-icon"><i class="fas fa-shield-halved"></i></div>
-              <div class="metric-body">
-                <span class="metric-number">40%</span>
-                <span class="metric-label">Fewer Post-Release Defects</span>
-              </div>
-            </div>
-            <div class="metric">
-              <div class="metric-icon"><i class="fas fa-gauge-high"></i></div>
-              <div class="metric-body">
-                <span class="metric-number">15%</span>
-                <span class="metric-label">Faster Time-to-Market</span>
-              </div>
-            </div>
-            <div class="metric">
-              <div class="metric-icon"><i class="fas fa-naira-sign"></i></div>
-              <div class="metric-body">
-                <span class="metric-number">₦15M+</span>
-                <span class="metric-label">Operational Cost Savings</span>
-              </div>
-            </div>
+        <div class="hero-text reveal reveal-delay-1">
+          <span class="hero-eyebrow">Digital Innovation &amp; Technology Strategy</span>
+          <h1>Business understanding.<br />Digital advantage.</h1>
+          <p class="hero-role">Enoch Akinpelu — Digital Innovation &amp; Technology Strategy Specialist</p>
+          <p class="hero-description">I help organizations turn complex processes into clearer workflows, useful digital products, and better decisions. From understanding the business to delivering the solution.</p>
+
+          <div class="hero-trust-row">
+            <span class="trust-pill"><i class="fas fa-diagram-project" aria-hidden="true"></i> Structured Methodology</span>
+            <span class="trust-pill"><i class="fas fa-building-columns" aria-hidden="true"></i> Business-First Approach</span>
+            <span class="trust-pill"><i class="fas fa-magnifying-glass-chart" aria-hidden="true"></i> Process-Focused Thinking</span>
+            <span class="trust-pill"><i class="fas fa-bullseye" aria-hidden="true"></i> Measurable Value Focus</span>
           </div>
-          
+
           <div class="hero-actions">
-            <a href="#contact" class="btn primary">Schedule a Strategy Call</a>
-            <a href="#case-studies" class="btn secondary">View Experience</a>
+            <a href="#projects" class="btn primary">Explore my work <span aria-hidden="true">&#8599;</span></a>
+            <a href="#contact" class="btn secondary">Let's talk</a>
           </div>
+
+          <a href="./file/Akinpelu_Enoch_CV.PDF" download="Akinpelu Ifeoluwa Enoch CV.pdf" data-cv-download class="hero-cv-link">
+            <i class="fas fa-file-arrow-down" aria-hidden="true"></i> Download CV
+          </a>
         </div>
       </div>
     </section>
 
     <section class="services" id="services">
       <div class="container">
+        <p class="section-kicker">01 / How I help</p>
         <h2 class="section-title">What I Do</h2>
-        <div class="services-grid">
-          
-          <div class="service-card reveal">
-            <div class="service-icon"><i class="fas fa-brain"></i></div>
-            <h3>Enterprise AI Strategy & Vision</h3>
-            <p>Define and execute an organizational AI vision. I bridge technical feasibility with strategic ROI, ensuring AI implementations don't just work, but fundamentally enhance business models and competitive position.</p>
-            <div class="service-deliverables">
-              <span class="deliverable-tag">Business Model Innovation</span>
-              <span class="deliverable-tag">Executive Roadmap</span>
-              <span class="deliverable-tag">Measurable ROI</span>
-              <span class="deliverable-tag">Technology Scouting</span>
-            </div>
-          </div>
+        <p class="section-intro">I help organizations improve how they work through business strategy, digital innovation, and practical technology.</p>
 
-          <div class="service-card reveal">
-            <div class="service-icon"><i class="fas fa-globe-americas"></i></div>
-            <h3>Cross-Functional Transformation Leadership</h3>
-            <p>Unifying and directing global, cross-functional teams (Tech, Sales, Finance) toward a singular transformation objective. I eliminate silos and drive alignment at the executive level for unified execution.</p>
-            <div class="service-deliverables">
-              <span class="deliverable-tag">Stakeholder Alignment</span>
-              <span class="deliverable-tag">Silo Elimination</span>
-              <span class="deliverable-tag">Vision Casting</span>
-              <span class="deliverable-tag">Global Program Oversight</span>
-            </div>
+        <div class="foundation-grid">
+          <div class="foundation-card reveal">
+            <div class="foundation-card-icon"><i class="fas fa-chess" aria-hidden="true"></i></div>
+            <h3>Business Strategy</h3>
+            <p>Aligning day-to-day operations with the organization's broader goals.</p>
           </div>
-
-          <div class="service-card reveal">
-            <div class="service-icon"><i class="fas fa-rocket"></i></div>
-            <h3>Digital Roadmapping & Portfolio Management</h3>
-            <p>Strategic oversight of the digital portfolio. I prioritize high-value initiatives, secure executive buy-in for resources, and manage the program timeline to ensure strategic goals are met efficiently.</p>
-            <div class="service-deliverables">
-              <span class="deliverable-tag">Portfolio Prioritization</span>
-              <span class="deliverable-tag">Resource Allocation</span>
-              <span class="deliverable-tag">Program Governance</span>
-              <span class="deliverable-tag">Risk Mitigation</span>
-            </div>
+          <div class="foundation-card reveal">
+            <div class="foundation-card-icon"><i class="fas fa-lightbulb" aria-hidden="true"></i></div>
+            <h3>Digital Innovation</h3>
+            <p>Finding practical ways technology can create real business value.</p>
           </div>
-
-          <div class="service-card reveal">
-            <div class="service-icon"><i class="fas fa-graduation-cap"></i></div>
-            <h3>Organizational Change & Capability Building</h3>
-            <p>Preparing the organization for the future. I lead culture change, establish new digital operating models, and build robust internal capability through targeted training and leadership mentorship.</p>
-            <div class="service-deliverables">
-              <span class="deliverable-tag">Change Management</span>
-              <span class="deliverable-tag">Digital Operating Models</span>
-              <span class="deliverable-tag">Leadership Mentorship</span>
-              <span class="deliverable-tag">Talent Upskilling</span>
-            </div>
+          <div class="foundation-card reveal">
+            <div class="foundation-card-icon"><i class="fas fa-diagram-project" aria-hidden="true"></i></div>
+            <h3>Process Improvement</h3>
+            <p>Making existing workflows simpler, faster, and more consistent.</p>
+          </div>
+          <div class="foundation-card reveal">
+            <div class="foundation-card-icon"><i class="fas fa-gauge-high" aria-hidden="true"></i></div>
+            <h3>Operational Performance</h3>
+            <p>Understanding how well the business is actually running, day to day.</p>
+          </div>
+          <div class="foundation-card reveal">
+            <div class="foundation-card-icon"><i class="fas fa-gears" aria-hidden="true"></i></div>
+            <h3>Workflow Automation</h3>
+            <p>Removing manual steps that slow teams down without adding value.</p>
+          </div>
+          <div class="foundation-card reveal">
+            <div class="foundation-card-icon"><i class="fas fa-chart-line" aria-hidden="true"></i></div>
+            <h3>Reporting &amp; Analytics</h3>
+            <p>Turning raw data into information people can actually act on.</p>
+          </div>
+          <div class="foundation-card reveal">
+            <div class="foundation-card-icon"><i class="fas fa-magnifying-glass-chart" aria-hidden="true"></i></div>
+            <h3>Decision Support</h3>
+            <p>Giving decision-makers the right information at the right time.</p>
+          </div>
+          <div class="foundation-card reveal">
+            <div class="foundation-card-icon"><i class="fas fa-arrows-rotate" aria-hidden="true"></i></div>
+            <h3>Business Transformation</h3>
+            <p>Helping organizations adopt new ways of working that stick.</p>
           </div>
         </div>
       </div>
@@ -1424,7 +1812,9 @@
 
     <section class="skills-section" id="skills">
       <div class="container">
-      <h2 class="section-title">Skills & Expertise</h2>
+      <p class="section-kicker">02 / The toolkit</p>
+        <h2 class="section-title">Skills & Expertise</h2>
+        <p class="section-intro">Business understanding, delivery discipline, and the technical tools to connect the two.</p>
       <div class="skills-grid reveal">
 
         <div class="skill-card">
@@ -1485,155 +1875,98 @@
       </div>
     </section>
 
-    <section class="projects" id="projects">
+    <section class="projects" id="projects" aria-labelledby="selected-work-title">
       <div class="container">
-        <h2 class="section-title">Portfolio</h2>
-        <div class="carousel-wrapper reveal">
-        <div class="projects-grid">
-
-          <div class="project-card" data-project="nylc">
-            <img src="./images/league cup.png" alt="NYLC League Cup Logo" class="project-logo" />
-            <h4>N Youth League Cup (NYLC)</h4>
-            <p>Youth football league app for fans, live scores, predictions, and highlights.</p>
-            <div class="project-outcomes">
-              <span class="outcome-tag">1,200+ Users</span>
-              <span class="outcome-tag">iOS & Android</span>
-              <span class="outcome-tag">Delivered On Time</span>
-            </div>
-            <button class="btn primary small view-details-btn">View Details</button>
-          </div>
-
-          <div class="project-card" data-project="agriConnect">
-            <img src="./images/agri.png" alt="Agri Connect Logo" class="project-logo" />
-            <h4>Agri Connect</h4>
-            <p>Connecting farmers to markets and resources.</p>
-            <div class="project-outcomes">
-              <span class="outcome-tag">500+ Farmers Onboarded</span>
-              <span class="outcome-tag">3 States Reached</span>
-              <span class="outcome-tag">30% Income Uplift</span>
-            </div>
-            <button class="btn primary small view-details-btn">View Details</button>
-          </div>
-
-          <div class="project-card" data-project="prayerPortal">
-            <img src="./images/kingdom-portal.png" alt="Prayer Portal Logo" class="project-logo" />
-            <h4>Prayer Portal</h4>
-            <p>A mobile app for a global community of believers.</p>
-            <div class="project-outcomes">
-              <span class="outcome-tag">Global User Base</span>
-              <span class="outcome-tag">Multi-timezone Support</span>
-              <span class="outcome-tag">4.7★ Rating</span>
-            </div>
-            <button class="btn primary small view-details-btn">View Details</button>
-          </div>
-
-          <div class="project-card" data-project="docify">
-            <img src="./images/Docify.png" alt="Docify Logo" class="project-logo" />
-            <h4>Docify</h4>
-            <p>AI translation for seamless healthcare communication.</p>
-            <div class="project-outcomes">
-              <span class="outcome-tag">12 Languages</span>
-              <span class="outcome-tag">40% Faster Diagnosis</span>
-              <span class="outcome-tag">NLP-Powered</span>
-            </div>
-            <button class="btn primary small view-details-btn">View Details</button>
-          </div>
-
-          <div class="project-card" data-project="nexutor">
-            <img src="./images/nexutor.png" alt="Nexutor Logo" class="project-logo" />
-            <h4>Nexutor</h4>
-            <p>An edutech AI startup for personalized learning.</p>
-            <div class="project-outcomes">
-              <span class="outcome-tag">800+ Learners</span>
-              <span class="outcome-tag">AI Curriculum Engine</span>
-              <span class="outcome-tag">35% Completion Uplift</span>
-            </div>
-            <button class="btn primary small view-details-btn">View Details</button>
-          </div>
-
-          <div class="project-card" data-project="studhab">
-            <img src="./images/studhab.png" alt="Studhab Logo" class="project-logo" />
-            <h4>Studhab</h4>
-            <p>Coding education with financial incentives for students.</p>
-            <div class="project-outcomes">
-              <span class="outcome-tag">300+ Students</span>
-              <span class="outcome-tag">Incentive-Based Learning</span>
-              <span class="outcome-tag">78% Retention Rate</span>
-            </div>
-            <button class="btn primary small view-details-btn">View Details</button>
-          </div>
-          
-          <div class="project-card" data-project="osusu">
-            <img src="./images/osusu.png" alt="OSUSU Logo" class="project-logo" />
-            <h4>OSUSU</h4>
-            <p>A communal savings platform for friends and family.</p>
-            <div class="project-outcomes">
-              <span class="outcome-tag">₦50M+ Saved</span>
-              <span class="outcome-tag">400+ Groups</span>
-              <span class="outcome-tag">Zero Defaults Recorded</span>
-            </div>
-            <button class="btn primary small view-details-btn">View Details</button>
-          </div>
-
-          <div class="project-card" data-project="swiftRoute">
-            <img src="./images/swiftroute.png" alt="SwiftRoute Logistics Logo" class="project-logo" />
-            <h4>SwiftRoute Logistics</h4>
-            <p>AI-powered logistics for route and fleet optimization.</p>
-            <div class="project-outcomes">
-              <span class="outcome-tag">22% Fuel Savings</span>
-              <span class="outcome-tag">50+ Fleet Vehicles</span>
-              <span class="outcome-tag">Real-time Tracking</span>
-            </div>
-            <button class="btn primary small view-details-btn">View Details</button>
-          </div>
-
-          <div class="project-card" data-project="veriSense">
-            <img src="./images/verisense.png" alt="VeriSense Retail Logo" class="project-logo" />
-            <h4>VeriSense Retail</h4>
-            <p>Smart retail solution using computer vision for inventory.</p>
-            <div class="project-outcomes">
-              <span class="outcome-tag">15 Store Locations</span>
-              <span class="outcome-tag">35% Shrinkage Reduced</span>
-              <span class="outcome-tag">Computer Vision AI</span>
-            </div>
-            <button class="btn primary small view-details-btn">View Details</button>
-          </div>
-
-          <div class="project-card" data-project="hotelOps">
-            <img src="./images/hotelops.svg" alt="HotelOps.ng Logo" class="project-logo" />
-            <h4>HotelOps.ng</h4>
-            <p>Hospitality operations platform for hotel visibility, accountability, and execution.</p>
-            <div class="project-outcomes">
-              <span class="outcome-tag">Multi-Property Support</span>
-              <span class="outcome-tag">Real-time Operations</span>
-              <span class="outcome-tag">Staff Accountability</span>
-            </div>
-            <button class="btn primary small view-details-btn">View Details</button>
-          </div>
-
-          <div class="project-card" data-project="zenithAI">
-            <img src="./images/zenith.png" alt="ZenithAI Logo" class="project-logo" />
-            <h4>ZenithAI</h4>
-            <p>An AI platform for automated customer service.</p>
-            <div class="project-outcomes">
-              <span class="outcome-tag">80% Query Resolution</span>
-              <span class="outcome-tag">24/7 Availability</span>
-              <span class="outcome-tag">CRM Integrated</span>
-            </div>
-            <button class="btn primary small view-details-btn">View Details</button>
-          </div>
+        <div class="work-heading">
+          <div><p class="work-eyebrow">03 / Selected projects</p><h2 id="selected-work-title">Selected Work<span>.</span></h2></div>
+          <p>Digital products built to solve practical business problems. A selection of my work across operations, community, and technology.</p>
         </div>
+        <div class="projects-grid">
+          <article class="project-card work-card work-featured" data-project="hotelOps">
+            <div class="work-visual work-hotel"><img class="work-product-image" src="./images/hotelops.png" alt="HotelOps launch graphic showing its operations dashboard" loading="lazy" width="1254" height="1254" /></div>
+            <div class="work-content">
+              <p class="work-eyebrow">Featured project &nbsp; / &nbsp; Hospitality operations</p>
+              <h3>HotelOps.ng</h3>
+              <p class="work-headline">Clearer operations. More accountable teams.</p>
+              <p class="work-description">Bringing tasks, issue reporting, and property oversight into one place so hotel teams can coordinate daily work.</p>
+              <p class="work-role"><span>My role</span>Product strategy &amp; delivery</p>
+              <ul class="work-capabilities"><li>Task ownership</li><li>Issue tracking</li><li>Multi-property support</li></ul>
+              <button class="view-details-btn work-link" type="button" aria-label="Explore HotelOps.ng project">Explore project <span aria-hidden="true">&#8599;</span></button>
+            </div>
+          </article>
+          <article class="project-card work-card" data-project="nylc">
+            <div class="work-visual work-sport"><span class="work-visual-label">Sports &amp; community</span><img class="project-logo" src="./images/league cup.png" alt="N Youth League Cup logo" loading="lazy" width="120" height="120" /><span class="work-visual-title">N Youth League Cup</span></div>
+            <div class="work-content">
+              <p class="work-eyebrow">Sports &amp; community</p>
+              <h3>N Youth League Cup</h3>
+              <p class="work-headline">The match-day experience, in your pocket.</p>
+              <p class="work-description">A mobile experience connecting youth football fans with player profiles, live scores, match predictions, and highlights.</p>
+              <p class="work-role"><span>My role</span>Mobile product delivery</p>
+              <ul class="work-capabilities"><li>Live scores</li><li>Match predictions</li></ul>
+              <button class="view-details-btn work-link" type="button" aria-label="Explore N Youth League Cup project">Explore project <span aria-hidden="true">&#8599;</span></button>
+            </div>
+          </article>
+          <article class="project-card work-card" data-project="prayerPortal">
+            <div class="work-visual work-community"><span class="work-visual-label">Community platform</span><img class="project-logo" src="./images/kingdom-portal.png" alt="Prayer Portal logo" loading="lazy" width="120" height="120" /><span class="work-visual-title">Prayer Portal</span></div>
+            <div class="work-content">
+              <p class="work-eyebrow">Community platform</p>
+              <h3>Prayer Portal</h3>
+              <p class="work-headline">A shared space for faith and connection.</p>
+              <p class="work-description">Connecting a global community through shared prayer requests, timely alerts, and support.</p>
+              <p class="work-role"><span>My role</span>Product design &amp; team leadership</p>
+              <ul class="work-capabilities"><li>Prayer alerts</li><li>Community feed</li></ul>
+              <button class="view-details-btn work-link" type="button" aria-label="Explore Prayer Portal project">Explore project <span aria-hidden="true">&#8599;</span></button>
+            </div>
+          </article>
+          <article class="project-card work-card" data-project="docify">
+            <div class="work-visual work-health"><span class="work-visual-label">Healthcare technology</span><img class="project-logo" src="./images/Docify.png" alt="Docify logo" loading="lazy" width="120" height="120" /><span class="work-visual-title">Docify</span></div>
+            <div class="work-content">
+              <p class="work-eyebrow">Healthcare technology</p>
+              <h3>Docify</h3>
+              <p class="work-headline">Making language less of a barrier to care.</p>
+              <p class="work-description">Audio and text translation designed to help patients and doctors communicate across languages.</p>
+              <p class="work-role"><span>My role</span>Product strategy &amp; AI delivery</p>
+              <ul class="work-capabilities"><li>Language translation</li><li>Patient communication</li></ul>
+              <button class="view-details-btn work-link" type="button" aria-label="Explore Docify project">Explore project <span aria-hidden="true">&#8599;</span></button>
+            </div>
+          </article>
+          <article class="project-card work-card" data-project="studhab">
+            <div class="work-visual work-education"><span class="work-visual-label">Education technology</span><img class="project-logo" src="./images/studhab.png" alt="Studhab logo" loading="lazy" width="120" height="120" /><span class="work-visual-title">Studhab</span></div>
+            <div class="work-content">
+              <p class="work-eyebrow">Education technology</p>
+              <h3>Studhab</h3>
+              <p class="work-headline">Turning learning into lasting progress.</p>
+              <p class="work-description">A coding education platform that combines structured learning with milestone-based financial incentives.</p>
+              <p class="work-role"><span>My role</span>Learning model &amp; launch planning</p>
+              <ul class="work-capabilities"><li>Learning milestones</li><li>Peer code review</li></ul>
+              <button class="view-details-btn work-link" type="button" aria-label="Explore Studhab project">Explore project <span aria-hidden="true">&#8599;</span></button>
+            </div>
+          </article>
+          <article class="project-card work-card" data-project="osusu">
+            <div class="work-visual work-finance"><span class="work-visual-label">Financial technology</span><img class="project-logo" src="./images/osusu.png" alt="OSUSU logo" loading="lazy" width="120" height="120" /><span class="work-visual-title">OSUSU</span></div>
+            <div class="work-content">
+              <p class="work-eyebrow">Financial technology</p>
+              <h3>OSUSU</h3>
+              <p class="work-headline">Shared goals. More connected saving.</p>
+              <p class="work-description">Helping friends and families coordinate group savings, follow contributions, and work toward common goals.</p>
+              <p class="work-role"><span>My role</span>Product strategy &amp; user research</p>
+              <ul class="work-capabilities"><li>Group savings</li><li>Contribution reminders</li></ul>
+              <button class="view-details-btn work-link" type="button" aria-label="Explore OSUSU project">Explore project <span aria-hidden="true">&#8599;</span></button>
+            </div>
+          </article>
         </div>
       </div>
     </section>
 
     <section class="leadership-gallery" id="leadership">
       <div class="container">
+        <p class="section-kicker">04 / Beyond the screen</p>
         <h2 class="section-title">Leadership</h2>
+        <p class="section-intro">Sharing knowledge, building capability, and helping people do their best work.</p>
         <div class="gallery-grid">
           
           <div class="gallery-item reveal">
-            <img src="./images/IMG_20250728_045823.jpg" alt="Leading AI Workshop" />
+            <img src="./images/IMG_20250728_045823.jpg" alt="Leading AI Workshop" loading="lazy" />
             <div class="gallery-overlay">
               <h4>Driving AI Capability</h4>
               <p>Leading a hands-on AI training session for 30+ professionals to improve organizational tech literacy and future readiness.</p>
@@ -1642,17 +1975,17 @@
 
 
           <div class="gallery-item reveal">
-            <img src="./images/IMG_20250728_045607.jpg" alt="Tech Conference Speaking" />
+            <img src="./images/IMG_20250728_045607.jpg" alt="Tech Conference Speaking" loading="lazy" />
             <div class="gallery-overlay">
               <h4>Tech Conference Speaker</h4>
-              <p>Speaking on technological advancement in my faculty tech workshop when i was on campus.</p>
+              <p>Sharing practical perspectives on technology at a faculty workshop during my time on campus.</p>
             </div>
           </div>
 
           <!-- Removed: Cross-Continental Alignment and Project Review Meeting gallery items per request -->
 
           <div class="gallery-item reveal">
-            <img src="./images/IMG_20250728_050006.jpg" alt="Mentoring Session" />
+            <img src="./images/IMG_20250728_050006.jpg" alt="Mentoring Session" loading="lazy" />
             <div class="gallery-overlay">
               <h4>Technical Mentoring</h4>
               <p>One-on-one mentorship session with an emerging tech professional to build their career path.</p>
@@ -1660,7 +1993,7 @@
           </div>
 
           <div class="gallery-item reveal">
-            <img src="./images/1753675580808.jpg" alt="Award Recognition" />
+            <img src="./images/1753675580808.jpg" alt="Award Recognition" loading="lazy" />
             <div class="gallery-overlay">
               <h4>Recognized Impact</h4>
               <p>Receiving an Excellence Award for driving measurable results and leadership as the President of my computing student association.</p>
@@ -1673,7 +2006,9 @@
 
     <section class="case-studies" id="case-studies">
       <div class="container">
+        <p class="section-kicker">05 / Experience</p>
         <h2 class="section-title">Professional Experience</h2>
+        <p class="section-intro">The teams, products, and operational challenges behind my work.</p>
         <div class="case-study-grid">
 
           <div class="case-study-card reveal">
@@ -1837,36 +2172,38 @@
 
     <section class="certifications" id="certifications">
       <div class="container">
+        <p class="section-kicker">06 / Continuous learning</p>
         <h2 class="section-title">Professional Credentials</h2>
+        <p class="section-intro">Building on practical experience with structured professional development.</p>
         <div class="certifications-grid">
 
           <div class="certification-card reveal">
-            <img src="https://images.credly.com/images/80c95f74-dcf0-43fc-a437-053a598feb05/blob" alt="CAPM Certification Badge" />
+            <img src="https://images.credly.com/images/80c95f74-dcf0-43fc-a437-053a598feb05/blob" alt="CAPM Certification Badge" loading="lazy" />
             <h3>Certified Associate in Project Management (CAPM)</h3>
             <span class="cert-status">In Progress</span>
             <p>Project Management Institute</p>
-            <p class="cert-note">I have paid for the certification and I am currently preparing for the exam. I plan to sit the exam in August 2026 and pass.</p>
+            <p class="cert-note">Exam preparation in progress.</p>
           </div>
           
           <div class="certification-card reveal">
-            <img src="./images/google.jpg" alt="Google Project Management Certification" />
+            <img src="./images/google.jpg" alt="Google Project Management Certification" loading="lazy" />
             <h3>Project Management Certificate</h3>
             <p>Google</p>
-            <a href="https://www.credly.com/go/s0Z1XMz1viVw5qggHyYcRA" target="_blank" class="btn primary small">Verify Credentials</a>
+            <a href="https://www.credly.com/go/s0Z1XMz1viVw5qggHyYcRA" target="_blank" rel="noopener noreferrer" class="btn primary small">Verify Credentials</a>
           </div>
 
           <div class="certification-card reveal">
-            <img src="./images/m.jpg" alt="McKinsey Forward Program" />
+            <img src="./images/m.jpg" alt="McKinsey Forward Program" loading="lazy" />
             <h3>McKinsey Forward Program</h3>
             <p>McKinsey & Company</p>
-            <a href="https://www.credly.com/go/eBcmv55dHwklCabeV0ibug" target="_blank" class="btn primary small">Verify Credentials</a>
+            <a href="https://www.credly.com/go/eBcmv55dHwklCabeV0ibug" target="_blank" rel="noopener noreferrer" class="btn primary small">Verify Credentials</a>
           </div>
 
           <div class="certification-card reveal">
-            <img src="./images/blob.png" alt="CPMAI" />
+            <img src="./images/blob.png" alt="CPMAI" loading="lazy" />
             <h3>Introduction to CPMAI</h3>
             <p>Project Management Institute</p>
-            <a href="https://www.credly.com/badges/64b36fd7-27e0-4b16-97ca-6db297a08ee9/" target="_blank" class="btn primary small">Verify Credentials</a>
+            <a href="https://www.credly.com/badges/64b36fd7-27e0-4b16-97ca-6db297a08ee9/" target="_blank" rel="noopener noreferrer" class="btn primary small">Verify Credentials</a>
           </div>
         </div>
       </div>
@@ -1874,7 +2211,9 @@
 
     <section class="testimonials" id="testimonials">
       <div class="container">
+        <p class="section-kicker">07 / Working together</p>
         <h2 class="section-title">What People Say</h2>
+        <p class="section-intro">Perspectives from the people I have worked alongside.</p>
         <div class="testimonials-grid">
 
           <div class="testimonial-card reveal">
@@ -1920,40 +2259,142 @@
       </div>
     </section>
 
-    <section class="contact" id="contact">
+    <section class="innovation-insights" id="insights">
       <div class="container">
-        <h2 class="section-title">Ready To Transform Your Business?</h2>
-        <p class="contact-intro">
-          Let's discuss how I can help deliver your next AI or tech product with measurable results. I'm currently available for new projects and would love to understand your specific challenges.
+        <p class="section-kicker">08 / Ideas & perspectives</p>
+        <h2 class="section-title">Innovation Insights</h2>
+        <p class="section-intro">
+          Practical perspectives on digital innovation, business strategy, operational improvement, and technology that helps organizations achieve better outcomes.
         </p>
 
-        <div class="contact-form-card">
-          <form id="contact-form" action="https://formspree.io/f/xzdqwokv" method="POST">
-            <div class="form-row">
-              <input type="text" name="name" placeholder="Your Name" required />
-              <input type="email" name="email" placeholder="Your Email" required />
-            </div>
-            <input type="text" name="subject" placeholder="Subject (e.g. Project Inquiry)" required />
-            <textarea name="message" placeholder="Tell me about your project or challenge..." required></textarea>
-            <button type="submit" class="btn primary" style="width:100%; border-radius: 10px;">Send Message</button>
-            <div id="contact-form-status"></div>
-          </form>
+        <div class="insights-categories" role="group" aria-label="Filter insights by category">
+          <button class="insights-category-chip is-active" aria-pressed="true" type="button" data-category="all">All</button>
+          <button class="insights-category-chip" aria-pressed="false" type="button" data-category="Digital Innovation">Digital Innovation</button>
+          <button class="insights-category-chip" aria-pressed="false" type="button" data-category="Technology Strategy">Technology Strategy</button>
+          <button class="insights-category-chip" aria-pressed="false" type="button" data-category="Business Process Improvement">Business Process Improvement</button>
+          <button class="insights-category-chip" aria-pressed="false" type="button" data-category="Workflow Automation">Workflow Automation</button>
+          <button class="insights-category-chip" aria-pressed="false" type="button" data-category="Operational Excellence">Operational Excellence</button>
+          <button class="insights-category-chip" aria-pressed="false" type="button" data-category="Business Intelligence">Business Intelligence</button>
+          <button class="insights-category-chip" aria-pressed="false" type="button" data-category="Leadership">Leadership</button>
+          <button class="insights-category-chip" aria-pressed="false" type="button" data-category="Digital Transformation">Digital Transformation</button>
         </div>
 
+        <div class="insights-grid">
+
+          <article class="insight-card reveal" data-category="Technology Strategy">
+            <span class="insight-category-badge">Technology Strategy</span>
+            <h3>Why Technology Should Follow Business Strategy</h3>
+            <p>A look at why the best digital initiatives start with business goals, not with technology choices.</p>
+            <div class="insight-card-meta">
+              <span class="insight-read-time">~5 min read</span>
+              <span class="insight-status"><i class="fas fa-clock" aria-hidden="true"></i> Coming Soon</span>
+            </div>
+          </article>
+
+          <article class="insight-card reveal" data-category="Digital Innovation">
+            <span class="insight-category-badge">Digital Innovation</span>
+            <h3>How to Identify Opportunities for Digital Innovation</h3>
+            <p>A practical way to spot where technology can create real value inside an organization.</p>
+            <div class="insight-card-meta">
+              <span class="insight-read-time">~6 min read</span>
+              <span class="insight-status"><i class="fas fa-clock" aria-hidden="true"></i> Coming Soon</span>
+            </div>
+          </article>
+
+          <article class="insight-card reveal" data-category="Workflow Automation">
+            <span class="insight-category-badge">Workflow Automation</span>
+            <h3>Reducing Manual Work Without Disrupting Operations</h3>
+            <p>How to automate repetitive work without breaking the processes people already rely on.</p>
+            <div class="insight-card-meta">
+              <span class="insight-read-time">~4 min read</span>
+              <span class="insight-status"><i class="fas fa-clock" aria-hidden="true"></i> Coming Soon</span>
+            </div>
+          </article>
+
+          <article class="insight-card reveal" data-category="Business Process Improvement">
+            <span class="insight-category-badge">Business Process Improvement</span>
+            <h3>Designing Digital Solutions Around Business Processes</h3>
+            <p>Why solutions that fit how people actually work outperform ones built around the technology first.</p>
+            <div class="insight-card-meta">
+              <span class="insight-read-time">~6 min read</span>
+              <span class="insight-status"><i class="fas fa-clock" aria-hidden="true"></i> Coming Soon</span>
+            </div>
+          </article>
+
+          <article class="insight-card reveal" data-category="Business Intelligence">
+            <span class="insight-category-badge">Business Intelligence</span>
+            <h3>Why Better Reporting Leads to Better Decisions</h3>
+            <p>The connection between reliable reporting and the quality of decisions leaders are able to make.</p>
+            <div class="insight-card-meta">
+              <span class="insight-read-time">~5 min read</span>
+              <span class="insight-status"><i class="fas fa-clock" aria-hidden="true"></i> Coming Soon</span>
+            </div>
+          </article>
+
+          <article class="insight-card reveal" data-category="Operational Excellence">
+            <span class="insight-category-badge">Operational Excellence</span>
+            <h3>The Role of Dashboards in Operational Performance</h3>
+            <p>What a good operational dashboard actually needs to do to be useful, not just visual.</p>
+            <div class="insight-card-meta">
+              <span class="insight-read-time">~5 min read</span>
+              <span class="insight-status"><i class="fas fa-clock" aria-hidden="true"></i> Coming Soon</span>
+            </div>
+          </article>
+
+          <article class="insight-card reveal" data-category="Digital Transformation">
+            <span class="insight-category-badge">Digital Transformation</span>
+            <h3>Turning Business Challenges into Digital Opportunities</h3>
+            <p>A framework for reframing operational pain points as opportunities for digital improvement.</p>
+            <div class="insight-card-meta">
+              <span class="insight-read-time">~6 min read</span>
+              <span class="insight-status"><i class="fas fa-clock" aria-hidden="true"></i> Coming Soon</span>
+            </div>
+          </article>
+
+          <article class="insight-card reveal" data-category="Leadership">
+            <span class="insight-category-badge">Leadership</span>
+            <h3>A Practical Approach to Workflow Improvement</h3>
+            <p>A grounded, step-by-step way to improve a workflow without overengineering the fix.</p>
+            <div class="insight-card-meta">
+              <span class="insight-read-time">~4 min read</span>
+              <span class="insight-status"><i class="fas fa-clock" aria-hidden="true"></i> Coming Soon</span>
+            </div>
+          </article>
+
+        </div>
+
+        <p id="insights-empty-state" class="section-intro-note" hidden>No insights in this category yet — check back soon.</p>
+
+        <div class="philosophy-callout reveal">
+          <h2 class="philosophy-label">In My Own Words</h2>
+          <p>Technology creates real value when it helps people work better, supports business strategy, and produces results that matter to the business.</p>
+        </div>
+      </div>
+    </section>
+
+
+
+
+    <section class="contact" id="contact">
+      <div class="container contact-layout">
+        <div class="contact-copy">
+          <p class="section-kicker">09 / Start a conversation</p>
+          <h2 class="section-title">Let's make your next idea work.</h2>
+          <p class="contact-intro">Have a product to deliver, a process to improve, or a business challenge to unpack? Tell me what you are working on.</p>
         <div class="contact-methods">
           <a href="mailto:ifeoluwaakinpelu05@gmail.com">
             <i class="fas fa-envelope"></i>
             <span>ifeoluwaakinpelu05@gmail.com</span>
           </a>
-          <a href="https://www.linkedin.com/in/ifeoluwaenochakinpelu" target="_blank">
+          <a href="https://www.linkedin.com/in/ifeoluwaenochakinpelu" target="_blank" rel="noopener noreferrer">
             <i class="fab fa-linkedin"></i>
             <span>LinkedIn Profile</span>
           </a>
-          <a href="https://github.com/ENOCHAKINPELU" target="_blank">
+          <a href="https://github.com/ENOCHAKINPELU" target="_blank" rel="noopener noreferrer">
             <i class="fab fa-github"></i>
             <span>GitHub Profile</span>
           </a>
-          <a href="https://wa.me/2348152534448" target="_blank">
+          <a href="https://wa.me/2348152534448" target="_blank" rel="noopener noreferrer">
             <i class="fab fa-whatsapp"></i>
             <span>WhatsApp Chat</span>
           </a>
@@ -1962,22 +2403,58 @@
             <span>+234 815 253 4448</span>
           </a>
         </div>
+        </div>
+        <div class="contact-form-card">
+          <h3>Tell me about your project</h3>
+          <p class="form-intro">A little context is a great place to start. All fields are required.</p>
+          <form id="contact-form" action="https://formspree.io/f/xzdqwokv" method="POST">
+            <div class="form-row">
+              <div><label for="contact-name">Your name</label><input id="contact-name" type="text" name="name" autocomplete="name" placeholder="Your name" required /></div>
+              <div><label for="contact-email">Email address</label><input id="contact-email" type="email" name="email" autocomplete="email" placeholder="you@company.com" required /></div>
+            </div>
+            <label for="contact-subject">What can I help with?</label>
+            <input id="contact-subject" type="text" name="subject" placeholder="Product delivery, process improvement..." required />
+            <label for="contact-message">A little about your project</label>
+            <textarea id="contact-message" name="message" placeholder="Your goals, current challenges, and what you have in mind." required></textarea>
+            <button type="submit" class="btn primary">Send message <span aria-hidden="true">&#8599;</span></button>
+            <div id="contact-form-status" role="status" aria-live="polite"></div>
+          </form>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="container">
-      <a href="#about" class="back-to-top">
-        <i class="fas fa-chevron-up"></i>
-      </a>
-      <p>&copy; <span id="current-year"></span> Akinpelu Enoch. All rights reserved. | Delivering Excellence in Digital Transformation</p>
+  <footer class="site-footer">
+    <div class="page-container footer-grid">
+      <div class="footer-brand">
+        <a href="#home" class="logo">ENOCH</a>
+        <p class="footer-title">Digital Innovation &amp; Technology Strategy Specialist</p>
+        <p class="footer-statement">Helping organizations understand how they work and use technology to improve efficiency, visibility, and decision-making.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="#home">Home</a>
+        <a href="./about.html">About</a>
+        <a href="./methodology.html">Methodology</a>
+        <a href="#services">What I Do</a>
+        <a href="./solutions.html">Solutions</a>
+        <a href="#case-studies">Experience</a>
+        <a href="./blog/index.html">Insights</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="footer-contact">
+        <a href="https://www.linkedin.com/in/ifeoluwaenochakinpelu" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:ifeoluwaakinpelu05@gmail.com">ifeoluwaakinpelu05@gmail.com</a>
+      </div>
     </div>
+    <a href="#home" class="back-to-top" aria-label="Back to top">
+      <i class="fas fa-chevron-up"></i>
+    </a>
+    <p class="footer-copyright">&copy; <span id="current-year"></span> Akinpelu Enoch. All rights reserved. | Delivering Excellence in Digital Transformation</p>
   </footer>
 
-  <div id="cv-modal" class="modal">
+  <div id="cv-modal" class="modal" role="dialog" aria-modal="true" aria-label="Download CV">
     <div class="modal-content">
-      <span class="modal-close cv-modal-close">&times;</span>
+      <button type="button" class="modal-close cv-modal-close" aria-label="Close dialog">&times;</button>
       <h3>Download Enoch's CV</h3>
       <p>You're about to download Akinpelu Ifeoluwa Enoch's CV.</p>
       <div class="modal-actions">
@@ -1987,19 +2464,65 @@
     </div>
   </div>
 
-  <div id="project-modal" class="modal">
+  <div id="project-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-project-name">
     <div class="modal-content">
-      <span class="modal-close">&times;</span>
-      <img id="modal-project-logo" src="" alt="Project Logo" class="project-logo" />
+      <button type="button" class="modal-close" aria-label="Close dialog">&times;</button>
+      <img id="modal-project-logo" src="" alt="Project Logo" class="project-logo" loading="lazy" />
       <h3 id="modal-project-name"></h3>
       <p id="modal-project-description"></p>
       <div class="project-details">
-        <h4>Product Requirements</h4>
+        <h4>What I Delivered</h4>
         <ul id="modal-project-requirements"></ul>
         <h4>Tools & Technologies</h4>
         <p id="modal-project-tools"></p>
-        <h4>Key Responsibilities</h4>
+        <h4>My Contribution</h4>
         <p id="modal-project-responsibilities"></p>
+      </div>
+    </div>
+  </div>
+
+  <div id="solution-modal" class="modal">
+    <div class="modal-content">
+      <button type="button" class="modal-close solution-modal-close" aria-label="Close dialog">&times;</button>
+      <span id="modal-solution-industry" class="solution-industry-badge"></span>
+      <h3 id="modal-solution-title"></h3>
+
+      <div class="solution-modal-visual" aria-hidden="true">
+        <i id="modal-solution-visual-icon" class="fas fa-chart-line"></i>
+        <span>Illustrative Concept Visual</span>
+      </div>
+
+      <div class="solution-modal-section">
+        <h4><i class="fas fa-building" aria-hidden="true"></i> Business Context</h4>
+        <p id="modal-solution-context"></p>
+      </div>
+      <div class="solution-modal-section">
+        <h4><i class="fas fa-triangle-exclamation" aria-hidden="true"></i> Challenge</h4>
+        <p id="modal-solution-challenge"></p>
+      </div>
+      <div class="solution-modal-section">
+        <h4><i class="fas fa-diagram-project" aria-hidden="true"></i> Current Process</h4>
+        <p id="modal-solution-process"></p>
+      </div>
+      <div class="solution-modal-section">
+        <h4><i class="fas fa-magnifying-glass-chart" aria-hidden="true"></i> Opportunity Identified</h4>
+        <ul id="modal-solution-opportunity"></ul>
+      </div>
+      <div class="solution-modal-section">
+        <h4><i class="fas fa-lightbulb" aria-hidden="true"></i> Proposed Solution</h4>
+        <p id="modal-solution-solution"></p>
+      </div>
+      <div class="solution-modal-section">
+        <h4><i class="fas fa-layer-group" aria-hidden="true"></i> Technology</h4>
+        <p id="modal-solution-tech"></p>
+      </div>
+      <div class="solution-modal-section">
+        <h4><i class="fas fa-bullseye" aria-hidden="true"></i> Expected Business Outcomes</h4>
+        <ul id="modal-solution-outcomes"></ul>
+      </div>
+      <div class="solution-modal-section solution-modal-takeaway">
+        <h4><i class="fas fa-quote-left" aria-hidden="true"></i> Key Takeaway</h4>
+        <p id="modal-solution-takeaways"></p>
       </div>
     </div>
   </div>
@@ -2012,6 +2535,7 @@
     navToggle.addEventListener('click', () => {
       navToggle.classList.toggle('active');
       navLinks.classList.toggle('active');
+      navToggle.setAttribute('aria-expanded', String(navLinks.classList.contains('active')));
     });
 
     // Close mobile menu when clicking on a link
@@ -2019,6 +2543,7 @@
       link.addEventListener('click', () => {
         navToggle.classList.remove('active');
         navLinks.classList.remove('active');
+        navToggle.setAttribute('aria-expanded', 'false');
       });
     });
 
@@ -2029,7 +2554,7 @@
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
           target.scrollIntoView({
-            behavior: 'smooth',
+            behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
             block: 'start'
           });
         }
@@ -2077,61 +2602,8 @@
       });
     });
 
-    // Dynamic metrics counter animation
-    function animateCounters() {
-      const counters = document.querySelectorAll('.metric-number, .impact-number');
-      
-      counters.forEach(counter => {
-        const target = counter.textContent;
-        const numericTarget = parseFloat(target.replace(/[^\d.]/g, ''));
-        
-        if (isNaN(numericTarget)) return;
-        
-        const rect = counter.getBoundingClientRect();
-        if (rect.top < window.innerHeight && !counter.classList.contains('animated')) {
-          counter.classList.add('animated');
-          
-          let current = 0;
-          const increment = numericTarget / 60;
-          const timer = setInterval(() => {
-            current += increment;
-            if (current >= numericTarget) {
-              current = numericTarget;
-              clearInterval(timer);
-            }
-            
-            // Format the number with appropriate suffix
-            let displayValue;
-            if (target.includes('₦') && current >= 1000000) {
-              displayValue = '₦' + (current / 1000000).toFixed(1) + 'M';
-            } else if (target.includes('%')) {
-              displayValue = Math.floor(current) + '%';
-            } else if (target.includes('/')) {
-              displayValue = current.toFixed(1) + '/5';
-            } else {
-              displayValue = Math.floor(current) + (target.includes('+') ? '+' : '');
-            }
-            
-            counter.textContent = displayValue;
-          }, 16);
-        }
-      });
-    }
+    // Experience metrics remain stable and readable on scroll.
 
-    window.addEventListener('scroll', animateCounters);
-    animateCounters(); // Initial check
-
-    // Infinite carousel: clone all cards so the loop is seamless
-    (function initCarousel() {
-      const grid = document.querySelector('.projects-grid');
-      if (!grid) return;
-      const origCards = [...grid.children];
-      origCards.forEach(card => {
-        const clone = card.cloneNode(true);
-        clone.setAttribute('aria-hidden', 'true');
-        grid.appendChild(clone);
-      });
-    })();
 
     // Project Modal Functionality
     const projectModal = document.getElementById('project-modal');
@@ -2146,18 +2618,6 @@
     let cvDownloadFilename = '';
     
     const projectsData = {
-      agriConnect: {
-        name: 'Agri-Connect App',
-        description: 'A mobile application that connects small-scale farmers with buyers, suppliers, and agricultural resources. The platform uses location-based services to facilitate fair market access and knowledge sharing.',
-        requirements: [
-          'Implemented a secure payment gateway for transactions.',
-          'Designed a messaging feature for direct communication between users.',
-          'Created a resource library with best practices for farming.',
-          'Ensured a simple and accessible user interface for all literacy levels, driving high adoption.',
-        ],
-        tools: 'Flutter, Firebase, Node.js, PostgreSQL, Jira',
-        responsibilities: 'Managed the entire product lifecycle from ideation to market launch. Coordinated with design and development teams, conducted user interviews in rural communities, and oversaw beta testing.',
-      },
       nylc: {
         name: 'N Youth League Cup (NYLC)',
         logo: './images/league cup.png',
@@ -2195,18 +2655,6 @@
         tools: 'Python, TensorFlow, React, Azure, HIPAA Compliance Tools',
         responsibilities: 'Defined the product strategy for global expansion, managed the AI development lifecycle, and oversaw pilot programs in partner hospitals to gather user feedback.',
       },
-      nexutor: {
-        name: 'Nexutor',
-        description: 'An edutech AI startup that helps students learn at their own pace. The system uses AI to understand each student\'s learning capability and adjusts the content accordingly, helping them grasp complex concepts faster and more effectively.',
-        requirements: [
-          'Built an adaptive learning algorithm to personalize content delivery.',
-          'Developed a micro-learning system with interactive quizzes and assessments.',
-          'Created a robust backend to handle high user traffic.',
-          'Conducted A/B testing on different UI/UX designs to optimize engagement.'
-        ],
-        tools: 'Python, Scikit-learn, React, Google Cloud, Figma',
-        responsibilities: 'Owned the product roadmap and feature backlog. Collaborated with educational content creators and developers. Analyzed user data to identify areas for improvement and new feature development.',
-      },
       studhab: {
         name: 'Studhab',
         description: 'A project that helps students in Canada and Nigeria learn to code with incentives, allowing them to earn money while they learn. The system rewards users for their progress, making the process of mastering coding skills both fun and financially rewarding.',
@@ -2231,32 +2679,6 @@
         tools: 'Flutter, Firebase, Express.js, Stripe, various financial APIs',
         responsibilities: 'Led the product strategy for a multi-country launch, conducted extensive user research on traditional savings methods, and managed the technical implementation of the group savings logic.',
       },
-      swiftRoute: {
-        name: 'SwiftRoute Logistics',
-        logo: 'https://placehold.co/100x100/F9A825/000000?text=📦',
-        description: 'An AI-powered logistics platform that optimizes delivery routes, manages fleets, and provides real-time tracking. The system uses machine learning algorithms to predict traffic and delivery times, ensuring a highly efficient and transparent supply chain for businesses of all sizes.',
-        requirements: [
-          'Developed a route optimization algorithm using Google Maps API.',
-          'Built a real-time tracking dashboard for clients.',
-          'Created an automated fleet management and vehicle assignment system.',
-          'Integrated with third-party logistics and shipping providers.'
-        ],
-        tools: 'Python, Google Maps API, React, Node.js, MongoDB',
-        responsibilities: 'Led the product\'s feature roadmap from concept to market, managed the integration with third-party logistics partners, and optimized the platform\'s performance based on delivery metrics.',
-      },
-      veriSense: {
-        name: 'VeriSense Retail',
-        logo: 'https://placehold.co/100x100/90CAF9/000000?text=🛒',
-        description: 'A smart retail solution that utilizes computer vision to analyze store layouts, track customer behavior, and manage inventory automatically. The system provides retailers with invaluable insights to optimize their operations and create a more personalized shopping experience for customers.',
-        requirements: [
-          'Built a computer vision model for object detection and shopper tracking.',
-          'Developed a dashboard for analyzing customer behavior and heatmaps.',
-          'Created an automated re-stocking alert system based on real-time stock levels.',
-          'Ensured the system could operate on standard security cameras with no special hardware.'
-        ],
-        tools: 'Python, TensorFlow, OpenCV, Vue.js, AWS, Figma',
-        responsibilities: 'Defined the product vision for a modern retail environment, managed the data collection and annotation process for the AI model, and presented key insights to C-level executives.',
-      },
       hotelOps: {
         name: 'HotelOps.ng',
         logo: './images/hotelops.svg',
@@ -2270,19 +2692,6 @@
         tools: 'React, Node.js, PostgreSQL, Firebase, Figma',
         responsibilities: 'Led product strategy and roadmap definition. Conducted deep-dive interviews with hotel owners and operations managers to identify key friction points. Oversaw feature prioritization, sprint planning, and go-to-market positioning for the Nigerian hospitality market.',
       },
-      zenithAI: {
-        name: 'ZenithAI',
-        logo: 'https://placehold.co/100x100/80DEEA/000000?text=🤖',
-        description: 'An AI-driven customer service platform that provides instant, personalized support 24/7. Using advanced natural language processing, ZenithAI\'s chatbots and virtual assistants can resolve customer queries, handle complex requests, and improve overall customer satisfaction.',
-        requirements: [
-          'Developed an NLP-based chatbot with intent recognition and conversational memory.',
-          'Integrated the platform with major CRM systems (e.g., Salesforce).',
-          'Created a knowledge base management system for the AI to learn from.',
-          'Implemented a hand-off feature for complex queries to a human agent.'
-        ],
-        tools: 'Python, NLTK, Dialogflow, React, Salesforce API',
-        responsibilities: 'Led the development of the chatbot\'s conversational flow, conducted user satisfaction surveys to improve the AI\'s responses, and scaled the platform for enterprise clients.',
-      }
     };
 
     document.querySelector('.projects-grid').addEventListener('click', (e) => {
@@ -2358,6 +2767,131 @@
       });
     }
 
+    // Featured Solutions — illustrative case-study modal
+    const solutionModal = document.getElementById('solution-modal');
+    const solutionModalCloseBtn = document.querySelector('.solution-modal-close');
+
+    const solutionsData = {
+      'oilgas-dashboard': {
+        industry: 'Oil & Gas',
+        icon: 'fa-chart-line',
+        title: 'Digital Operations Dashboard',
+        context: 'A mid-sized oil & gas operator managing multiple field sites.',
+        challenge: 'Field and operations data was scattered across spreadsheets and verbal reports, leaving leadership without a real-time view of operations.',
+        process: 'Supervisors compiled data manually at the end of each shift and emailed summaries to management.',
+        opportunity: ['Manual field reporting', 'Reporting delays', 'Limited visibility', 'Duplicate data entry'],
+        solution: 'A centralized operational dashboard that pulls field data into one real-time view for decision-makers.',
+        tech: 'Power BI, SharePoint, Power Automate',
+        outcomes: ['Faster reporting', 'Better visibility', 'Better operational decisions', 'Reduced manual work'],
+        takeaways: 'Centralizing scattered data into a single dashboard gives leadership a real-time view without waiting on manual compilation.',
+      },
+      'manufacturing-maintenance': {
+        industry: 'Manufacturing',
+        icon: 'fa-gears',
+        title: 'Maintenance Workflow Automation',
+        context: 'A manufacturing plant running continuous production lines.',
+        challenge: 'Equipment maintenance requests were tracked informally, leading to missed maintenance windows and unplanned downtime.',
+        process: 'Maintenance requests were logged on paper forms or passed verbally to supervisors.',
+        opportunity: ['Manual work', 'Slow approvals', 'Communication gaps', 'Inconsistent tracking'],
+        solution: 'A digital maintenance workflow that captures requests, routes approvals, and tracks completion.',
+        tech: 'Power Apps, Power Automate, SharePoint',
+        outcomes: ['Reduced downtime', 'Faster approvals', 'Improved productivity', 'Standardized processes'],
+        takeaways: 'Digitizing the request-to-completion workflow removes the ambiguity that leads to missed maintenance windows.',
+      },
+      'construction-performance': {
+        industry: 'Construction',
+        icon: 'fa-diagram-project',
+        title: 'Project Performance Dashboard',
+        context: 'A construction firm managing several active project sites.',
+        challenge: 'Project managers had limited visibility into site progress, making it difficult to catch delays early.',
+        process: 'Site progress was reported through weekly phone calls and inconsistent written updates.',
+        opportunity: ['Reporting delays', 'Limited visibility', 'Inconsistent reporting', 'Duplicate data'],
+        solution: 'A project performance dashboard that consolidates site reporting into a single, standardized view.',
+        tech: 'Power BI, Dataverse, Microsoft 365',
+        outcomes: ['Better project visibility', 'Faster reporting', 'Improved coordination', 'Reduced manual work'],
+        takeaways: 'Standardizing how site data is captured makes it possible to spot delays before they become costly.',
+      },
+      'procurement-approval': {
+        industry: 'Professional Services',
+        icon: 'fa-file-signature',
+        title: 'Procurement Approval Workflow',
+        context: 'A professional services firm coordinating vendor and client engagements.',
+        challenge: 'Procurement requests moved slowly through informal email chains, delaying vendor engagements.',
+        process: 'Requests were approved through email threads with no clear visibility into where a request stood.',
+        opportunity: ['Slow approvals', 'Communication gaps', 'Limited visibility', 'Duplicate data entry'],
+        solution: 'A structured digital approval workflow with clear routing and status tracking.',
+        tech: 'Power Automate, SharePoint, Microsoft 365',
+        outcomes: ['Faster approvals', 'Better collaboration', 'Improved visibility', 'More consistent operations'],
+        takeaways: 'A visible, structured approval path removes the guesswork of chasing an email thread for a decision.',
+      },
+      'incident-reporting': {
+        industry: 'Healthcare / Oil & Gas',
+        icon: 'fa-triangle-exclamation',
+        title: 'Incident Reporting Solution',
+        context: 'A healthcare facility or field operations site handling day-to-day incident reporting.',
+        challenge: 'Incidents were reported inconsistently, making it difficult to track patterns or respond quickly.',
+        process: 'Incidents were reported verbally or on paper forms, often after a delay.',
+        opportunity: ['Manual work', 'Reporting delays', 'Inconsistent reporting', 'Limited visibility'],
+        solution: 'A digital incident reporting form with automated routing to the right team for follow-up.',
+        tech: 'Power Apps, Power Automate, Power BI',
+        outcomes: ['Faster reporting', 'Improved compliance', 'Better operational decisions', 'Improved visibility'],
+        takeaways: 'Making it easy to report an incident in the moment is what actually improves reporting consistency.',
+      },
+      'executive-kpi': {
+        industry: 'Cross-Industry',
+        icon: 'fa-gauge-high',
+        title: 'Executive KPI Dashboard',
+        context: 'An organization with multiple departments reporting up to a shared leadership team.',
+        challenge: 'Executives relied on multiple disconnected reports to understand overall business performance.',
+        process: 'Department leads produced separate reports on different schedules, often in different formats.',
+        opportunity: ['Scattered information', 'Inconsistent reporting', 'Delayed decision-making', 'Duplicate data'],
+        solution: 'A unified executive dashboard that brings key performance indicators from across the business into one view.',
+        tech: 'Power BI, Dataverse, Microsoft 365',
+        outcomes: ['Better decision-making', 'Better reporting', 'Improved operational visibility', 'Technology aligned with business strategy'],
+        takeaways: 'When every department reports differently, leadership spends more time reconciling data than acting on it. A single view changes that.',
+      },
+    };
+
+    function fillList(id, items) {
+      const list = document.getElementById(id);
+      list.innerHTML = '';
+      items.forEach((item) => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        list.appendChild(li);
+      });
+    }
+
+    function closeSolutionModal() {
+      if (solutionModal) solutionModal.style.display = 'none';
+    }
+
+    document.querySelector('.solutions-showcase-grid')?.addEventListener('click', (e) => {
+      const btn = e.target.closest('.view-case-study-btn');
+      if (!btn) return;
+      const card = btn.closest('.solution-card');
+      const solution = solutionsData[card.dataset.solution];
+      if (!solution || !solutionModal) return;
+
+      document.getElementById('modal-solution-industry').textContent = solution.industry;
+      document.getElementById('modal-solution-title').textContent = solution.title;
+      document.getElementById('modal-solution-visual-icon').className = `fas ${solution.icon}`;
+      document.getElementById('modal-solution-context').textContent = solution.context;
+      document.getElementById('modal-solution-challenge').textContent = solution.challenge;
+      document.getElementById('modal-solution-process').textContent = solution.process;
+      fillList('modal-solution-opportunity', solution.opportunity);
+      document.getElementById('modal-solution-solution').textContent = solution.solution;
+      document.getElementById('modal-solution-tech').textContent = solution.tech;
+      fillList('modal-solution-outcomes', solution.outcomes);
+      document.getElementById('modal-solution-takeaways').textContent = solution.takeaways;
+
+      solutionModal.style.display = 'block';
+    });
+
+    if (solutionModalCloseBtn) {
+      solutionModalCloseBtn.addEventListener('click', closeSolutionModal);
+    }
+
     window.addEventListener('click', (event) => {
       if (event.target === projectModal) {
         projectModal.style.display = 'none';
@@ -2365,32 +2899,98 @@
       if (cvModal && event.target === cvModal) {
         closeCvModal();
       }
+      if (solutionModal && event.target === solutionModal) {
+        closeSolutionModal();
+      }
+    });
+
+    // Close any open modal on Escape for keyboard accessibility
+    window.addEventListener('keydown', (event) => {
+      if (event.key !== 'Escape') return;
+      navLinks.classList.remove('active');
+      navToggle.classList.remove('active');
+      navToggle.setAttribute('aria-expanded', 'false');
+      if (projectModal && projectModal.style.display === 'block') projectModal.style.display = 'none';
+      if (cvModal && cvModal.style.display === 'block') closeCvModal();
+      if (solutionModal && solutionModal.style.display === 'block') closeSolutionModal();
     });
 
 
-    // Contact form AJAX submission (Formspree)
+    // Innovation Insights — category filter (client-side, no backend required)
+    (function initInsightsFilter() {
+      const chips = document.querySelectorAll('.insights-category-chip');
+      const cards = document.querySelectorAll('.insight-card');
+      const emptyState = document.getElementById('insights-empty-state');
+      if (!chips.length) return;
+
+      chips.forEach((chip) => {
+        chip.addEventListener('click', () => {
+          chips.forEach((c) => { c.classList.remove('is-active'); c.setAttribute('aria-pressed', 'false'); });
+          chip.classList.add('is-active');
+          chip.setAttribute('aria-pressed', 'true');
+
+          const category = chip.dataset.category;
+          let visibleCount = 0;
+          cards.forEach((card) => {
+            const match = category === 'all' || card.dataset.category === category;
+            card.style.display = match ? '' : 'none';
+            if (match) visibleCount++;
+          });
+
+          if (emptyState) emptyState.hidden = visibleCount !== 0;
+        });
+      });
+    })();
+
+    // Contact form submission to the existing Formspree endpoint.
     const contactForm = document.getElementById('contact-form');
     const contactStatus = document.getElementById('contact-form-status');
     if (contactForm) {
       contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        contactStatus.style.color = '#fff';
-        contactStatus.textContent = 'Sending...';
-        const data = new FormData(contactForm);
-        const res = await fetch(contactForm.action, {
-          method: 'POST',
-          body: data,
-          headers: { Accept: 'application/json' }
-        });
-        if (res.ok) {
-          contactStatus.textContent = 'Message sent! I\'ll get back to you shortly.';
+        const button = contactForm.querySelector('button[type="submit"]');
+        if (button.disabled) return;
+        button.disabled = true;
+        button.textContent = 'Sending...';
+        contactStatus.textContent = 'Sending your message...';
+        try {
+          const res = await fetch(contactForm.action, {
+            method: 'POST', body: new FormData(contactForm), headers: { Accept: 'application/json' }
+          });
+          if (!res.ok) throw new Error('Message was not accepted');
+          contactStatus.textContent = "Message sent! I'll get back to you shortly.";
           contactForm.reset();
-        } else {
-          contactStatus.style.color = '#ffce00';
-          contactStatus.textContent = 'Something went wrong. Please email me directly.';
+        } catch {
+          contactStatus.textContent = 'Your message could not be sent. Please try again or email me directly.';
+        } finally {
+          button.disabled = false;
+          button.textContent = 'Send message ?';
         }
       });
     }
+
+    // Keep keyboard focus inside open dialogs and restore it on close.
+    document.querySelectorAll('.modal').forEach((modal) => {
+      let returnFocus;
+      const focusable = () => [...modal.querySelectorAll('button, a[href], input, textarea, [tabindex="0"]')].filter(el => !el.disabled && el.getClientRects().length);
+      new MutationObserver(() => {
+        if (modal.style.display === 'block') {
+          returnFocus = document.activeElement;
+          focusable()[0]?.focus();
+          document.body.style.overflow = 'hidden';
+        } else {
+          document.body.style.overflow = '';
+          returnFocus?.focus();
+        }
+      }).observe(modal, { attributes: true, attributeFilter: ['style'] });
+      modal.addEventListener('keydown', (event) => {
+        if (event.key !== 'Tab') return;
+        const items = focusable();
+        const first = items[0], last = items[items.length - 1];
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+      });
+    });
 
     // Auto-update copyright year
     (function setCopyrightYear(){

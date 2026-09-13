@@ -1,0 +1,1325 @@
+/* ==========================================================================
+   DESIGN TOKENS — Phase 1 Foundation
+   ==========================================================================
+   Single source of truth for the site's design system: color, type,
+   spacing, radius, shadow, and motion. Built FROM the existing brand
+   palette already in use across index.html and css/blog.css — nothing
+   invented here.
+
+   Legacy variable names (--primary-color, --secondary-color, etc.) are
+   kept and aliased to the new semantic tokens so every existing rule
+   that already references them keeps working unchanged. New work
+   (Phase 2+) should prefer the semantic --color-*, --space-*, --text-*
+   names below.
+   ========================================================================== */
+
+:root {
+  /* ---- Brand colors (existing — do not change) ---- */
+  --primary-color: #2a2a72;
+  --secondary-color: #009ffd;
+  --accent-color: #7d3cff;
+  --text-color: #2d3436;
+  --bg-color: #f9f9f9;
+  --card-bg: #ffffff;
+  --gradient: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  --transition-speed: 0.3s;
+  --executive-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+
+  /* ---- Semantic color tokens ---- */
+  --color-primary: var(--primary-color);
+  --color-primary-dark: #1d1d54;
+  --color-secondary: var(--secondary-color);
+  --color-accent: var(--accent-color);
+  --color-background: var(--bg-color);
+  --color-surface: var(--card-bg);
+  --color-text-primary: var(--text-color);
+  --color-text-secondary: #5c6570;
+  --color-text-on-dark: #ffffff;
+  --color-border: #e8e8e8;
+
+  /* ---- Typography ---- */
+  --font-family-base: 'Poppins', sans-serif;
+
+  --font-size-display: 3.2rem;
+  --font-size-h1: 2.5rem;
+  --font-size-h2: 2rem;
+  --font-size-h3: 1.4rem;
+  --font-size-body: 1rem;
+  --font-size-small: 0.875rem;
+  --font-size-label: 0.78rem;
+
+  --line-height-tight: 1.2;
+  --line-height-base: 1.6;
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* ---- Spacing scale (4px base unit) ---- */
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.5rem;    /* 24px */
+  --space-6: 2rem;      /* 32px */
+  --space-7: 3rem;      /* 48px */
+  --space-8: 4rem;      /* 64px */
+  --space-9: 6rem;      /* 96px */
+  --space-10: 8rem;     /* 128px */
+
+  /* ---- Radius ---- */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-full: 999px;
+
+  /* ---- Shadow ---- */
+  --shadow-sm: 0 2px 15px rgba(0, 0, 0, 0.08);
+  --shadow-md: var(--executive-shadow);
+  --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.15);
+
+  /* ---- Layout ---- */
+  --content-max-width: 1200px;
+  --page-margin: 20px;
+
+  /* ---- Motion (subtle, professional — see animation notes below) ---- */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 0.2s;
+  --duration-base: var(--transition-speed);
+  --duration-slow: 0.6s;
+}
+
+/* ==========================================================================
+   SHARED PAGE PRIMITIVES
+   Used by new foundation pages (about/methodology/industries/solutions).
+   Deliberately scoped to classes not already defined inline in index.html,
+   so nothing here overrides the working homepage styling.
+   ========================================================================== */
+
+.page-shell {
+  font-family: var(--font-family-base);
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-base);
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-shell { scroll-behavior: auto; }
+}
+
+.page-container {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 0 var(--page-margin);
+}
+
+.page-hero {
+  background: var(--gradient);
+  color: var(--color-text-on-dark);
+  padding: var(--space-9) var(--page-margin) var(--space-8);
+  text-align: center;
+}
+
+.page-hero-eyebrow {
+  display: inline-block;
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  opacity: 0.85;
+  margin-bottom: var(--space-3);
+}
+
+.page-hero h1 {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-4);
+  line-height: var(--line-height-tight);
+}
+
+.page-hero p {
+  font-size: 1.15rem;
+  max-width: 720px;
+  margin: 0 auto;
+  opacity: 0.92;
+}
+
+.page-section {
+  padding: var(--space-9) var(--page-margin);
+}
+
+.page-section--tight-top { padding-top: 0; }
+.page-section--tight-bottom { padding-bottom: var(--space-6); }
+
+.page-section-title {
+  text-align: center;
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-3);
+  color: var(--color-primary);
+}
+
+.page-section-intro {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto var(--space-7);
+  color: var(--color-text-secondary);
+  font-size: 1.05rem;
+}
+
+.foundation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-6);
+}
+
+.foundation-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-6);
+  transition: transform var(--duration-base) var(--ease-standard),
+              box-shadow var(--duration-base) var(--ease-standard);
+}
+
+.foundation-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+.foundation-card h3 {
+  color: var(--color-primary);
+  font-size: 1.15rem;
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-2);
+}
+
+.foundation-card p {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-small);
+  margin: 0;
+}
+
+/* ==========================================================================
+   THE DIGITAL INNOVATION PLAYBOOK (Methodology)
+   Overview nav strip + connected step cards with a scroll-synced progress
+   rail. Built entirely from existing tokens — no new colors introduced.
+   ========================================================================== */
+
+/* Overview strip — horizontal jump-nav across the 8 phases */
+.playbook-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.playbook-nav-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: all var(--duration-base) var(--ease-standard);
+}
+
+.playbook-nav-item .num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--color-border);
+  color: var(--color-text-secondary);
+  font-size: 0.7rem;
+  transition: all var(--duration-base) var(--ease-standard);
+}
+
+.playbook-nav-item:hover {
+  border-color: var(--color-secondary);
+  color: var(--color-primary);
+}
+
+.playbook-nav-item.is-active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+}
+
+.playbook-nav-item.is-active .num {
+  background: #fff;
+  color: var(--color-primary);
+}
+
+/* Phase list — vertical rail with connected step cards */
+.playbook-phases {
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.playbook-phase {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: var(--space-5);
+  scroll-margin-top: 110px;
+}
+
+.playbook-phase-rail {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.playbook-phase-rail::before {
+  content: '';
+  position: absolute;
+  top: 64px;
+  bottom: -32px;
+  width: 2px;
+  background: var(--color-border);
+}
+
+.playbook-phase:last-child .playbook-phase-rail::before {
+  display: none;
+}
+
+.playbook-phase-badge {
+  position: relative;
+  z-index: 1;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  transition: all var(--duration-slow) var(--ease-standard);
+}
+
+.playbook-phase.is-active .playbook-phase-badge {
+  background: var(--gradient);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: var(--shadow-md);
+  transform: scale(1.08);
+}
+
+.playbook-phase.is-active .playbook-phase-rail::before,
+.playbook-phase.is-passed .playbook-phase-rail::before {
+  background: var(--color-accent);
+}
+
+.playbook-phase-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  margin-bottom: var(--space-7);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--duration-base) var(--ease-standard),
+              border-color var(--duration-base) var(--ease-standard);
+}
+
+.playbook-phase.is-active .playbook-phase-card {
+  box-shadow: var(--shadow-md);
+  border-color: rgba(125, 60, 255, 0.25);
+}
+
+.playbook-phase-eyebrow {
+  display: block;
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-secondary);
+  margin-bottom: var(--space-2);
+}
+
+.playbook-phase-card h3 {
+  font-size: 1.3rem;
+  color: var(--color-primary);
+  margin-bottom: var(--space-3);
+}
+
+.playbook-phase-purpose {
+  font-size: 1rem;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-4);
+}
+
+.playbook-phase-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-2);
+}
+
+.playbook-phase-activities {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-2) var(--space-4);
+}
+
+.playbook-phase-activities li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  font-size: var(--font-size-small);
+  color: var(--color-text-secondary);
+}
+
+.playbook-phase-activities li i {
+  color: var(--color-accent);
+  font-size: 0.75rem;
+  margin-top: 0.3rem;
+}
+
+.playbook-phase-outcome {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  background: rgba(0, 159, 253, 0.08);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+}
+
+.playbook-phase-outcome i {
+  color: var(--color-secondary);
+  font-size: 1.1rem;
+  margin-top: 0.15rem;
+}
+
+.playbook-phase-outcome strong {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-primary);
+  margin-bottom: var(--space-1);
+}
+
+.playbook-phase-outcome p {
+  margin: 0;
+  font-size: var(--font-size-small);
+  color: var(--color-text-primary);
+}
+
+/* Business outcome highlights */
+.outcome-checklist {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.outcome-checklist-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4) var(--space-5);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.outcome-checklist-item i {
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 768px) {
+  .playbook-phase {
+    grid-template-columns: 48px 1fr;
+  }
+
+  .playbook-phase-badge {
+    width: 48px;
+    height: 48px;
+    font-size: 1.1rem;
+  }
+
+  .playbook-phase-rail::before {
+    top: 48px;
+  }
+
+  .playbook-phase-activities {
+    grid-template-columns: 1fr;
+  }
+
+  .outcome-checklist {
+    grid-template-columns: 1fr;
+  }
+}
+
+.placeholder-note {
+  text-align: center;
+  max-width: 620px;
+  margin: var(--space-7) auto 0;
+  padding: var(--space-5);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-small);
+}
+
+@media (max-width: 768px) {
+  .page-hero h1 { font-size: 2rem; }
+  .page-hero { padding: var(--space-8) var(--page-margin) var(--space-7); }
+  .page-section { padding: var(--space-8) var(--page-margin); }
+}
+
+/* ==========================================================================
+   BUTTONS
+   Matches index.html's inline .btn styles so new pages stay visually
+   consistent with the homepage.
+   ========================================================================== */
+
+.btn {
+  display: inline-block;
+  padding: 0.8rem 1.8rem;
+  border-radius: var(--radius-full);
+  text-decoration: none;
+  font-weight: var(--font-weight-semibold);
+  transition: all var(--duration-base);
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+}
+
+.btn.primary {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+.btn.primary:hover {
+  background: #6b2cdd;
+  transform: translateY(-2px);
+}
+
+.btn.secondary {
+  background: transparent;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+}
+
+.btn.secondary:hover {
+  background: rgba(42, 42, 114, 0.06);
+}
+
+/* ==========================================================================
+   ABOUT PAGE COMPONENTS
+   ========================================================================== */
+
+.about-lede {
+  font-size: 1.25rem;
+  line-height: 1.7;
+  color: var(--color-text-primary);
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.section-heading-group {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto var(--space-7);
+}
+
+.section-heading-group .page-section-title {
+  margin-bottom: var(--space-2);
+}
+
+.section-heading-group .page-section-intro {
+  margin: 0 auto;
+}
+
+/* Philosophy callout — a prominent pull-quote, distinct from ordinary body copy */
+.philosophy-callout {
+  max-width: 800px;
+  margin: var(--space-8) auto 0;
+  text-align: center;
+  padding: var(--space-7) var(--space-6);
+  border-top: 3px solid var(--color-accent);
+  border-bottom: 3px solid var(--color-accent);
+}
+
+.philosophy-callout .philosophy-label {
+  display: block;
+  font-size: var(--font-size-label);
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-secondary);
+  margin-bottom: var(--space-4);
+}
+
+.philosophy-callout p {
+  font-size: 1.4rem;
+  line-height: 1.55;
+  font-weight: var(--font-weight-medium);
+  color: var(--color-primary);
+  margin: 0;
+}
+
+/* My Approach — numbered step list */
+.approach-steps {
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.approach-step {
+  display: flex;
+  gap: var(--space-5);
+  align-items: flex-start;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5) var(--space-6);
+  box-shadow: var(--shadow-sm);
+}
+
+.approach-step-number {
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--gradient);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--font-weight-bold);
+  font-size: 1rem;
+}
+
+.approach-step h3 {
+  color: var(--color-primary);
+  font-size: 1.05rem;
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-1);
+}
+
+.approach-step p {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-small);
+  margin: 0;
+}
+
+/* What I Help Improve — icon cards (extends .foundation-card) */
+.foundation-card-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--gradient);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  margin-bottom: var(--space-4);
+}
+
+/* Why My Approach Is Different — differentiator list */
+.differentiator-list {
+  max-width: 900px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-5) var(--space-7);
+}
+
+.differentiator-item {
+  display: flex;
+  gap: var(--space-4);
+  align-items: flex-start;
+}
+
+.differentiator-icon {
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(0, 159, 253, 0.12);
+  color: var(--color-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+}
+
+.differentiator-item h3 {
+  color: var(--color-primary);
+  font-size: 1rem;
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-1);
+}
+
+.differentiator-item p {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-small);
+  margin: 0;
+}
+
+/* Closing CTA band */
+.about-closing {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.about-closing p {
+  font-size: 1.1rem;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-5);
+}
+
+.about-closing .hero-actions-row {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .approach-step {
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .differentiator-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   NAVIGATION FOUNDATION
+   Shared header/nav for the new foundation pages. index.html keeps its own
+   inline nav styles (identical visual language) to avoid touching a working
+   page; this block lets standalone pages match it without duplicating index.html.
+   ========================================================================== */
+
+.page-shell header {
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.page-shell nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-4) var(--page-margin);
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+}
+
+.page-shell .logo {
+  font-size: 1.8rem;
+  font-weight: var(--font-weight-bold);
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-decoration: none;
+}
+
+.page-shell .nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  margin: 0;
+  padding: 0;
+}
+
+.page-shell .nav-links a {
+  text-decoration: none;
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-small);
+  transition: color var(--duration-base);
+}
+
+.page-shell .nav-links a:hover,
+.page-shell .nav-links a[aria-current="page"] {
+  color: var(--color-secondary);
+}
+
+.page-shell .nav-links a.nav-cta {
+  background: var(--color-accent);
+  color: #fff;
+  padding: var(--space-2) var(--space-5);
+  border-radius: var(--radius-full);
+  font-weight: var(--font-weight-semibold);
+}
+
+.page-shell .nav-links a.nav-cta:hover {
+  background: #6b2cdd;
+  color: #fff;
+}
+
+.page-shell .nav-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  padding: var(--space-2);
+  background: none;
+  border: none;
+}
+
+.page-shell .hamburger-line {
+  width: 25px;
+  height: 3px;
+  background: var(--color-text-primary);
+  margin: 3px 0;
+  border-radius: 2px;
+  transition: all var(--duration-base);
+}
+
+.page-shell .nav-toggle.active .hamburger-line:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.page-shell .nav-toggle.active .hamburger-line:nth-child(2) { opacity: 0; }
+.page-shell .nav-toggle.active .hamburger-line:nth-child(3) { transform: rotate(-45deg) translate(7px, -6px); }
+
+@media (max-width: 900px) {
+  .page-shell .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    background: var(--color-surface);
+    width: 100%;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-6);
+    transition: right var(--duration-base) ease;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .page-shell .nav-links.active { right: 0; }
+
+  .page-shell .nav-toggle {
+    display: flex;
+    z-index: 1001;
+  }
+}
+
+/* ==========================================================================
+   SCROLL-REVEAL ANIMATION
+   Shared by all standalone pages (js/main.js toggles .active on scroll).
+   index.html keeps its own identical inline copy of the base rule to avoid
+   touching a working page; this is what the new foundation pages use.
+   ========================================================================== */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.12s; }
+.reveal-delay-2 { transition-delay: 0.28s; }
+.reveal-delay-3 { transition-delay: 0.44s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    transition: none;
+    transform: none;
+  }
+}
+
+/* ==========================================================================
+   ACCESSIBILITY FOUNDATION
+   ========================================================================== */
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 10001;
+  background: var(--color-primary);
+  color: #fff;
+  padding: var(--space-3) var(--space-5);
+  border-radius: 0 0 var(--radius-sm) 0;
+  font-weight: var(--font-weight-semibold);
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  left: 0;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   FOOTER FOUNDATION
+   Shared across index.html and the new foundation pages.
+   ========================================================================== */
+
+.site-footer {
+  background: var(--color-primary);
+  color: var(--color-text-on-dark);
+  padding: var(--space-8) var(--page-margin) var(--space-5);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: var(--space-7);
+  padding-bottom: var(--space-6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  margin-bottom: var(--space-5);
+  text-align: left;
+}
+
+.footer-grid .footer-brand,
+.footer-grid .footer-nav,
+.footer-grid .footer-contact {
+  text-align: left;
+}
+
+.footer-brand .logo {
+  font-size: 1.6rem;
+  font-weight: var(--font-weight-bold);
+  color: #fff;
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: var(--space-2);
+}
+
+.footer-title {
+  font-weight: var(--font-weight-semibold);
+  opacity: 0.95;
+  margin-bottom: var(--space-2);
+}
+
+.footer-statement {
+  font-size: var(--font-size-small);
+  opacity: 0.8;
+  max-width: 380px;
+  line-height: var(--line-height-base);
+}
+
+.footer-nav,
+.footer-contact {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.footer-nav a,
+.footer-contact a {
+  color: #fff;
+  opacity: 0.85;
+  text-decoration: none;
+  font-size: var(--font-size-small);
+  transition: opacity var(--duration-base);
+}
+
+.footer-nav a:hover,
+.footer-contact a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.footer-copyright {
+  text-align: center;
+  font-size: var(--font-size-small);
+  opacity: 0.75;
+}
+
+@media (max-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+    text-align: left;
+  }
+}
+
+/* ==========================================================================
+   INDUSTRIES
+   Premium expandable cards — collapsed for fast scanning, expandable for
+   depth (Challenges / Opportunities / Business Value). No stock photography
+   or clip-art icons — same abstract gradient-badge language used elsewhere.
+   ========================================================================== */
+
+.industries-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--space-6);
+  align-items: start;
+}
+
+.industry-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-6);
+  transition: transform var(--duration-base) var(--ease-standard),
+              box-shadow var(--duration-base) var(--ease-standard);
+}
+
+.industry-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.industry-card-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--gradient);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  margin-bottom: var(--space-4);
+}
+
+.industry-card h3 {
+  color: var(--color-primary);
+  font-size: 1.25rem;
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-2);
+}
+
+.industry-card-teaser {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-small);
+  margin-bottom: var(--space-4);
+}
+
+.industry-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--color-secondary);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-small);
+  cursor: pointer;
+}
+
+.industry-toggle i {
+  transition: transform var(--duration-base) var(--ease-standard);
+}
+
+.industry-toggle[aria-expanded="true"] i {
+  transform: rotate(180deg);
+}
+
+.industry-detail {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height var(--duration-slow) var(--ease-standard),
+              opacity var(--duration-base) var(--ease-standard);
+}
+
+.industry-detail.is-open {
+  max-height: 900px;
+  opacity: 1;
+  margin-top: var(--space-5);
+}
+
+.industry-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--color-border);
+}
+
+.industry-detail-col h4 {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.8rem;
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-primary);
+  margin-bottom: var(--space-3);
+}
+
+.industry-detail-col h4 i {
+  color: var(--color-accent);
+  font-size: 0.85rem;
+}
+
+.industry-detail-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.industry-detail-col li {
+  font-size: var(--font-size-small);
+  color: var(--color-text-secondary);
+  padding-left: var(--space-4);
+  position: relative;
+}
+
+.industry-detail-col li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-border);
+}
+
+/* Shared business challenges — full-width gradient band */
+.pain-points-band {
+  background: var(--gradient);
+  border-radius: var(--radius-lg);
+  padding: var(--space-7) var(--space-6);
+}
+
+.pain-points-band .section-heading-group .page-section-title,
+.pain-points-band .section-heading-group .page-section-intro {
+  color: #fff;
+}
+
+.pain-points-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-4);
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.pain-point-pill {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  color: #fff;
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-small);
+}
+
+.pain-point-pill i {
+  color: #fff;
+  opacity: 0.85;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .industry-detail-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+}
+
+/* ==========================================================================
+   SOLUTIONS & CAPABILITIES
+   Consulting-style capability cards (Challenge → Approach → Outcomes) and a
+   visually distinct value-outcomes grid.
+   ========================================================================== */
+
+.capability-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: var(--space-6);
+}
+
+.capability-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-6);
+  transition: transform var(--duration-base) var(--ease-standard),
+              box-shadow var(--duration-base) var(--ease-standard);
+}
+
+.capability-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+.capability-card-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--gradient);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  margin-bottom: var(--space-4);
+}
+
+.capability-card h3 {
+  color: var(--color-primary);
+  font-size: 1.2rem;
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-4);
+}
+
+.capability-block {
+  margin-bottom: var(--space-4);
+}
+
+.capability-block:last-child {
+  margin-bottom: 0;
+}
+
+.capability-block-label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--color-secondary);
+  margin-bottom: var(--space-2);
+}
+
+.capability-block-label i {
+  font-size: 0.8rem;
+}
+
+.capability-block p {
+  font-size: var(--font-size-small);
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.capability-outcomes {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.capability-outcomes li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  font-size: var(--font-size-small);
+  color: var(--color-text-primary);
+}
+
+.capability-outcomes li i {
+  color: var(--color-accent);
+  font-size: 0.75rem;
+  margin-top: 0.3rem;
+}
+
+/* Business Outcomes — value confirmation grid */
+.value-outcomes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-5);
+}
+
+.value-outcome-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  display: flex;
+  gap: var(--space-4);
+  align-items: flex-start;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--duration-base) var(--ease-standard);
+}
+
+.value-outcome-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.value-outcome-check {
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+}
+
+.value-outcome-card h3 {
+  color: var(--color-primary);
+  font-size: 1.02rem;
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-1);
+}
+
+.value-outcome-card p {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-small);
+  margin: 0;
+}
