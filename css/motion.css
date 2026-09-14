@@ -1,0 +1,27 @@
+/* Shared, progressive motion for the public portfolio pages. */
+.reveal, .reveal.active { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+  :where(.btn, .work-link, .nav-links a, .contact-methods a) {
+    transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease, box-shadow 220ms ease, transform 220ms ease;
+  }
+  :where(.project-card, .foundation-card, .skill-card, .gallery-item, .certification-card, .testimonial-card, .insight-card, .capability-card, .value-outcome-card) {
+    transition: transform 260ms cubic-bezier(.2,.7,.2,1), box-shadow 260ms ease, border-color 220ms ease, background-color 220ms ease;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .projects .work-card:hover, .skill-card:hover, .gallery-item:hover,
+    .certification-card:hover, .testimonial-card:hover, .insight-card:hover,
+    .capability-card:hover, .value-outcome-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 14px 32px rgba(42,42,114,.1);
+    }
+    .foundation-card:hover { transform: translateY(-2px); }
+    .btn:hover { transform: translateY(-2px); }
+  }
+  .btn:active, .work-link:active { transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+}

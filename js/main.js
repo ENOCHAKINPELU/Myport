@@ -34,22 +34,12 @@
       const target = document.querySelector(targetId);
       if (target) {
         e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        target.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth', block: 'start' });
       }
     });
   });
 
-  // Scroll reveal animation
-  function revealOnScroll() {
-    document.querySelectorAll('.reveal').forEach((el) => {
-      const elementTop = el.getBoundingClientRect().top;
-      if (elementTop < window.innerHeight - 150) {
-        el.classList.add('active');
-      }
-    });
-  }
-  revealOnScroll();
-  window.addEventListener('scroll', revealOnScroll);
+  // Scroll reveals are handled by motion.js.
 
   // Footer copyright year
   const yearEl = document.getElementById('current-year');

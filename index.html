@@ -1689,6 +1689,7 @@
     }
   </style>
   <link rel="stylesheet" href="./css/home.css" />
+  <link rel="stylesheet" href="./css/motion.css" />
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to content</a>
@@ -2574,26 +2575,7 @@
       });
     });
 
-    // Scroll reveal animation
-    function revealOnScroll() {
-      const reveals = document.querySelectorAll('.reveal');
-      
-      reveals.forEach(reveal => {
-        const windowHeight = window.innerHeight;
-        const elementTop = reveal.getBoundingClientRect().top;
-        const elementVisible = 150;
-        
-        if (elementTop < windowHeight - elementVisible) {
-          reveal.classList.add('active');
-        }
-      });
-    }
-
-    // Initial check for elements in view
-    revealOnScroll();
-    
-    // Listen for scroll events
-    window.addEventListener('scroll', revealOnScroll);
+    // Scroll reveals are handled by motion.js.
 
     // Add active state to navigation based on scroll position
     window.addEventListener('scroll', () => {
@@ -3032,5 +3014,6 @@
       if (el) el.textContent = y;
     })();
   </script>
+  <script src="./js/motion.js"></script>
 </body>
 </html>
