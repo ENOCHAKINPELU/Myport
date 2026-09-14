@@ -6,7 +6,7 @@ Use `brand-template.txt` for plain-text emails or as the text alternative in an 
 
 1. Replace all `[bracketed text]`, including the hidden inbox preview near the start of the file.
 2. Remove the optional next-step callout if you do not need it.
-3. The button links to your portfolio. To change it, update both the ordinary HTML button and the Outlook VML button (URL and label).
+3. The button links to your Calendly page for a 30-minute call. To change it, update both the ordinary HTML button and the Outlook VML button (URL and label).
 4. Set the subject and sender address in your email application. For example: `Following up on [project name]`.
 5. Import the HTML using your email tool's HTML editor and send yourself a preview before using it. Pasting raw HTML into a normal compose window does not render it as a template.
 
