@@ -149,7 +149,7 @@
 
       <!-- GA4 shortcuts -->
       <div class="admin-card section-gap">
-        <h2 class="section-title" style="font-size:1.5rem;">Google Analytics — Live Reports</h2>
+        <h2 class="section-title" style="font-size:1.5rem;">Google Analytics: Live Reports</h2>
         <p style="text-align:center;margin-bottom:1.5rem;color:#777;">Opens your GA4 property dashboard directly (you'll be logged in to Google Analytics).</p>
         <div class="ga4-links">
           <a class="ga4-link-card" href="https://analytics.google.com/analytics/web/#/p510306696/reports/intelligenthome" target="_blank">
@@ -237,7 +237,7 @@
     document.getElementById('current-year').textContent = new Date().getFullYear();
 
     function formatDate(d) {
-      if (!d) return '—';
+      if (!d) return '-';
       return new Date(d).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
     }
 

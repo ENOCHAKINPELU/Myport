@@ -1,5 +1,5 @@
 /* ==========================================================================
-   SITE — shared behavior for the public portfolio pages
+   SITE: shared behavior for the public portfolio pages
    Header state, mobile menu, scroll reveals, hero parallax, contact form,
    footer year. Everything degrades to fully visible, static content.
    ========================================================================== */
@@ -95,7 +95,7 @@
       try {
         const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
         if (!res.ok) throw new Error('Message was not accepted');
-        status.textContent = "Thank you — your message has been sent. I'll reply shortly.";
+        status.textContent = "Thank you. Your message has been sent. I'll reply shortly.";
         form.reset();
       } catch {
         status.textContent = 'Your message could not be sent. Please try again or email me directly.';

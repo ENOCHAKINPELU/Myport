@@ -1,9 +1,9 @@
 /* ==========================================================================
-   DESIGN TOKENS — Phase 1 Foundation
+   DESIGN TOKENS - Phase 1 Foundation
    ==========================================================================
    Single source of truth for the site's design system: color, type,
    spacing, radius, shadow, and motion. Built FROM the existing brand
-   palette already in use across index.html and css/blog.css — nothing
+   palette already in use across index.html and css/blog.css - nothing
    invented here.
 
    Legacy variable names (--primary-color, --secondary-color, etc.) are
@@ -14,7 +14,7 @@
    ========================================================================== */
 
 :root {
-  /* ---- Brand colors (existing — do not change) ---- */
+  /* ---- Brand colors (existing - do not change) ---- */
   --primary-color: #2a2a72;
   --secondary-color: #009ffd;
   --accent-color: #7d3cff;
@@ -83,7 +83,7 @@
   --content-max-width: 1200px;
   --page-margin: 20px;
 
-  /* ---- Motion (subtle, professional — see animation notes below) ---- */
+  /* ---- Motion (subtle, professional - see animation notes below) ---- */
   --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
   --duration-fast: 0.2s;
   --duration-base: var(--transition-speed);
@@ -206,10 +206,10 @@
 /* ==========================================================================
    THE DIGITAL INNOVATION PLAYBOOK (Methodology)
    Overview nav strip + connected step cards with a scroll-synced progress
-   rail. Built entirely from existing tokens — no new colors introduced.
+   rail. Built entirely from existing tokens - no new colors introduced.
    ========================================================================== */
 
-/* Overview strip — horizontal jump-nav across the 8 phases */
+/* Overview strip - horizontal jump-nav across the 8 phases */
 .playbook-nav {
   display: flex;
   flex-wrap: wrap;
@@ -263,7 +263,7 @@
   color: var(--color-primary);
 }
 
-/* Phase list — vertical rail with connected step cards */
+/* Phase list - vertical rail with connected step cards */
 .playbook-phases {
   max-width: 820px;
   margin: 0 auto;
@@ -566,7 +566,7 @@
   margin: 0 auto;
 }
 
-/* Philosophy callout — a prominent pull-quote, distinct from ordinary body copy */
+/* Philosophy callout - a prominent pull-quote, distinct from ordinary body copy */
 .philosophy-callout {
   max-width: 800px;
   margin: var(--space-8) auto 0;
@@ -594,7 +594,7 @@
   margin: 0;
 }
 
-/* My Approach — numbered step list */
+/* My Approach - numbered step list */
 .approach-steps {
   max-width: 760px;
   margin: 0 auto;
@@ -641,7 +641,7 @@
   margin: 0;
 }
 
-/* What I Help Improve — icon cards (extends .foundation-card) */
+/* What I Help Improve - icon cards (extends .foundation-card) */
 .foundation-card-icon {
   width: 52px;
   height: 52px;
@@ -655,7 +655,7 @@
   margin-bottom: var(--space-4);
 }
 
-/* Why My Approach Is Different — differentiator list */
+/* Why My Approach Is Different - differentiator list */
 .differentiator-list {
   max-width: 900px;
   margin: 0 auto;
@@ -988,9 +988,9 @@ select:focus-visible {
 
 /* ==========================================================================
    INDUSTRIES
-   Premium expandable cards — collapsed for fast scanning, expandable for
+   Premium expandable cards - collapsed for fast scanning, expandable for
    depth (Challenges / Opportunities / Business Value). No stock photography
-   or clip-art icons — same abstract gradient-badge language used elsewhere.
+   or clip-art icons - same abstract gradient-badge language used elsewhere.
    ========================================================================== */
 
 .industries-grid {
@@ -1128,7 +1128,7 @@ select:focus-visible {
   background: var(--color-border);
 }
 
-/* Shared business challenges — full-width gradient band */
+/* Shared business challenges - full-width gradient band */
 .pain-points-band {
   background: var(--gradient);
   border-radius: var(--radius-lg);
@@ -1275,7 +1275,7 @@ select:focus-visible {
   margin-top: 0.3rem;
 }
 
-/* Business Outcomes — value confirmation grid */
+/* Business Outcomes - value confirmation grid */
 .value-outcomes-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
