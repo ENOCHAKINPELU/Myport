@@ -16,7 +16,11 @@
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
-  <link rel="stylesheet" href="../css/blog.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap" />
+  <link rel="stylesheet" href="../css/site.css" />
+  <meta name="theme-color" content="#05173e" />
   <style>
     /* Post meta bar */
     .post-meta-bar {
@@ -132,49 +136,81 @@
     .comment-body   { color: var(--text-color); line-height: 1.6; }
     .no-comments    { text-align: center; color: #999; padding: 2rem 0; }
   </style>
-  <link rel="stylesheet" href="../css/motion.css" />
+  <style>
+    /* Article chrome on the shared design system */
+    .post-meta-bar { color: var(--muted); }
+    .share-bar { border-color: var(--line); }
+    .share-btn { border-radius: 999px; }
+    .share-btn.copy { background: var(--violet-500); }
+    .author-bio, .comment-form, .comment-card { border-color: var(--line); border-radius: var(--radius-lg); }
+    .comments-section h2, .comment-form h3, .author-bio h4, .comment-author { color: var(--navy-900); }
+  </style>
 </head>
 <body>
-  <header>
-    <nav>
-      <a href="../index.html" class="logo">ENOCH</a>
-      <button class="nav-toggle" aria-label="Toggle navigation">
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-        <span class="hamburger-line"></span>
-      </button>
-      <ul class="nav-links">
-        <li><a href="../index.html#about">Home</a></li>
-        <li><a href="../index.html#projects">Innovation Portfolio</a></li>
-        <li><a href="./index.html">Blog</a></li>
-        <li><a href="../index.html#contact">Let's Talk</a></li>
-      </ul>
-    </nav>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header site-header--solid" data-header>
+    <div class="shell header-inner">
+      <a class="brand" href="../index.html" aria-label="Enoch Akinpelu — home">
+        <img class="brand-mark brand-mark--light" src="../images/brand/logo-mark-white.png" alt="" width="419" height="413" />
+        <img class="brand-mark brand-mark--dark" src="../images/brand/logo-mark.png" alt="" width="419" height="413" />
+        <span class="brand-word">ENOCH</span>
+      </a>
+      <nav class="site-nav" aria-label="Main">
+        <ul class="nav-list" id="nav-list">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../work.html">Work</a></li>
+          <li><a href="./index.html" aria-current="page">Insights</a></li>
+          <li><a class="nav-cta" href="../index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-list" aria-label="Open menu"><span></span><span></span></button>
+    </div>
   </header>
 
-  <main>
+  <main id="main" class="article-wrap">
     <article class="post-article" id="post-article">
-      <p>Loading article...</p>
+      <p>Loading article…</p>
     </article>
   </main>
 
-  <footer>
-    <div class="container">
-      <p>&copy; <span id="current-year"></span> Akinpelu Enoch. All rights reserved.</p>
+  <footer class="site-footer">
+    <div class="shell">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="../images/brand/logo-lockup-white.png" alt="Enoch" width="419" height="524" loading="lazy" />
+          <p>Digital innovation &amp; technology strategy for energy and industrial operations — from business understanding to practical implementation.</p>
+        </div>
+        <div class="footer-col">
+          <h2>Explore</h2>
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="../about.html">About</a></li>
+            <li><a href="../work.html">Work &amp; case studies</a></li>
+            <li><a href="./index.html">Insights</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h2>Connect</h2>
+          <ul>
+            <li><a href="mailto:ifeoluwaakinpelu05@gmail.com">Email</a></li>
+            <li><a href="https://www.linkedin.com/in/ifeoluwaenochakinpelu" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+            <li><a href="https://github.com/ENOCHAKINPELU" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; <span id="current-year">2026</span> Akinpelu Ifeoluwa Enoch. All rights reserved.</span>
+        <a href="#main">Back to top ↑</a>
+      </div>
     </div>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
   <script src="../js/supabase-config.js"></script>
+  <script src="../js/site.js"></script>
   <script>
-    document.getElementById('current-year').textContent = new Date().getFullYear();
-
-    const navToggle = document.querySelector('.nav-toggle');
-    const navLinks  = document.querySelector('.nav-links');
-    navToggle.addEventListener('click', () => {
-      navToggle.classList.toggle('active');
-      navLinks.classList.toggle('active');
-    });
 
     function formatDate(dateString) {
       if (!dateString) return '';
@@ -299,7 +335,7 @@
           <div id="comment-list" class="comment-list"></div>
         </section>
 
-        <a class="post-back-link" href="./index.html">&larr; Back to Blog</a>
+        <a class="post-back-link" href="./index.html">&larr; Back to Insights</a>
       `;
 
       // Render Quill HTML content safely (avoids template-literal escaping issues)
@@ -413,11 +449,11 @@
     }
 
     function notFound() {
-      return '<h1>Article not found</h1><p>This article does not exist or is no longer available.</p><a class="post-back-link" href="./index.html">&larr; Back to Blog</a>';
+      return '<h1>Article not found</h1><p>This article does not exist or is no longer available.</p><a class="post-back-link" href="./index.html">&larr; Back to Insights</a>';
     }
 
     loadPost();
   </script>
-  <script src="../js/motion.js"></script>
+
 </body>
 </html>
