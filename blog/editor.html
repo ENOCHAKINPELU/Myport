@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Article Studio | Enoch Akinpelu</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#05173e" />
+  <link rel="icon" href="../favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../images/icons/favicon-32.png" />
+  <link rel="apple-touch-icon" href="../images/icons/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" />
+  <link rel="stylesheet" href="../css/site.css" />
+  <style>
+    /* ---------- Studio layout (page-specific; builds on css/site.css) ---------- */
+    body { background: var(--paper); }
+    [hidden] { display: none !important; }
+    .studio-bar { position: sticky; top: 0; z-index: 50; background: var(--navy-900); color: var(--white); }
+    .studio-bar .shell { height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .studio-bar .brand-word { font-size: .85rem; }
+    .studio-tag { font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; color: var(--blue-300); border-left: 1px solid var(--line-dark); padding-left: .9rem; margin-left: .3rem; }
+    .studio-links { display: flex; align-items: center; gap: 1.25rem; font-size: .85rem; }
+    .studio-links a, .studio-links button { color: rgba(255,255,255,.85); text-decoration: none; background: none; border: 0; cursor: pointer; padding: .4rem 0; }
+    .studio-links a:hover, .studio-links button:hover { color: var(--white); }
+    @media (max-width: 640px) { .studio-tag, .studio-links .hide-sm { display: none; } }
+
+    .btn--sm { min-height: 40px; padding: .5rem 1.1rem; font-size: .85rem; }
+    .btn--light { --btn-bg: var(--white); --btn-fg: var(--navy-900); --btn-bd: var(--line); }
+    .btn--light:hover { --btn-bg: var(--paper); --btn-fg: var(--navy-900); --btn-bd: rgba(5,23,62,.3); box-shadow: none; }
+    .btn--danger { --btn-bg: transparent; --btn-fg: #b42318; --btn-bd: rgba(180,35,24,.35); }
+    .btn--danger:hover { --btn-bg: #b42318; --btn-fg: var(--white); --btn-bd: #b42318; box-shadow: none; }
+
+    /* Login */
+    .login-wrap { min-height: calc(100vh - 64px); display: grid; place-items: center; padding: 3rem var(--gutter); background: radial-gradient(70% 90% at 90% 0%, rgba(42,42,114,.9), transparent 70%), var(--navy-900); }
+    .login-card { width: min(100%, 420px); background: var(--white); border-radius: var(--radius-lg); padding: clamp(1.75rem, 4vw, 2.5rem); box-shadow: 0 30px 80px -30px rgba(0,0,0,.6); }
+    .login-card img { width: 52px; height: auto; margin-bottom: 1.25rem; }
+    .login-card h1 { font-size: 1.6rem; letter-spacing: -.03em; }
+    .login-card > p { color: var(--muted); font-size: .92rem; margin: .4rem 0 1.75rem; }
+
+    /* Shared form fields on light surfaces */
+    .f { display: block; margin-bottom: 1.1rem; }
+    .f > span { display: flex; justify-content: space-between; gap: 1rem; font-size: .78rem; font-weight: 600; letter-spacing: .03em; color: var(--navy-900); margin-bottom: .45rem; }
+    .f > span small { font-weight: 400; color: var(--muted); letter-spacing: 0; }
+    .f input, .f textarea, .f select { width: 100%; padding: .75rem .9rem; border: 1px solid rgba(5,23,62,.18); border-radius: 8px; background: var(--white); font-size: .95rem; transition: border-color .2s, box-shadow .2s; }
+    .f input:focus, .f textarea:focus, .f select:focus { outline: none; border-color: var(--blue-500); box-shadow: 0 0 0 3px rgba(0,159,253,.18); }
+    .f textarea { resize: vertical; min-height: 92px; line-height: 1.55; }
+    .form-msg { min-height: 1.4em; font-size: .88rem; margin-top: .75rem; }
+    .form-msg.is-error { color: #b42318; }
+
+    /* Article list */
+    .studio-main { padding-block: clamp(2rem, 5vw, 3.5rem) 5rem; }
+    .list-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 1.25rem; margin-bottom: 2rem; }
+    .list-head h1 { font-size: clamp(1.8rem, 3.5vw, 2.5rem); letter-spacing: -.035em; }
+    .list-head p { color: var(--muted); margin-top: .35rem; }
+    .list-tools { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+    .tabs { display: inline-flex; background: var(--white); border: 1px solid var(--line); border-radius: 999px; padding: 4px; }
+    .tabs button { border: 0; background: none; padding: .45rem 1rem; border-radius: 999px; font-size: .85rem; font-weight: 500; color: var(--muted); cursor: pointer; }
+    .tabs button[aria-pressed="true"] { background: var(--navy-900); color: var(--white); }
+    .tabs b { font-weight: 600; margin-left: .3rem; opacity: .7; }
+    .search { flex: 1 1 240px; max-width: 340px; padding: .65rem 1rem; border: 1px solid var(--line); border-radius: 999px; background: var(--white); font-size: .9rem; }
+    .search:focus { outline: none; border-color: var(--blue-500); }
+    .post-table { list-style: none; padding: 0; background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; }
+    .post-row { display: grid; grid-template-columns: 84px minmax(0, 1fr) auto; gap: 1.25rem; align-items: center; padding: 1rem 1.25rem; border-top: 1px solid var(--line); }
+    .post-row:first-child { border-top: 0; }
+    .post-row:hover { background: rgba(42,42,114,.025); }
+    .post-thumb { width: 84px; aspect-ratio: 16 / 10; border-radius: 6px; overflow: hidden; background: var(--gradient); }
+    .post-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .post-row h2 { font-size: 1.02rem; letter-spacing: -.015em; line-height: 1.35; }
+    .post-row h2 button { all: unset; cursor: pointer; }
+    .post-row h2 button:hover { color: var(--indigo-700); text-decoration: underline; }
+    .post-row h2 button:focus-visible { outline: 2px solid var(--blue-500); outline-offset: 2px; }
+    .post-meta { display: flex; flex-wrap: wrap; gap: .4rem 1rem; align-items: center; margin-top: .35rem; font-size: .78rem; color: var(--muted); }
+    .row-actions { display: flex; gap: .5rem; flex-wrap: wrap; justify-content: flex-end; }
+    .icon-btn { border: 1px solid var(--line); background: var(--white); border-radius: 8px; padding: .45rem .75rem; font-size: .8rem; font-weight: 500; color: var(--navy-900); cursor: pointer; text-decoration: none; white-space: nowrap; }
+    .icon-btn:hover { border-color: rgba(5,23,62,.35); }
+    .icon-btn.danger { color: #b42318; }
+    .list-empty { padding: 3.5rem 1.5rem; text-align: center; color: var(--muted); background: var(--white); border: 1px dashed rgba(5,23,62,.2); border-radius: var(--radius-lg); }
+    .list-empty h2 { font-size: 1.2rem; margin-bottom: .4rem; }
+    @media (max-width: 720px) {
+      .post-row { grid-template-columns: 64px minmax(0, 1fr); }
+      .post-thumb { width: 64px; }
+      .row-actions { grid-column: 1 / -1; justify-content: flex-start; }
+    }
+
+    /* Editor */
+    .ed-bar { position: sticky; top: 64px; z-index: 40; background: rgba(249,249,249,.92); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+    .ed-bar .shell { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 64px; flex-wrap: wrap; padding-block: .6rem; }
+    .ed-left { display: flex; align-items: center; gap: 1rem; min-width: 0; }
+    .back-btn { border: 0; background: none; cursor: pointer; font-weight: 600; font-size: .88rem; color: var(--indigo-700); padding: .4rem 0; }
+    .save-state { font-size: .8rem; color: var(--muted); white-space: nowrap; }
+    .save-state.is-dirty { color: var(--violet-500); }
+    .ed-actions { display: flex; gap: .5rem; flex-wrap: wrap; }
+    .ed-grid { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: clamp(1.5rem, 3vw, 2.5rem); padding-block: 2rem 5rem; align-items: start; }
+    @media (max-width: 1000px) { .ed-grid { grid-template-columns: 1fr; } }
+    .ed-paper { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: clamp(1.25rem, 4vw, 3rem); }
+    .title-input { width: 100%; border: 0; resize: none; overflow: hidden; font-size: clamp(1.8rem, 3.6vw, 2.75rem); font-weight: 600; letter-spacing: -.035em; line-height: 1.12; color: var(--navy-900); background: none; padding: 0; }
+    .title-input::placeholder { color: rgba(5,23,62,.28); }
+    .title-input:focus { outline: none; }
+    .excerpt-input { width: 100%; border: 0; border-left: 3px solid var(--blue-500); resize: none; overflow: hidden; margin: 1.25rem 0 1.5rem; padding: .25rem 0 .25rem 1rem; font-size: 1.08rem; line-height: 1.6; color: var(--muted); background: none; }
+    .excerpt-input:focus { outline: none; border-left-color: var(--violet-500); }
+    .excerpt-input::placeholder { color: rgba(92,101,112,.55); }
+    .counter { font-size: .75rem; color: var(--muted); text-align: right; margin-top: -1rem; margin-bottom: 1rem; }
+    .counter.is-over { color: #b42318; }
+
+    /* Quill, restyled to match published articles */
+    .ql-toolbar.ql-snow { position: sticky; top: 128px; z-index: 5; background: var(--white); border: 1px solid var(--line); border-radius: 8px; padding: .5rem; font-family: var(--font); }
+    .ql-container.ql-snow { border: 0; font-family: var(--font); }
+    .ql-editor:focus, .ql-editor:focus-visible { outline: none; }
+    .ql-editor { padding: 1.5rem 0 0; min-height: 420px; font-size: 1.1rem; line-height: 1.85; color: var(--text); }
+    .ql-editor.ql-blank::before { left: 0; right: 0; font-style: normal; color: rgba(92,101,112,.55); }
+    .ql-editor h2 { font-size: 1.75rem; letter-spacing: -.03em; margin-top: 2rem; color: var(--navy-900); }
+    .ql-editor h3 { font-size: 1.35rem; margin-top: 1.5rem; color: var(--navy-900); }
+    .ql-editor p, .ql-editor ol, .ql-editor ul { margin-bottom: 1rem; }
+    .ql-editor blockquote { border-left: 3px solid var(--violet-500) !important; padding-left: 1.25rem !important; color: var(--navy-900); font-weight: 500; }
+    .ql-editor img { border-radius: 8px; margin-block: 1rem; }
+    .ql-editor a { color: var(--indigo-700); }
+    .ql-snow .ql-editor pre.ql-syntax, .ql-editor .ql-code-block-container { background: var(--navy-900); color: #e8ecf5; border-radius: 8px; }
+
+    /* Sidebar */
+    .ed-side { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; position: sticky; top: 148px; min-width: 0; }
+    .ed-side > * { min-width: 0; }
+    .ed-grid > * { min-width: 0; }
+    @media (max-width: 1000px) { .ed-side { position: static; } }
+    .panel { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 1.25rem; }
+    .panel h2 { font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 1rem; }
+    .panel .f:last-child { margin-bottom: 0; }
+    .status-line { display: flex; justify-content: space-between; align-items: center; gap: .5rem; font-size: .88rem; }
+    .status-line + .status-line { margin-top: .6rem; }
+    .status-line span:first-child { color: var(--muted); }
+    .slug-field { display: flex; align-items: stretch; border: 1px solid rgba(5,23,62,.18); border-radius: 8px; overflow: hidden; }
+    .slug-field:focus-within { border-color: var(--blue-500); box-shadow: 0 0 0 3px rgba(0,159,253,.18); }
+    .slug-field em { font-style: normal; font-size: .78rem; color: var(--muted); background: var(--paper); padding: .75rem .6rem; border-right: 1px solid var(--line); white-space: nowrap; }
+    .slug-field input { flex: 1; width: auto; border: 0 !important; box-shadow: none !important; border-radius: 0; min-width: 0; }
+    .cover-drop { position: relative; display: grid; place-items: center; aspect-ratio: 16 / 10; border: 1.5px dashed rgba(5,23,62,.22); border-radius: 10px; background: var(--paper); color: var(--muted); font-size: .85rem; text-align: center; cursor: pointer; overflow: hidden; transition: border-color .2s, background-color .2s; }
+    .cover-drop:hover, .cover-drop.is-over { border-color: var(--blue-500); background: rgba(0,159,253,.05); }
+    .cover-drop img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .cover-drop input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+    .cover-actions { display: flex; justify-content: space-between; align-items: center; margin-top: .6rem; font-size: .8rem; color: var(--muted); }
+    .link-btn { border: 0; background: none; padding: 0; color: var(--indigo-700); font-size: .8rem; font-weight: 600; cursor: pointer; }
+    .link-btn.danger { color: #b42318; }
+    .serp { border: 1px solid var(--line); border-radius: 8px; padding: .9rem 1rem; font-family: Arial, sans-serif; }
+    .serp small { display: block; color: #4d5156; font-size: .75rem; margin-bottom: .2rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .serp strong { display: block; color: #1a0dab; font-size: 1.05rem; font-weight: 400; line-height: 1.3; }
+    .serp p { color: #4d5156; font-size: .82rem; line-height: 1.5; margin-top: .25rem; }
+
+    .restore-banner { display: flex; flex-wrap: wrap; gap: .75rem 1.25rem; align-items: center; justify-content: space-between; background: rgba(125,60,255,.07); border: 1px solid rgba(125,60,255,.25); border-radius: 10px; padding: .85rem 1rem; margin-bottom: 1.25rem; font-size: .88rem; color: var(--navy-900); }
+
+    /* Toast */
+    .toast { position: fixed; left: 50%; bottom: 1.5rem; transform: translate(-50%, calc(100% + 3rem)); visibility: hidden; z-index: 100; background: var(--navy-900); color: var(--white); padding: .85rem 1.25rem; border-radius: 10px; font-size: .9rem; box-shadow: 0 20px 40px -15px rgba(0,0,0,.5); transition: transform .35s var(--ease-out); max-width: calc(100% - 2rem); }
+    .toast.is-shown { transform: translate(-50%, 0); visibility: visible; }
+    .toast.is-error { background: #b42318; }
+
+    /* Preview */
+    .preview { position: fixed; inset: 0; z-index: 90; background: rgba(3,13,38,.7); display: grid; place-items: start center; overflow-y: auto; padding: 2rem 1rem; }
+    .preview-sheet { width: min(100%, 900px); background: var(--white); border-radius: var(--radius-lg); overflow: hidden; }
+    .preview-top { display: flex; justify-content: space-between; align-items: center; padding: .85rem 1.25rem; border-bottom: 1px solid var(--line); font-size: .8rem; color: var(--muted); position: sticky; top: 0; background: var(--white); z-index: 1; }
+    .preview .post-article { padding-block: 2.5rem 3rem; }
+    .preview .post-meta-bar { color: var(--muted); font-size: .9rem; margin-bottom: 2rem; }
+  </style>
+</head>
+<body>
+  <header class="studio-bar">
+    <div class="shell">
+      <a class="brand" href="../index.html" aria-label="Enoch Akinpelu home page">
+        <img class="brand-mark" src="../images/brand/logo-mark-white.png" alt="" width="419" height="413" style="width:32px;height:32px" />
+        <span class="brand-word">ENOCH</span>
+        <span class="studio-tag">Article Studio</span>
+      </a>
+      <nav class="studio-links" aria-label="Studio">
+        <a href="./index.html" target="_blank" rel="noopener">View articles ↗</a>
+        <a class="hide-sm" href="./analytics.html">Analytics</a>
+        <button type="button" id="logout-btn" hidden>Log out</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ================= LOGIN ================= -->
+  <section class="login-wrap" id="login-view" hidden>
+    <form class="login-card" id="login-form">
+      <img src="../images/brand/logo-mark.png" alt="" width="419" height="413" />
+      <h1>Welcome back</h1>
+      <p>Sign in to write, edit and publish your articles.</p>
+      <label class="f"><span>Email</span><input type="email" id="login-email" required autocomplete="username" /></label>
+      <label class="f"><span>Password</span><input type="password" id="login-password" required autocomplete="current-password" /></label>
+      <button class="btn btn--block" type="submit">Sign in <span class="arrow" aria-hidden="true">→</span></button>
+      <p class="form-msg is-error" id="login-error" role="alert"></p>
+    </form>
+  </section>
+
+  <!-- ================= ARTICLE LIST ================= -->
+  <main class="studio-main" id="list-view" hidden>
+    <div class="shell">
+      <div class="list-head">
+        <div>
+          <h1>Your articles</h1>
+          <p>Drafts stay private. Published articles appear on your Articles page.</p>
+        </div>
+        <button class="btn" type="button" id="new-btn">New article <span class="arrow" aria-hidden="true">+</span></button>
+      </div>
+      <div class="list-tools">
+        <div class="tabs" role="group" aria-label="Filter articles">
+          <button type="button" data-filter="all" aria-pressed="true">All<b id="count-all">0</b></button>
+          <button type="button" data-filter="draft" aria-pressed="false">Drafts<b id="count-draft">0</b></button>
+          <button type="button" data-filter="published" aria-pressed="false">Published<b id="count-published">0</b></button>
+        </div>
+        <input class="search" type="search" id="search" placeholder="Search by title…" aria-label="Search articles" />
+      </div>
+      <ul class="post-table" id="post-list" aria-live="polite"></ul>
+      <div class="list-empty" id="list-empty" hidden>
+        <h2 id="empty-title">No articles yet</h2>
+        <p id="empty-text">Start your first article. It stays a private draft until you publish it.</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- ================= EDITOR ================= -->
+  <div id="editor-view" hidden>
+    <div class="ed-bar">
+      <div class="shell">
+        <div class="ed-left">
+          <button class="back-btn" type="button" id="back-btn">← All articles</button>
+          <span class="save-state" id="save-state" aria-live="polite">New draft</span>
+        </div>
+        <div class="ed-actions">
+          <button class="btn btn--light btn--sm" type="button" id="preview-btn">Preview</button>
+          <button class="btn btn--light btn--sm" type="button" id="save-btn">Save draft</button>
+          <button class="btn btn--sm" type="button" id="publish-btn">Publish</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="shell ed-grid">
+      <div>
+        <div class="restore-banner" id="restore-banner" hidden>
+          <span>You have unsaved changes from <strong id="restore-time"></strong> on this device.</span>
+          <span style="display:flex;gap:1rem"><button class="link-btn" type="button" id="restore-yes">Restore them</button><button class="link-btn danger" type="button" id="restore-no">Discard</button></span>
+        </div>
+        <article class="ed-paper">
+          <label class="sr-only" for="title">Title</label>
+          <textarea class="title-input" id="title" rows="1" placeholder="Article title" maxlength="160"></textarea>
+          <label class="sr-only" for="excerpt">Summary</label>
+          <textarea class="excerpt-input" id="excerpt" rows="2" placeholder="A one or two sentence summary. It appears on the Articles page and in link previews."></textarea>
+          <p class="counter" id="excerpt-count">0 / 200</p>
+          <div id="editor"></div>
+        </article>
+      </div>
+
+      <aside class="ed-side" aria-label="Article settings">
+        <section class="panel">
+          <h2>Status</h2>
+          <div class="status-line"><span>State</span><span id="side-status"><span class="status status--draft">Draft</span></span></div>
+          <div class="status-line"><span>Published</span><span id="side-published">Not yet</span></div>
+          <div class="status-line"><span>Length</span><span id="side-words">0 words · 1 min read</span></div>
+          <div class="status-line" id="side-view-row" hidden><span>Live page</span><a class="link-btn" id="side-view" href="#" target="_blank" rel="noopener">Open ↗</a></div>
+        </section>
+
+        <section class="panel">
+          <h2>Cover image</h2>
+          <label class="cover-drop" id="cover-drop">
+            <span id="cover-hint">Drop an image or click to upload<br /><small>Landscape, at least 1600px wide</small></span>
+            <img id="cover-img" alt="" hidden />
+            <input type="file" id="cover-file" accept="image/*" aria-label="Upload cover image" />
+          </label>
+          <div class="cover-actions"><span id="cover-state"></span><button class="link-btn danger" type="button" id="cover-remove" hidden>Remove</button></div>
+        </section>
+
+        <section class="panel">
+          <h2>Link &amp; search</h2>
+          <label class="f">
+            <span>URL slug <small>auto from title</small></span>
+            <div class="slug-field"><em>?slug=</em><input type="text" id="slug" spellcheck="false" autocomplete="off" /></div>
+          </label>
+          <div class="serp" aria-label="Search result preview">
+            <small>enochakinpeluportfolio.vercel.app › blog › <span id="serp-slug">your-article</span></small>
+            <strong id="serp-title">Article title | Enoch Akinpelu</strong>
+            <p id="serp-desc">Your summary will appear here.</p>
+          </div>
+        </section>
+
+        <section class="panel" id="danger-panel" hidden>
+          <h2>More</h2>
+          <div style="display:grid;gap:.6rem">
+            <button class="btn btn--light btn--sm" type="button" id="share-btn" hidden>Copy share link</button>
+            <button class="btn btn--light btn--sm" type="button" id="unpublish-btn" hidden>Unpublish (back to draft)</button>
+            <button class="btn btn--danger btn--sm" type="button" id="delete-btn">Delete article</button>
+          </div>
+        </section>
+      </aside>
+    </div>
+  </div>
+
+  <!-- ================= PREVIEW ================= -->
+  <div class="preview" id="preview" role="dialog" aria-modal="true" aria-label="Article preview" hidden>
+    <div class="preview-sheet">
+      <div class="preview-top"><span>Preview: this is how the article will look once published</span><button class="btn btn--light btn--sm" type="button" id="preview-close">Close</button></div>
+      <article class="post-article" id="preview-body"></article>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+  <script src="../js/supabase-config.js"></script>
+  <script>
+  (() => {
+    const $ = (id) => document.getElementById(id);
+    const views = { login: $('login-view'), list: $('list-view'), editor: $('editor-view') };
+    const EXCERPT_MAX = 200;
+    const BUCKET = 'blog-images';
+
+    let posts = [];
+    let filter = 'all';
+    let current = null;        // { id, status, published_at, updated_at } of the article being edited
+    let coverUrl = null;
+    let slugTouched = false;
+    let dirty = false;
+    let loading = false;       // suppresses dirty-tracking while filling the form
+
+    // ---------- helpers ----------
+    const esc = (v) => String(v ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    const slugify = (t) => String(t).trim().toLowerCase().normalize('NFKD').replace(/[̀-ͯ]/g, '').replace(/[^\w\s-]/g, '').replace(/[\s_-]+/g, '-').replace(/^-+|-+$/g, '');
+    const fmtDate = (d) => d ? new Date(d).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) : '';
+    const fmtTime = (d) => new Date(d).toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
+    const statusChip = (s) => s === 'published' ? '<span class="status status--live">Published</span>' : '<span class="status status--draft">Draft</span>';
+
+    let toastTimer;
+    function toast(msg, isError = false) {
+      const t = $('toast');
+      t.textContent = msg;
+      t.classList.toggle('is-error', isError);
+      t.classList.add('is-shown');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => t.classList.remove('is-shown'), isError ? 6000 : 3000);
+    }
+
+    function show(name) {
+      Object.entries(views).forEach(([k, el]) => { el.hidden = k !== name; });
+      $('logout-btn').hidden = name === 'login';
+      window.scrollTo(0, 0);
+    }
+
+    function autoGrow(el) { el.style.height = 'auto'; el.style.height = el.scrollHeight + 'px'; }
+
+    // ---------- editor ----------
+    const quill = new Quill('#editor', {
+      theme: 'snow',
+      placeholder: 'Start writing…',
+      modules: {
+        toolbar: {
+          container: [
+            [{ header: [2, 3, false] }],
+            ['bold', 'italic', 'underline', 'strike'],
+            [{ list: 'ordered' }, { list: 'bullet' }],
+            ['blockquote', 'code-block', 'link', 'image'],
+            ['clean']
+          ],
+          handlers: { image: insertImage }
+        }
+      }
+    });
+
+    async function upload(file) {
+      if (!file.type.startsWith('image/')) throw new Error('Please choose an image file.');
+      if (file.size > 8 * 1024 * 1024) throw new Error('Images must be under 8 MB.');
+      const ext = (file.name.split('.').pop() || 'jpg').toLowerCase();
+      const path = `${Date.now()}-${slugify(file.name.replace(/\.[^/.]+$/, '')) || 'image'}.${ext}`;
+      const { error } = await supabaseClient.storage.from(BUCKET).upload(path, file);
+      if (error) throw new Error('Image upload failed: ' + error.message);
+      return supabaseClient.storage.from(BUCKET).getPublicUrl(path).data.publicUrl;
+    }
+
+    function insertImage() {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = 'image/*';
+      input.onchange = async () => {
+        const file = input.files[0];
+        if (!file) return;
+        const range = quill.getSelection(true);
+        toast('Uploading image…');
+        try {
+          const url = await upload(file);
+          quill.insertEmbed(range.index, 'image', url, 'user');
+          quill.setSelection(range.index + 1);
+          toast('Image added.');
+        } catch (err) { toast(err.message, true); }
+      };
+      input.click();
+    }
+
+    function wordCount() {
+      const text = quill.getText().trim();
+      return text ? text.split(/\s+/).length : 0;
+    }
+
+    function refreshMeta() {
+      const words = wordCount();
+      $('side-words').textContent = `${words.toLocaleString()} words · ${Math.max(1, Math.round(words / 200))} min read`;
+      const ex = $('excerpt').value;
+      $('excerpt-count').textContent = `${ex.length} / ${EXCERPT_MAX}`;
+      $('excerpt-count').classList.toggle('is-over', ex.length > EXCERPT_MAX);
+      const slug = $('slug').value || 'your-article';
+      $('serp-slug').textContent = slug;
+      $('serp-title').textContent = `${$('title').value.trim() || 'Article title'} | Enoch Akinpelu`;
+      $('serp-desc').textContent = ex.trim() || 'Your summary will appear here.';
+    }
+
+    function setDirty(value) {
+      dirty = value;
+      const s = $('save-state');
+      s.classList.toggle('is-dirty', value);
+      if (value) s.textContent = 'Unsaved changes';
+      if (value) scheduleLocalSave();
+    }
+
+    function setCover(url) {
+      coverUrl = url || null;
+      $('cover-img').hidden = !coverUrl;
+      if (coverUrl) $('cover-img').src = coverUrl; else $('cover-img').removeAttribute('src');
+      $('cover-hint').hidden = !!coverUrl;
+      $('cover-remove').hidden = !coverUrl;
+      $('cover-state').textContent = coverUrl ? 'Cover set' : 'No cover yet';
+    }
+
+    function setStatusUI() {
+      const published = current && current.status === 'published';
+      $('side-status').innerHTML = statusChip(published ? 'published' : 'draft');
+      $('side-published').textContent = current && current.published_at ? fmtDate(current.published_at) : 'Not yet';
+      $('publish-btn').textContent = published ? 'Update' : 'Publish';
+      $('save-btn').hidden = published;
+      $('danger-panel').hidden = !current || !current.id;
+      $('unpublish-btn').hidden = !published;
+      $('share-btn').hidden = !published;
+      $('side-view-row').hidden = !published;
+      if (published) $('side-view').href = `./post.html?slug=${encodeURIComponent($('slug').value)}`;
+    }
+
+    // ---------- local autosave (per device, survives a closed tab) ----------
+    const draftKey = () => `article-studio:${current && current.id ? current.id : 'new'}`;
+    let localTimer;
+    function scheduleLocalSave() {
+      clearTimeout(localTimer);
+      localTimer = setTimeout(() => {
+        try {
+          localStorage.setItem(draftKey(), JSON.stringify({
+            title: $('title').value, slug: $('slug').value, excerpt: $('excerpt').value,
+            content: quill.root.innerHTML, cover: coverUrl, savedAt: new Date().toISOString()
+          }));
+        } catch { /* storage unavailable: autosave is a convenience only */ }
+      }, 700);
+    }
+    function readLocal() { try { return JSON.parse(localStorage.getItem(draftKey()) || 'null'); } catch { return null; } }
+    function clearLocal() { try { localStorage.removeItem(draftKey()); } catch { /* ignore */ } }
+
+    function fillForm(data) {
+      loading = true;
+      $('title').value = data.title || '';
+      $('slug').value = data.slug || '';
+      $('excerpt').value = data.excerpt || '';
+      quill.setContents([]);
+      if (data.content) quill.clipboard.dangerouslyPasteHTML(data.content, 'silent');
+      setCover(data.cover_image_url ?? data.cover);
+      autoGrow($('title')); autoGrow($('excerpt'));
+      refreshMeta();
+      loading = false;
+    }
+
+    async function openEditor(id) {
+      $('restore-banner').hidden = true;
+      if (id) {
+        const { data: post, error } = await supabaseClient.from('posts').select('*').eq('id', id).single();
+        if (error || !post) { toast('That article could not be loaded.', true); return; }
+        current = { id: post.id, status: post.status, published_at: post.published_at, updated_at: post.updated_at };
+        slugTouched = true;
+        fillForm(post);
+        $('save-state').textContent = `Saved ${fmtTime(post.updated_at)}`;
+      } else {
+        current = { id: null, status: 'draft', published_at: null, updated_at: null };
+        slugTouched = false;
+        fillForm({});
+        $('save-state').textContent = 'New draft';
+      }
+      setDirty(false);
+      setStatusUI();
+      show('editor');
+
+      const local = readLocal();
+      const serverTime = current.updated_at ? new Date(current.updated_at).getTime() : 0;
+      if (local && new Date(local.savedAt).getTime() > serverTime && (local.title || local.content.replace(/<[^>]+>/g, '').trim())) {
+        $('restore-time').textContent = fmtTime(local.savedAt);
+        $('restore-banner').hidden = false;
+        $('restore-yes').onclick = () => { fillForm(local); slugTouched = true; $('restore-banner').hidden = true; setDirty(true); toast('Unsaved changes restored.'); };
+        $('restore-no').onclick = () => { clearLocal(); $('restore-banner').hidden = true; };
+      }
+      if (!id) $('title').focus();
+    }
+
+    function confirmLeave() {
+      return !dirty || confirm('You have unsaved changes. Leave without saving?');
+    }
+
+    async function save(targetStatus) {
+      const title = $('title').value.trim();
+      const slug = slugify($('slug').value || title);
+      if (!title) { toast('Add a title before saving.', true); $('title').focus(); return false; }
+      if (!slug) { toast('Add a URL slug before saving.', true); $('slug').focus(); return false; }
+      if (targetStatus === 'published' && !quill.getText().trim()) { toast('Write some content before publishing.', true); return false; }
+      if ($('excerpt').value.length > EXCERPT_MAX) { toast(`Keep the summary under ${EXCERPT_MAX} characters.`, true); return false; }
+
+      const payload = {
+        title,
+        slug,
+        excerpt: $('excerpt').value.trim(),
+        content: quill.getText().trim() ? quill.root.innerHTML : '<p></p>',
+        cover_image_url: coverUrl,
+        status: targetStatus,
+      };
+      if (targetStatus === 'published') payload.published_at = current.published_at || new Date().toISOString();
+
+      ['save-btn', 'publish-btn'].forEach((b) => { $(b).disabled = true; });
+      $('save-state').textContent = 'Saving…';
+      try {
+        const query = current.id
+          ? supabaseClient.from('posts').update(payload).eq('id', current.id).select().single()
+          : supabaseClient.from('posts').insert(payload).select().single();
+        const { data, error } = await query;
+        if (error) {
+          const msg = error.code === '23505' ? 'Another article already uses that URL slug. Change the slug and try again.' : 'Save failed: ' + error.message;
+          throw new Error(msg);
+        }
+        clearLocal();
+        current = { id: data.id, status: data.status, published_at: data.published_at, updated_at: data.updated_at };
+        loading = true; $('slug').value = data.slug; loading = false;
+        setDirty(false);
+        $('save-state').textContent = `Saved ${fmtTime(data.updated_at)}`;
+        setStatusUI();
+        refreshMeta();
+        toast(targetStatus === 'published' ? 'Published. It is now live on your Articles page.' : 'Draft saved.');
+        return true;
+      } catch (err) {
+        $('save-state').textContent = 'Not saved';
+        setDirty(true);
+        toast(err.message, true);
+        return false;
+      } finally {
+        ['save-btn', 'publish-btn'].forEach((b) => { $(b).disabled = false; });
+      }
+    }
+
+    // ---------- list ----------
+    async function loadPosts() {
+      $('post-list').innerHTML = '<li class="post-row"><span></span><span style="color:var(--muted)">Loading articles…</span></li>';
+      const { data, error } = await supabaseClient
+        .from('posts')
+        .select('id, slug, title, excerpt, status, cover_image_url, updated_at, published_at')
+        .order('updated_at', { ascending: false });
+      if (error) {
+        $('post-list').innerHTML = '';
+        $('list-empty').hidden = false;
+        $('empty-title').textContent = 'Articles could not be loaded';
+        $('empty-text').textContent = error.message;
+        return;
+      }
+      posts = data || [];
+      renderList();
+    }
+
+    function renderList() {
+      const q = $('search').value.trim().toLowerCase();
+      $('count-all').textContent = posts.length;
+      $('count-draft').textContent = posts.filter((p) => p.status === 'draft').length;
+      $('count-published').textContent = posts.filter((p) => p.status === 'published').length;
+      const shown = posts.filter((p) => (filter === 'all' || p.status === filter) && (!q || p.title.toLowerCase().includes(q)));
+
+      $('list-empty').hidden = shown.length > 0;
+      if (!shown.length) {
+        $('empty-title').textContent = posts.length ? 'No matching articles' : 'No articles yet';
+        $('empty-text').textContent = posts.length ? 'Try a different filter or search.' : 'Start your first article. It stays a private draft until you publish it.';
+      }
+      $('post-list').hidden = !shown.length;
+      $('post-list').innerHTML = shown.map((p) => `
+        <li class="post-row">
+          <div class="post-thumb">${p.cover_image_url ? `<img src="${esc(p.cover_image_url)}" alt="" loading="lazy" />` : ''}</div>
+          <div>
+            <h2><button type="button" data-edit="${p.id}">${esc(p.title)}</button></h2>
+            <div class="post-meta">${statusChip(p.status)}<span>${p.status === 'published' ? 'Published ' + fmtDate(p.published_at) : 'Edited ' + fmtDate(p.updated_at)}</span><span>/${esc(p.slug)}</span></div>
+          </div>
+          <div class="row-actions">
+            <button class="icon-btn" type="button" data-edit="${p.id}">Edit</button>
+            ${p.status === 'published' ? `<a class="icon-btn" href="./post.html?slug=${encodeURIComponent(p.slug)}" target="_blank" rel="noopener">View ↗</a><button class="icon-btn" type="button" data-share="${esc(p.slug)}">Copy link</button>` : ''}
+            <button class="icon-btn danger" type="button" data-delete="${p.id}">Delete</button>
+          </div>
+        </li>`).join('');
+    }
+
+    async function copyShare(slug) {
+      const url = `${location.origin}/api/post-preview?slug=${encodeURIComponent(slug)}`;
+      try { await navigator.clipboard.writeText(url); toast('Share link copied. It shows a rich preview on social media.'); }
+      catch { prompt('Copy this share link:', url); }
+    }
+
+    async function remove(id) {
+      const post = posts.find((p) => p.id === id) || { title: $('title').value };
+      if (!confirm(`Delete "${post.title || 'this article'}"? This cannot be undone.`)) return;
+      const { error } = await supabaseClient.from('posts').delete().eq('id', id);
+      if (error) { toast('Delete failed: ' + error.message, true); return; }
+      try { localStorage.removeItem(`article-studio:${id}`); } catch { /* ignore */ }
+      toast('Article deleted.');
+      if (current && current.id === id) { dirty = false; show('list'); }
+      loadPosts();
+    }
+
+    // ---------- events ----------
+    $('post-list').addEventListener('click', (e) => {
+      const t = e.target.closest('[data-edit],[data-delete],[data-share]');
+      if (!t) return;
+      if (t.dataset.edit) openEditor(t.dataset.edit);
+      else if (t.dataset.delete) remove(t.dataset.delete);
+      else if (t.dataset.share) copyShare(t.dataset.share);
+    });
+    document.querySelectorAll('[data-filter]').forEach((b) => b.addEventListener('click', () => {
+      filter = b.dataset.filter;
+      document.querySelectorAll('[data-filter]').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+      renderList();
+    }));
+    $('search').addEventListener('input', renderList);
+    $('new-btn').addEventListener('click', () => openEditor(null));
+    $('back-btn').addEventListener('click', () => { if (confirmLeave()) { dirty = false; show('list'); loadPosts(); } });
+
+    $('title').addEventListener('input', () => {
+      autoGrow($('title'));
+      if (!slugTouched) $('slug').value = slugify($('title').value);
+      refreshMeta(); if (!loading) setDirty(true);
+    });
+    $('title').addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); $('excerpt').focus(); } });
+    $('excerpt').addEventListener('input', () => { autoGrow($('excerpt')); refreshMeta(); if (!loading) setDirty(true); });
+    $('slug').addEventListener('input', () => { slugTouched = true; refreshMeta(); if (!loading) setDirty(true); });
+    $('slug').addEventListener('blur', () => { $('slug').value = slugify($('slug').value); refreshMeta(); });
+    quill.on('text-change', (_d, _o, source) => { refreshMeta(); if (!loading && source === 'user') setDirty(true); });
+
+    async function handleCover(file) {
+      if (!file) return;
+      $('cover-state').textContent = 'Uploading…';
+      try { setCover(await upload(file)); setDirty(true); toast('Cover image uploaded.'); }
+      catch (err) { $('cover-state').textContent = coverUrl ? 'Cover set' : 'No cover yet'; toast(err.message, true); }
+      $('cover-file').value = '';
+    }
+    $('cover-file').addEventListener('change', () => handleCover($('cover-file').files[0]));
+    const drop = $('cover-drop');
+    ['dragenter', 'dragover'].forEach((ev) => drop.addEventListener(ev, (e) => { e.preventDefault(); drop.classList.add('is-over'); }));
+    ['dragleave', 'drop'].forEach((ev) => drop.addEventListener(ev, () => drop.classList.remove('is-over')));
+    drop.addEventListener('drop', (e) => { e.preventDefault(); handleCover(e.dataTransfer.files[0]); });
+    $('cover-remove').addEventListener('click', (e) => { e.preventDefault(); setCover(null); setDirty(true); });
+
+    $('save-btn').addEventListener('click', () => save('draft'));
+    $('publish-btn').addEventListener('click', () => {
+      const firstPublish = current.status !== 'published';
+      if (firstPublish && !confirm('Publish this article? It will appear publicly on your Articles page.')) return;
+      save('published');
+    });
+    $('unpublish-btn').addEventListener('click', () => {
+      if (confirm('Unpublish this article? It will be hidden from your Articles page and kept as a draft.')) save('draft');
+    });
+    $('share-btn').addEventListener('click', () => copyShare($('slug').value));
+    $('delete-btn').addEventListener('click', () => current && current.id && remove(current.id));
+
+    document.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's' && !views.editor.hidden) {
+        e.preventDefault();
+        save(current.status === 'published' ? 'published' : 'draft');
+      }
+      if (e.key === 'Escape' && !$('preview').hidden) closePreview();
+    });
+    window.addEventListener('beforeunload', (e) => { if (dirty) { e.preventDefault(); e.returnValue = ''; } });
+
+    // Preview uses the same article styles as the public post page.
+    function openPreview() {
+      const words = wordCount();
+      $('preview-body').innerHTML = `
+        ${coverUrl ? `<img class="post-cover" src="${esc(coverUrl)}" alt="" />` : ''}
+        <h1>${esc($('title').value.trim() || 'Untitled article')}</h1>
+        <div class="post-meta-bar">${fmtDate(current.published_at || new Date())} · ${Math.max(1, Math.round(words / 200))} min read</div>
+        <div class="post-content">${quill.root.innerHTML}</div>`;
+      $('preview').hidden = false;
+      document.body.style.overflow = 'hidden';
+      $('preview-close').focus();
+    }
+    function closePreview() { $('preview').hidden = true; document.body.style.overflow = ''; $('preview-btn').focus(); }
+    $('preview-btn').addEventListener('click', openPreview);
+    $('preview-close').addEventListener('click', closePreview);
+    $('preview').addEventListener('click', (e) => { if (e.target === $('preview')) closePreview(); });
+
+    // ---------- auth ----------
+    $('login-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      $('login-error').textContent = '';
+      const btn = e.submitter || e.target.querySelector('button');
+      btn.disabled = true;
+      const { error } = await supabaseClient.auth.signInWithPassword({ email: $('login-email').value.trim(), password: $('login-password').value });
+      btn.disabled = false;
+      if (error) { $('login-error').textContent = error.message === 'Invalid login credentials' ? 'That email and password do not match.' : error.message; return; }
+      $('login-password').value = '';
+      show('list'); loadPosts();
+    });
+    $('logout-btn').addEventListener('click', async () => {
+      if (!views.editor.hidden && !confirmLeave()) return;
+      dirty = false;
+      await supabaseClient.auth.signOut();
+      show('login');
+    });
+    supabaseClient.auth.onAuthStateChange((event) => {
+      if (event === 'SIGNED_OUT') show('login');
+    });
+
+    (async () => {
+      try {
+        const { data } = await supabaseClient.auth.getSession();
+        if (data.session) { show('list'); loadPosts(); } else { show('login'); }
+      } catch { show('login'); }
+    })();
+  })();
+  </script>
+</body>
+</html>

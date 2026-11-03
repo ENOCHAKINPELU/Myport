@@ -1,6 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /blog/admin.html
+Disallow: /blog/editor.html
 Disallow: /blog/analytics.html
 
 Sitemap: https://enochakinpeluportfolio.vercel.app/sitemap.xml
