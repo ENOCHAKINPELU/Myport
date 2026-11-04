@@ -1,7 +1,7 @@
 // Fill these in with your Supabase project values:
-// Project Settings -> API -> Project URL / anon public key
-const SUPABASE_URL = 'https://cgvtndympbpkslwyvrqo.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNndnRuZHltcGJwa3Nsd3l2cnFvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE1MTk1MjgsImV4cCI6MjA5NzA5NTUyOH0.W_ooEntUpHtzTf2bEvG4BON7HQLWImdAsMyUUXbRyxo';
+// Project Settings -> API -> Project URL / publishable key
+const SUPABASE_URL = 'https://vodvppzkmtuyrwsxazoo.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_dzK-986yGoc-yW0-_cD8Qg_Jv-ia_Ag';
 
 // Requires the supabase-js CDN script to be loaded before this file:
 // <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>

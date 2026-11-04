@@ -1,6 +1,6 @@
 ﻿const SITE_URL = process.env.SITE_URL || 'https://enochakinpeluportfolio.vercel.app';
-const SUPABASE_URL = process.env.SUPABASE_URL || 'https://cgvtndympbpkslwyvrqo.supabase.co';
-const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY || '';
+const SUPABASE_URL = process.env.SUPABASE_URL || 'https://vodvppzkmtuyrwsxazoo.supabase.co';
+const SUPABASE_ANON_KEY = process.env.SUPABASE_PUBLISHABLE_KEY || process.env.SUPABASE_ANON_KEY || 'sb_publishable_dzK-986yGoc-yW0-_cD8Qg_Jv-ia_Ag';
 
 function escapeHtml(value) {
   return String(value || '')
@@ -72,7 +72,6 @@ module.exports = async (req, res) => {
   const response = await fetch(queryUrl, {
     headers: {
       apikey: SUPABASE_ANON_KEY,
-      Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
       Accept: 'application/json',
     },
   });
