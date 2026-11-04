@@ -159,6 +159,47 @@
     .preview-top { display: flex; justify-content: space-between; align-items: center; padding: .85rem 1.25rem; border-bottom: 1px solid var(--line); font-size: .8rem; color: var(--muted); position: sticky; top: 0; background: var(--white); z-index: 1; }
     .preview .post-article { padding-block: 2.5rem 3rem; }
     .preview .post-meta-bar { color: var(--muted); font-size: .9rem; margin-bottom: 2rem; }
+
+    /* Shared brand details and account controls */
+    .studio-main { background: radial-gradient(70rem 32rem at 100% 0, rgba(0,159,253,.055), transparent 68%), var(--paper); }
+    .login-card, .ed-paper, .panel, .post-table { box-shadow: 0 12px 34px rgba(5,23,62,.055); }
+    .login-card { border: 1px solid rgba(255,255,255,.72); }
+    .login-kicker { display: block; color: var(--indigo-700); font-size: var(--fs-label); font-weight: 600; letter-spacing: .18em; text-transform: uppercase; margin-bottom: .6rem; }
+    .login-card .login-tools { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .75rem 1rem; margin-top: -.35rem; }
+    .login-tools button:disabled { opacity: .6; cursor: progress; }
+    .login-card .form-msg { margin-bottom: 0; }
+    .login-card .form-msg:empty { display: none; }
+    .studio-links button { font: inherit; }
+    .studio-links button:focus-visible, .studio-links a:focus-visible { outline-color: var(--blue-300); outline-offset: 4px; }
+    .ql-toolbar.ql-snow { box-shadow: 0 8px 22px rgba(5,23,62,.06); }
+    .ql-snow .ql-picker.ql-expanded .ql-picker-label,
+    .ql-snow .ql-picker-label:hover,
+    .ql-snow .ql-picker-item:hover,
+    .ql-snow .ql-picker-item.ql-selected,
+    .ql-toolbar.ql-snow button:hover,
+    .ql-toolbar.ql-snow button:focus,
+    .ql-toolbar.ql-snow button.ql-active { color: var(--indigo-700); }
+    .ql-toolbar.ql-snow button:hover .ql-stroke,
+    .ql-toolbar.ql-snow button:focus .ql-stroke,
+    .ql-toolbar.ql-snow button.ql-active .ql-stroke { stroke: var(--indigo-700); }
+    .password-dialog { width: min(100% - 2rem, 460px); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 0; color: var(--text); box-shadow: 0 30px 90px rgba(3,13,38,.28); }
+    .password-dialog::backdrop { background: rgba(3,13,38,.68); backdrop-filter: blur(4px); }
+    .password-dialog form { padding: clamp(1.4rem, 4vw, 2rem); }
+    .password-dialog h2 { font-size: 1.35rem; margin-bottom: .45rem; }
+    .password-dialog .dialog-intro { color: var(--muted); font-size: .9rem; margin-bottom: 1.25rem; }
+    .dialog-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .65rem; margin-top: 1.25rem; }
+    .form-msg.is-success { color: var(--indigo-700); }
+    @media (max-width: 640px) {
+      .studio-bar .shell { min-height: 64px; height: auto; padding-block: .7rem; }
+      .studio-links { gap: .75rem; }
+      .ed-bar { top: 64px; }
+      .ed-bar .shell { align-items: flex-start; }
+      .ed-left { width: 100%; justify-content: space-between; }
+      .ed-actions { width: 100%; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .ed-actions .btn { min-width: 0; padding-inline: .55rem; font-size: .78rem; }
+      .ql-toolbar.ql-snow { position: static; }
+      .ql-editor { min-height: 320px; }
+    }
   </style>
 </head>
 <body>
@@ -172,6 +213,7 @@
       <nav class="studio-links" aria-label="Studio">
         <a href="./index.html" target="_blank" rel="noopener">View articles ↗</a>
         <a class="hide-sm" href="./analytics.html">Analytics</a>
+        <button type="button" id="change-password-btn" hidden>Change password</button>
         <button type="button" id="logout-btn" hidden>Log out</button>
       </nav>
     </div>
@@ -181,11 +223,17 @@
   <section class="login-wrap" id="login-view" hidden>
     <form class="login-card" id="login-form">
       <img src="../images/brand/logo-mark.png" alt="" width="419" height="413" />
+      <span class="login-kicker">Private workspace</span>
       <h1>Welcome back</h1>
       <p>Sign in to write, edit and publish your articles.</p>
       <label class="f"><span>Email</span><input type="email" id="login-email" required autocomplete="username" /></label>
       <label class="f"><span>Password</span><input type="password" id="login-password" required autocomplete="current-password" /></label>
+      <div class="login-tools">
+        <button class="link-btn" type="button" id="resend-confirmation-btn">Resend confirmation</button>
+        <button class="link-btn" type="button" id="forgot-password-btn">Forgot password?</button>
+      </div>
       <button class="btn btn--block" type="submit">Sign in <span class="arrow" aria-hidden="true">→</span></button>
+      <p class="form-msg" id="login-message" role="status" aria-live="polite"></p>
       <p class="form-msg is-error" id="login-error" role="alert"></p>
     </form>
   </section>
@@ -300,6 +348,20 @@
     </div>
   </div>
 
+  <dialog class="password-dialog" id="password-dialog" aria-labelledby="password-title">
+    <form id="password-form">
+      <h2 id="password-title">Update your password</h2>
+      <p class="dialog-intro">Choose a new password for your Article Studio account.</p>
+      <label class="f"><span>New password</span><input type="password" id="new-password" required minlength="8" autocomplete="new-password" /></label>
+      <label class="f"><span>Confirm new password</span><input type="password" id="confirm-password" required minlength="8" autocomplete="new-password" /></label>
+      <p class="form-msg is-error" id="password-error" role="alert"></p>
+      <div class="dialog-actions">
+        <button class="btn btn--light btn--sm" type="button" id="cancel-password-btn">Cancel</button>
+        <button class="btn btn--sm" type="submit" id="update-password-btn">Update password</button>
+      </div>
+    </form>
+  </dialog>
+
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
@@ -340,6 +402,7 @@
     function show(name) {
       Object.entries(views).forEach(([k, el]) => { el.hidden = k !== name; });
       $('logout-btn').hidden = name === 'login';
+      $('change-password-btn').hidden = name === 'login';
       window.scrollTo(0, 0);
     }
 
@@ -698,13 +761,109 @@
     $('login-form').addEventListener('submit', async (e) => {
       e.preventDefault();
       $('login-error').textContent = '';
+      $('login-message').textContent = '';
       const btn = e.submitter || e.target.querySelector('button');
       btn.disabled = true;
-      const { error } = await supabaseClient.auth.signInWithPassword({ email: $('login-email').value.trim(), password: $('login-password').value });
-      btn.disabled = false;
-      if (error) { $('login-error').textContent = error.message === 'Invalid login credentials' ? 'That email and password do not match.' : error.message; return; }
-      $('login-password').value = '';
-      show('list'); loadPosts();
+      try {
+        const { error } = await supabaseClient.auth.signInWithPassword({ email: $('login-email').value.trim(), password: $('login-password').value });
+        if (error) {
+          const message = error.message || '';
+          $('login-error').textContent = message === 'Invalid login credentials'
+            ? 'That email and password do not match.'
+            : /email not confirmed/i.test(message)
+              ? 'Confirm your email using the link Supabase sent, then sign in again.'
+              : message;
+          return;
+        }
+        $('login-password').value = '';
+        show('list'); loadPosts();
+      } catch {
+        $('login-error').textContent = 'Could not reach Supabase. Check your connection and try again.';
+      } finally {
+        btn.disabled = false;
+      }
+    });
+    $('forgot-password-btn').addEventListener('click', async () => {
+      const email = $('login-email').value.trim();
+      $('login-error').textContent = '';
+      $('login-message').textContent = '';
+      if (!email) {
+        $('login-error').textContent = 'Enter your account email first, then request a reset link.';
+        $('login-email').focus();
+        return;
+      }
+      const btn = $('forgot-password-btn');
+      btn.disabled = true;
+      try {
+        const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
+          redirectTo: `${location.origin}${location.pathname}`,
+        });
+        if (error) throw error;
+        $('login-message').textContent = 'If the account can receive recovery emails, a reset link is on its way.';
+      } catch {
+        $('login-error').textContent = 'Could not send a reset link. Check your connection and try again.';
+      } finally {
+        btn.disabled = false;
+      }
+    });
+    $('resend-confirmation-btn').addEventListener('click', async () => {
+      const email = $('login-email').value.trim();
+      $('login-error').textContent = '';
+      $('login-message').textContent = '';
+      if (!email) {
+        $('login-error').textContent = 'Enter your account email first, then request another confirmation link.';
+        $('login-email').focus();
+        return;
+      }
+      const btn = $('resend-confirmation-btn');
+      btn.disabled = true;
+      try {
+        const { error } = await supabaseClient.auth.resend({ type: 'signup', email });
+        if (error) throw error;
+        $('login-message').textContent = 'If the account needs confirmation, a new link is on its way.';
+      } catch {
+        $('login-error').textContent = 'Could not send a confirmation link. Check your connection and try again.';
+      } finally {
+        btn.disabled = false;
+      }
+    });
+    function openPasswordDialog() {
+      $('password-error').textContent = '';
+      $('password-form').reset();
+      $('password-dialog').showModal();
+      $('new-password').focus();
+    }
+    function closePasswordDialog() {
+      $('password-dialog').close();
+      $('password-form').reset();
+      $('password-error').textContent = '';
+    }
+    $('change-password-btn').addEventListener('click', openPasswordDialog);
+    $('cancel-password-btn').addEventListener('click', closePasswordDialog);
+    $('password-dialog').addEventListener('click', (e) => {
+      if (e.target === $('password-dialog')) closePasswordDialog();
+    });
+    $('password-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      $('password-error').textContent = '';
+      const nextPassword = $('new-password').value;
+      if (nextPassword !== $('confirm-password').value) {
+        $('password-error').textContent = 'The passwords do not match.';
+        $('confirm-password').focus();
+        return;
+      }
+      const btn = $('update-password-btn');
+      btn.disabled = true;
+      try {
+        const { error } = await supabaseClient.auth.updateUser({ password: nextPassword });
+        if (error) throw error;
+        closePasswordDialog();
+        toast('Password updated.');
+      } catch (err) {
+        $('password-error').textContent = err.message || 'Could not update the password. Try again.';
+      } finally {
+        btn.disabled = false;
+      }
     });
     $('logout-btn').addEventListener('click', async () => {
       if (!views.editor.hidden && !confirmLeave()) return;
@@ -714,6 +873,11 @@
     });
     supabaseClient.auth.onAuthStateChange((event) => {
       if (event === 'SIGNED_OUT') show('login');
+      if (event === 'PASSWORD_RECOVERY') {
+        show('list');
+        loadPosts();
+        openPasswordDialog();
+      }
     });
 
     (async () => {
